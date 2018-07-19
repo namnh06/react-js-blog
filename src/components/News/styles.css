@@ -1,0 +1,20 @@
+.News__dash {
+  height: 2px;
+}
+
+.News__image {
+  height: 250px;
+}
+
+.News__text::before {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 20%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 45px;
+  border-bottom: 3px solid var(--yellow-cz);
+}
+/*# sourceMappingURL=styles.css.map */

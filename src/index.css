@@ -1,0 +1,28 @@
+@import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 90px;
+}
+
+:root {
+  --yellow-cz: #fef234;
+}
+
+.bg-yellow-cz-custom {
+  background-color: var(--yellow-cz) !important;
+}
+.text-yellow-cz-custom {
+  color: var(--yellow-cz) !important;
+}
+
+.border-yellow-cz-custom {
+  border-color: var(--yellow-cz) !important;
+}
