@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './styles.css';
 import { connect } from 'react-redux';
 import Brand from '../UI/Brand';
@@ -6,14 +6,36 @@ import ListCategory from './ListCategory';
 import { convertStringToUrl } from '../../helpers';
 import { categoriesFetchStart } from '../../store/actions/category.action';
 
-const index = class extends React.Component {
+class index extends Component {
+  state = {
+    isScroll: false
+  };
+
   componentDidMount() {
     this.props.categoriesFetchStart();
+    window.addEventListener('scroll', this.onScrollHandler);
   }
 
-  render() {
-    const { props } = this;
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScrollHandler);
+  }
 
+  onScrollHandler = event => {
+    const top = window.scrollY;
+    top > 100 &&
+      !this.state.isScroll &&
+      this.setState(prevState => ({
+        isScroll: true
+      }));
+
+    top < 100 &&
+      this.state.isScroll &&
+      this.setState({
+        isScroll: false
+      });
+  };
+
+  render() {
     return (
       <header>
         <nav
@@ -23,7 +45,7 @@ const index = class extends React.Component {
           <div className="d-flex flex-row">
             <div
               className="navbar navbar-expand-md navbar-dark py-0 w-100"
-              style={{ height: props.scroll ? '90px' : '120px' }}
+              style={{ height: this.state.isScroll ? '90px' : '120px' }}
             >
               <div className="col-2 navbar-brand d-flex align-items-center my-3">
                 <Brand
@@ -45,16 +67,18 @@ const index = class extends React.Component {
                 id="navbar-collapse"
               >
                 <ul className="nav navbar-nav Navigation-Bar__list h-100 d-flex align-items-center">
-                  {props.categories &&
-                    Object.keys(props.categories).map((pos, index) => {
+                  {this.props.categories &&
+                    Object.keys(this.props.categories).map((pos, index) => {
                       return (
                         <ListCategory
                           type="anchor"
                           key={++index}
-                          {...props.categories[pos]}
-                          url={convertStringToUrl(props.categories[pos].name)}
+                          {...this.props.categories[pos]}
+                          url={convertStringToUrl(
+                            this.props.categories[pos].name
+                          )}
                         >
-                          {props.categories[pos].name}
+                          {this.props.categories[pos].name}
                         </ListCategory>
                       );
                     })}
@@ -68,7 +92,7 @@ const index = class extends React.Component {
       </header>
     );
   }
-};
+}
 
 const mapStateToProps = state => {
   return {
