@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const url = () => {
   return {
-    development: 'http://localhost:6699/api/v1/public'
+    development: 'http://192.168.1.70:6699/api/v1/public'
   };
 };
 
