@@ -27,6 +27,7 @@ body {
   border-color: var(--yellow-cz) !important;
 }
 
+/* added new class */
 .circle-dark-color{
   background-color: #343a40 !important;
 }
