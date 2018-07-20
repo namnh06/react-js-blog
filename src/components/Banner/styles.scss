@@ -1,0 +1,9 @@
+.Banner {
+  &__text {
+    position: absolute !important;
+    z-index: 999;
+    top: 50%;
+    bottom: 50%;
+    left: 70%;
+  }
+}
