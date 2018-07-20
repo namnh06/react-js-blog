@@ -11,7 +11,7 @@ export const setDataToArray = data => {
   return [...data];
 };
 
-export const childrenOfListHeader = (type, name) => {
+export const childrenOfListHeader = (type, { name, url }) => {
   switch (type) {
     case 'button':
       return (
@@ -20,8 +20,25 @@ export const childrenOfListHeader = (type, name) => {
         </Button>
       );
     case 'anchor':
-      return <Anchor className="nav-link text-dark">{name}</Anchor>;
+      return url === 'forums' ? (
+        <a
+          href="http://www.crashzone.com.au/forum/viewforum.php?f=2"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nav-link text-dark"
+        >
+          {name}
+        </a>
+      ) : (
+        <Anchor href={url} className="nav-link text-dark">
+          {name}
+        </Anchor>
+      );
     default:
       return null;
   }
+};
+
+export const convertStringToUrl = string => {
+  return string.replace(' ', '-').toLowerCase();
 };

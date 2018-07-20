@@ -5,7 +5,6 @@ import thirdSlide from '../../assets/images/slides/crashzone-slide-3.jpg';
 
 import './styles.css';
 const index = props => {
-  console.log(firstSlide);
   return (
     <div className="container-fluid p-0 Carousel">
       <div className="d-flex flex-row h-100">

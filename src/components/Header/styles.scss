@@ -7,6 +7,12 @@
     }
   }
   &__brand {
+    &__anchor {
+      &:hover {
+        text-decoration: none;
+        color: var(--black);
+      }
+    }
     &__img {
       &--width {
         max-width: 80px;

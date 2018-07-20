@@ -4,6 +4,11 @@
   padding-left: 1rem;
 }
 
+.Navigation-Bar__brand__anchor:hover {
+  text-decoration: none;
+  color: var(--black);
+}
+
 .Navigation-Bar__brand__img--width {
   max-width: 80px;
 }

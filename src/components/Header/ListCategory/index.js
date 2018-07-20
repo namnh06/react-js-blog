@@ -4,7 +4,7 @@ import { childrenOfListHeader } from '../../../helpers';
 const index = props => {
   return (
     <li className={props.className}>
-      {childrenOfListHeader(props.type, props.children)}
+      {childrenOfListHeader(props.type, props)}
     </li>
   );
 };

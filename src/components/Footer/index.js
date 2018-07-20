@@ -1,7 +1,8 @@
 import React from 'react';
 import footerImage from '../../assets/images/footer/footer_slide-1.png';
 import './styles.css';
-import { logoImage } from '../../helpers';
+
+import Brand from '../UI/Brand';
 const index = () => {
   return (
     <div className="container-fluid Footer p-0">
@@ -27,45 +28,60 @@ const index = () => {
         </div>
       </div>
       <div className="d-flex flex-row bg-dark">
-        <div className="col-lg-5 col-md-5 col-sm-6 logo-footer">
-          <img src={logoImage()} width="150" alt="" />
-          <p>
+        <div className="col-5 pl-5 py-3">
+          <div className="d-flex mb-3">
+            <Brand
+              link="www.crashzone.com.au"
+              slogan="it's free"
+              textColor="text-white"
+            />
+          </div>
+
+          <p className="text-white">
             Crashzone the first free web based quoting system for smash
             repairers.
           </p>
-          <button className="btn btn-learn_more text-uppercase">
-            {' '}
+          <button className="btn btn-lg rounded-0 bg-yellow-cz-custom btn-outline-dark text-uppercase">
             learn more
           </button>
         </div>
-        <div className="col-lg-5 col-md-5 col-sm-6 address-footer">
-          <i className="fas fa-home">&nbsp;</i>
-          <span>P.O Box 4 - North Sydney - NSW 2060</span>
-          <br />
-          <i className="fas fa-address-book">&nbsp;</i>
-          <span>ABN: 63125055996</span>
-          <br />
-          <i className="fas fa-phone">&nbsp;</i>
-          <span>02 9011 6647</span>
-          <br />
-          <i className="fas fa-envelope">&nbsp;</i>
-          <a href="#">support@crashzone.com.au</a>
-          <br />
-          <i className="fas fa-clock">&nbsp;</i>
-          <span>Monday - Friday: 9:00 AM - 6:00 PM</span>
-          <br />
+        <div className="col-5 py-3 Footer__contact">
+          <p>
+            <i className="fas fa-home">&nbsp;&#x02010;&nbsp;</i>
+            <span className="">P.O Box 4 - North Sydney - NSW 2060</span>
+          </p>
+          <p>
+            <i className="fas fa-address-book">&nbsp;&#x02010;&nbsp;</i>
+            <span>ABN: 63125055996</span>
+          </p>
+          <p>
+            <i className="fas fa-phone">&nbsp;&#x02010;&nbsp;</i>
+            <span>02 9011 6647</span>
+          </p>
+          <p>
+            <i className="fas fa-envelope">&nbsp;&#x02010;&nbsp;</i>
+            <a href="" className="text-white">
+              support@crashzone.com.au
+            </a>
+          </p>
+          <p>
+            <i className="fas fa-clock">&nbsp;&#x02010;&nbsp;</i>
+            <span>Monday - Friday: 9:00 AM - 6:00 PM</span>
+          </p>
         </div>
-        <div className="col-lg-2 col-md-2 col-sm-6 social-footer">
-          <i className="fab fa-facebook-square" />
-          <i className="fab fa-twitter-square" />
+        <div className="col-2 py-3 text-white Footer__social-network">
+          <i className="fab fa-facebook-square fa-3x" />
+          <i className="fab fa-twitter-square fa-3x" />
         </div>
       </div>
       <div className="d-flex flex-row bg-secondary">
-        <div className="copyright-footer col-12">
-          <p className="text-center text-uppercase">
-            COPYRIGHT 2017 CRASHZONE IT'S FREE | ALL RIGHTS RESERVED | POWERED
-            BY
-            <a href="#">PAGEWORTH</a>
+        <div className="col-12">
+          <p className="text-center text-uppercase pt-2 text-white">
+            COPYRIGHT 2018 CRASHZONE IT'S FREE | ALL RIGHTS RESERVED | POWERED
+            BY&nbsp;
+            <a href="pageworth.com" className="text-warning">
+              PAGEWORTH
+            </a>
           </p>
         </div>
       </div>
