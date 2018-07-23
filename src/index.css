@@ -26,30 +26,3 @@ body {
 .border-yellow-cz-custom {
   border-color: var(--yellow-cz) !important;
 }
-
-/* added new class */
-.circle-dark-color{
-  background-color: #343a40 !important;
-}
-.circle-dark-color.active {
-  background-color: var(--yellow-cz) !important;
-}
-.color-hover-dark:hover {
-  background-color: #343a40 !important;
-  color: var(--yellow-cz) !important;
-  border-color: #fff !important;
-
-}
-li .active-menu-item {
-  background-color: var(--yellow-cz);
-  color: #343a40;
-}
-.btn-outline-dark-custom:hover {
-  color: #343a40;
-  background-color: #e2d822 !important;
-}
-.nav-item .bg-dark-list-anchor.active {
-  background-color: #343a40 !important;
-  color: var(--yellow-cz) !important;
-  border-color: #fff !important;
-}

@@ -9,6 +9,11 @@ import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
 import configureStore from './helpers/redux.config';
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faFilePdf);
 
 const store = configureStore();
 

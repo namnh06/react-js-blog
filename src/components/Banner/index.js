@@ -8,7 +8,10 @@ const index = props => {
     <div className="container-fluid px-0 Banner">
       <div className="d-flex flex-row">
         <div className="col-12 px-0">
-          <Picture src={props.bannerImage} className="w-100 img-fluid" />
+          <Picture
+            src={props.bannerImage}
+            className="w-100 img-fluid Banner__image"
+          />
           <div className="Banner__text">
             <h1 className="text-uppercase text-white">{props.title}</h1>
             <small className="text-uppercase text-white">

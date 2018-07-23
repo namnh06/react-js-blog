@@ -7,20 +7,50 @@ export const logoImage = () => {
   return logo;
 };
 
+export const setDataToObject = data => {
+  return { ...data };
+};
+
 export const setDataToArray = data => {
   return [...data];
 };
 
-export const childrenOfListHeader = (type, { name, url }) => {
+export const addDataToArray = (oldArray, newData) => {
+  return [...oldArray, newData];
+};
+
+export const removeDataFromArrayById = (array, id) => {
+  return array.filter(object => object.id !== id);
+};
+
+export const updateDataToArrayById = (array, data) => {
+  return array.map(item => {
+    if (item.id !== data.id) {
+      return item;
+    }
+
+    return {
+      ...item,
+      ...data
+    };
+  });
+};
+
+export const childrenOfListHeader = (type, { name, slug, isScroll }) => {
   switch (type) {
     case 'button':
       return (
-        <Button className="btn btn-outline-dark bg-yellow-cz-custom rounded-0 text-dark text-uppercase">
+        <Button
+          className={[
+            'btn btn-outline-dark rounded-0 text-uppercase',
+            isScroll ? 'btn-sm' : 'btn-lg'
+          ].join(' ')}
+        >
           {name}
         </Button>
       );
     case 'anchor':
-      return url === 'forums' ? (
+      return slug === 'forums' ? (
         <a
           href="http://www.crashzone.com.au/forum/viewforum.php?f=2"
           target="_blank"
@@ -30,7 +60,7 @@ export const childrenOfListHeader = (type, { name, url }) => {
           {name}
         </a>
       ) : (
-        <Anchor href={url} className="nav-link text-dark">
+        <Anchor href={slug} className="nav-link text-dark">
           {name}
         </Anchor>
       );

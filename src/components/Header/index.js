@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import './styles.css';
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
+
 import Brand from '../UI/Brand';
-import ListCategory from './ListCategory';
-import { convertStringToUrl } from '../../helpers';
-import { categoriesFetchStart } from '../../store/actions/category.action';
+import NavigationBar from './NavigationBar';
+
+import './styles.css';
+import { menusFetchStart } from '../../store/actions/menu.action';
 
 class index extends Component {
   state = {
@@ -12,7 +13,7 @@ class index extends Component {
   };
 
   componentDidMount() {
-    this.props.categoriesFetchStart();
+    this.props.menusFetchStart();
     window.addEventListener('scroll', this.onScrollHandler);
   }
 
@@ -45,10 +46,11 @@ class index extends Component {
           <div className="d-flex flex-row">
             <div
               className="navbar navbar-expand-md navbar-dark py-0 w-100"
-              style={{ height: this.state.isScroll ? '90px' : '120px' }}
+              style={{ height: this.state.isScroll ? '60px' : '90px' }}
             >
               <div className="col-2 navbar-brand d-flex align-items-center my-3">
                 <Brand
+                  isScroll={this.state.isScroll}
                   link="www.crashzone.com.au"
                   slogan="it's free"
                   textColor="text-dark"
@@ -67,23 +69,32 @@ class index extends Component {
                 id="navbar-collapse"
               >
                 <ul className="nav navbar-nav Navigation-Bar__list h-100 d-flex align-items-center">
-                  {this.props.categories &&
-                    Object.keys(this.props.categories).map((pos, index) => {
+                  {this.props.menus &&
+                    Object.keys(this.props.menus).map((pos, index) => {
                       return (
-                        <ListCategory
+                        <NavigationBar
                           type="anchor"
                           key={++index}
-                          {...this.props.categories[pos]}
-                          url={convertStringToUrl(
-                            this.props.categories[pos].name
-                          )}
+                          {...this.props.menus[pos]}
+                          slug={this.props.menus[pos].slug}
+                          isScroll={this.state.isScroll}
                         >
-                          {this.props.categories[pos].name}
-                        </ListCategory>
+                          {this.props.menus[pos].name}
+                        </NavigationBar>
                       );
                     })}
-                  <ListCategory type="button" name="sign up" />
-                  <ListCategory type="button" name="log in" />
+                  <NavigationBar
+                    isScroll={this.state.isScroll}
+                    type="button"
+                    name="sign up"
+                    className="Navigation-Bar__list__button"
+                  />
+                  <NavigationBar
+                    isScroll={this.state.isScroll}
+                    type="button"
+                    name="log in"
+                    className="Navigation-Bar__list__button"
+                  />
                 </ul>
               </div>
             </div>
@@ -96,12 +107,12 @@ class index extends Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories
+    menus: state.menus
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  categoriesFetchStart: () => dispatch(categoriesFetchStart())
+  menusFetchStart: () => dispatch(menusFetchStart())
 });
 
 export default connect(

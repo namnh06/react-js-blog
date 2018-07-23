@@ -15,9 +15,7 @@ const index = () => {
   return (
     <div className="container mt-5 border-top Feature">
       <div className="d-flex flex-row justify-content-center m-3 mb-5 ">
-        <h2 className="text-center text-uppercase border-bottom border-yellow-cz-custom">
-          what is crashzone ?
-        </h2>
+        <h2 className="text-center text-uppercase">what is crashzone ?</h2>
       </div>
       <div className="d-flex flex-row">
         <ul
@@ -25,9 +23,9 @@ const index = () => {
           id="featureTab"
           role="tablist"
         >
-          <li className="nav-item bg-yellow-cz-custom mb-3 text-left">
+          <li className="nav-item mb-3 text-left">
             <a
-              className="nav-link text-dark text-uppercase Feature__list__anchor active"
+              className="nav-link text-uppercase Feature__list__anchor active"
               id="crashzone-system-tab"
               data-toggle="tab"
               href="#crashzone-system"
@@ -38,9 +36,9 @@ const index = () => {
               The Crashzone System
             </a>
           </li>
-          <li className="nav-item bg-yellow-cz-custom mb-3 text-left">
+          <li className="nav-item mb-3 text-left">
             <a
-              className="nav-link text-dark text-uppercase Feature__list__anchor"
+              className="nav-link text-uppercase Feature__list__anchor"
               id="insurance-tab"
               data-toggle="tab"
               href="#insurance"
@@ -51,10 +49,10 @@ const index = () => {
               Insurance Integration
             </a>
           </li>
-          <li className="nav-item bg-yellow-cz-custom mb-3 text-left">
+          <li className="nav-item mb-3 text-left">
             <a
-              className="nav-link text-dark text-uppercase Feature__list__anchor"
-              id="getting-started-tab"
+              className="nav-link text-uppercase Feature__list__anchor"
+              id="feature-tab"
               data-toggle="tab"
               href="#getting-started"
               role="tab"
@@ -64,9 +62,9 @@ const index = () => {
               Getting Started
             </a>
           </li>
-          <li className="nav-item bg-yellow-cz-custom mb-3 text-left">
+          <li className="nav-item mb-3 text-left">
             <a
-              className="nav-link text-dark text-uppercase Feature__list__anchor"
+              className="nav-link text-uppercase Feature__list__anchor"
               id="ccrn-tab"
               data-toggle="tab"
               href="#ccrn"
@@ -129,7 +127,7 @@ const index = () => {
             className="tab-pane fade"
             id="getting-started"
             role="tabpanel"
-            aria-labelledby="getting-started-tab"
+            aria-labelledby="feature-tab"
           >
             <h3 className="text-uppercase">getting started</h3>
             <p>

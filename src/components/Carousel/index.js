@@ -2,7 +2,7 @@ import React from 'react';
 import firstSlide from '../../assets/images/slides/crashzone-slide-1.jpg';
 import secondSlide from '../../assets/images/slides/crashzone-slide-2.jpg';
 import thirdSlide from '../../assets/images/slides/crashzone-slide-3.jpg';
-
+import Button from '../Details/Button';
 import './styles.css';
 const index = props => {
   return (
@@ -33,12 +33,12 @@ const index = props => {
                     the first free web based quoting system for smash repairers
                   </h4>
                   <div className="d-flex flex-row justify-content-center">
-                    <button className="btn btn-lg text-uppercase btn-outline-light bg-dark text-white mx-2 rounded-0 px-3">
+                    <Button className="btn btn-lg text-uppercase btn-outline-light text-white mx-2 rounded-0 px-3 Carousel__button--learn-more">
                       learn more
-                    </button>
-                    <button className="btn btn-lg btn-outline-dark text-uppercase bg-yellow-cz-custom mx-2 rounded-0 px-3">
+                    </Button>
+                    <Button className="btn btn-lg btn-outline-dark text-uppercase bg-yellow-cz-custom mx-2 rounded-0 px-3 Carousel__button--sign-up">
                       sign up
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>

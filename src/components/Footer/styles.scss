@@ -1,12 +1,33 @@
 .Footer {
   position: relative;
   z-index: 9;
-  &__background-image {
-    min-height: 400px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-size: cover;
+  &__top {
+    &__button {
+      background-color: var(--yellow-cz);
+      border-color: var(--dark);
+      &:hover {
+        background-color: var(--dark);
+        color: var(--white);
+        border-color: var(--white);
+      }
+    }
+    &--background-image {
+      min-height: 400px;
+      width: 100%;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  }
+  &__middle {
+    &__button {
+      background-color: var(--yellow-cz);
+      border-color: var(--dark);
+      &:hover {
+        background-color: var(--white);
+        color: var(--dark);
+        border-color: var(--dark);
+      }
+    }
   }
   &__contact {
     & p {

@@ -1,8 +1,28 @@
+.Carousel__button--sign-up:hover {
+  background-color: var(--dark) !important;
+  color: var(--white) !important;
+  border-color: var(--white) !important;
+}
+
+.Carousel__button--learn-more {
+  background-color: var(--dark) !important;
+}
+
+.Carousel__button--learn-more:hover {
+  background-color: var(--yellow-cz) !important;
+  color: var(--dark) !important;
+  border-color: var(--dark) !important;
+}
+
 .Carousel-incaditors li {
   width: 20px !important;
   height: 20px !important;
   border-radius: 999px;
   background-color: rgba(156, 150, 150, 0.5) !important;
+}
+
+.Carousel-incaditors li.active {
+  background-color: var(--yellow-cz) !important;
 }
 
 .Carousel-content {

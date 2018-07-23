@@ -5,17 +5,20 @@ import Carousel from '../../components/Carousel';
 import './styles.css';
 
 import Ribbon from '../../components/Ribbon';
-import News from '../../components/News';
 import Feature from '../../components/Feature';
 import Footer from '../../components/Footer';
+import Articles from '../../components/Content/Home/Articles';
 class index extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
       <Fragment>
         <Header />
         <Carousel />
         <Ribbon />
-        <News />
+        <Articles />
         <Feature />
         <Footer />
       </Fragment>

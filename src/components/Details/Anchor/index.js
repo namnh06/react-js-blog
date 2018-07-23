@@ -6,7 +6,7 @@ const index = props => {
       className={props.className}
       to={`/${props.href || '#'}`}
       target={props.target}
-      activeClassName="border border-dark"
+      activeClassName="border border-dark bg-yellow-cz-custom"
     >
       {props.children}
     </NavLink>

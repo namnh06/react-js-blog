@@ -1,13 +1,13 @@
 import React from 'react';
 import footerImage from '../../assets/images/footer/footer_slide-1.png';
 import './styles.css';
-
+import Button from '../Details/Button';
 import Brand from '../UI/Brand';
 const index = () => {
   return (
     <div className="container-fluid Footer p-0">
       <div
-        className="d-flex flex-row Footer__background-image align-items-center"
+        className="d-flex flex-row Footer__top--background-image align-items-center"
         style={{ backgroundImage: `url(${footerImage})` }}
       >
         <div className="col-6 d-flex flex-column ">
@@ -19,15 +19,15 @@ const index = () => {
           </p>
         </div>
         <div className="col-6">
-          <button className="btn btn-lg bg-yellow-cz-custom rounded-0 text-uppercase">
+          <Button className="btn btn-lg rounded-0 text-uppercase Footer__top__button">
             sign up now
-          </button>
+          </Button>
           <p className="text-white text-uppercase mt-2">
             Only take a few seconds !
           </p>
         </div>
       </div>
-      <div className="d-flex flex-row bg-dark">
+      <div className="d-flex flex-row bg-dark Footer__middle">
         <div className="col-5 pl-5 py-3">
           <div className="d-flex mb-3">
             <Brand
@@ -36,14 +36,13 @@ const index = () => {
               textColor="text-white"
             />
           </div>
-
           <p className="text-white">
             Crashzone the first free web based quoting system for smash
             repairers.
           </p>
-          <button className="btn btn-lg rounded-0 bg-yellow-cz-custom btn-outline-dark text-uppercase">
+          <Button className="btn btn-lg rounded-0 text-uppercase Footer__middle__button">
             learn more
-          </button>
+          </Button>
         </div>
         <div className="col-5 py-3 Footer__contact">
           <p>

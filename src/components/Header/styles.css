@@ -1,7 +1,25 @@
+.Navigation-Bar__list button {
+  color: var(--dark) !important;
+  background-color: var(--yellow-cz);
+}
+
+.Navigation-Bar__list button:hover {
+  color: var(--white) !important;
+  border-color: var(--white) !important;
+}
+
 .Navigation-Bar__list li {
-  font-size: 1.5rem;
   padding-right: 1rem;
   padding-left: 1rem;
+}
+
+.Navigation-Bar__list li a {
+  border: 1px solid transparent;
+}
+
+.Navigation-Bar__list li a:hover {
+  background-color: var(--yellow-cz);
+  border: 1px solid var(--dark);
 }
 
 .Navigation-Bar__brand__anchor:hover {

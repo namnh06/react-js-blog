@@ -6,5 +6,13 @@
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   left: 50%;
+  background-color: var(--dark) !important;
+  color: var(--yellow-cz) !important;
+}
+
+.Ribbon__button:hover {
+  background-color: var(--yellow-cz) !important;
+  color: var(--dark) !important;
+  border-color: var(--dark) !important;
 }
 /*# sourceMappingURL=styles.css.map */

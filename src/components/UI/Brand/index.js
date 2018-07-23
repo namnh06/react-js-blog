@@ -10,17 +10,22 @@ const index = props => {
           <Picture
             className="Navigation-Bar__brand__img--width"
             src={logoImage()}
+            width={props.isScroll ? '40px' : ''}
           />
-          <h3
-            className={[
-              'font-italic font-weight-bold ml-3 text-uppercase',
-              props.textColor
-            ].join(' ')}
-          >
-            {props.slogan}
-            <br />
-            <small className="">{props.link}</small>
-          </h3>
+          <div className="d-flex flex-column ml-3 align-items-center">
+            <h1
+              className={[
+                'font-italic font-weight-bold text-uppercase mb-0',
+                props.textColor,
+                props.isScroll && 'd-none'
+              ].join(' ')}
+            >
+              <span>{props.slogan}</span>
+            </h1>
+            <div>
+              <small className={props.textColor}>{props.link}</small>
+            </div>
+          </div>
         </div>
       </Link>
     </Fragment>

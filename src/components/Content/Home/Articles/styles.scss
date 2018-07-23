@@ -1,4 +1,10 @@
-.News {
+.Home-Articles {
+  &__button {
+    &:hover {
+      background-color: var(--dark) !important;
+      border-color: var(--white) !important;
+    }
+  }
   &__dash {
     height: 2px;
   }

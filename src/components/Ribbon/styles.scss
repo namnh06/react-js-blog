@@ -3,5 +3,12 @@
   &__button {
     transform: translate(-50%, -50%);
     left: 50%;
+    background-color: var(--dark) !important;
+    color: var(--yellow-cz) !important;
+    &:hover {
+      background-color: var(--yellow-cz) !important;
+      color: var(--dark) !important;
+      border-color: var(--dark) !important;
+    }
   }
 }

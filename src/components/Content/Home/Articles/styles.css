@@ -1,12 +1,17 @@
-.News__dash {
+.Home-Articles__button:hover {
+  background-color: var(--dark) !important;
+  border-color: var(--white) !important;
+}
+
+.Home-Articles__dash {
   height: 2px;
 }
 
-.News__image {
+.Home-Articles__image {
   height: 250px;
 }
 
-.News__text::before {
+.Home-Articles__text::before {
   content: '';
   position: absolute;
   height: 1px;
