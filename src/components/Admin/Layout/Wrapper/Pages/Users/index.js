@@ -188,7 +188,12 @@ const index = class extends React.Component {
 
   render() {
     return (
-      <PageContent page={ADMIN_PAGES_NAME.USERS} />
+      <PageContent
+        page={ADMIN_PAGES_NAME.USERS}
+        items={this.props.users}
+        formToggle={this.props.formToggle}
+        onFormToggleClicked={_ => this.props.onFormToggleClicked()}
+      />
       // <div className="col-10">
       //   <div className="mt-5 border border-style-custom">
       //     <div className="d-flex flex-row justify-content-between align-items-center border-bottom p-3">

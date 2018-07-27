@@ -75,7 +75,12 @@ const index = class extends Component {
   };
   render() {
     return (
-      <PageContent page={ADMIN_PAGES_NAME.POSTS} />
+      <PageContent
+        page={ADMIN_PAGES_NAME.POSTS}
+        items={this.props.posts}
+        formToggle={this.props.formToggle}
+        onFormToggleClicked={_ => this.props.onFormToggleClicked()}
+      />
       // <div className="col-10 ">
       //   <div className="mt-5 border border-style-custom ">
       //     <div className="d-flex flex-row justify-content-between align-items-center border-bottom p-3">

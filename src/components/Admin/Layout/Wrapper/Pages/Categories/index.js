@@ -5,10 +5,7 @@ import PageContent from '../Components/PageContent';
 
 import './styles.css';
 
-import {
-  categoryDeleteStart,
-  subCategoryDeleteStart
-} from '../../../../../../store/actions/admin/categories.action';
+import { categoryDeleteStart } from '../../../../../../store/actions/admin/categories.action';
 
 import { ADMIN_PAGES_NAME } from '../../../../../../helpers/constants';
 const index = class extends Component {
@@ -19,11 +16,14 @@ const index = class extends Component {
   onSubDeleteButtonClickHandler = (id, parentId) => {
     this.props.subCategoryDelteStart(id, parentId);
   };
+
   render() {
     return (
       <PageContent
         page={ADMIN_PAGES_NAME.CATEGORIES}
         items={this.props.categories}
+        formToggle={this.props.formToggle}
+        onFormToggleClicked={_ => this.props.onFormToggleClicked()}
       />
       // <div className="col-10 ">
       //   <div className="mt-5 border border-style-custom ">
@@ -166,9 +166,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    categoryDeleteStart: id => dispatch(categoryDeleteStart(id)),
-    subCategoryDelteStart: (id, parentId) =>
-      dispatch(subCategoryDeleteStart(id, parentId))
+    categoryDeleteStart: id => dispatch(categoryDeleteStart(id))
   };
 };
 

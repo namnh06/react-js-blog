@@ -4,8 +4,8 @@ const Button = props => {
   return (
     <button
       disabled={props.disabled}
-      type={props.type}
-      className={`${props.className} rounded-0`}
+      type={props.type || 'button'}
+      className={['btn rounded-0', props.className].join(' ')}
       onClick={props.clicked}
     >
       <span className="text-uppercase">{props.children}</span>

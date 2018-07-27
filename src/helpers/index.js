@@ -9,11 +9,7 @@ import Button from '../components/Details/Button';
 
 import logo from '../assets/images/crashzone-logo.svg';
 
-import {
-  USER_ADD_START,
-  USER_EDIT_START,
-  POST_CREATE_START
-} from './constants';
+import { USER_ADD_START, USER_EDIT_START } from './constants';
 
 import store from '../store';
 import {
@@ -206,13 +202,13 @@ export const isValidPassword = password => {
 };
 
 export const isValidName = name => {
-  return (
-    name
-      .trim()
-      .split(' ')
-      .every(word => validator.isAlpha(word)) &&
-    validator.isLength(name, { min: 3 })
-  );
+  return name === ''
+    ? null
+    : name
+        .trim()
+        .split(' ')
+        .every(word => validator.isAlpha(word)) &&
+        validator.isLength(name, { min: 3 });
 };
 
 export const parseToken = token => {
@@ -250,6 +246,10 @@ export const addClassInputLoginForm = item => {
   return isNull(item) ? null : isFalse(item) ? 'is-invalid' : 'is-valid';
 };
 
+export const addInputValidClass = item => {
+  return isNull(item) ? null : isFalse(item) ? 'is-invalid' : 'is-valid';
+};
+
 export const textRequireEmail = () => {
   return 'Please input the valid email, e.g : email@autointegrity.com.au.';
 };
@@ -262,18 +262,22 @@ export const textRequireName = () => {
   return 'Please input the valid name, e.g : nam, at least 3 characters, just alphabet character.';
 };
 
-export const userFormTitle = type => {
-  switch (type) {
-    case USER_ADD_START:
-      return 'user create';
-    case USER_EDIT_START:
-      return 'user edit';
-    case POST_CREATE_START:
-      return 'article create';
-    default:
-      return null;
-  }
+export const helpTextRequire = (inputName, required) => {
+  return `Please input valid ${inputName}, it's required : ${required}`;
 };
+
+// export const userFormTitle = type => {
+//   switch (type) {
+//     case USER_ADD_START:
+//       return 'user create';
+//     case USER_EDIT_START:
+//       return 'user edit';
+//     case POST_CREATE_START:
+//       return 'article create';
+//     default:
+//       return null;
+//   }
+// };
 
 export const passwordPlaceholderByType = type => {
   switch (type) {

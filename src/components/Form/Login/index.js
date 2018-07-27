@@ -74,6 +74,7 @@ const Login = props => {
         <Button
           className="btn btn-primary w-50 text-light font-weight-bold login__form__button"
           disabled={!props.validEmail || !props.validPassword}
+          clicked={event => props.loginSubmitHandler(event)}
         >
           log in
         </Button>

@@ -2,7 +2,7 @@ import React from 'react';
 import Input from '../../../../../../../../UI/Input';
 import Button from '../../../../../../../../UI/Button';
 import HelpText from '../../../../../../../../UI/HelpText';
-import { userFormTitle } from '../../../../../../../../../helpers';
+
 import './styles.css';
 import { POST_CREATE_START } from '../../../../../../../../../helpers/constants';
 
@@ -16,7 +16,7 @@ const index = props => {
       className="Post-form border rounded-0 p-3 pb-0 m-3"
     >
       <div className="form-group d-flex justify-content-between border-bottom p-2 m-0">
-        <h5 className="text-uppercase">{userFormTitle(props.type)}</h5>
+        <h5 className="text-uppercase">AA</h5>
         {props.type === POST_CREATE_START && (
           <Button
             type="reset"

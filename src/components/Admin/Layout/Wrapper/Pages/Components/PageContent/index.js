@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Title from './Title';
-import Button from '../../../../../../Details/Button';
+import Button from '../../../../../../UI/Button';
 import Icon from '../../../../../../UI/Icon';
 import { iconClass } from '../../../../../../../helpers';
 import FormPost from './Form/Post';
@@ -9,55 +9,62 @@ import List from './List';
 import FormCategory from './Form/Category';
 import { ADMIN_PAGES_NAME } from '../../../../../../../helpers/constants';
 const index = props => {
-  console.log(props);
   return (
     <div className="col-10 ">
       <div className="mt-5 border border-style-custom ">
         <div className="d-flex justify-content-between align-items-center border-bottom p-3">
           <Title className="mb-0">{props.page}</Title>
           <Button
-            className="btn btn-sm btn-info"
-            clicked={this.onAddToggleClicked}
+            className="btn-sm btn-info"
+            clicked={_ => props.onFormToggleClicked()}
           >
             <Icon
-              // iconClass={iconClass(this.state.addToggle ? 'minus' : 'plus')}
-              iconClass={iconClass(true ? 'minus' : 'plus')}
+              iconClass={iconClass(props.formToggle ? 'minus' : 'plus')}
               className="text-white"
             />
           </Button>
         </div>
 
-        <div>
-          {/* {this.state.addToggle && ( */}
-          {true && (
-            <FormPost
-              onResetButtonClicked={this.onCreateReset}
-              onTitleChange={event => this.onCreateTitleChange(event)}
-              onDescriptionChange={event =>
-                this.onCreateDescriptionChange(event)
-              }
-              onContentChange={content => this.onCreateContentChange(content)}
-              onSubmitHandler={event => this.onCreateSubmitHandler(event)}
-              // {...this.state.articleWillBeCreated}
-              onUpdateTextEditor={this.onUpdateTextEditor}
-            />
-          )}
+        {props.formToggle && (
+          <div>
+            {props.page === ADMIN_PAGES_NAME.POSTS &&
+              props.items && (
+                <FormPost
+                  onResetButtonClicked={this.onCreateReset}
+                  onTitleChange={event => this.onCreateTitleChange(event)}
+                  onDescriptionChange={event =>
+                    this.onCreateDescriptionChange(event)
+                  }
+                  onContentChange={content =>
+                    this.onCreateContentChange(content)
+                  }
+                  onSubmitHandler={event => this.onCreateSubmitHandler(event)}
+                  onUpdateTextEditor={this.onUpdateTextEditor}
+                />
+              )}
 
-          {props.page === ADMIN_PAGES_NAME.CATEGORIES && <FormCategory />}
-        </div>
+            {props.page === ADMIN_PAGES_NAME.CATEGORIES &&
+              props.items && (
+                <FormCategory
+                  page={props.page}
+                  onFormToggleClicked={_ => props.onFormToggleClicked()}
+                />
+              )}
+          </div>
+        )}
 
         <div className="m-3">
           <ul className="list-unstyled">
             <Header />
-            {/* {this.props.items && */}
-            {false &&
-              Object.keys(this.props.items).map((key, index) => {
+            {props.items &&
+              Object.keys(props.items).map((key, index) => {
+                console.log(props.items);
                 return (
-                  <Fragment key={this.props.items[key].id}>
+                  <Fragment key={props.items[key].id}>
                     <List
                       index={++index}
                       deleteButton={id => this.onDeleteButtonClickHandler(id)}
-                      {...this.props.items[key]}
+                      {...props.items[key]}
                     />
                   </Fragment>
                 );

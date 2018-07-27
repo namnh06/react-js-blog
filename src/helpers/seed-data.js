@@ -1,7 +1,8 @@
 import {
   USER_ADD_START,
   USER_EDIT_START,
-  POST_CREATE_START
+  POST_CREATE_START,
+  CATEGORY_CREATE_START
 } from './constants';
 
 export const initCategories = [];
@@ -9,6 +10,19 @@ export const initPosts = [];
 export const initPost = {};
 export const initMenus = [];
 export const initAuth = {};
+
+export const categoryForm = {
+  name: '',
+  isValidName: null,
+  saveButtonClicked: false
+};
+
+export const categoryWillBeCreated = {
+  type: CATEGORY_CREATE_START,
+  name: '',
+  isValidName: null,
+  saveButtonClicked: false
+};
 
 export const userWillBeCreated = {
   type: USER_ADD_START,

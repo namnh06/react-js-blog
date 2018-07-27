@@ -9,7 +9,6 @@ import Layout from '../../../components/Admin/Layout';
 
 class index extends Component {
   componentDidMount() {
-    console.log('object');
     this.props.categoriesFetchStart();
   }
 
