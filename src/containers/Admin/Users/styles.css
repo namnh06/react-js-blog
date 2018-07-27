@@ -1,0 +1,8 @@
+.Users-Container {
+  top: 66px;
+  height: calc(100% - 66px);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+}
+/*# sourceMappingURL=styles.css.map */

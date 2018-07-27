@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Header from '../../components/Layout/Header';
+import Footer from '../../components/Layout/Footer';
 import Banner from '../../components/Banner';
 import Video from '../../components/Video';
 import HelpContent from '../../components/HelpContent';

@@ -1,0 +1,74 @@
+@import '../../../node_modules/bootstrap/scss/functions';
+@import '../../../node_modules/bootstrap/scss/variables';
+@import '../../../node_modules/bootstrap/scss/mixins';
+
+.login {
+  &__form {
+    width: 50%;
+    &__notice {
+      &__failed {
+        &--hidden {
+          visibility: hidden;
+        }
+        &--visible {
+          animation: transform-text-color 1s;
+          visibility: visible;
+        }
+      }
+      &--height {
+        height: 1rem;
+      }
+    }
+    &__button {
+      &:not(:disabled) {
+        animation: transform-scale-size 0.5s;
+      }
+      &:disabled {
+        animation: transform-scale-size-smaller 0.5s;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+@keyframes transform-text-color {
+  0% {
+    color: $red;
+  }
+  25% {
+    color: $black;
+  }
+  50% {
+    color: $red;
+  }
+  75% {
+    color: $black;
+  }
+  100% {
+    color: $red;
+  }
+}
+
+@keyframes transform-scale-size {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes transform-scale-size-smaller {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

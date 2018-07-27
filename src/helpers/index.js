@@ -1,10 +1,50 @@
+import {} from '@fortawesome/free-solid-svg-icons';
+import jwtDecode from 'jwt-decode';
+import moment from 'moment';
 import React from 'react';
-import logo from '../assets/images/crashzone-logo.svg';
+import validator from 'validator';
+
 import Anchor from '../components/Details/Anchor';
 import Button from '../components/Details/Button';
 
+import logo from '../assets/images/crashzone-logo.svg';
+
+import {
+  USER_ADD_START,
+  USER_EDIT_START,
+  POST_CREATE_START
+} from './constants';
+
+import store from '../store';
+import {
+  authRefreshToken,
+  authLogIn
+} from '../store/actions/admin/auth.action';
+import { ADMIN_PAGES_NAME } from './constants';
+
+import NotFoundPage from '../containers/404';
+import Posts from '../components/Admin/Layout/Wrapper/Pages/Posts';
+import Users from '../components/Admin/Layout/Wrapper/Pages/Users';
+import Categories from '../components/Admin/Layout/Wrapper/Pages/Categories';
 export const logoImage = () => {
   return logo;
+};
+
+export const adminPageRender = page => {
+  switch (page.toLowerCase()) {
+    case ADMIN_PAGES_NAME.USERS:
+      return <Users />;
+    case ADMIN_PAGES_NAME.POSTS:
+      return <Posts />;
+    case ADMIN_PAGES_NAME.CATEGORIES:
+      return <Categories />;
+    default:
+      return <NotFoundPage />;
+  }
+};
+
+export const hrefArticle = article => {
+  return `/blog/posts/${article}`;
 };
 
 export const setDataToObject = data => {
@@ -71,4 +111,177 @@ export const childrenOfListHeader = (type, { name, slug, isScroll }) => {
 
 export const convertStringToUrl = string => {
   return string.replace(' ', '-').toLowerCase();
+};
+
+export const fontAwesomeType = {
+  USERS: 'users',
+  THLIST: 'th-list',
+  TACHOMETERALT: 'tachometer-alt',
+  NEWSPAPER: 'newspaper',
+  PLUS: 'plus',
+  MINUS: 'minus'
+};
+
+export const iconClass = type => {
+  switch (type.toUpperCase()) {
+    case fontAwesomeType.USERS.toUpperCase():
+      return fontAwesomeType.USERS;
+    case fontAwesomeType.THLIST.toUpperCase():
+      return fontAwesomeType.THLIST;
+    case fontAwesomeType.TACHOMETERALT.toUpperCase():
+      return fontAwesomeType.TACHOMETERALT;
+    case fontAwesomeType.NEWSPAPER.toUpperCase():
+      return fontAwesomeType.NEWSPAPER;
+    case fontAwesomeType.PLUS.toUpperCase():
+      return fontAwesomeType.PLUS;
+    case fontAwesomeType.MINUS.toUpperCase():
+      return fontAwesomeType.MINUS;
+    default:
+      return null;
+  }
+};
+
+export const updateObject = (oldObject, updatedProperties) => {
+  return {
+    ...oldObject,
+    ...updatedProperties
+  };
+};
+export const setArray = array => {
+  return [...array];
+};
+
+export const addArray = (oldArray, newData) => {
+  return [...oldArray, newData];
+};
+
+export const removeArray = (array, id) => {
+  return array.filter(object => object.id !== id);
+};
+
+export const updateArray = (array, data) => {
+  return array.map(item => {
+    if (item.id !== data.id) {
+      return item;
+    }
+
+    return {
+      ...item,
+      ...data
+    };
+  });
+};
+
+export const isExistsToken = _ => {
+  const token = localStorage.getItem('cz.token');
+  if (token) {
+    if (isTokenExpired(token)) {
+      if (canTokenRefresh(token)) {
+        store.dispatch(authRefreshToken(token));
+      } else {
+        localStorage.removeItem('cz.token');
+      }
+    } else {
+      store.dispatch(authLogIn(parseToken(token)));
+    }
+  }
+};
+
+export const isTokenExpired = token => {
+  const tokenInfo = jwtDecode(token);
+  const currentTime = moment().unix();
+  return currentTime >= tokenInfo.exp;
+};
+
+export const isAuthenticated = state => {
+  return !!state.auth.token && !isTokenExpired(state.auth.token);
+};
+
+export const isValidEmail = email => {
+  return validator.isEmail(email);
+};
+
+export const isValidPassword = password => {
+  return validator.isLength(password, 5);
+};
+
+export const isValidName = name => {
+  return (
+    name
+      .trim()
+      .split(' ')
+      .every(word => validator.isAlpha(word)) &&
+    validator.isLength(name, { min: 3 })
+  );
+};
+
+export const parseToken = token => {
+  const tokenInformation = jwtDecode(token);
+  return { token: token, ...tokenInformation };
+};
+
+export const canTokenRefresh = token => {
+  const tokenInfo = jwtDecode(token);
+  const invalidTime = moment()
+    .add(14, 'days')
+    .unix();
+
+  return invalidTime >= tokenInfo.iat;
+};
+
+export const isNull = item => item === null;
+export const isTrue = item => item === true;
+export const isFalse = item => item === false;
+export const isLengthZero = length => length === 0;
+
+export const showHelpTextLoginForm = (
+  length,
+  item,
+  text = 'help text here'
+) => {
+  return isNull(item)
+    ? null
+    : isFalse(item) && !isLengthZero(length)
+      ? text
+      : null;
+};
+
+export const addClassInputLoginForm = item => {
+  return isNull(item) ? null : isFalse(item) ? 'is-invalid' : 'is-valid';
+};
+
+export const textRequireEmail = () => {
+  return 'Please input the valid email, e.g : email@autointegrity.com.au.';
+};
+
+export const textRequirePassword = () => {
+  return 'Please input valid password, at least 5 characters, e.g : 12345.';
+};
+
+export const textRequireName = () => {
+  return 'Please input the valid name, e.g : nam, at least 3 characters, just alphabet character.';
+};
+
+export const userFormTitle = type => {
+  switch (type) {
+    case USER_ADD_START:
+      return 'user create';
+    case USER_EDIT_START:
+      return 'user edit';
+    case POST_CREATE_START:
+      return 'article create';
+    default:
+      return null;
+  }
+};
+
+export const passwordPlaceholderByType = type => {
+  switch (type) {
+    case USER_ADD_START:
+      return 'Password';
+    case USER_EDIT_START:
+      return 'New Password';
+    default:
+      return null;
+  }
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const index = props => {
-  console.log(props.last);
   return (
     <li
       className={[

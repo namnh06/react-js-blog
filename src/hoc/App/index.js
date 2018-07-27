@@ -1,13 +1,18 @@
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import React, { Component } from 'react';
-
-import Article from '../../containers/Article';
+import PublicRoute from '../Routes/PublicRoute';
+import PrivateRoute from '../Routes/PrivateRoute';
+import Post from '../../containers/Post';
 import Blog from '../../containers/Blog';
 import Contact from '../../containers/Contact';
 import Help from '../../containers/Help';
 import Home from '../../containers/Home';
 import NotFoundPage from '../../containers/404';
+import Login from '../../containers/Admin/Login';
+import Users from '../../containers/Admin/Users';
+import Categories from '../../containers/Admin/Categories';
+import Posts from '../../containers/Admin/Posts';
 
 import './styles.css';
 
@@ -22,9 +27,14 @@ class App extends Component {
           <Route path="/home" component={Home} />
           <Route path="/404" component={NotFoundPage} />
           <Route path="/blog" exact component={Blog} />
-          <Route path="/blog/:slug" component={Article} />
+          <Route path="/blog/posts/:slug" component={Post} />
           <Route path="/contact" component={Contact} />
           <Route path="/help" component={Help} />
+          <PublicRoute path="/admin/login" component={Login} />
+          <PrivateRoute path="/admin/users" component={Users} />
+          <PrivateRoute path="/admin/categories" component={Categories} />
+          <PrivateRoute path="/admin/posts" component={Posts} />
+          <Route component={NotFoundPage} />
         </Switch>
       </Router>
     );

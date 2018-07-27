@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../components/Header';
+import Header from '../../components/Layout/Header';
 import Carousel from '../../components/Carousel';
 import './styles.css';
 
-import Ribbon from '../../components/Ribbon';
-import Feature from '../../components/Feature';
-import Footer from '../../components/Footer';
-import Articles from '../../components/Content/Home/Articles';
+import Ribbon from '../../components/Layout/Ribbon';
+import Feature from '../../components/Layout/Feature';
+import Footer from '../../components/Layout/Footer';
+import Posts from '../../components/Content/Home/Posts';
 class index extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -18,7 +18,7 @@ class index extends Component {
         <Header />
         <Carousel />
         <Ribbon />
-        <Articles />
+        <Posts />
         <Feature />
         <Footer />
       </Fragment>

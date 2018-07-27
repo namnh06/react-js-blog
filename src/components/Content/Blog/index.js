@@ -1,32 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { articlesFetchStart } from '../../../store/actions/articles.action';
-import Article from './Article';
+import { postsFetchStart } from '../../../store/actions/posts.action';
+import Post from './Post';
+import Breadcrumb from '../../UI/Breadcrumb';
 
 class index extends Component {
   componentDidMount() {
-    this.props.articlesFetchStart();
+    this.props.postsFetchStart();
   }
   render() {
     return (
       <div className="container my-5">
         <div className="d-flex flex-row">
           <div className="col-8">
-            <nav aria-label="breadcrumb">
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <a href="">Blog</a>
-                </li>
-                <li className="breadcrumb-item active" aria-current="page">
-                  Articles
-                </li>
-              </ol>
-            </nav>
+            <Breadcrumb data={['blog']} sort />
             <div className="card-groups">
-              {this.props.articles &&
-                Object.keys(this.props.articles).map((key, index) => {
-                  return <Article {...this.props.articles[key]} key={index} />;
+              {this.props.posts &&
+                Object.keys(this.props.posts).map((key, index) => {
+                  return <Post {...this.props.posts[key]} key={index} />;
                 })}
             </div>
           </div>
@@ -66,12 +58,12 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-  articles: state.articles
+  posts: state.posts
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    articlesFetchStart: () => dispatch(articlesFetchStart())
+    postsFetchStart: () => dispatch(postsFetchStart())
   };
 };
 

@@ -1,13 +1,8 @@
 import axios from 'axios';
-
-const url = () => {
-  return {
-    development: 'http://192.168.1.70:6699/api/v1/public'
-  };
-};
+import { DEVELOPMENT_URL_API } from './constants';
 
 const instance = axios.create({
-  baseURL: url().development
+  baseURL: DEVELOPMENT_URL_API
 });
 
 export default instance;

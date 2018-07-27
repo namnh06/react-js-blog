@@ -8,19 +8,20 @@ import App from './hoc/App';
 import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
-import configureStore from './helpers/redux.config';
-import { library } from '@fortawesome/fontawesome-svg-core';
+// import configureStore from './helpers/redux.config';
+import store from './store';
 
-import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import fontAwesome from './helpers/fontAwesome.config';
+import { isExistsToken } from './helpers';
 
-library.add(faFilePdf);
-
-const store = configureStore();
-
+// const store = configureStore();
+fontAwesome();
+isExistsToken();
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
 );
+
 registerServiceWorker();

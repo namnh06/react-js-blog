@@ -1,0 +1,125 @@
+.login__form {
+  width: 50%;
+}
+
+.login__form__notice__failed--hidden {
+  visibility: hidden;
+}
+
+.login__form__notice__failed--visible {
+  -webkit-animation: transform-text-color 1s;
+          animation: transform-text-color 1s;
+  visibility: visible;
+}
+
+.login__form__notice--height {
+  height: 1rem;
+}
+
+.login__form__button:not(:disabled) {
+  -webkit-animation: transform-scale-size 0.5s;
+          animation: transform-scale-size 0.5s;
+}
+
+.login__form__button:disabled {
+  -webkit-animation: transform-scale-size-smaller 0.5s;
+          animation: transform-scale-size-smaller 0.5s;
+  cursor: not-allowed;
+}
+
+@-webkit-keyframes transform-text-color {
+  0% {
+    color: #dc3545;
+  }
+  25% {
+    color: #000;
+  }
+  50% {
+    color: #dc3545;
+  }
+  75% {
+    color: #000;
+  }
+  100% {
+    color: #dc3545;
+  }
+}
+
+@keyframes transform-text-color {
+  0% {
+    color: #dc3545;
+  }
+  25% {
+    color: #000;
+  }
+  50% {
+    color: #dc3545;
+  }
+  75% {
+    color: #000;
+  }
+  100% {
+    color: #dc3545;
+  }
+}
+
+@-webkit-keyframes transform-scale-size {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes transform-scale-size {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes transform-scale-size-smaller {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  60% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes transform-scale-size-smaller {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  60% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+/*# sourceMappingURL=styles.css.map */

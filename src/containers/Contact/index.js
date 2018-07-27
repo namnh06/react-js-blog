@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Header from '../../components/Layout/Header';
+import Footer from '../../components/Layout/Footer';
 import Banner from '../../components/Banner';
 import contactImage from '../../assets/images/contact/MenuBanners_Contact-1920x580.jpg';
 import ContactContent from '../../components/ContactContent';

@@ -1,0 +1,28 @@
+.User-Content div:first-child {
+  width: 20%;
+}
+
+.User-Content div {
+  width: 100%;
+  border-right: 1px solid #dee2e6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px 0;
+}
+
+.User-Content div:last-child {
+  width: 50%;
+  border-right: none;
+}
+
+.User-Content:first-child {
+  font-weight: bold;
+}
+/*# sourceMappingURL=styles.css.map */
