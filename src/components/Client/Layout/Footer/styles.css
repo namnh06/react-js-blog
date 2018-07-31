@@ -1,0 +1,42 @@
+.Footer {
+  bottom: 0;
+  z-index: 9;
+}
+
+.Footer__top__button {
+  background-color: var(--yellow-cz);
+  border-color: var(--dark);
+}
+
+.Footer__top__button:hover {
+  background-color: var(--dark);
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.Footer__top--background-image {
+  min-height: 400px;
+  width: 100%;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.Footer__middle__button {
+  background-color: var(--yellow-cz);
+  border-color: var(--dark);
+}
+
+.Footer__middle__button:hover {
+  background-color: var(--white);
+  color: var(--dark);
+  border-color: var(--dark);
+}
+
+.Footer__contact p {
+  color: white;
+}
+
+.Footer__social-network i {
+  margin: 0 0.5rem;
+}
+/*# sourceMappingURL=styles.css.map */

@@ -1,3 +1,7 @@
+.Categories-Content:hover {
+  background-color: var(--light);
+}
+
 .Categories-Content div:first-child {
   width: 20%;
 }
@@ -18,7 +22,7 @@
 }
 
 .Categories-Content div:last-child {
-  width: 50%;
+  width: 20%;
   border-right: none;
 }
 

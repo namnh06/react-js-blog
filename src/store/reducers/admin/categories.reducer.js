@@ -1,55 +1,77 @@
 import {
-  USER_ADDED,
-  USER_EDITED,
-  CATEGORIES_FETCH,
   CATEGORY_DELETED,
-  SUB_CATEGORY_DELETED
-} from '../../helpers/constants';
-import { setArray, removeArray, addArray, updateArray } from '../../helpers';
+  CATEGORIES_FETCHED,
+  CATEGORY_CREATED,
+  CATEGORIES_DELETED_FETCHED,
+  CATEGORY_DELETED_PERMANENTLY,
+  CATEGORY_DELETED_RESTORED,
+  CATEGORY_EDITED
+} from '../../../helpers/constants';
+import {
+  setArray,
+  addDataToArray,
+  removeDataFromArrayById,
+  updateDataToArrayById
+} from '../../../helpers';
+import { initCategories } from '../../../helpers/seed-data';
 
-const categories = [];
-
-const categoriesFetch = action => {
-  return setArray(action.state.categories);
+const categoriesFetched = (state, action) => {
+  return { ...state, current: setArray(action.categories) };
+};
+const categoriesDeletedFetched = (state, action) => {
+  return { ...state, deleted: setArray(action.categories) };
 };
 
-const categoryDeleted = (state, id) => {
-  return removeArray(state, id);
+const categoryDeleted = (state, action) => {
+  return {
+    ...state,
+    current: removeDataFromArrayById(state.current, action.category.id),
+    deleted: addDataToArray(state.deleted, action.category)
+  };
 };
 
-const subCategoryDeleted = (state, id, parentId) => {
-  return state.map(category => {
-    if (category.id === parentId) {
-      return {
-        ...category,
-        sub_categories: removeArray(category.sub_categories, id)
-      };
-    }
-
-    return category;
-  });
+const categoryCreated = (state, action) => {
+  return { ...state, current: addDataToArray(state.current, action.category) };
 };
 
-const userAdded = (state, action) => {
-  return addArray(state, action.state.user);
+const categoryDeletedPermanently = (state, action) => {
+  return {
+    ...state,
+    deleted: removeDataFromArrayById(state.deleted, action.id)
+  };
 };
 
-const userEdited = (state, action) => {
-  return updateArray(state, action.state.user);
+const categoryDeletedRestored = (state, action) => {
+  return {
+    ...state,
+    current: addDataToArray(state.current, action.category),
+    deleted: removeDataFromArrayById(state.deleted, action.category.id)
+  };
 };
 
-const reducer = (state = categories, action) => {
+const categoryUpdated = (state, action) => {
+  return {
+    ...state,
+    current: updateDataToArrayById(state.current, action.category)
+  };
+};
+
+const reducer = (state = initCategories, action) => {
   switch (action.type) {
-    case CATEGORIES_FETCH:
-      return categoriesFetch(action);
+    case CATEGORIES_FETCHED:
+      return categoriesFetched(state, action);
+    case CATEGORIES_DELETED_FETCHED:
+      return categoriesDeletedFetched(state, action);
     case CATEGORY_DELETED:
-      return categoryDeleted(state, action.id);
-    case SUB_CATEGORY_DELETED:
-      return subCategoryDeleted(state, action.id, action.parentId);
-    case USER_ADDED:
-      return userAdded(state, action);
-    case USER_EDITED:
-      return userEdited(state, action);
+      return categoryDeleted(state, action);
+    case CATEGORY_DELETED_PERMANENTLY:
+      return categoryDeletedPermanently(state, action);
+    case CATEGORY_CREATED:
+      return categoryCreated(state, action);
+    case CATEGORY_EDITED:
+      return categoryUpdated(state, action);
+    case CATEGORY_DELETED_RESTORED:
+      return categoryDeletedRestored(state, action);
     default:
       return state;
   }

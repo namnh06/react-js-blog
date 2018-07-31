@@ -9,7 +9,12 @@ import Button from '../components/Details/Button';
 
 import logo from '../assets/images/crashzone-logo.svg';
 
-import { USER_ADD_START, USER_EDIT_START } from './constants';
+import {
+  USER_ADD_START,
+  USER_EDIT_START,
+  CATEGORY_CREATE_START,
+  CATEGORY_EDIT_START
+} from './constants';
 
 import store from '../store';
 import {
@@ -40,7 +45,7 @@ export const adminPageRender = page => {
 };
 
 export const hrefArticle = article => {
-  return `/blog/posts/${article}`;
+  return `/blog/${article}`;
 };
 
 export const setDataToObject = data => {
@@ -143,16 +148,12 @@ export const updateObject = (oldObject, updatedProperties) => {
     ...updatedProperties
   };
 };
-export const setArray = array => {
-  return [...array];
+export const setArray = data => {
+  return [...data];
 };
 
 export const addArray = (oldArray, newData) => {
   return [...oldArray, newData];
-};
-
-export const removeArray = (array, id) => {
-  return array.filter(object => object.id !== id);
 };
 
 export const updateArray = (array, data) => {
@@ -266,18 +267,16 @@ export const helpTextRequire = (inputName, required) => {
   return `Please input valid ${inputName}, it's required : ${required}`;
 };
 
-// export const userFormTitle = type => {
-//   switch (type) {
-//     case USER_ADD_START:
-//       return 'user create';
-//     case USER_EDIT_START:
-//       return 'user edit';
-//     case POST_CREATE_START:
-//       return 'article create';
-//     default:
-//       return null;
-//   }
-// };
+export const renderTypeString = type => {
+  switch (type) {
+    case CATEGORY_CREATE_START:
+      return 'create';
+    case CATEGORY_EDIT_START:
+      return 'edit';
+    default:
+      return null;
+  }
+};
 
 export const passwordPlaceholderByType = type => {
   switch (type) {
@@ -288,4 +287,16 @@ export const passwordPlaceholderByType = type => {
     default:
       return null;
   }
+};
+
+export const displayStringTemporary = page => {
+  return `display ${page} deleted temporary`;
+};
+
+export const hideStringTemporary = page => {
+  return `hide ${page} deleted temporary`;
+};
+
+export const isCreateType = type => {
+  return type.toUpperCase().includes('CREATE');
 };

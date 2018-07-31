@@ -5,7 +5,7 @@ import axios from '../../../helpers/axios.config';
 import withErrorHandler from '../../../hoc/withErrorHandler';
 
 import { categoriesFetchStart } from '../../../store/actions/admin/categories.action';
-import Layout from '../../../components/Admin/Layout';
+import AdminLayout from '../../../components/Admin/Layout';
 
 class index extends Component {
   componentDidMount() {
@@ -15,7 +15,7 @@ class index extends Component {
   render() {
     return (
       <Fragment>
-        <Layout page="categories" />
+        <AdminLayout page="categories" />
       </Fragment>
     );
   }

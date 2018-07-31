@@ -5,7 +5,7 @@ import {
   CATEGORY_CREATE_START
 } from './constants';
 
-export const initCategories = [];
+export const initCategories = { current: [], deleted: [] };
 export const initPosts = [];
 export const initPost = {};
 export const initMenus = [];

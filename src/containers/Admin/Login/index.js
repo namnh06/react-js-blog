@@ -8,7 +8,7 @@ import axios from '../../../helpers/axios.config';
 import withErrorHandler from '../../../hoc/withErrorHandler';
 
 import { isValidEmail, isValidPassword } from '../../../helpers';
-import LoginForm from '../../../components/Form/Login';
+import LoginForm from '../../../components/Admin/Layout/Wrapper/Pages/Components/Form/Login';
 
 import './styles.css';
 

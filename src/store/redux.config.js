@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import categories from '../store/reducers/category.reducer';
+import categories from '../store/reducers/admin/categories.reducer';
 import posts from '../store/reducers/posts.reducer';
 import post from '../store/reducers/post.reducer';
 import menus from '../store/reducers/menus.reducer';

@@ -12,11 +12,19 @@ import Categories from './Pages/Categories';
 import NotFoundPage from '../../../../containers/404';
 class index extends React.Component {
   state = {
-    formToggle: false
+    formToggle: false,
+    formEditToggle: false
   };
-  onFormToggleClicked = () => {
+
+  onFormToggleClickHandler = _ => {
     this.setState(prevState => ({
       formToggle: !prevState.formToggle
+    }));
+  };
+
+  onFormEditToggleClickHandler = set => {
+    this.setState(prevState => ({
+      formEditToggle: set === true ? set : !prevState.formEditToggle
     }));
   };
 
@@ -26,21 +34,24 @@ class index extends React.Component {
         return (
           <Users
             formToggle={this.state.formToggle}
-            onFormToggleClicked={this.onFormToggleClicked}
+            onFormToggleClicked={this.onFormToggleClickHandler}
           />
         );
       case ADMIN_PAGES_NAME.POSTS:
         return (
           <Posts
             formToggle={this.state.formToggle}
-            onFormToggleClicked={this.onFormToggleClicked}
+            onFormToggleClicked={this.onFormToggleClickHandler}
           />
         );
       case ADMIN_PAGES_NAME.CATEGORIES:
         return (
           <Categories
+            page={this.props.page}
             formToggle={this.state.formToggle}
-            onFormToggleClicked={this.onFormToggleClicked}
+            onFormToggleClicked={this.onFormToggleClickHandler}
+            formEditToggle={this.state.formEditToggle}
+            onFormEditToggleClicked={this.onFormEditToggleClickHandler}
           />
         );
       default:

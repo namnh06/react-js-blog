@@ -4,7 +4,12 @@ import {
   USER_ADDED,
   USER_EDITED
 } from '../../../helpers/constants';
-import { setArray, removeArray, addArray, updateArray } from '../../../helpers';
+import {
+  setArray,
+  removeDataFromArrayById,
+  addArray,
+  updateArray
+} from '../../../helpers';
 
 const users = [];
 
@@ -13,7 +18,7 @@ const usersFetch = (state, action) => {
 };
 
 const userDeleted = (state, id) => {
-  return removeArray(state, id);
+  return removeDataFromArrayById(state, id);
 };
 
 const userAdded = (state, action) => {

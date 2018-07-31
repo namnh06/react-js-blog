@@ -1,4 +1,7 @@
 .Categories-Content {
+  &:hover {
+    background-color: var(--light);
+  }
   & div:first-child {
     width: 20%;
   }
@@ -11,7 +14,7 @@
     padding: 5px 0;
   }
   & div:last-child {
-    width: 50%;
+    width: 20%;
     border-right: none;
   }
   &__Header {
