@@ -1,33 +1,30 @@
-import React from 'react';
-
-import Button from '../../../../../../UI/Button';
-import './styles.css';
+import React, { Fragment } from 'react';
+import Button from '../../../../../../../UI/Button';
 const index = props => {
   return (
-    <li className="Admin-Posts-Content d-flex flex-row justify-content-around border border-top-0 ">
-      <div>{props.index}</div>
-      <div className="d-flex justify-content-start">
+    <Fragment>
+      <div className="font-weight-bold">{props.index}</div>
+      <div className="d-flex justify-content-start font-weight-bold">
         <span className="px-2">{props.title}</span>
       </div>
-      <div className="text-truncate justify-content-start">
+      <div className="d-flex justify-content-start">
         <span className="px-2">{props.description}</span>
       </div>
-
       <div className="d-flex justify-content-around">
         <Button
           className="btn btn-sm btn-warning"
-          clicked={props.onEditButtonClicked}
+          clicked={props.onButtonEditClicked}
         >
           edit
         </Button>
         <Button
           className="btn btn-sm btn-danger"
-          clicked={id => props.deleteButton(props.id)}
+          clicked={props.onButtonDeleteClicked}
         >
           delete
         </Button>
       </div>
-    </li>
+    </Fragment>
   );
 };
 

@@ -17,11 +17,7 @@ class NavigationBar extends Component {
       <div className="container-fluid p-0 bg-dark Navigation-Bar">
         <div className="d-flex flex-row ">
           <div className="col-2 d-flex justify-content-start my-2">
-            <Picture
-              imageSrc={crashzoneImageSrc}
-              imageHeight="75px"
-              imageAlt="Crashzone"
-            />
+            <Picture src={crashzoneImageSrc} height="75px" alt="Crashzone" />
           </div>
           <div className="col-10 d-flex justify-content-end align-items-center my-2">
             <Button

@@ -1,8 +1,12 @@
-.User-Content div:first-child {
+.Admin-Users-Content:hover {
+  background-color: var(--light);
+}
+
+.Admin-Users-Content div:first-child {
   width: 20%;
 }
 
-.User-Content div {
+.Admin-Users-Content div {
   width: 100%;
   border-right: 1px solid #dee2e6;
   display: -webkit-box;
@@ -17,12 +21,12 @@
   padding: 5px 0;
 }
 
-.User-Content div:last-child {
-  width: 50%;
+.Admin-Users-Content div:last-child {
+  max-width: 20%;
   border-right: none;
 }
 
-.User-Content:first-child {
+.Admin-Users-Content__Header {
   font-weight: bold;
 }
 /*# sourceMappingURL=styles.css.map */

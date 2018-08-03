@@ -13,7 +13,8 @@ import {
   USER_ADD_START,
   USER_EDIT_START,
   CATEGORY_CREATE_START,
-  CATEGORY_EDIT_START
+  CATEGORY_EDIT_START,
+  POST_CREATE_START
 } from './constants';
 
 import store from '../store';
@@ -27,8 +28,13 @@ import NotFoundPage from '../containers/404';
 import Posts from '../components/Admin/Layout/Wrapper/Pages/Posts';
 import Users from '../components/Admin/Layout/Wrapper/Pages/Users';
 import Categories from '../components/Admin/Layout/Wrapper/Pages/Categories';
+
 export const logoImage = () => {
   return logo;
+};
+
+export const capitalizeFirstLetter = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
 export const adminPageRender = page => {
@@ -56,12 +62,35 @@ export const setDataToArray = data => {
   return [...data];
 };
 
-export const addDataToArray = (oldArray, newData) => {
+export const pushDataToArray = (oldArray, newData) => {
   return [...oldArray, newData];
+};
+
+export const unshiftDataToArray = (newData, oldArray) => {
+  return [newData, ...oldArray];
+};
+
+export const addDataToObject = (oldObject, newObject) => {
+  return { ...oldObject, newObject };
+};
+
+export const sortDescendingArrayById = array => {
+  return array.sort((a, b) => {
+    return b.id - a.id;
+  });
 };
 
 export const removeDataFromArrayById = (array, id) => {
   return array.filter(object => object.id !== id);
+};
+export const removeDataFromArrayByProperty = (array, property, data) => {
+  return array.filter(object => object[property] !== data);
+};
+
+export const removeDuplicateObjectInArrayByProperty = (array, property) => {
+  return array.filter((element, index, self) => {
+    return self.map(obj => obj[property]).indexOf(element[property]) === index;
+  });
 };
 
 export const updateDataToArrayById = (array, data) => {
@@ -120,7 +149,8 @@ export const fontAwesomeType = {
   TACHOMETERALT: 'tachometer-alt',
   NEWSPAPER: 'newspaper',
   PLUS: 'plus',
-  MINUS: 'minus'
+  MINUS: 'minus',
+  TIMES: 'times'
 };
 
 export const iconClass = type => {
@@ -137,6 +167,8 @@ export const iconClass = type => {
       return fontAwesomeType.PLUS;
     case fontAwesomeType.MINUS.toUpperCase():
       return fontAwesomeType.MINUS;
+    case fontAwesomeType.TIMES.toUpperCase():
+      return fontAwesomeType.TIMES;
     default:
       return null;
   }
@@ -147,9 +179,6 @@ export const updateObject = (oldObject, updatedProperties) => {
     ...oldObject,
     ...updatedProperties
   };
-};
-export const setArray = data => {
-  return [...data];
 };
 
 export const addArray = (oldArray, newData) => {
@@ -200,6 +229,15 @@ export const isValidEmail = email => {
 
 export const isValidPassword = password => {
   return validator.isLength(password, 5);
+};
+
+export const isValidTitle = title => {
+  return title === '' ? null : validator.isLength(title, { min: 5 });
+};
+export const isValidDescription = description => {
+  return description === ''
+    ? null
+    : validator.isLength(description, { min: 5 });
 };
 
 export const isValidName = name => {
@@ -270,6 +308,7 @@ export const helpTextRequire = (inputName, required) => {
 export const renderTypeString = type => {
   switch (type) {
     case CATEGORY_CREATE_START:
+    case POST_CREATE_START:
       return 'create';
     case CATEGORY_EDIT_START:
       return 'edit';

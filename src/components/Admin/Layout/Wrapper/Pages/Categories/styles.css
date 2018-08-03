@@ -1,12 +1,12 @@
-.Categories-Content:hover {
+.Admin-Categories-Content:hover {
   background-color: var(--light);
 }
 
-.Categories-Content div:first-child {
+.Admin-Categories-Content div:first-child {
   width: 20%;
 }
 
-.Categories-Content div {
+.Admin-Categories-Content div {
   width: 100%;
   border-right: 1px solid #dee2e6;
   display: -webkit-box;
@@ -21,12 +21,12 @@
   padding: 5px 0;
 }
 
-.Categories-Content div:last-child {
-  width: 20%;
+.Admin-Categories-Content div:last-child {
+  max-width: 15%;
   border-right: none;
 }
 
-.Categories-Content__Header {
+.Admin-Categories-Content__Header {
   font-weight: bold;
 }
 /*# sourceMappingURL=styles.css.map */

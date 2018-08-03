@@ -8,13 +8,12 @@ import App from './hoc/App';
 import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
-// import configureStore from './helpers/redux.config';
+
 import store from './store';
 
 import fontAwesome from './helpers/fontAwesome.config';
 import { isExistsToken } from './helpers';
 
-// const store = configureStore();
 fontAwesome();
 isExistsToken();
 ReactDOM.render(

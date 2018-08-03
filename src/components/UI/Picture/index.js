@@ -4,10 +4,10 @@ const index = props => {
   return (
     <picture>
       <img
-        src={props.imageSrc}
-        alt={props.imageAlt}
-        width={props.imageWidth}
-        height={props.imageHeight}
+        src={props.src}
+        alt={props.alt}
+        width={props.width}
+        height={props.height}
       />
     </picture>
   );

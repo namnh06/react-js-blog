@@ -48,7 +48,7 @@ class index extends React.Component {
     }
   };
 
-  onInputCategoryChange = event => {
+  onInputNameCategoryChange = event => {
     const name = event.target.value;
 
     if (isCreateType(this.props.type)) {
@@ -148,7 +148,7 @@ class index extends React.Component {
                   ? this.state.categoryForm.name
                   : this.state.categoryFormEdit.name
               }
-              onChange={this.onInputCategoryChange}
+              onChange={this.onInputNameCategoryChange}
               autoFocus
             />
           </div>
@@ -166,8 +166,8 @@ class index extends React.Component {
             }`}
             disabled={
               isCreateType(this.props.type)
-                ? !!!this.state.categoryForm.isValidName
-                : !!!this.state.categoryFormEdit.isValidName
+                ? !this.state.categoryForm.isValidName
+                : !this.state.categoryFormEdit.isValidName
             }
           >
             {renderTypeString(this.props.type)}

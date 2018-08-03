@@ -8,7 +8,10 @@ const index = props => {
     <div className="card w-100 mb-2">
       <img
         className="card-img-top"
-        src={(props.images[0] && props.images[0].path) || logoImage()}
+        src={
+          `http://localhost:6699${props.images[0] && props.images[0].path}` ||
+          logoImage()
+        }
         width="300"
         alt="Card cap"
       />

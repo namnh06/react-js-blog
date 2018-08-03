@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
-import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import '../../../../../../../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './styles.css';
 import { connect } from 'react-redux';
-import axios from '../../helpers/axios.config';
+import axios from '../../../../../../../../../helpers/axios.config';
 
-import { DEVELOPMENT_DOMAIN } from '../../helpers/constants';
+import { DEVELOPMENT_DOMAIN } from '../../../../../../../../../helpers/constants';
 class EditorComponent extends Component {
   state = {
     editorState: EditorState.createEmpty()
   };
+
   onEditorStateChange = editorState => {
     this.setState({ editorState });
     const html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -21,6 +22,7 @@ class EditorComponent extends Component {
   uploadImageCallBack = file => {
     let formData = new FormData();
     formData.append('image', file);
+
     return axios
       .post('/images', formData, {
         headers: {

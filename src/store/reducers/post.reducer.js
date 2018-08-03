@@ -1,13 +1,9 @@
-import { POST_FETCHED, POST_CREATED } from '../../helpers/constants';
-import { setDataToObject, addDataToArray } from '../../helpers';
+import { POST_FETCHED } from '../../helpers/constants';
+import { setDataToObject } from '../../helpers';
 import { initPost } from '../../helpers/seed-data';
 
 const postFetched = action => {
   return setDataToObject(action.state.post);
-};
-
-const postCreated = (state, action) => {
-  return addDataToArray(state, action.state.post);
 };
 
 const reducer = (state = initPost, action) => {
@@ -15,8 +11,6 @@ const reducer = (state = initPost, action) => {
     case POST_FETCHED:
       return postFetched(action);
 
-    case POST_CREATED:
-      return postCreated(state, action);
     default:
       return state;
   }

@@ -2,8 +2,8 @@ import { AUTH_LOG_IN, AUTH_LOG_OUT } from '../../../helpers/constants';
 import { setDataToObject } from '../../../helpers';
 import { initAuth } from '../../../helpers/seed-data';
 
-const authLogIn = action => {
-  return setDataToObject(action.state);
+const authLogIn = (state, action) => {
+  return { ...action.auth };
 };
 
 const authLogOut = _ => {
@@ -13,7 +13,7 @@ const authLogOut = _ => {
 const reducer = (state = initAuth, action) => {
   switch (action.type) {
     case AUTH_LOG_IN:
-      return authLogIn(action);
+      return authLogIn(state, action);
     case AUTH_LOG_OUT:
       return authLogOut();
     default:

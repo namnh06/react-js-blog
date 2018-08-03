@@ -8,7 +8,8 @@ import {
   faTachometerAlt,
   faNewspaper,
   faPlus,
-  faMinus
+  faMinus,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
 const fontAwesome = () => {
@@ -21,7 +22,8 @@ const fontAwesome = () => {
     faTachometerAlt,
     faNewspaper,
     faPlus,
-    faMinus
+    faMinus,
+    faTimes
   );
 };
 

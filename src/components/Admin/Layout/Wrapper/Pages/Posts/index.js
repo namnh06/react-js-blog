@@ -1,165 +1,173 @@
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
-import { postCreateStart } from '../../../../../../store/actions/post.action';
-import { postDeleteStart } from '../../../../../../store/actions/posts.action';
-import { articleWillBeCreated } from '../../../../../../helpers/seed-data';
-import PageContent from '../Components/PageContent';
+import {
+  postDeleteStart,
+  postsDeletedFetchStart,
+  postDeletePermanentlyStart,
+  postDeletedRestoreStart
+} from '../../../../../../store/actions/posts.action';
+import FormPost from '../Components/Form/Post';
+import {
+  iconClass,
+  displayStringTemporary,
+  hideStringTemporary
+} from '../../../../../../helpers';
+import { POST_CREATE_START } from '../../../../../../helpers/constants';
 
-import { ADMIN_PAGES_NAME } from '../../../../../../helpers/constants';
+import Title from '../Components/Title';
+import Button from '../../../../../UI/Button';
+import Icon from '../../../../../UI/Icon';
+import Header from '../Components/Header';
+import ListPosts from '../Components/List';
+import ListOldPosts from '../Components/ListOld/Post';
+import './styles.css';
+
 const index = class extends Component {
   state = {
-    addToggle: false,
-    articleWillBeCreated
+    displayOldData: false,
+    postFormEdit: null
   };
-  onDeleteButtonClickHandler = id => {
+  onButtonDeleteClickHandler = id => {
     this.props.postDeleteStart(id);
   };
-
-  onAddToggleClicked = () => {
-    this.setState(prevState => ({
-      addToggle: !prevState.addToggle
+  onButtonFetchDeletedPosts = () => {
+    this.props.postsDeletedFetchStart();
+    this.setState(prev => ({
+      displayOldData: !prev.displayOldData
     }));
   };
 
-  onCreateTitleChange = event => {
-    const title = event.target.value;
-    this.setState(prevState => ({
-      articleWillBeCreated: {
-        ...prevState.articleWillBeCreated,
-        title
-      }
-    }));
+  onButtonDeletePermanentlyClickHandler = id => {
+    this.props.postDeletePermanentlyStart(id);
   };
 
-  onCreateDescriptionChange = event => {
-    const description = event.target.value;
-    this.setState(prevState => ({
-      articleWillBeCreated: {
-        ...prevState.articleWillBeCreated,
-        description
-      }
-    }));
+  onButtonRestoreClickHandler = id => {
+    this.props.deletedRestoreStart(id);
   };
 
-  onCreateReset = _ => {
-    this.setState(prevState => ({
-      articleWillBeCreated: {
-        ...prevState.articleWillBeCreated,
-        ...articleWillBeCreated
-      }
-    }));
-  };
-
-  onCreateContentChange = content => {
-    this.setState(prevState => ({
-      articleWillBeCreated: {
-        ...prevState.articleWillBeCreated,
-        content
-      }
-    }));
-  };
-
-  onCreateSubmitHandler = event => {
-    event.preventDefault();
-    const { title, description, content } = this.state.articleWillBeCreated;
-    this.props.aritcleCreateStart({
-      title,
-      description,
-      content
-    });
-  };
-
-  onUpdateTextEditor = editorState => {
-    console.log('object', editorState);
-  };
   render() {
     return (
-      <PageContent
-        page={ADMIN_PAGES_NAME.POSTS}
-        items={this.props.posts}
-        formToggle={this.props.formToggle}
-        onFormToggleClicked={_ => this.props.onFormToggleClicked()}
-      />
-      // <div className="col-10 ">
-      //   <div className="mt-5 border border-style-custom ">
-      //     <div className="d-flex flex-row justify-content-between align-items-center border-bottom p-3">
-      //       <Title className="mb-0">posts</Title>
-      //       <Button
-      //         className="btn btn-sm btn-info"
-      //         clicked={this.onAddToggleClicked}
-      //       >
-      //         <Icon
-      //           iconClass={iconClass(this.state.addToggle ? 'minus' : 'plus')}
-      //           className="text-white"
-      //         />
-      //       </Button>
-      //     </div>
+      <div className="col-10 ">
+        <div className="mt-5 border border-style-custom ">
+          <div className="d-flex justify-content-between align-items-center border-bottom p-3">
+            <Title className="mb-0">{this.props.page}</Title>
+            <Button
+              className="btn-sm btn-info"
+              clicked={this.props.onFormToggleClicked}
+            >
+              <Icon
+                iconClass={iconClass(this.props.formToggle ? 'minus' : 'plus')}
+                className="text-white"
+              />
+            </Button>
+          </div>
 
-      //     <div>
-      //       {/* {this.state.addToggle && ( */}
-      //       {true && (
-      //         <PostForm
-      //           onResetButtonClicked={this.onCreateReset}
-      //           onTitleChange={event => this.onCreateTitleChange(event)}
-      //           onDescriptionChange={event =>
-      //             this.onCreateDescriptionChange(event)
-      //           }
-      //           onContentChange={content => this.onCreateContentChange(content)}
-      //           onSubmitHandler={event => this.onCreateSubmitHandler(event)}
-      //           {...this.state.articleWillBeCreated}
-      //           onUpdateTextEditor={this.onUpdateTextEditor}
-      //         />
-      //       )}
-      //     </div>
+          {this.props.formToggle && (
+            <div>
+              <div>
+                <FormPost
+                  type={POST_CREATE_START}
+                  page={this.props.page}
+                  onFormToggleClicked={this.props.onFormToggleClicked}
+                />
+              </div>
+            </div>
+          )}
 
-      //     <div className="m-3">
-      //       <ul className="list-unstyled">
-      //         <HeaderListPosts />
-      //         {this.props.posts &&
-      //           Object.keys(this.props.posts).map((key, index) => {
-      //             return (
-      //               <Fragment key={this.props.posts[key].id}>
-      //                 <Content
-      //                   index={++index}
-      //                   deleteButton={id => this.onDeleteButtonClickHandler(id)}
-      //                   {...this.props.posts[key]}
-      //                 />
-      //               </Fragment>
-      //             );
-      //           })}
-      //       </ul>
-      //     </div>
+          {/* {this.props.formEditToggle && (
+            <div>
+              <div>
+                <FormCategory
+                  type={CATEGORY_EDIT_START}
+                  page={this.props.page}
+                  onFormEditToggleClicked={this.props.onFormEditToggleClicked}
+                  categoryFormEdit={this.state.categoryFormEdit}
+                />
+              </div>
+            </div>
+          )} */}
 
-      //     {/* <ReactPaginate
-      //       previousLabel={'previous'}
-      //       nextLabel={'next'}
-      //       breakLabel={<a href="">...</a>}
-      //       breakClassName={'break-me'}
-      //       pageCount={this.state.pageCount}
-      //       marginPagesDisplayed={2}
-      //       pageRangeDisplayed={5}
-      //       // onPageChange={this.handlePageClick}
-      //       containerClassName={'pagination'}
-      //       // subContainerClassName={'pages pagination'}
-      //       activeClassName={'active'}
-      //     /> */}
-      //   </div>
-      // </div>
+          <div className="m-3">
+            <ul className="list-unstyled">
+              <Header
+                page={this.props.page}
+                className={
+                  this.props.posts.length === 0 ? '' : 'border-bottom-0'
+                }
+              />
+              {this.props.posts &&
+                Object.keys(this.props.posts).map((key, index) => {
+                  const post = this.props.posts[key];
+                  return (
+                    <Fragment key={post.id}>
+                      <ListPosts
+                        page={this.props.page}
+                        index={++index}
+                        last={index === this.props.posts.length}
+                        onButtonDeleteClicked={id =>
+                          this.onButtonDeleteClickHandler(post.id)
+                        }
+                        onButtonEditClicked={_ => {
+                          this.onButtonEditClickHandler(post);
+                        }}
+                        {...post}
+                      />
+                    </Fragment>
+                  );
+                })}
+              <li className="Admin-Posts-Content">
+                <Button
+                  className="btn btn-sm btn-secondary rounded-0 my-2 text-uppercase"
+                  clicked={this.onButtonFetchDeletedPosts}
+                >
+                  {this.state.displayOldData
+                    ? hideStringTemporary('posts')
+                    : displayStringTemporary('posts')}
+                </Button>
+              </li>
+              {this.state.displayOldData &&
+                this.props.postsDeleted &&
+                Object.keys(this.props.postsDeleted).map((key, index) => {
+                  const post = this.props.postsDeleted[key];
+                  return (
+                    <Fragment key={post.id}>
+                      <ListOldPosts
+                        page={this.props.page}
+                        index={++index}
+                        last={index === this.props.postsDeleted.length}
+                        onButtonDeletePermanentlyClicked={id =>
+                          this.onButtonDeletePermanentlyClickHandler(post.id)
+                        }
+                        onButtonRestoreClicked={id =>
+                          this.onButtonRestoreClickHandler(post.id)
+                        }
+                        {...post}
+                      />
+                    </Fragment>
+                  );
+                })}
+            </ul>
+          </div>
+        </div>
+      </div>
     );
   }
 };
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts
+    posts: state.posts.current,
+    postsDeleted: state.posts.deleted
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     postDeleteStart: id => dispatch(postDeleteStart(id)),
-    aritcleCreateStart: aritcle => dispatch(postCreateStart(aritcle))
+    postsDeletedFetchStart: _ => dispatch(postsDeletedFetchStart()),
+    postDeletePermanentlyStart: id => dispatch(postDeletePermanentlyStart(id)),
+    deletedRestoreStart: id => dispatch(postDeletedRestoreStart(id))
   };
 };
 

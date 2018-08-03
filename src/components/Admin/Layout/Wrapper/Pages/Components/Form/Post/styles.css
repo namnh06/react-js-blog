@@ -7,6 +7,22 @@
   height: 1rem;
 }
 
+.Post-form__image .figure {
+  width: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Post-form__image .figure img {
+  width: 80%;
+  margin: 0 auto;
+}
+
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;

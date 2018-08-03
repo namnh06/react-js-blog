@@ -27,61 +27,6 @@ export const categoriesFetched = categories => {
   };
 };
 
-export const categoryDeleteStart = id => {
-  return dispatch => {
-    return axios.delete(`categories/${id}`).then(response => {
-      if (response.data.status === 200) {
-        const category = response.data.data.category;
-        dispatch(categoryDeleted(category));
-      }
-    });
-  };
-};
-
-export const categoryDeleted = category => {
-  return {
-    type: CATEGORY_DELETED,
-    category
-  };
-};
-
-export const categoryEditStart = (id, category) => {
-  return dispatch => {
-    return axios.put(`categories/${id}`, category).then(response => {
-      if (response.data.status === 200) {
-        console.log(response.data.data);
-        const category = response.data.data.category;
-        dispatch(categoryEdited(category));
-      }
-    });
-  };
-};
-
-export const categoryEdited = category => {
-  return {
-    type: CATEGORY_EDITED,
-    category
-  };
-};
-
-export const categoryCreateStart = data => {
-  return dispatch => {
-    return axios.post('categories', data).then(response => {
-      if (response.data.status === 200) {
-        const category = response.data.data.category;
-        dispatch(categoryCreated(category));
-      }
-    });
-  };
-};
-
-export const categoryCreated = category => {
-  return {
-    type: CATEGORY_CREATED,
-    category
-  };
-};
-
 export const categoriesDeletedFetchStart = () => {
   return dispatch => {
     return axios.get('categories-deleted').then(response => {
@@ -97,6 +42,24 @@ export const categoriesDeletedFetched = categories => {
   return {
     type: CATEGORIES_DELETED_FETCHED,
     categories
+  };
+};
+
+export const categoryDeleteStart = id => {
+  return dispatch => {
+    return axios.delete(`categories/${id}`).then(response => {
+      if (response.data.status === 200) {
+        const category = response.data.data.category;
+        dispatch(categoryDeleted(category));
+      }
+    });
+  };
+};
+
+export const categoryDeleted = category => {
+  return {
+    type: CATEGORY_DELETED,
+    category
   };
 };
 
@@ -131,6 +94,42 @@ export const categoryDeletedRestoreStart = id => {
 export const categoryDeletedRestored = category => {
   return {
     type: CATEGORY_DELETED_RESTORED,
+    category
+  };
+};
+
+export const categoryEditStart = (id, category) => {
+  return dispatch => {
+    return axios.put(`categories/${id}`, category).then(response => {
+      if (response.data.status === 200) {
+        const category = response.data.data.category;
+        dispatch(categoryEdited(category));
+      }
+    });
+  };
+};
+
+export const categoryEdited = category => {
+  return {
+    type: CATEGORY_EDITED,
+    category
+  };
+};
+
+export const categoryCreateStart = data => {
+  return dispatch => {
+    return axios.post('categories', data).then(response => {
+      if (response.data.status === 200) {
+        const category = response.data.data.category;
+        dispatch(categoryCreated(category));
+      }
+    });
+  };
+};
+
+export const categoryCreated = category => {
+  return {
+    type: CATEGORY_CREATED,
     category
   };
 };

@@ -1,24 +1,61 @@
 import {
-  USERS_FETCH,
+  USERS_FETCHED,
   USER_DELETED,
   USER_ADDED,
-  USER_EDITED
+  USER_EDITED,
+  USERS_DELETED_FETCHED,
+  USER_DELETED_PERMANENTLY,
+  USER_DELETED_RESTORED
 } from '../../../helpers/constants';
 import {
-  setArray,
+  setDataToArray,
   removeDataFromArrayById,
   addArray,
-  updateArray
+  updateArray,
+  sortDescendingArrayById,
+  pushDataToArray
 } from '../../../helpers';
+import { initUsers } from '../../../helpers/seed-data';
 
-const users = [];
-
-const usersFetch = (state, action) => {
-  return setArray(action.state.users);
+const usersFetched = (state, action) => {
+  return {
+    ...state,
+    current: sortDescendingArrayById(setDataToArray(action.users))
+  };
 };
 
-const userDeleted = (state, id) => {
-  return removeDataFromArrayById(state, id);
+const userDeleted = (state, action) => {
+  return {
+    ...state,
+    current: removeDataFromArrayById(state.current, action.data.id),
+    deleted: sortDescendingArrayById(
+      pushDataToArray(state.deleted, action.data)
+    )
+  };
+};
+
+const usersDeletedFetched = (state, action) => {
+  return {
+    ...state,
+    deleted: sortDescendingArrayById(setDataToArray(action.data))
+  };
+};
+
+const deletedPermanently = (state, action) => {
+  return {
+    ...state,
+    deleted: removeDataFromArrayById(state.deleted, action.id)
+  };
+};
+
+const deletedRestored = (state, action) => {
+  return {
+    ...state,
+    current: sortDescendingArrayById(
+      pushDataToArray(state.current, action.data)
+    ),
+    deleted: removeDataFromArrayById(state.deleted, action.data.id)
+  };
 };
 
 const userAdded = (state, action) => {
@@ -29,12 +66,18 @@ const userEdited = (state, action) => {
   return updateArray(state, action.state.user);
 };
 
-const reducer = (state = users, action) => {
+const reducer = (state = initUsers, action) => {
   switch (action.type) {
-    case USERS_FETCH:
-      return usersFetch(state, action);
+    case USERS_FETCHED:
+      return usersFetched(state, action);
     case USER_DELETED:
-      return userDeleted(state, action.id);
+      return userDeleted(state, action);
+    case USERS_DELETED_FETCHED:
+      return usersDeletedFetched(state, action);
+    case USER_DELETED_PERMANENTLY:
+      return deletedPermanently(state, action);
+    case USER_DELETED_RESTORED:
+      return deletedRestored(state, action);
     case USER_ADDED:
       return userAdded(state, action);
     case USER_EDITED:

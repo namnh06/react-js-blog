@@ -1,4 +1,7 @@
 .Admin-Posts-Content {
+  &:hover {
+    background-color: var(--light);
+  }
   & div:first-child {
     width: 20%;
   }
@@ -14,7 +17,6 @@
     width: 20%;
     border-right: none;
   }
-
   &__Header {
     font-weight: bold;
   }

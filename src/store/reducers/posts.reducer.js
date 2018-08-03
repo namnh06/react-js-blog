@@ -1,35 +1,83 @@
 import {
   POSTS_FETCHED,
   POST_DELETED,
-  POST_CREATED
+  POST_CREATED,
+  POSTS_DELETED_FETCHED,
+  POST_DELETED_PERMANENTLY,
+  POST_DELETED_RESTORED
 } from '../../helpers/constants';
 import {
   setDataToArray,
   removeDataFromArrayById,
-  addDataToArray
+  pushDataToArray,
+  sortDescendingArrayById
 } from '../../helpers';
 import { initPosts } from '../../helpers/seed-data';
 
-const postsFetched = action => {
-  return setDataToArray(action.state.posts);
+const fetched = (state, action) => {
+  return {
+    ...state,
+    current: sortDescendingArrayById(setDataToArray(action.posts))
+  };
 };
 
-const articleDeleted = (state, id) => {
-  return removeDataFromArrayById(state, id);
+const deleted = (state, action) => {
+  return {
+    ...state,
+    current: removeDataFromArrayById(state.current, action.post.id),
+    deleted: sortDescendingArrayById(
+      pushDataToArray(state.deleted, action.post)
+    )
+  };
 };
 
-const articleCreated = (state, action) => {
-  return addDataToArray(state, action.state.article);
+const postsDeletedFetched = (state, action) => {
+  return {
+    ...state,
+    deleted: sortDescendingArrayById(setDataToArray(action.posts))
+  };
+};
+
+const deletedPermanently = (state, action) => {
+  return {
+    ...state,
+    deleted: removeDataFromArrayById(state.deleted, action.id)
+  };
+};
+
+const deletedRestored = (state, action) => {
+  return {
+    ...state,
+    current: sortDescendingArrayById(
+      pushDataToArray(state.current, action.post)
+    ),
+    deleted: removeDataFromArrayById(state.deleted, action.post.id)
+  };
+};
+
+const postCreated = (state, action) => {
+  return {
+    ...state,
+    current: sortDescendingArrayById(
+      pushDataToArray(state.current, action.post)
+    )
+  };
 };
 
 const reducer = (state = initPosts, action) => {
   switch (action.type) {
     case POSTS_FETCHED:
-      return postsFetched(action);
+      return fetched(state, action);
     case POST_DELETED:
-      return articleDeleted(state, action.id);
+      return deleted(state, action);
+    case POSTS_DELETED_FETCHED:
+      return postsDeletedFetched(state, action);
+    case POST_DELETED_PERMANENTLY:
+      return deletedPermanently(state, action);
+    case POST_DELETED_RESTORED:
+      return deletedRestored(state, action);
     case POST_CREATED:
-      return articleCreated(state, action);
+      return postCreated(state, action);
     default:
       return state;
   }

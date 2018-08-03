@@ -7,6 +7,21 @@
   &__notice--height {
     height: 1rem;
   }
+  &__image {
+    & .figure {
+      width: 200px;
+
+      display: flex;
+      flex-direction: column;
+
+      & img {
+        width: 80%;
+        margin: 0 auto;
+      }
+      & .figure-caption {
+      }
+    }
+  }
 }
 
 @keyframes fadeIn {

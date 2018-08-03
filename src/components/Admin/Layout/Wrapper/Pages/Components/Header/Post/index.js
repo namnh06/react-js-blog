@@ -4,7 +4,8 @@ const index = props => {
   return (
     <Fragment>
       <div>#</div>
-      <div>Name</div>
+      <div>Title</div>
+      <div>Description</div>
       <div>Action</div>
     </Fragment>
   );

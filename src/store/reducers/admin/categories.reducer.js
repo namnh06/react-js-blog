@@ -8,30 +8,27 @@ import {
   CATEGORY_EDITED
 } from '../../../helpers/constants';
 import {
-  setArray,
-  addDataToArray,
+  setDataToArray,
+  pushDataToArray,
   removeDataFromArrayById,
   updateDataToArrayById
 } from '../../../helpers';
 import { initCategories } from '../../../helpers/seed-data';
 
 const categoriesFetched = (state, action) => {
-  return { ...state, current: setArray(action.categories) };
+  return { ...state, current: setDataToArray(action.categories) };
 };
+
 const categoriesDeletedFetched = (state, action) => {
-  return { ...state, deleted: setArray(action.categories) };
+  return { ...state, deleted: setDataToArray(action.categories) };
 };
 
 const categoryDeleted = (state, action) => {
   return {
     ...state,
     current: removeDataFromArrayById(state.current, action.category.id),
-    deleted: addDataToArray(state.deleted, action.category)
+    deleted: pushDataToArray(state.deleted, action.category)
   };
-};
-
-const categoryCreated = (state, action) => {
-  return { ...state, current: addDataToArray(state.current, action.category) };
 };
 
 const categoryDeletedPermanently = (state, action) => {
@@ -44,9 +41,13 @@ const categoryDeletedPermanently = (state, action) => {
 const categoryDeletedRestored = (state, action) => {
   return {
     ...state,
-    current: addDataToArray(state.current, action.category),
+    current: pushDataToArray(state.current, action.category),
     deleted: removeDataFromArrayById(state.deleted, action.category.id)
   };
+};
+
+const categoryCreated = (state, action) => {
+  return { ...state, current: pushDataToArray(state.current, action.category) };
 };
 
 const categoryUpdated = (state, action) => {
@@ -66,12 +67,13 @@ const reducer = (state = initCategories, action) => {
       return categoryDeleted(state, action);
     case CATEGORY_DELETED_PERMANENTLY:
       return categoryDeletedPermanently(state, action);
+    case CATEGORY_DELETED_RESTORED:
+      return categoryDeletedRestored(state, action);
     case CATEGORY_CREATED:
       return categoryCreated(state, action);
     case CATEGORY_EDITED:
       return categoryUpdated(state, action);
-    case CATEGORY_DELETED_RESTORED:
-      return categoryDeletedRestored(state, action);
+
     default:
       return state;
   }

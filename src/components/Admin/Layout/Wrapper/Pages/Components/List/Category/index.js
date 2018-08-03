@@ -1,14 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Button from '../../../../../../../UI/Button';
 const index = props => {
   return (
-    <li
-      className={[
-        'Categories-Content d-flex flex-row justify-content-around border ',
-        props.last ? 'border-bottom' : 'border-bottom-0'
-      ].join(' ')}
-    >
-      <div>{props.index}</div>
+    <Fragment>
+      <div className="font-weight-bold">{props.index}</div>
       <div className="d-flex justify-content-start">
         <span className="px-2">{props.name}</span>
       </div>
@@ -26,7 +21,7 @@ const index = props => {
           delete
         </Button>
       </div>
-    </li>
+    </Fragment>
   );
 };
 

@@ -7,7 +7,6 @@ import { CLIENT_PAGES_NAME } from '../../../helpers/constants';
 
 class index extends Component {
   render() {
-    console.log(this.props);
     return (
       <Fragment>
         <ClientLayout

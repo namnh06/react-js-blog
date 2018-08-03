@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import Header from '../Components/Header';
 import List from '../Components/List';
 import ListOld from '../Components/ListOld';
+
 import './styles.css';
 
 import {
@@ -82,26 +83,22 @@ const index = class extends Component {
 
           {this.props.formToggle && (
             <div>
-              <div>
-                <FormCategory
-                  type={CATEGORY_CREATE_START}
-                  page={this.props.page}
-                  onFormToggleClicked={this.props.onFormToggleClicked}
-                />
-              </div>
+              <FormCategory
+                type={CATEGORY_CREATE_START}
+                page={this.props.page}
+                onFormToggleClicked={this.props.onFormToggleClicked}
+              />
             </div>
           )}
 
           {this.props.formEditToggle && (
             <div>
-              <div>
-                <FormCategory
-                  type={CATEGORY_EDIT_START}
-                  page={this.props.page}
-                  onFormEditToggleClicked={this.props.onFormEditToggleClicked}
-                  categoryFormEdit={this.state.categoryFormEdit}
-                />
-              </div>
+              <FormCategory
+                type={CATEGORY_EDIT_START}
+                page={this.props.page}
+                onFormEditToggleClicked={this.props.onFormEditToggleClicked}
+                categoryFormEdit={this.state.categoryFormEdit}
+              />
             </div>
           )}
 

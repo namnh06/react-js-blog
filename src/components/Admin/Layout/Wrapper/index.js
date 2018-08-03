@@ -33,6 +33,7 @@ class index extends React.Component {
       case ADMIN_PAGES_NAME.USERS:
         return (
           <Users
+            page={this.props.page}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
           />
@@ -40,8 +41,11 @@ class index extends React.Component {
       case ADMIN_PAGES_NAME.POSTS:
         return (
           <Posts
+            page={this.props.page}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
+            formEditToggle={this.state.formEditToggle}
+            onFormEditToggleClicked={this.onFormEditToggleClickHandler}
           />
         );
       case ADMIN_PAGES_NAME.CATEGORIES:

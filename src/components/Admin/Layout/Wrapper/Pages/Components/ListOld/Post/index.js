@@ -4,13 +4,16 @@ const index = props => {
   return (
     <li
       className={[
-        'Admin-Categories-Content d-flex flex-row justify-content-around border ',
+        'Admin-Posts-Content d-flex flex-row justify-content-around border ',
         props.last ? 'border-bottom' : 'border-bottom-0'
       ].join(' ')}
     >
-      <div>{props.index}</div>
+      <div className="font-weight-bold">{props.index}</div>
+      <div className="d-flex justify-content-start font-weight-bold">
+        <span className="px-2">{props.title}</span>
+      </div>
       <div className="d-flex justify-content-start">
-        <span className="px-2">{props.name}</span>
+        <span className="px-2">{props.description}</span>
       </div>
       <div className="d-flex justify-content-around">
         <Button
@@ -23,7 +26,7 @@ const index = props => {
           className="btn btn-sm btn-danger mx-1"
           clicked={props.onButtonDeletePermanentlyClicked}
         >
-          delete permanently
+          delete permantly
         </Button>
       </div>
     </li>

@@ -26,11 +26,11 @@ export const authError = message => {
   console.log(message);
 };
 
-export const authLogIn = state => {
-  axios.defaults.headers.Authorization = `Bearer ${state.token}`;
+export const authLogIn = auth => {
+  axios.defaults.headers.Authorization = `Bearer ${auth.token}`;
   return {
     type: AUTH_LOG_IN,
-    state
+    auth
   };
 };
 

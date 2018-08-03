@@ -6,15 +6,26 @@ import {
 } from './constants';
 
 export const initCategories = { current: [], deleted: [] };
-export const initPosts = [];
+export const initPosts = { current: [], deleted: [] };
+export const initUsers = { current: [], deleted: [] };
 export const initPost = {};
 export const initMenus = [];
 export const initAuth = {};
+export const tempData = { images: [] };
 
 export const categoryForm = {
   name: '',
   isValidName: null,
   saveButtonClicked: false
+};
+
+export const postForm = {
+  title: '',
+  isValidTitle: null,
+  description: '',
+  isValidDescription: null,
+  content: '',
+  isValidContent: null
 };
 
 export const categoryWillBeCreated = {
