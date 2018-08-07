@@ -18,12 +18,15 @@ import {
   pushDataToArray,
   removeDuplicateObjectInArrayByProperty,
   removeDataFromArrayByProperty,
-  unshiftDataToArray
+  unshiftDataToArray,
+  removeDataFromArrayByValue
 } from '../../../../../../../../helpers';
 import { postForm, tempData } from '../../../../../../../../helpers/seed-data';
 import { postCreateStart } from '../../../../../../../../store/actions/posts.action';
 
 import Figure from './Figure';
+import { categoriesFetchStart } from '../../../../../../../../store/actions/admin/categories.action';
+import CheckBox from '../../../../../../../UI/CheckBox';
 class index extends Component {
   state = {
     postForm: {
@@ -35,6 +38,10 @@ class index extends Component {
     isSaveButtonAllowed: null,
     tempData
   };
+
+  componentDidMount() {
+    this.props.categoriesFetchStart();
+  }
 
   onInputTitlePostChangeHandler = event => {
     const title = event.target.value;
@@ -208,6 +215,35 @@ class index extends Component {
     }
   };
 
+  onCheckBoxCategoryClickHandler = event => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+    if (isCreateType(this.props.type)) {
+      if (isChecked) {
+        this.setState(prevState => {
+          return {
+            postForm: {
+              ...prevState.postForm,
+              categories: pushDataToArray(prevState.postForm.categories, value)
+            }
+          };
+        });
+      } else {
+        this.setState(prevState => {
+          return {
+            postForm: {
+              ...prevState.postForm,
+              categories: removeDataFromArrayByValue(
+                prevState.postForm.categories,
+                value
+              )
+            }
+          };
+        });
+      }
+    }
+  };
+
   onFormPostSubmitHandler = event => {
     event.preventDefault();
     let formData = new FormData();
@@ -219,6 +255,7 @@ class index extends Component {
         ...this.state.postForm
       };
       formData.append('post', JSON.stringify(post));
+
       return this.props.postCreateStart(formData);
     } else {
       const { name, id } = this.state.postFormEdit;
@@ -354,19 +391,7 @@ class index extends Component {
               <Input
                 type="file"
                 style={{ zIndex: '99' }}
-                className={[
-                  'custom-file-input form-control rounded-0'
-                  // addInputValidClass(
-                  //   isCreateType(this.props.type)
-                  //     ? !!this.state.postForm.image
-                  //     : !!this.state.postFormEdit.image
-                  // )
-                ].join(' ')}
-                // value={
-                //   isCreateType(this.props.type)
-                //     ? this.state.postForm.image
-                //     : this.state.postFormEdit.image
-                // }
+                className="custom-file-input form-control rounded-0"
                 onChange={this.onInputImageUploadPostChangeHandler}
                 id="post-image"
                 ariaDescribedby="post-image"
@@ -401,6 +426,40 @@ class index extends Component {
             })}
           </div>
         )}
+
+        <div className="form-group mb-0">
+          <HelpText className="Post-form__notice--height m-0 mb-2">
+            {/* {(isCreateType(this.props.type)
+              ? this.state.postForm.isValidDescription !== null &&
+                !this.state.postForm.isValidDescription
+              : this.state.postFormEdit.isValidDescription !== null &&
+                !this.state.postFormEdit.isValidDescription) &&
+              helpTextRequire(
+                'post description',
+                'alphabet and at least 5 characters'
+              )} */}
+          </HelpText>
+          <div className="input-group">
+            <div className="mr-3">Category : </div>
+            {Object.keys(this.props.categories).map((key, index) => {
+              const category = this.props.categories[key];
+              return (
+                <CheckBox
+                  key={key}
+                  index={index + 1}
+                  checked={this.state.postForm.categories[category.id]}
+                  onCheckBoxClicked={event =>
+                    this.onCheckBoxCategoryClickHandler(event)
+                  }
+                  {...category}
+                >
+                  {category.name}
+                </CheckBox>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="form-group mb-0">
           <HelpText className="Post-form__notice--height m-0 mb-2" />
           <div className="input-group">
@@ -433,13 +492,20 @@ class index extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    categories: state.categories.current
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
-    postCreateStart: post => dispatch(postCreateStart(post))
+    postCreateStart: post => dispatch(postCreateStart(post)),
+    categoriesFetchStart: () => dispatch(categoriesFetchStart())
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(index);

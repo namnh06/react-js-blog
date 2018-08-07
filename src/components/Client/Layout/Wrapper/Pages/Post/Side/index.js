@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import Categories from './Categories';
-const index = () => {
+const index = props => {
   return (
     <Fragment>
-      <Categories />
+      <Categories categories={props.categories} />
     </Fragment>
   );
 };

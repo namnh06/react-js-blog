@@ -11,7 +11,7 @@ export const initUsers = { current: [], deleted: [] };
 export const initPost = {};
 export const initMenus = [];
 export const initAuth = {};
-export const tempData = { images: [] };
+export const tempData = { images: [], checkedCategories: [] };
 
 export const categoryForm = {
   name: '',
@@ -25,7 +25,8 @@ export const postForm = {
   description: '',
   isValidDescription: null,
   content: '',
-  isValidContent: null
+  isValidContent: null,
+  categories: []
 };
 
 export const categoryWillBeCreated = {

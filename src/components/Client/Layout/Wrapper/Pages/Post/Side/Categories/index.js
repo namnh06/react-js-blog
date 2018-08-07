@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { categoriesFetchStart } from '../../../../../../../../store/actions/admin/categories.action';
+
 import { connect } from 'react-redux';
 import Category from './Category';
 class index extends Component {
-  componentDidMount() {
-    this.props.categoriesFetchStart();
-  }
+  // componentDidMount() {
+  //   this.props.categoriesFetchStart();
+  // }
 
   render() {
+    console.log(this.props.categories);
     return (
       <div className="my-2">
         <h3>Categories</h3>
-        {Object.keys(this.props.categories).map((key, index) => {
-          const category = this.props.categories[key];
-          return <Category key={category.id} index={++index} {...category} />;
-        })}
+        {this.props.categories &&
+          Object.keys(this.props.categories).map((key, index) => {
+            const category = this.props.categories[key];
+            return <Category key={category.id} index={++index} {...category} />;
+          })}
       </div>
     );
   }
@@ -22,12 +24,12 @@ class index extends Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories.current
+    // categories: state.categories.current
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  categoriesFetchStart: () => dispatch(categoriesFetchStart())
+  // categoriesFetchStart: () => dispatch(categoriesFetchStart())
 });
 
 export default connect(

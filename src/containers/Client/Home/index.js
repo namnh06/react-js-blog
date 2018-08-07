@@ -11,7 +11,10 @@ class index extends Component {
   render() {
     return (
       <Fragment>
-        <ClientLayout page={CLIENT_PAGES_NAME.HOME} />
+        <ClientLayout
+          page={CLIENT_PAGES_NAME.HOME}
+          isScroll={this.props.isScroll}
+        />
       </Fragment>
     );
   }

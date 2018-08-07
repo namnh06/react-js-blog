@@ -1,8 +1,8 @@
-
-
 const autoprefixer = require('autoprefixer');
 const path = require('path');
+
 const webpack = require('webpack');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
@@ -125,6 +125,7 @@ module.exports = {
         ],
         include: paths.appSrc
       },
+
       {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
@@ -152,6 +153,55 @@ module.exports = {
               // directory for faster rebuilds.
               cacheDirectory: true
             }
+          },
+          // {
+          //   test: /\.scss$/,
+          //   use: [
+          //     {
+          //       loader: 'style-loader'
+          //     },
+          //     {
+          //       loader: 'css-loader',
+          //       options: {
+          //         modules: true,
+          //         sourceMap: true,
+          //         localIdentName: '[local]___[hash:base64:5]'
+          //       }
+          //     },
+          //     {
+          //       loader: 'sass-loader',
+          //       options: {
+          //         outputStyle: 'expanded',
+          //         sourceMap: true
+          //       }
+          //     }
+          //   ]
+          // },
+          {
+            test: /\.(scss)$/,
+            use: [
+              {
+                // Adds CSS to the DOM by injecting a `<style>` tag
+                loader: 'style-loader'
+              },
+              {
+                // Interprets `@import` and `url()` like `import/require()` and will resolve them
+                loader: 'css-loader'
+              },
+              {
+                // Loader for webpack to process CSS with PostCSS
+                loader: 'postcss-loader',
+                options: {
+                  plugins: function() {
+                    return [require('autoprefixer')];
+                  }
+                }
+              },
+              {
+                // Loads a SASS/SCSS file and compiles it to CSS
+                loader: 'sass-loader'
+              }
+            ]
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.

@@ -4,6 +4,7 @@ import { postFetchStart } from '../../../../../../store/actions/post.action';
 
 import Article from './Article';
 import Side from './Side';
+import PostsRelated from './PostsRelated';
 class index extends Component {
   componentDidMount() {
     this.props.postFetchStart(this.props.slug);
@@ -11,10 +12,13 @@ class index extends Component {
   render() {
     return (
       <Fragment>
-        <div className="container my-5">
-          <div className="d-flex flex-row">
+        <div className="container my-5 ">
+          <div className="d-flex flex-row border-bottom">
             <Article {...this.props.post} />
-            <Side />
+            <Side categories={this.props.post.categories} />
+          </div>
+          <div className="d-flex flex-row mt-5">
+            <PostsRelated />
           </div>
         </div>
       </Fragment>

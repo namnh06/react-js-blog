@@ -1,3 +1,7 @@
+.Navigation-Bar {
+  color: red;
+}
+
 .Navigation-Bar__list button {
   color: var(--dark) !important;
   background-color: var(--yellow-cz);

@@ -1,4 +1,20 @@
 .Navigation-Bar {
+  // @include media-breakpoint-up(xs) {
+  //   height: 10%;
+  // }
+  // @include media-breakpoint-up(sm) {
+  //   height: 10%;
+  // }
+  // @include media-breakpoint-up(md) {
+  //   height: 10%;
+  // }
+  // @include media-breakpoint-up(lg) {
+  //   height: 10%;
+  // }
+  // @include media-breakpoint-up(xl) {
+  //   height: 10%;
+  // }
+
   &__list {
     & button {
       color: var(--dark) !important;

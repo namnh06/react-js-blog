@@ -3,12 +3,16 @@ import ReactTooltip from 'react-tooltip';
 import moment from 'moment';
 import { logoImage } from '../../../../../../../../helpers';
 import LinkToArticle from '../../../../../../../UI/LinkToArticle';
+import { DEVELOPMENT_DOMAIN } from '../../../../../../../../helpers/constants';
 const index = props => {
   return (
     <div className="card w-100 mb-2">
       <img
         className="card-img-top"
-        src={(props.images[0] && props.images[0].path) || logoImage()}
+        src={
+          (props.images[0] && DEVELOPMENT_DOMAIN + props.images[0].path) ||
+          logoImage()
+        }
         width="300"
         alt="Card cap"
       />

@@ -19,8 +19,6 @@ import Users from '../../containers/Admin/Users';
 import Categories from '../../containers/Admin/Categories';
 import Posts from '../../containers/Admin/Posts';
 
-import './styles.css';
-
 export const history = createHistory();
 
 class App extends Component {
@@ -32,6 +30,7 @@ class App extends Component {
           <Route path="/home" component={Home} />
           <Route path="/404" component={NotFoundPage} />
           <Route path="/blog" exact component={Blog} />
+          {/* <Route path="/blog/categories" exact component={Blog} /> */}
           <Route path="/blog/:slug" component={Post} />
           <Route path="/contact" component={Contact} />
           <Route path="/help" component={Help} />

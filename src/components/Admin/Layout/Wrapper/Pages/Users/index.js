@@ -26,9 +26,9 @@ import Button from '../../../../../UI/Button';
 import Icon from '../../../../../UI/Icon';
 import Header from '../Components/Header';
 import List from '../Components/List';
-import ListOld from '../Components/ListOld/Post';
+
 import {} from '../../../../../../store/actions/posts.action';
-import FormPost from '../Components/Form/Post';
+
 import {
   iconClass,
   displayStringTemporary,

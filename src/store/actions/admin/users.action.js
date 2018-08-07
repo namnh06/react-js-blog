@@ -5,7 +5,6 @@ import {
   USER_EDITED,
   USERS_DELETED_FETCHED,
   USER_DELETED_PERMANENTLY,
-  POST_DELETED_RESTORED,
   USER_DELETED_RESTORED
 } from '../../../helpers/constants';
 import axios from '../../../helpers/axios.config';

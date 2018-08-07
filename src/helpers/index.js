@@ -54,10 +54,6 @@ export const hrefArticle = article => {
   return `/blog/${article}`;
 };
 
-export const setDataToObject = data => {
-  return { ...data };
-};
-
 export const setDataToArray = data => {
   return [...data];
 };
@@ -70,6 +66,9 @@ export const unshiftDataToArray = (newData, oldArray) => {
   return [newData, ...oldArray];
 };
 
+export const setDataToObject = data => {
+  return { ...data };
+};
 export const addDataToObject = (oldObject, newObject) => {
   return { ...oldObject, newObject };
 };
@@ -81,8 +80,13 @@ export const sortDescendingArrayById = array => {
 };
 
 export const removeDataFromArrayById = (array, id) => {
-  return array.filter(object => object.id !== id);
+  return array.filter(element => element.id !== id);
 };
+
+export const removeDataFromArrayByValue = (array, value) => {
+  return array.filter(element => element !== value);
+};
+
 export const removeDataFromArrayByProperty = (array, property, data) => {
   return array.filter(object => object[property] !== data);
 };
