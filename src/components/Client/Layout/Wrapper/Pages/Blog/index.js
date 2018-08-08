@@ -4,13 +4,13 @@ import bannerImage from '../../../../../../assets/images/blog/MenuBanners_Pricin
 import Posts from './Posts';
 import Side from './Side';
 
-const index = () => {
+const index = props => {
   return (
     <Fragment>
       <Banner bannerImage={bannerImage} title="Blog" />
       <div className="container my-5">
         <div className="d-flex flex-row">
-          <Posts />
+          <Posts categorySlug={props.categorySlug} />
           <Side />
         </div>
       </div>

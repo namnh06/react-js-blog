@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 
 import './styles.css';
 import {
-  userAddStart,
+  userCreateStart,
   userEditStart,
   userDeleteStart,
   usersDeletedFetchStart,
@@ -11,23 +11,13 @@ import {
   userDeletedRestoreStart
 } from '../../../../../../store/actions/admin/users.action';
 
-import {
-  isValidEmail,
-  isValidPassword,
-  isValidName
-} from '../../../../../../helpers';
-
-import {
-  userWillBeCreated,
-  userWillBeEdited
-} from '../../../../../../helpers/seed-data';
 import Title from '../Components/Title';
 import Button from '../../../../../UI/Button';
 import Icon from '../../../../../UI/Icon';
 import Header from '../Components/Header';
 import List from '../Components/List';
 
-import {} from '../../../../../../store/actions/posts.action';
+import Form from '../Components/Form/User';
 
 import {
   iconClass,
@@ -36,6 +26,11 @@ import {
 } from '../../../../../../helpers';
 
 import './styles.css';
+import {
+  USER_CREATE_START,
+  USER_EDIT_START
+} from '../../../../../../helpers/constants';
+
 const index = class extends Component {
   state = {
     displayOldData: false,
@@ -61,155 +56,20 @@ const index = class extends Component {
     this.props.deletedRestoreStart(id);
   };
 
-  onUserWillBeCreatedSubmitHandler = e => {
-    e.preventDefault();
-
-    const { name, email, password } = this.state.userWillBeCreated;
-    this.state.userWillBeCreated.validName &&
-      this.state.userWillBeCreated.validEmail &&
-      this.state.userWillBeCreated.validPassword &&
-      this.props.userAddStart({
-        name,
-        email,
-        password
-      });
-
-    this.setState(prevState => ({
-      userWillBeCreated: {
-        ...prevState.userWillBeCreated,
-        /**
-         * SET DEFAULT DATA
-         */
-        userWillBeCreated
-      }
-    }));
-
-    this.onAddToggleClicked();
-  };
-
-  onCreatePasswordSecureHandler = () => {
-    this.setState(prevState => ({
-      userWillBeCreated: {
-        ...prevState.userWillBeCreated,
-        passwordSecure: !prevState.userWillBeCreated.passwordSecure
-      }
-    }));
-  };
-
-  onCreateInputNameChange = event => {
-    const name = event.target.value;
-    this.setState(prevState => ({
-      userWillBeCreated: {
-        ...prevState.userWillBeCreated,
-        name,
-        validName: isValidName(name)
-      }
-    }));
-  };
-
-  onCreateInputEmailChange = event => {
-    const email = event.target.value.trim();
-    this.setState(prevState => ({
-      userWillBeCreated: {
-        ...prevState.userWillBeCreated,
-        email,
-        validEmail: isValidEmail(email)
-      }
-    }));
-  };
-
-  onCreateInputPasswordChange = event => {
-    const password = event.target.value.trim();
-    this.setState(prevState => ({
-      userWillBeCreated: {
-        ...prevState.userWillBeCreated,
-        password,
-        validPassword: isValidPassword(password)
-      }
-    }));
-  };
-
-  /* EDIT SECTION */
-
-  onEditToggleClicked = user => {
-    if (user && user.id && user.name && user.email) {
-      const { id, name, email } = user;
-      if (id && this.state.userWillBeEdited.id !== id) {
-        this.setState(prevState => ({
-          editToggle: true,
-          userWillBeEdited: {
-            ...prevState.userWillBeEdited,
-            id,
-            name,
-            validName: isValidName(name),
-            email,
-            validEmail: isValidEmail(email)
-          }
-        }));
-      }
-    } else {
-      /**
-       * SET DEFAULT DATA
-       */
-      this.setState(prevState => ({
-        editToggle: !prevState.editToggle,
-        userWillBeEdited
-      }));
-    }
-  };
-
-  onEditPasswordSecureHandler = () => {};
-
-  onEditInputNameChange = event => {
-    const name = event.target.value;
-    this.setState(prevState => ({
-      userWillBeEdited: {
-        ...prevState.userWillBeEdited,
-        name,
-        validName: isValidName(name)
-      }
-    }));
-  };
-
-  onEditInputPasswordChange = event => {
-    const password = event.target.value.trim();
-    this.setState(prevState => ({
-      userWillBeEdited: {
-        ...prevState.userWillBeEdited,
-        password,
-        validPassword: isValidPassword(password)
-      }
-    }));
-  };
-
-  onUserWillBeEditedSubmitHandler = event => {
-    event.preventDefault();
-
-    const { name, password } = this.state.userWillBeEdited;
-
-    this.state.userWillBeEdited.validName &&
-      this.state.userWillBeEdited.validEmail &&
-      this.state.userWillBeEdited.validPassword &&
-      this.props.userEditStart(this.state.userWillBeEdited.id, {
-        name,
-        password
-      });
-
-    this.setState(prevState => ({
-      userWillBeEdited: {
-        ...prevState.userWillBeEdited,
-        /**
-         * SET DEFAULT DATA
-         */
-        userWillBeEdited
-      }
-    }));
-
-    this.onEditToggleClicked();
-  };
-
   onDeleteButtonClickHandler = id => {
     this.props.userDeleteStart(id);
+  };
+
+  onButtonEditClickHandler = user => {
+    this.setState(prevState => ({
+      ...prevState,
+      userFormEdit: {
+        ...user,
+        isValidName: null,
+        saveButtonClicked: false
+      }
+    }));
+    this.props.onFormEditToggleClicked(true);
   };
 
   render() {
@@ -228,31 +88,25 @@ const index = class extends Component {
               />
             </Button>
           </div>
-
-          {/* {this.props.formToggle && (
-            <div>
-              <div>
-                <FormPost
-                  type={POST_CREATE_START}
-                  page={this.props.page}
-                  onFormToggleClicked={this.props.onFormToggleClicked}
-                />
-              </div>
-            </div>
-          )} */}
-
-          {/* {this.props.formEditToggle && (
-            <div>
-              <div>
-                <FormCategory
-                  type={CATEGORY_EDIT_START}
-                  page={this.props.page}
-                  onFormEditToggleClicked={this.props.onFormEditToggleClicked}
-                  categoryFormEdit={this.state.categoryFormEdit}
-                />
-              </div>
-            </div>
-          )} */}
+          <Fragment>
+            {this.props.formToggle && (
+              <Form
+                type={USER_CREATE_START}
+                page={this.props.page}
+                onFormToggleClicked={this.props.onFormToggleClicked}
+              />
+            )}
+          </Fragment>
+          <Fragment>
+            {this.props.formEditToggle && (
+              <Form
+                type={USER_EDIT_START}
+                page={this.props.page}
+                onFormEditToggleClicked={this.props.onFormEditToggleClicked}
+                userFormEdit={this.state.userFormEdit}
+              />
+            )}
+          </Fragment>
 
           <div className="m-3">
             <ul className="list-unstyled">
@@ -412,7 +266,7 @@ const mapDispatchToProps = dispatch => ({
   deletePermanentlyStart: id => dispatch(userDeletePermanentlyStart(id)),
   deletedRestoreStart: id => dispatch(userDeletedRestoreStart(id)),
   userEditStart: (id, user) => dispatch(userEditStart(id, user)),
-  userAddStart: user => dispatch(userAddStart(user)),
+  createStart: user => dispatch(userCreateStart(user)),
   userDeleteStart: id => dispatch(userDeleteStart(id))
 });
 

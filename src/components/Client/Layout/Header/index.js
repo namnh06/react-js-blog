@@ -13,13 +13,16 @@ class index extends Component {
   }
   render() {
     return (
-      <nav
+      <div
         id="js-nav-bar"
-        className="container-fluid bg-light Navigation-Bar fixed-top"
+        className={[
+          'container-fluid bg-light Navigation-Bar fixed-top p-0',
+          this.props.isScroll ? 'Scroll--height' : ''
+        ].join(' ')}
       >
         <div className="row h-100">
-          <div className="navbar navbar-expand-md navbar-dark py-0 w-100 h-100">
-            <div className="col-lg-4 navbar-brand d-flex align-items-center h-100">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light py-0 w-100 h-100">
+            <div className="navbar-brand d-flex align-items-center h-100">
               <Brand
                 isScroll={this.props.isScroll}
                 link="www.crashzone.com.au"
@@ -27,20 +30,22 @@ class index extends Component {
                 textColor="text-dark"
               />
             </div>
-            <div
-              className="col-lg-8 collapse navbar-collapse justify-content-end h-100"
-              id="navbar-collapse"
+            <button
+              className="navbar-toggler collapsed bg-secondary border border-yellow-cz-custom"
+              type="button"
+              data-toggle="collapse"
+              data-target="#js-navbar-collapse"
+              aria-controls="js-navbar-collapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
             >
-              <button
-                className="navbar-toggler button-yellow col-sm-1 offset-sm-8 col-xs-2"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbar-collapse"
-              >
-                <i className="fa fa-bars button--bars-black" />
-              </button>
-
-              <ul className="nav navbar-nav Navigation-Bar__list h-100 d-flex align-items-center">
+              <i className="fa fa-bars button--bars-black" />
+            </button>
+            <div
+              className="navbar-collapse collapse justify-content-end h-100"
+              id="js-navbar-collapse"
+            >
+              <ul className="navbar-nav Navigation-Bar__list h-100 d-flex align-items-lg-center ml-auto py-md-3 align-items-md-start border-md-top border-lg-top-0">
                 {this.props.menus &&
                   Object.keys(this.props.menus).map((pos, index) => {
                     return (
@@ -69,9 +74,9 @@ class index extends Component {
                 />
               </ul>
             </div>
-          </div>
+          </nav>
         </div>
-      </nav>
+      </div>
     );
   }
 }

@@ -4,7 +4,6 @@ import Button from '../../../../../../../UI/Button';
 import HelpText from '../Details/HelpText';
 import Input from '../Details/Input';
 import {
-  categoryDeleteStart,
   categoryCreateStart,
   categoryEditStart
 } from '../../../../../../../../store/actions/admin/categories.action';
@@ -16,8 +15,6 @@ import {
   renderTypeString,
   isCreateType
 } from '../../../../../../../../helpers';
-import './styles.css';
-import { CATEGORY_CREATE_START } from '../../../../../../../../helpers/constants';
 
 class index extends React.Component {
   state = {
@@ -48,7 +45,7 @@ class index extends React.Component {
     }
   };
 
-  onInputNameCategoryChange = event => {
+  onInputNamehange = event => {
     const name = event.target.value;
 
     if (isCreateType(this.props.type)) {
@@ -104,7 +101,7 @@ class index extends React.Component {
     return (
       <form
         onSubmit={this.onFormSubmitHandler}
-        className="Category-form border rounded-0 p-3 pb-0 m-3"
+        className="Admin__Wrapper__Category__Form border rounded-0 p-3 pb-0 m-3"
       >
         <div className="form-group d-flex justify-content-between border-bottom p-2 m-0">
           <h5 className="text-uppercase">
@@ -120,7 +117,7 @@ class index extends React.Component {
         </div>
 
         <div className="form-group mb-0">
-          <HelpText className="Category-form__notice--height mb-2">
+          <HelpText className="Admin__Wrapper__Category__Form__notice--height mb-2">
             {(isCreateType(this.props.type)
               ? this.state.categoryForm.isValidName !== null &&
                 !this.state.categoryForm.isValidName
@@ -148,7 +145,7 @@ class index extends React.Component {
                   ? this.state.categoryForm.name
                   : this.state.categoryFormEdit.name
               }
-              onChange={this.onInputNameCategoryChange}
+              onChange={this.onInputNamehange}
               autoFocus
             />
           </div>
@@ -176,7 +173,7 @@ class index extends React.Component {
             type="button"
             className="btn-sm btn-danger mx-1"
             clicked={
-              this.props.type === CATEGORY_CREATE_START
+              isCreateType(this.props.type)
                 ? this.props.onFormToggleClicked
                 : this.props.onFormEditToggleClicked
             }
@@ -197,7 +194,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    categoryDeleteStart: id => dispatch(categoryDeleteStart(id)),
     categoryCreateStart: data => dispatch(categoryCreateStart(data)),
     categoryEditStart: (id, category) =>
       dispatch(categoryEditStart(id, category))

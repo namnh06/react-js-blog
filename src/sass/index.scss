@@ -13,15 +13,43 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
+  font-size: 2rem !important;
   padding-top: var(--height-top);
+}
+
+.Default {
+  &--font {
+    &-size {
+      &-2 {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+.btn,
+.form-control {
+  font-size: 1.5rem;
 }
 
 .Scroll {
   &--height {
-    height: calc(var(--height-top) / 2) !important;
+    @include media-breakpoint-up(lg) {
+      height: calc(var(--height-top) / 2) !important;
+    }
   }
   &--padding-top {
-    padding: calc(var(--height-top) / 2) !important;
+    @include media-breakpoint-up(lg) {
+      padding-top: calc(var(--height-top) / 1.5) !important;
+    }
+  }
+  &--font-size {
+    @include media-breakpoint-up(md) {
+      font-size: 1.5rem;
+    }
+  }
+  &__not {
+    padding-top: var(--height-top) !important;
   }
 }
 
@@ -51,12 +79,10 @@ body {
 }
 
 .Navigation-Bar {
-  height: var(--height-top);
-
   &__list {
     & button {
       color: var(--dark) !important;
-      background-color: var(--yellow-cz);
+
       &:hover {
         color: var(--white) !important;
         border-color: var(--white) !important;
@@ -82,9 +108,190 @@ body {
       }
     }
     &__img {
-      &--width {
-        max-width: calc(var(--height-top) - 3vh);
+      &--height {
+        max-height: var(--height-top);
       }
     }
+  }
+}
+
+.Carousel {
+  &__button {
+    &--sign-up {
+      &:hover {
+        background-color: var(--dark) !important;
+        color: var(--white) !important;
+        border-color: var(--white) !important;
+      }
+    }
+    &--learn-more {
+      background-color: var(--dark) !important;
+      &:hover {
+        background-color: var(--yellow-cz) !important;
+        color: var(--dark) !important;
+        border-color: var(--dark) !important;
+      }
+    }
+  }
+  &-incaditors {
+    & li {
+      width: 20px !important;
+      height: 20px !important;
+      border-radius: 999px;
+      background-color: rgba(156, 150, 150, 0.5) !important;
+      &.active {
+        background-color: var(--yellow-cz) !important;
+      }
+    }
+  }
+  &-content {
+    top: 50%;
+    z-index: 9;
+    position: absolute;
+    & h1 {
+      font-size: 7rem;
+    }
+    & h4 {
+      font-size: 2rem;
+    }
+  }
+  &__image {
+    &--height {
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: top;
+      background-size: 100%;
+      height: 800px;
+
+      @include media-breakpoint-up(md) {
+        height: 400px;
+      }
+      @include media-breakpoint-up(lg) {
+        height: 600px;
+      }
+      @include media-breakpoint-up(xl) {
+        height: 700px;
+      }
+    }
+  }
+}
+
+.custom-file-label::after {
+  height: 100%;
+}
+
+.Admin {
+  &__Wrapper {
+    &__Post {
+      &__Form {
+        &__create {
+          &--in {
+            animation: fadeIn 1s;
+          }
+        }
+        &__notice--height {
+          height: 2rem;
+        }
+        &__image {
+          & .figure {
+            width: 200px;
+
+            display: flex;
+            flex-direction: column;
+
+            & img {
+              width: 80%;
+              margin: 0 auto;
+            }
+          }
+        }
+        &__Image {
+          &-Upload {
+            &--height {
+              height: 40px;
+            }
+          }
+        }
+      }
+    }
+    &__User__Form {
+      &__create {
+        &--in {
+          animation: fadeIn 1s;
+        }
+      }
+      &__notice--height {
+        height: 1rem;
+      }
+    }
+    &__Category__Form {
+      &__create {
+        &--in {
+          animation: fadeIn 1s;
+        }
+      }
+      &__notice--height {
+        height: 1rem;
+      }
+    }
+  }
+  &__Navigation-Bar {
+    height: var(--height-top);
+    position: fixed;
+    top: 0;
+    z-index: 101;
+    &__img {
+      &--height {
+        max-height: calc(var(--height-top) - 2vh);
+      }
+    }
+  }
+}
+
+.Post-form {
+  &__create {
+    &--in {
+      animation: fadeIn 1s;
+    }
+  }
+  &__notice--height {
+    height: 1rem;
+  }
+  &__image {
+    & .figure {
+      width: 200px;
+
+      display: flex;
+      flex-direction: column;
+
+      & img {
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.Help__Text {
+  &--height {
+    height: 2rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

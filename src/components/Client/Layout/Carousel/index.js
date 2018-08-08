@@ -3,10 +3,15 @@ import firstSlide from '../../../../assets/images/slides/crashzone-slide-1.jpg';
 import secondSlide from '../../../../assets/images/slides/crashzone-slide-2.jpg';
 import thirdSlide from '../../../../assets/images/slides/crashzone-slide-3.jpg';
 import Button from '../../../Details/Button';
-import './styles.css';
+
 const index = props => {
   return (
-    <div className="container-fluid p-0 Carousel">
+    <div
+      className={[
+        'container-fluid p-0 Carousel',
+        props.isScroll ? 'Scroll--padding-top' : ''
+      ].join(' ')}
+    >
       <div className="d-flex flex-row h-100">
         <div className="col-12 p-0">
           <div

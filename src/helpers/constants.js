@@ -74,8 +74,8 @@ export const USER_DELETED_PERMANENTLY = 'USER_DELETED_PERMANENTLY';
 export const USER_DELETED_RESTORE_START = 'USER_DELETE_RESTORE_START';
 export const USER_DELETED_RESTORED = 'USER_DELETED_RESTORE';
 
-export const USER_ADD_START = 'USER_CREATE_START';
-export const USER_ADDED = 'USER_ADDED';
+export const USER_CREATE_START = 'USER_CREATE_START';
+export const USER_CREATED = 'USER_CREATED';
 
 export const USER_EDIT_START = 'USER_EDIT_START';
 export const USER_EDITED = 'USER_EDITED';
@@ -94,7 +94,8 @@ export const CLIENT_PAGES_NAME = {
   BLOG: 'blog',
   CONTACT: 'contact',
   HELP: 'help',
-  POST: 'post'
+  POST: 'post',
+  CATEGORY: 'category'
 };
 
 export const ADMIN_PAGES_URL_PREFIX = '/admin';

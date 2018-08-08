@@ -4,8 +4,11 @@ import { childrenOfListHeader } from '../../../../../helpers';
 const index = props => {
   return (
     <li
-      className={props.className}
-      style={{ fontSize: props.isScroll ? '1rem' : '1.5rem' }}
+      className={[
+        'nav-item',
+        props.className,
+        props.isScroll ? 'Scroll--font-size' : 'Default--font-size'
+      ].join(' ')}
     >
       {childrenOfListHeader(props.type, props)}
     </li>

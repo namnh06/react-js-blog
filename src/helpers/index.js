@@ -5,12 +5,11 @@ import React from 'react';
 import validator from 'validator';
 
 import Anchor from '../components/Details/Anchor';
-import Button from '../components/Details/Button';
 
 import logo from '../assets/images/crashzone-logo.svg';
 
 import {
-  USER_ADD_START,
+  USER_CREATE_START,
   USER_EDIT_START,
   CATEGORY_CREATE_START,
   CATEGORY_EDIT_START,
@@ -50,8 +49,8 @@ export const adminPageRender = page => {
   }
 };
 
-export const hrefArticle = article => {
-  return `/blog/${article}`;
+export const hrefArticle = slug => {
+  return `/blog/posts/${slug}`;
 };
 
 export const setDataToArray = data => {
@@ -114,27 +113,31 @@ export const childrenOfListHeader = (type, { name, slug, isScroll }) => {
   switch (type) {
     case 'button':
       return (
-        <Button
-          className={[
-            'btn btn-outline-dark rounded-0 text-uppercase',
-            isScroll ? 'btn-sm' : 'btn-lg'
-          ].join(' ')}
+        <Anchor
+          href={slug}
+          className="nav-link text-dark py-0 border border-dark bg-yellow-cz-custom px-5 text-capitalize"
         >
+          {/* <Button
+            className={[
+              'btn btn-outline-dark rounded-0 text-uppercase border-0',
+              isScroll ? 'btn-sm' : 'btn-lg'
+            ].join(' ')}
+          > */}
           {name}
-        </Button>
+          {/* </Button> */}
+        </Anchor>
       );
     case 'anchor':
       return slug === 'forums' ? (
         <a
           href="http://www.crashzone.com.au/forum/viewforum.php?f=2"
-          target="_blank"
           rel="noopener noreferrer"
-          className="nav-link text-dark"
+          className="nav-link text-dark py-0"
         >
           {name}
         </a>
       ) : (
-        <Anchor href={slug} className="nav-link text-dark">
+        <Anchor href={slug} className="nav-link text-dark py-0">
           {name}
         </Anchor>
       );
@@ -232,7 +235,7 @@ export const isValidEmail = email => {
 };
 
 export const isValidPassword = password => {
-  return validator.isLength(password, 5);
+  return validator.isLength(password, 5) && validator.isAscii(password);
 };
 
 export const isValidTitle = title => {
@@ -250,7 +253,7 @@ export const isValidName = name => {
     : name
         .trim()
         .split(' ')
-        .every(word => validator.isAlpha(word)) &&
+        .every(word => validator.isAscii(word)) &&
         validator.isLength(name, { min: 3 });
 };
 
@@ -309,24 +312,26 @@ export const helpTextRequire = (inputName, required) => {
   return `Please input valid ${inputName}, it's required : ${required}`;
 };
 
-export const renderTypeString = type => {
+export const passwordPlaceholderByType = type => {
   switch (type) {
-    case CATEGORY_CREATE_START:
-    case POST_CREATE_START:
-      return 'create';
-    case CATEGORY_EDIT_START:
-      return 'edit';
+    case USER_CREATE_START:
+      return 'Password';
+    case USER_EDIT_START:
+      return 'New Password';
     default:
       return null;
   }
 };
 
-export const passwordPlaceholderByType = type => {
+export const renderTypeString = type => {
   switch (type) {
-    case USER_ADD_START:
-      return 'Password';
+    case CATEGORY_CREATE_START:
+    case POST_CREATE_START:
+    case USER_CREATE_START:
+      return 'create';
+    case CATEGORY_EDIT_START:
     case USER_EDIT_START:
-      return 'New Password';
+      return 'edit';
     default:
       return null;
   }
@@ -342,4 +347,8 @@ export const hideStringTemporary = page => {
 
 export const isCreateType = type => {
   return type.toUpperCase().includes('CREATE');
+};
+
+export const isEditType = type => {
+  return type.toUpperCase().includes('EDIT');
 };

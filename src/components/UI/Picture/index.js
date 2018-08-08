@@ -8,6 +8,7 @@ const index = props => {
         alt={props.alt}
         width={props.width}
         height={props.height}
+        className={props.className}
       />
     </picture>
   );

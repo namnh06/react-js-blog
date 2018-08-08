@@ -3,10 +3,11 @@ import Carousel from '../../../Carousel';
 import Ribbon from '../../../Ribbon';
 import Feature from '../../../Feature';
 import Articles from './Articles';
-const index = () => {
+const index = props => {
+  console.log(props);
   return (
     <Fragment>
-      <Carousel />
+      <Carousel isScroll={props.isScroll} />
       <Ribbon />
       <Articles />
       <Feature />

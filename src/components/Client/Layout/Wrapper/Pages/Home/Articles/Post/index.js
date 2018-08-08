@@ -4,7 +4,6 @@ import moment from 'moment';
 import { logoImage } from '../../../../../../../../helpers';
 import LinkToArticle from '../../../../../../../UI/LinkToArticle';
 const index = props => {
-  console.log(props);
   return (
     <div className="card w-100 mb-2">
       <img

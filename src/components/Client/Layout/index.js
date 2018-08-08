@@ -17,7 +17,6 @@ class index extends React.Component {
   }
 
   onScrollHandler = event => {
-    console.log('object');
     const top = window.scrollY;
     top > 100 &&
       !this.state.isScroll &&
@@ -36,7 +35,11 @@ class index extends React.Component {
     return (
       <Fragment>
         <Header isScroll={this.state.isScroll} />
-        <Wrapper {...this.props} />
+        <Wrapper
+          {...this.props}
+          isScroll={this.state.isScroll}
+          className={[this.state.isScroll ? 'Scroll-padding-top' : '']}
+        />
         <Footer />
       </Fragment>
     );

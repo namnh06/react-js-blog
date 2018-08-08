@@ -6,10 +6,10 @@ import Contact from './Pages/Contact';
 import Help from './Pages/Help';
 import Post from './Pages/Post';
 class index extends React.Component {
-  clientPageRender = page => {
+  clientPageRender = ({ page, isScroll, slug, className, categorySlug }) => {
     switch (page.toLowerCase()) {
       case CLIENT_PAGES_NAME.HOME:
-        return <Home />;
+        return <Home isScroll={isScroll} />;
       case CLIENT_PAGES_NAME.BLOG:
         return <Blog />;
       case CLIENT_PAGES_NAME.CONTACT:
@@ -17,14 +17,17 @@ class index extends React.Component {
       case CLIENT_PAGES_NAME.HELP:
         return <Help />;
       case CLIENT_PAGES_NAME.POST:
-        return <Post {...this.props} />;
+        return <Post className={className} slug={slug} />;
+      case CLIENT_PAGES_NAME.CATEGORY:
+        return <Blog categorySlug={categorySlug} />;
       default:
         return null;
     }
   };
 
   render() {
-    return this.clientPageRender(this.props.page);
+    console.log(this.props);
+    return this.clientPageRender(this.props);
   }
 }
 

@@ -8,6 +8,7 @@ import Post from '../../containers/Client/Post';
 /* CLIENT */
 import Home from '../../containers/Client/Home';
 import Blog from '../../containers/Client/Blog';
+import Category from '../../containers/Client/Category';
 import Contact from '../../containers/Client/Contact';
 import Help from '../../containers/Client/Help';
 
@@ -30,8 +31,12 @@ class App extends Component {
           <Route path="/home" component={Home} />
           <Route path="/404" component={NotFoundPage} />
           <Route path="/blog" exact component={Blog} />
-          {/* <Route path="/blog/categories" exact component={Blog} /> */}
-          <Route path="/blog/:slug" component={Post} />
+          <Route
+            path="/blog/categories/:categorySlug"
+            exact
+            component={Category}
+          />
+          <Route path="/blog/posts/:slug" component={Post} />
           <Route path="/contact" component={Contact} />
           <Route path="/help" component={Help} />
           <PublicRoute path="/admin/login" component={Login} />

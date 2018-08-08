@@ -26,6 +26,24 @@ export const postsFetched = posts => {
   };
 };
 
+export const postsCategoryFetchStart = slug => {
+  return dispatch => {
+    return axios.get(`posts?category=${slug}`).then(response => {
+      if (response.data.status === 200) {
+        const posts = response.data.data.posts;
+        dispatch(postsCategoryFetched(posts));
+      }
+    });
+  };
+};
+
+export const postsCategoryFetched = posts => {
+  return {
+    type: POSTS_FETCHED,
+    posts
+  };
+};
+
 export const postsDeletedFetchStart = () => {
   return dispatch => {
     return axios.get('posts-deleted').then(response => {

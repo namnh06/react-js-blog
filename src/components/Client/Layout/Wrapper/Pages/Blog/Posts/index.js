@@ -2,10 +2,18 @@ import React from 'react';
 import Post from './Post';
 import { connect } from 'react-redux';
 import Breadcrumb from '../../../../../../UI/Breadcrumb';
-import { postsFetchStart } from '../../../../../../../store/actions/posts.action';
+import {
+  postsFetchStart,
+  postsCategoryFetchStart
+} from '../../../../../../../store/actions/posts.action';
 class index extends React.Component {
   componentDidMount() {
-    this.props.postsFetchStart();
+    if (this.props.categorySlug) {
+      this.props.postsCategoryFetchStart(this.props.categorySlug);
+    } else {
+      console.log(this.props);
+      this.props.postsFetchStart();
+    }
   }
   render() {
     return (
@@ -29,7 +37,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    postsFetchStart: () => dispatch(postsFetchStart())
+    postsFetchStart: () => dispatch(postsFetchStart()),
+    postsCategoryFetchStart: slug => dispatch(postsCategoryFetchStart(slug))
   };
 };
 

@@ -3,7 +3,6 @@ import Input from '../../Form/Details/Input';
 import Button from '../../../../../../../UI/Button';
 import HelpText from '../../Form/Details/HelpText';
 import { connect } from 'react-redux';
-import './styles.css';
 
 import validator from 'validator';
 import EditorComponent from './ReactDraftWYSIWYG';
@@ -25,7 +24,7 @@ import { postForm, tempData } from '../../../../../../../../helpers/seed-data';
 import { postCreateStart } from '../../../../../../../../store/actions/posts.action';
 
 import Figure from './Figure';
-import { categoriesFetchStart } from '../../../../../../../../store/actions/admin/categories.action';
+
 import CheckBox from '../../../../../../../UI/CheckBox';
 class index extends Component {
   state = {
@@ -160,21 +159,6 @@ class index extends Component {
 
       reader.readAsDataURL(event.target.files[0]);
     }
-    // if (isCreateType(this.props.type)) {
-    //   this.setState(prevState => ({
-    //     postForm: {
-    //       ...prevState.postForm,
-    //       image
-    //     }
-    //   }));
-    // } else {
-    //   this.setState(prevState => ({
-    //     postFormEdit: {
-    //       ...prevState.postFormEdit,
-    //       image
-    //     }
-    //   }));
-    // }
   };
 
   onButtonRemoveImageClickHandler = path => {
@@ -256,7 +240,7 @@ class index extends Component {
       };
       formData.append('post', JSON.stringify(post));
 
-      return this.props.postCreateStart(formData);
+      return this.props.createStart(formData);
     } else {
       const { name, id } = this.state.postFormEdit;
       this.props.postEditStart(id, { name });
@@ -285,7 +269,7 @@ class index extends Component {
     return (
       <form
         onSubmit={this.onFormPostSubmitHandler}
-        className="Post-form border rounded-0 p-3 pb-0 m-3"
+        className="Admin__Wrapper__Post__Form border rounded-0 p-3 pb-0 m-3"
       >
         <div className="form-group d-flex justify-content-between border-bottom p-2 m-0">
           <h5 className="text-uppercase">
@@ -302,7 +286,7 @@ class index extends Component {
         </div>
 
         <div className="form-group mb-0">
-          <HelpText className="Post-form__notice--height m-0 mb-2">
+          <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2">
             {(isCreateType(this.props.type)
               ? this.state.postForm.isValidTitle !== null &&
                 !this.state.postForm.isValidTitle
@@ -337,7 +321,7 @@ class index extends Component {
         </div>
 
         <div className="form-group mb-0">
-          <HelpText className="Post-form__notice--height m-0 mb-2">
+          <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2">
             {(isCreateType(this.props.type)
               ? this.state.postForm.isValidDescription !== null &&
                 !this.state.postForm.isValidDescription
@@ -370,7 +354,7 @@ class index extends Component {
         </div>
 
         <div className="form-group mb-0">
-          <HelpText className="Post-form__notice--height m-0 mb-2">
+          <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2">
             {/* {(isCreateType(this.props.type)
               ? this.state.postForm.isValidDescription !== null &&
                 !this.state.postForm.isValidDescription
@@ -382,21 +366,16 @@ class index extends Component {
               )} */}
           </HelpText>
           <div className="input-group">
-            <div className="input-group-prepend">
-              {/* <Button type="button" id="">
-                Upload
-              </Button> */}
-            </div>
-            <div className="custom-file">
+            <div className="custom-file Admin__Wrapper__Post__Form__Image-Upload--height">
               <Input
                 type="file"
                 style={{ zIndex: '99' }}
-                className="custom-file-input form-control rounded-0"
+                className="custom-file-input form-control rounded-0 h-100"
                 onChange={this.onInputImageUploadPostChangeHandler}
                 id="post-image"
                 ariaDescribedby="post-image"
               />
-              <label className="custom-file-label" htmlFor="post-image">
+              <label className="custom-file-label h-100" htmlFor="post-image">
                 Image
               </label>
             </div>
@@ -404,7 +383,7 @@ class index extends Component {
         </div>
 
         {this.state.tempData.images && (
-          <div className="d-flex flex-row my-2 Post-form__image">
+          <div className="d-flex flex-row my-2 Admin__Wrapper__Post__Form__image">
             {Object.keys(this.state.tempData.images).map((key, index) => {
               const image = this.state.tempData.images[key];
 
@@ -428,7 +407,7 @@ class index extends Component {
         )}
 
         <div className="form-group mb-0">
-          <HelpText className="Post-form__notice--height m-0 mb-2">
+          <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2">
             {/* {(isCreateType(this.props.type)
               ? this.state.postForm.isValidDescription !== null &&
                 !this.state.postForm.isValidDescription
@@ -461,7 +440,7 @@ class index extends Component {
         </div>
 
         <div className="form-group mb-0">
-          <HelpText className="Post-form__notice--height m-0 mb-2" />
+          <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2" />
           <div className="input-group">
             <EditorComponent
               onUpdateTextEditor={this.onInputTextEditorPostChangeHandler}
@@ -500,8 +479,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postCreateStart: post => dispatch(postCreateStart(post)),
-    categoriesFetchStart: () => dispatch(categoriesFetchStart())
+    createStart: post => dispatch(postCreateStart(post))
   };
 };
 

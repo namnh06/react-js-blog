@@ -4,9 +4,5 @@
 :root {
   --yellow-cz: #fef234;
   --gray-bt: #dee2e6;
-  --height-top: 10vh;
-}
-
-@function calc-minus($first, $second) {
-  @return $first - $second;
+  --height-top: 4vw;
 }

@@ -10,14 +10,15 @@ class index extends Component {
     this.props.postFetchStart(this.props.slug);
   }
   render() {
+    console.log(this.props);
     return (
       <Fragment>
-        <div className="container my-5 ">
-          <div className="d-flex flex-row border-bottom">
+        <div className="container my-5">
+          <div className="row border-bottom">
             <Article {...this.props.post} />
             <Side categories={this.props.post.categories} />
           </div>
-          <div className="d-flex flex-row mt-5">
+          <div className="row mt-5">
             <PostsRelated />
           </div>
         </div>

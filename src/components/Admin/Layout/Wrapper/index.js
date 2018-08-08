@@ -36,6 +36,8 @@ class index extends React.Component {
             page={this.props.page}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
+            formEditToggle={this.state.formEditToggle}
+            onFormEditToggleClicked={this.onFormEditToggleClickHandler}
           />
         );
       case ADMIN_PAGES_NAME.POSTS:
@@ -64,7 +66,7 @@ class index extends React.Component {
   };
   render() {
     return (
-      <ContainerFluid className="px-0 h-100">
+      <ContainerFluid className="px-0 h-100 Admin__Wrapper">
         <Row className="h-100">
           <SideBar />
           <Fragment>{this.adminPageRender(this.props.page)}</Fragment>

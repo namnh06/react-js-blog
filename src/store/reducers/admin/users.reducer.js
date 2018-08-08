@@ -1,7 +1,7 @@
 import {
   USERS_FETCHED,
   USER_DELETED,
-  USER_ADDED,
+  USER_CREATED,
   USER_EDITED,
   USERS_DELETED_FETCHED,
   USER_DELETED_PERMANENTLY,
@@ -10,10 +10,9 @@ import {
 import {
   setDataToArray,
   removeDataFromArrayById,
-  addArray,
-  updateArray,
   sortDescendingArrayById,
-  pushDataToArray
+  pushDataToArray,
+  updateDataToArrayById
 } from '../../../helpers';
 import { initUsers } from '../../../helpers/seed-data';
 
@@ -58,12 +57,20 @@ const deletedRestored = (state, action) => {
   };
 };
 
-const userAdded = (state, action) => {
-  return addArray(state, action.state.user);
+const userCreated = (state, action) => {
+  return {
+    ...state,
+    current: sortDescendingArrayById(
+      pushDataToArray(state.current, action.data)
+    )
+  };
 };
 
 const userEdited = (state, action) => {
-  return updateArray(state, action.state.user);
+  return {
+    ...state,
+    current: updateDataToArrayById(state.current, action.data)
+  };
 };
 
 const reducer = (state = initUsers, action) => {
@@ -78,8 +85,8 @@ const reducer = (state = initUsers, action) => {
       return deletedPermanently(state, action);
     case USER_DELETED_RESTORED:
       return deletedRestored(state, action);
-    case USER_ADDED:
-      return userAdded(state, action);
+    case USER_CREATED:
+      return userCreated(state, action);
     case USER_EDITED:
       return userEdited(state, action);
     default:

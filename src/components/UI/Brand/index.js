@@ -9,7 +9,7 @@ const index = props => {
         <div className="d-flex">
           <Picture
             className={[
-              'Navigation-Bar__brand__img--width',
+              'Navigation-Bar__brand__img--height p-1',
               props.isScroll ? 'Scroll--height' : ''
             ].join(' ')}
             src={logoImage()}
@@ -25,7 +25,11 @@ const index = props => {
               <span>{props.slogan}</span>
             </h1>
 
-            <small className={props.textColor}>{props.link}</small>
+            <small
+              className={['Default--font-size-2', props.textColor].join(' ')}
+            >
+              {props.link}
+            </small>
           </div>
         </div>
       </Link>

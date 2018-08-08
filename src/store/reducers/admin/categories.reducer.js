@@ -50,7 +50,7 @@ const categoryCreated = (state, action) => {
   return { ...state, current: pushDataToArray(state.current, action.category) };
 };
 
-const categoryUpdated = (state, action) => {
+const categoryEdited = (state, action) => {
   return {
     ...state,
     current: updateDataToArrayById(state.current, action.category)
@@ -72,7 +72,7 @@ const reducer = (state = initCategories, action) => {
     case CATEGORY_CREATED:
       return categoryCreated(state, action);
     case CATEGORY_EDITED:
-      return categoryUpdated(state, action);
+      return categoryEdited(state, action);
 
     default:
       return state;

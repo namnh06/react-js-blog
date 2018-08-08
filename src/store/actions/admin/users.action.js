@@ -1,7 +1,7 @@
 import {
   USERS_FETCHED,
   USER_DELETED,
-  USER_ADDED,
+  USER_CREATED,
   USER_EDITED,
   USERS_DELETED_FETCHED,
   USER_DELETED_PERMANENTLY,
@@ -98,12 +98,12 @@ export const userDeletedRestored = user => {
   };
 };
 
-export const userAddStart = user => {
+export const userCreateStart = user => {
   return dispatch => {
     return axios.post('/users', user).then(response => {
       if (response.data.status === 200) {
         const user = response.data.data.user;
-        dispatch(userAdded({ user }));
+        dispatch(userCreated(user));
       } else {
         return null;
       }
@@ -111,10 +111,10 @@ export const userAddStart = user => {
   };
 };
 
-export const userAdded = state => {
+export const userCreated = data => {
   return {
-    type: USER_ADDED,
-    state
+    type: USER_CREATED,
+    data
   };
 };
 
@@ -123,7 +123,7 @@ export const userEditStart = (id, user) => {
     return axios.put(`/users/${id}`, user).then(response => {
       if (response.data.status === 200) {
         const user = response.data.data.user;
-        dispatch(userEdited({ user }));
+        dispatch(userEdited(user));
       } else {
         return null;
       }
@@ -131,9 +131,9 @@ export const userEditStart = (id, user) => {
   };
 };
 
-export const userEdited = state => {
+export const userEdited = data => {
   return {
     type: USER_EDITED,
-    state
+    data
   };
 };
