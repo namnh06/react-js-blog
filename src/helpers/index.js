@@ -157,7 +157,8 @@ export const fontAwesomeType = {
   NEWSPAPER: 'newspaper',
   PLUS: 'plus',
   MINUS: 'minus',
-  TIMES: 'times'
+  TIMES: 'times',
+  EYE: 'eye'
 };
 
 export const iconClass = type => {
@@ -176,6 +177,9 @@ export const iconClass = type => {
       return fontAwesomeType.MINUS;
     case fontAwesomeType.TIMES.toUpperCase():
       return fontAwesomeType.TIMES;
+    case fontAwesomeType.EYE.toUpperCase():
+      return fontAwesomeType.EYE;
+
     default:
       return null;
   }

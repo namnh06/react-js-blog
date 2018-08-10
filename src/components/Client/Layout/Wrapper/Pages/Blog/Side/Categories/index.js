@@ -4,15 +4,26 @@ import { connect } from 'react-redux';
 import Category from './Category';
 class index extends Component {
   componentDidMount() {
-    this.props.categoriesFetchStart();
+    if (
+      this.props.postCategories &&
+      Object.keys(this.props.postCategories).length > 0
+    ) {
+    } else {
+      this.props.categoriesFetchStart();
+    }
   }
 
   render() {
+    const categories =
+      this.props.postCategories &&
+      Object.keys(this.props.postCategories).length > 0
+        ? { ...this.props.postCategories }
+        : { ...this.props.categories };
     return (
       <div className="my-2">
         <h3>Categories</h3>
-        {Object.keys(this.props.categories).map((key, index) => {
-          const category = this.props.categories[key];
+        {Object.keys(categories).map((key, index) => {
+          const category = categories[key];
           return <Category key={category.id} index={++index} {...category} />;
         })}
       </div>

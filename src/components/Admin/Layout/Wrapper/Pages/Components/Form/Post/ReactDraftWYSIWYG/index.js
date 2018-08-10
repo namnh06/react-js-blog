@@ -7,7 +7,7 @@ import './styles.css';
 import { connect } from 'react-redux';
 import axios from '../../../../../../../../../helpers/axios.config';
 
-import { DEVELOPMENT_DOMAIN } from '../../../../../../../../../helpers/constants';
+import { DEVELOPMENT_API_DOMAIN } from '../../../../../../../../../helpers/constants';
 class EditorComponent extends Component {
   state = {
     editorState: EditorState.createEmpty()
@@ -32,7 +32,7 @@ class EditorComponent extends Component {
       .then(response => {
         return {
           data: {
-            link: DEVELOPMENT_DOMAIN + response.data.data.image.path
+            link: DEVELOPMENT_API_DOMAIN + response.data.data.image.path
           }
         };
       });

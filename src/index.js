@@ -9,9 +9,8 @@ import registerServiceWorker from './registerServiceWorker';
 
 import store from './store';
 // import 'bootstrap/scss/bootstrap.scss';
-import 'bootstrap';
 
-import './sass/index.scss';
+import './sass/index.css';
 import fontAwesome from './helpers/fontAwesome.config';
 import { isExistsToken } from './helpers';
 

@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
-import Categories from './Categories';
+import Categories from '../../Blog/Side/Categories';
 const index = props => {
+  console.log(props);
   return (
     <Fragment>
-      <Categories categories={props.categories} />
+      {props.categories && <Categories postCategories={props.categories} />}
     </Fragment>
   );
 };

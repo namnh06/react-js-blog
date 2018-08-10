@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import Wrapper from './Wrapper';
 import Header from './Header';
 import Footer from './Footer';
+import ScrollTop from './ScrollTop';
 class index extends React.Component {
   state = {
     isScroll: false
@@ -31,6 +32,10 @@ class index extends React.Component {
       });
   };
 
+  onButtonScrollTopClickHandler = () => {
+    window.scrollTo(0, 0);
+  };
+
   render() {
     return (
       <Fragment>
@@ -41,6 +46,7 @@ class index extends React.Component {
           className={[this.state.isScroll ? 'Scroll-padding-top' : '']}
         />
         <Footer />
+        <ScrollTop clicked={_ => this.onButtonScrollTopClickHandler()} />
       </Fragment>
     );
   }

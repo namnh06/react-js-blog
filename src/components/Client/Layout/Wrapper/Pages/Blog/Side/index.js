@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Search from './Search';
 import Tags from './Tags';
 import Categories from './Categories';
+import FormLogin from './Form/Login';
+import Adv from './Adv';
 const index = () => {
   return (
-    <div className="col-4">
+    <Fragment>
+      <Adv />
+      <FormLogin />
       <Search />
-      <Tags />
       <Categories />
-    </div>
+      <Tags />
+    </Fragment>
   );
 };
 

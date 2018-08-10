@@ -1,6 +1,14 @@
-export const DEVELOPMENT_DOMAIN = 'http://localhost:6699';
+export const PRODUCT_API_DOMAIN = 'http://49.156.51.71:81';
+export const PRODUCT_API = '/api/v1';
+export const PRODUCT_API_URL = PRODUCT_API_DOMAIN + PRODUCT_API;
+
+export const PRODUCT_DOMAIN = 'http://49.156.51.71:82';
+
+export const DEVELOPMENT_API_DOMAIN = 'http://localhost:6699';
 export const DEVELOPMENT_API = '/api/v1';
-export const DEVELOPMENT_URL_API = DEVELOPMENT_DOMAIN + DEVELOPMENT_API;
+export const DEVELOPMENT_API_URL = DEVELOPMENT_API_DOMAIN + DEVELOPMENT_API;
+
+export const DEVELOPMENT_DOMAIN = 'http://localhost:3000';
 
 // CATEGORY
 export const CATEGORIES_FETCH_START = 'CATEGORIES_FETCH_START';

@@ -10,18 +10,23 @@ class index extends Component {
     this.props.postFetchStart(this.props.slug);
   }
   render() {
-    console.log(this.props);
     return (
       <Fragment>
-        <div className="container my-5">
-          <div className="row border-bottom">
-            <Article {...this.props.post} />
-            <Side categories={this.props.post.categories} />
+        {Object.keys(this.props.post).length > 0 && (
+          <div className="container my-5">
+            <div className="row border-bottom">
+              <div className="col-8">
+                <Article {...this.props.post} />
+              </div>
+              <div className="col-4">
+                <Side categories={this.props.post.categories} />
+              </div>
+            </div>
+            <div className="row mt-5">
+              <PostsRelated />
+            </div>
           </div>
-          <div className="row mt-5">
-            <PostsRelated />
-          </div>
-        </div>
+        )}
       </Fragment>
     );
   }

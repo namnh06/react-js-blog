@@ -4,20 +4,20 @@ const index = () => {
   return (
     <div className="my-3 border-bottom">
       <h3>Tags</h3>
-      <div className="d-flex justify-content-around">
-        <a href="" className="badge badge-primary">
+      <div className="">
+        <a href="" className=" mx-1 badge badge-primary">
           Primary
         </a>
-        <a href="" className="badge badge-secondary">
+        <a href="" className=" mx-1 badge badge-secondary">
           Secondary
         </a>
-        <a href="" className="badge badge-success">
+        <a href="" className=" mx-1 badge badge-success">
           Success
         </a>
-        <a href="" className="badge badge-primary">
+        <a href="" className=" mx-1 badge badge-primary">
           Primary
         </a>
-        <a href="" className="badge badge-secondary">
+        <a href="" className=" mx-1 badge badge-secondary">
           Secondary
         </a>
       </div>

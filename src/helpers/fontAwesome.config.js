@@ -9,7 +9,8 @@ import {
   faNewspaper,
   faPlus,
   faMinus,
-  faTimes
+  faTimes,
+  faEye
 } from '@fortawesome/free-solid-svg-icons';
 
 const fontAwesome = () => {
@@ -23,7 +24,8 @@ const fontAwesome = () => {
     faNewspaper,
     faPlus,
     faMinus,
-    faTimes
+    faTimes,
+    faEye
   );
 };
 

@@ -26,6 +26,7 @@ import { postCreateStart } from '../../../../../../../../store/actions/posts.act
 import Figure from './Figure';
 
 import CheckBox from '../../../../../../../UI/CheckBox';
+import { categoriesFetchStart } from '../../../../../../../../store/actions/admin/categories.action';
 class index extends Component {
   state = {
     postForm: {
@@ -479,7 +480,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createStart: post => dispatch(postCreateStart(post))
+    createStart: post => dispatch(postCreateStart(post)),
+    categoriesFetchStart: _ => dispatch(categoriesFetchStart())
   };
 };
 

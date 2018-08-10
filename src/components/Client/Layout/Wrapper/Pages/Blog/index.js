@@ -1,17 +1,21 @@
 import React, { Fragment } from 'react';
 import Banner from '../../../Banner';
 import bannerImage from '../../../../../../assets/images/blog/MenuBanners_Pricing-1920x580.jpg';
-import Posts from './Posts';
+import Main from './Main';
 import Side from './Side';
 
 const index = props => {
   return (
     <Fragment>
-      <Banner bannerImage={bannerImage} title="Blog" />
+      {/* <Banner bannerImage={bannerImage} title="Blog" /> */}
       <div className="container my-5">
-        <div className="d-flex flex-row">
-          <Posts categorySlug={props.categorySlug} />
-          <Side />
+        <div className="row">
+          <div className="col-8">
+            <Main categorySlug={props.categorySlug} />
+          </div>
+          <div className="col-4">
+            <Side />
+          </div>
         </div>
       </div>
     </Fragment>
