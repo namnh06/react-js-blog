@@ -26,7 +26,6 @@ class index extends Component {
   render() {
     return (
       <Fragment>
-        {/* <Breadcrumb data={['blog']} sort /> */}
         <Categories />
         <span className="badge badge-primary">Primary</span>
 

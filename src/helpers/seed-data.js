@@ -28,7 +28,9 @@ export const userForm = {
   email: '',
   isValidEmail: null,
   password: '',
-  isValidPassword: null
+  isValidPassword: null,
+  rePassword: '',
+  isValidRePassword: null
 };
 
 // export const categoryWillBeCreated = {

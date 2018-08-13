@@ -3,13 +3,7 @@ import { childrenOfListHeader } from '../../../../../helpers';
 
 const index = props => {
   return (
-    <li
-      className={[
-        'nav-item',
-        props.className,
-        props.isScroll ? 'Scroll--font-size' : 'Default--font-size'
-      ].join(' ')}
-    >
+    <li className={['nav-item', props.className].join(' ')}>
       {childrenOfListHeader(props.type, props)}
     </li>
   );

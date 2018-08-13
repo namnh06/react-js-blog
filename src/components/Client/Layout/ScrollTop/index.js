@@ -1,5 +1,4 @@
 import React from 'react';
-import { isAbsolute } from 'path';
 
 const index = props => {
   const scrollStyle = {

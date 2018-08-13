@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 const index = props => {
   return (
     <Fragment>
-      <Link to="/home" className="Navigation-Bar__brand__anchor w-100">
+      <Link to="/home" className="Client__Brand__anchor w-100">
         <div className="d-flex">
           <Picture
             className={[
-              'Navigation-Bar__brand__img--height p-1',
+              'Client__Brand__img--height p-1',
               props.isScroll ? 'Scroll--height' : ''
             ].join(' ')}
             src={logoImage()}

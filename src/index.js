@@ -7,8 +7,11 @@ import registerServiceWorker from './registerServiceWorker';
 
 // import './index.css';
 
+// import 'jquery';
+// import 'popper.js';
+import 'bootstrap';
 import store from './store';
-// import 'bootstrap/scss/bootstrap.scss';
+import 'bootstrap/scss/bootstrap.scss';
 
 import './sass/index.css';
 import fontAwesome from './helpers/fontAwesome.config';

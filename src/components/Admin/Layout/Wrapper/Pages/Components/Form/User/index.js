@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Button from '../../../../../../../UI/Button';
-import HelpText from '../Details/HelpText';
+// import HelpText from '../Details/HelpText';
+import HelpText from '../../../../../../../Details/HelpText';
 import Input from '../Details/Input';
 import {
   renderTypeString,

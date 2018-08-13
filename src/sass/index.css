@@ -1,9 +1,3 @@
-:root {
-  --yellow-cz: #fef234;
-  --gray-bt: #dee2e6;
-  --height-top: 4vw;
-}
-
 /*!
  * Bootstrap v4.1.2 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -9515,6 +9509,12 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+:root {
+  --yellow-cz: #fef234;
+  --gray-bt: #dee2e6;
+  --height-top: 5vw;
+}
+
 html,
 body {
   height: 100vh;
@@ -9592,36 +9592,76 @@ body {
   border-top: 3px solid #ccc !important;
 }
 
-.Navigation-Bar__list button {
+.Client__Form {
+  z-index: 1200;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.5)));
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+  top: 0;
+  bottom: 0;
+}
+
+.Client__Form__Sign-Up__form {
+  width: 30%;
+}
+
+.Client__Form__Sign-Up__form h2 {
+  font-size: 3rem;
+}
+
+.Client__Form__Sign-Up__form span {
+  font-size: 1.8rem;
+}
+
+.Client__Form__Sign-Up__form__notice {
+  font-size: 1.3rem;
+}
+
+.Client__Navigation-Bar {
+  height: var(--height-top);
+}
+
+.Client__Navigation-Bar__list button {
   color: var(--dark) !important;
 }
 
-.Navigation-Bar__list button:hover {
+.Client__Navigation-Bar__list button:hover {
   color: var(--white) !important;
   border-color: var(--white) !important;
 }
 
-.Navigation-Bar__list li {
+.Client__Navigation-Bar__list li {
   padding-right: 1rem;
   padding-left: 1rem;
 }
 
-.Navigation-Bar__list li a {
+.Client__Navigation-Bar__list li a {
   border: 1px solid transparent;
 }
 
-.Navigation-Bar__list li a:hover {
+.Client__Navigation-Bar__list li a:hover {
   background-color: var(--yellow-cz);
   border: 1px solid var(--dark);
 }
 
-.Navigation-Bar__brand__anchor:hover {
+.Client__Brand__anchor:hover {
   text-decoration: none;
   color: var(--black);
 }
 
-.Navigation-Bar__brand__img--height {
-  max-height: var(--height-top);
+.Client__Brand__img--height {
+  max-height: calc(var(--height-top) - 1vw);
 }
 
 .Carousel__button--sign-up:hover {

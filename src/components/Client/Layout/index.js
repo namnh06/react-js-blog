@@ -4,47 +4,48 @@ import Wrapper from './Wrapper';
 import Header from './Header';
 import Footer from './Footer';
 import ScrollTop from './ScrollTop';
+import Form from './Form';
 class index extends React.Component {
   state = {
-    isScroll: false
+    signUpForm: false,
+    logInForm: false
   };
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.onScrollHandler);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScrollHandler);
-  }
-
-  onScrollHandler = event => {
-    const top = window.scrollY;
-    top > 100 &&
-      !this.state.isScroll &&
-      this.setState(prevState => ({
-        isScroll: true
-      }));
-
-    top < 100 &&
-      this.state.isScroll &&
-      this.setState({
-        isScroll: false
-      });
-  };
-
   onButtonScrollTopClickHandler = () => {
     window.scrollTo(0, 0);
+  };
+
+  onButtonSignUpClickHandler = _ => {
+    this.setState(prevState => ({
+      signUpForm: !prevState.signUpForm
+    }));
+  };
+
+  onButtonLogInClickHandler = _ => {
+    this.setState(prevState => ({
+      logInForm: !prevState.logInForm
+    }));
   };
 
   render() {
     return (
       <Fragment>
-        <Header isScroll={this.state.isScroll} />
-        <Wrapper
-          {...this.props}
-          isScroll={this.state.isScroll}
-          className={[this.state.isScroll ? 'Scroll-padding-top' : '']}
+        {this.state.signUpForm && (
+          <Form
+            type="signup"
+            onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
+          />
+        )}
+        {this.state.logInForm && (
+          <Form
+            type="login"
+            onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
+          />
+        )}
+        <Header
+          onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
+          onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
         />
+        <Wrapper {...this.props} />
         <Footer />
         <ScrollTop clicked={_ => this.onButtonScrollTopClickHandler()} />
       </Fragment>

@@ -27,6 +27,7 @@ import NotFoundPage from '../containers/404';
 import Posts from '../components/Admin/Layout/Wrapper/Pages/Posts';
 import Users from '../components/Admin/Layout/Wrapper/Pages/Users';
 import Categories from '../components/Admin/Layout/Wrapper/Pages/Categories';
+import Button from '../components/Details/Button';
 
 export const logoImage = () => {
   return logo;
@@ -109,23 +110,20 @@ export const updateDataToArrayById = (array, data) => {
   });
 };
 
-export const childrenOfListHeader = (type, { name, slug, isScroll }) => {
+export const childrenOfListHeader = (type, { name, slug, clicked }) => {
   switch (type) {
     case 'button':
       return (
-        <Anchor
-          href={slug}
+        <a
+          href="/#"
           className="nav-link text-dark py-0 border border-dark bg-yellow-cz-custom px-5 text-capitalize"
+          onClick={event => {
+            event.preventDefault();
+            clicked();
+          }}
         >
-          {/* <Button
-            className={[
-              'btn btn-outline-dark rounded-0 text-uppercase border-0',
-              isScroll ? 'btn-sm' : 'btn-lg'
-            ].join(' ')}
-          > */}
           {name}
-          {/* </Button> */}
-        </Anchor>
+        </a>
       );
     case 'anchor':
       return slug === 'forums' ? (
@@ -234,8 +232,18 @@ export const isAuthenticated = state => {
   return !!state.auth.token && !isTokenExpired(state.auth.token);
 };
 
+export const isValidName = name => {
+  return name === ''
+    ? null
+    : name
+        .trim()
+        .split(' ')
+        .every(word => validator.isAscii(word)) &&
+        validator.isLength(name, { min: 3 });
+};
+
 export const isValidEmail = email => {
-  return validator.isEmail(email);
+  return email === '' ? null : validator.isEmail(email);
 };
 
 export const isValidPassword = password => {
@@ -249,16 +257,6 @@ export const isValidDescription = description => {
   return description === ''
     ? null
     : validator.isLength(description, { min: 5 });
-};
-
-export const isValidName = name => {
-  return name === ''
-    ? null
-    : name
-        .trim()
-        .split(' ')
-        .every(word => validator.isAscii(word)) &&
-        validator.isLength(name, { min: 3 });
 };
 
 export const parseToken = token => {

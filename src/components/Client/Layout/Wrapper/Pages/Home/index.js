@@ -4,7 +4,6 @@ import Ribbon from '../../../Ribbon';
 import Feature from '../../../Feature';
 import Articles from './Articles';
 const index = props => {
-  console.log(props);
   return (
     <Fragment>
       <Carousel isScroll={props.isScroll} />

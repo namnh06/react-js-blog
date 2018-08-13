@@ -4,12 +4,7 @@ import {
   DEVELOPMENT_API_DOMAIN,
   DEVELOPMENT_DOMAIN
 } from '../../../../../../../helpers/constants';
-import {
-  logoImage,
-  fontAwesomeType,
-  iconClass
-} from '../../../../../../../helpers';
-import Icon from '../../../../../../UI/Icon';
+import { logoImage } from '../../../../../../../helpers';
 
 const index = props => {
   console.log(props);

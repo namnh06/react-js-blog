@@ -1,5 +1,11 @@
-@import './custom';
 @import '../../node_modules/bootstrap/scss/bootstrap';
+
+:root {
+  --yellow-cz: #fef234;
+  --gray-bt: #dee2e6;
+  --height-top: 5vw;
+}
+
 html,
 body {
   height: 100vh;
@@ -81,29 +87,59 @@ body {
   border-top: 3px solid #ccc !important;
 }
 
-.Navigation-Bar {
-  &__list {
-    & button {
-      color: var(--dark) !important;
+.Client {
+  &__Form {
+    z-index: 1200;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+    top: 0;
+    bottom: 0;
+    &__Sign-Up {
+      &__form {
+        width: 30%;
 
-      &:hover {
-        color: var(--white) !important;
-        border-color: var(--white) !important;
-      }
-    }
-    & li {
-      padding-right: 1rem;
-      padding-left: 1rem;
-      & a {
-        border: 1px solid transparent;
-        &:hover {
-          background-color: var(--yellow-cz);
-          border: 1px solid var(--dark);
+        & h2 {
+          font-size: 3rem;
+        }
+        & span {
+          font-size: 1.8rem;
+        }
+        &__notice {
+          font-size: 1.3rem;
         }
       }
     }
   }
-  &__brand {
+  &__Navigation-Bar {
+    height: var(--height-top);
+    &__list {
+      & button {
+        color: var(--dark) !important;
+
+        &:hover {
+          color: var(--white) !important;
+          border-color: var(--white) !important;
+        }
+      }
+      & li {
+        padding-right: 1rem;
+        padding-left: 1rem;
+        & a {
+          border: 1px solid transparent;
+          &:hover {
+            background-color: var(--yellow-cz);
+            border: 1px solid var(--dark);
+          }
+        }
+      }
+    }
+  }
+  &__Brand {
     &__anchor {
       &:hover {
         text-decoration: none;
@@ -112,12 +148,11 @@ body {
     }
     &__img {
       &--height {
-        max-height: var(--height-top);
+        max-height: calc(var(--height-top) - 1vw);
       }
     }
   }
 }
-
 .Carousel {
   &__button {
     &--sign-up {
