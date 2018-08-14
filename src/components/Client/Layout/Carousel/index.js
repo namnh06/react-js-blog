@@ -75,9 +75,6 @@ class index extends Component {
                       />
                     );
                   })}
-
-                {/* <li data-target="#bs4-slide-carousel" data-slide-to="1" />
-                <li data-target="#bs4-slide-carousel" data-slide-to="2" /> */}
               </ol>
               <div className="carousel-inner">
                 <div className="Carousel-content d-flex flex-row justify-content-center w-100">
@@ -93,7 +90,10 @@ class index extends Component {
                       <Button className="btn btn-lg text-uppercase btn-outline-light text-white mx-2 rounded-0 px-3 Carousel__button--learn-more">
                         learn more
                       </Button>
-                      <Button className="btn btn-lg btn-outline-dark text-uppercase bg-yellow-cz-custom mx-2 rounded-0 px-3 Carousel__button--sign-up">
+                      <Button
+                        className="btn btn-lg btn-outline-dark text-uppercase bg-yellow-cz-custom mx-2 rounded-0 px-3 Carousel__button--sign-up"
+                        clicked={this.props.onButtonSignUpClicked}
+                      >
                         sign up
                       </Button>
                     </div>
@@ -110,28 +110,6 @@ class index extends Component {
                         />
                       );
                     })}
-                    {/* <Slide
-                      active={true}
-                      url={`url(${
-                        this.state.slides[
-                          Math.floor(Math.random() * this.state.slides.length)
-                        ]
-                      })`}
-                    />
-                    <Slide
-                      url={`url(${
-                        this.state.slides[
-                          Math.floor(Math.random() * this.state.slides.length)
-                        ]
-                      })`}
-                    />
-                    <Slide
-                      url={`url(${
-                        this.state.slides[
-                          Math.floor(Math.random() * this.state.slides.length)
-                        ]
-                      })`}
-                    /> */}
                   </Fragment>
                 )}
               </div>

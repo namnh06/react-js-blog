@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import moment from 'moment';
-import { logoImage, hrefArticle } from '../../../../../../../../helpers';
-import LinkToArticle from '../../../../../../../UI/LinkToArticle';
+import { logoImage, hrefArticle } from '../../../../helpers';
+import LinkToArticle from '../../../UI/LinkToArticle';
 const index = props => {
   const imageStyle = {
     width: 'auto',

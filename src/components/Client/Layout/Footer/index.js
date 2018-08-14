@@ -3,7 +3,7 @@ import footerImage from '../../../../assets/images/footer/footer_slide-1.png';
 import './styles.css';
 import Button from '../../../Details/Button';
 import Brand from '../../../UI/Brand';
-const index = () => {
+const index = props => {
   return (
     <div className="container-fluid Footer p-0">
       <div
@@ -19,7 +19,10 @@ const index = () => {
           </p>
         </div>
         <div className="col-6">
-          <Button className="btn btn-lg rounded-0 text-uppercase Footer__top__button">
+          <Button
+            className="btn btn-lg rounded-0 text-uppercase Footer__top__button"
+            clicked={props.onButtonSignUpClicked}
+          >
             sign up now
           </Button>
           <p className="text-white text-uppercase mt-2">

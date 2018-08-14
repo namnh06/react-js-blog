@@ -16,14 +16,23 @@ class index extends React.Component {
 
   onButtonSignUpClickHandler = _ => {
     this.setState(prevState => ({
-      signUpForm: !prevState.signUpForm
+      signUpForm: !prevState.signUpForm,
+      logInForm: false
     }));
   };
 
   onButtonLogInClickHandler = _ => {
     this.setState(prevState => ({
+      signUpForm: false,
       logInForm: !prevState.logInForm
     }));
+  };
+
+  onEscapeButtonPressHandler = () => {
+    this.setState({
+      signUpForm: false,
+      logInForm: false
+    });
   };
 
   render() {
@@ -33,20 +42,31 @@ class index extends React.Component {
           <Form
             type="signup"
             onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
+            onEscapeButtonPressed={_ => this.onEscapeButtonPressHandler()}
+            onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
           />
         )}
         {this.state.logInForm && (
           <Form
             type="login"
+            onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
             onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
+            onEscapeButtonPressed={_ => this.onEscapeButtonPressHandler()}
           />
         )}
         <Header
           onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
           onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
         />
-        <Wrapper {...this.props} />
-        <Footer />
+        <Wrapper
+          {...this.props}
+          onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
+          onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
+        />
+        <Footer
+          onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
+          onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
+        />
         <ScrollTop clicked={_ => this.onButtonScrollTopClickHandler()} />
       </Fragment>
     );

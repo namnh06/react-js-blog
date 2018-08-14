@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FakeLink from '../../../../../../../../Details/FakeLink';
 class index extends React.Component {
   onFormSubmitHandler = event => {
     event.preventDefault();
@@ -58,16 +58,13 @@ class index extends React.Component {
         </div>
 
         <div className="form-group row m-3 d-flex justify-content-between">
-          <a href="">
-            <small className="text-muted Default--font-size-1-3">
-              Forget password ?
-            </small>
-          </a>
-          <a href="">
-            <small className="text-muted Default--font-size-1-3">
-              Wanna Sign Up ?
-            </small>
-          </a>
+          <FakeLink className="text-muted">Forget password ?</FakeLink>
+          <FakeLink
+            className="text-muted"
+            clicked={this.props.onButtonSignUpClicked}
+          >
+            Wanna Sign Up ?
+          </FakeLink>
         </div>
       </form>
     );

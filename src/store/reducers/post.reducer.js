@@ -1,16 +1,16 @@
 import { POST_FETCHED } from '../../helpers/constants';
-import { setDataToObject } from '../../helpers';
+import { setDataToObject, setDataToArray } from '../../helpers';
 import { initPost } from '../../helpers/seed-data';
 
-const postFetched = action => {
-  return setDataToObject(action.state.post);
+const postFetched = (state, action) => {
+  console.log(action);
+  return setDataToObject(action.data);
 };
 
 const reducer = (state = initPost, action) => {
   switch (action.type) {
     case POST_FETCHED:
-      return postFetched(action);
-
+      return postFetched(state, action);
     default:
       return state;
   }

@@ -12,7 +12,7 @@ class index extends React.Component {
 
   onEscapeButton = event => {
     if (event.keyCode === 27) {
-      this.props.onButtonSignUpClicked();
+      this.props.onEscapeButtonPressed();
     }
   };
 
@@ -22,7 +22,6 @@ class index extends React.Component {
         case 'signup':
           return <SignUp {...props} />;
         case 'login':
-          // TODO tomorrow
           return <LogIn {...props} />;
         default:
           return null;

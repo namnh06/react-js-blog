@@ -10,7 +10,10 @@ const index = props => {
             Crashzone web based vehicle estimating made easy
           </h2>
 
-          <Button className="btn btn-lg btn-outline-light rounded-0 px-5 position-absolute Ribbon__button">
+          <Button
+            className="btn btn-lg btn-outline-light rounded-0 px-5 position-absolute Ribbon__button"
+            clicked={props.onButtonSignUpClicked}
+          >
             sign up now
           </Button>
         </div>

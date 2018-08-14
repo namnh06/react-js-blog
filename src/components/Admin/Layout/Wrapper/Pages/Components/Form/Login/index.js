@@ -20,7 +20,7 @@ const Login = props => {
         <img src={image} alt="" className="w-25 h-25" />
       </div>
       <div className="form-group w-75 mb-0">
-        <HelpText className="login__form__notice--height m-0 mb-2">
+        <HelpText className="Help__Text--height m-0 mb-2">
           {showHelpTextLoginForm(
             props.email.length,
             props.validEmail,
@@ -42,7 +42,7 @@ const Login = props => {
         </div>
       </div>
       <div className="form-group w-75">
-        <HelpText className="login__form__notice--height mb-2">
+        <HelpText className="Help__Text--height mb-2">
           {showHelpTextLoginForm(
             props.password.length,
             props.validPassword,

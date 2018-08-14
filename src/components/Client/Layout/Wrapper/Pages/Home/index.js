@@ -6,8 +6,11 @@ import Articles from './Articles';
 const index = props => {
   return (
     <Fragment>
-      <Carousel isScroll={props.isScroll} />
-      <Ribbon />
+      <Carousel
+        onButtonSignUpClicked={props.onButtonSignUpClicked}
+        isScroll={props.isScroll}
+      />
+      <Ribbon onButtonSignUpClicked={props.onButtonSignUpClicked} />
       <Articles />
       <Feature />
     </Fragment>

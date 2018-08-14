@@ -19,10 +19,10 @@ export const postsFetchStart = () => {
   };
 };
 
-export const postsFetched = posts => {
+export const postsFetched = data => {
   return {
     type: POSTS_FETCHED,
-    posts
+    data
   };
 };
 
@@ -37,10 +37,10 @@ export const postsCategoryFetchStart = slug => {
   };
 };
 
-export const postsCategoryFetched = posts => {
+export const postsCategoryFetched = data => {
   return {
     type: POSTS_FETCHED,
-    posts
+    data
   };
 };
 

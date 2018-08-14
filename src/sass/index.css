@@ -9512,7 +9512,7 @@ a.text-dark:hover, a.text-dark:focus {
 :root {
   --yellow-cz: #fef234;
   --gray-bt: #dee2e6;
-  --height-top: 5vw;
+  --height-top: 4vw;
 }
 
 html,
@@ -9662,6 +9662,10 @@ body {
 
 .Client__Brand__img--height {
   max-height: calc(var(--height-top) - 1vw);
+}
+
+.Client__Articles__Read-More--font-size a {
+  font-size: 1.3rem;
 }
 
 .Carousel__button--sign-up:hover {

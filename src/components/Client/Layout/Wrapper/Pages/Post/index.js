@@ -5,6 +5,7 @@ import { postFetchStart } from '../../../../../../store/actions/post.action';
 import Article from './Article';
 import Side from './Side';
 import PostsRelated from './PostsRelated';
+import Post from '../../../Post';
 class index extends Component {
   componentDidMount() {
     this.props.postFetchStart(this.props.slug);
@@ -22,8 +23,16 @@ class index extends Component {
                 <Side categories={this.props.post.categories} />
               </div>
             </div>
-            <div className="row mt-5">
-              <PostsRelated />
+            <div className="mt-5">
+              <div className="card-deck">
+                {Object.keys(this.props.post.related_posts).map(
+                  (key, index) => {
+                    const post = this.props.post.related_posts[key];
+                    return <Post {...post} key={key} />;
+                  }
+                )}
+              </div>
+              {/* <PostsRelated posts={this.props.post.related_posts} /> */}
             </div>
           </div>
         )}

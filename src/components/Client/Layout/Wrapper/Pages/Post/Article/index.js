@@ -16,7 +16,6 @@ const index = props => {
   };
   return (
     <Fragment>
-      {/* <Breadcrumb data={['blog', props.title]} /> */}
       <h1 className="text-uppercase font-weight-bold">{props.title}</h1>
       <div>
         <small className="d-inline text-muted font-italic">

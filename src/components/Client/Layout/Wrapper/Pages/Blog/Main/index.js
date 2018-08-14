@@ -51,7 +51,6 @@ class index extends Component {
               .slice(2, Object.keys(this.props.posts).length / 2)
               .map((key, index) => {
                 const post = this.props.posts[key];
-                console.log(post);
                 return <Post {...post} key={post.id} index={index + 1} />;
               })}
         </div>

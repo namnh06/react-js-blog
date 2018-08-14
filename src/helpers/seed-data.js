@@ -1,5 +1,6 @@
 export const initCategories = { current: [], deleted: [] };
 export const initPosts = { current: [], deleted: [] };
+export const initTags = { current: [], deleted: [] };
 export const initUsers = { current: [], deleted: [] };
 export const initPost = {};
 export const initMenus = [];

@@ -22,13 +22,8 @@ class index extends Component {
             <div className="card-deck ">
               {this.props.posts &&
                 Object.keys(this.props.posts.slice(0, 3)).map((key, index) => {
-                  return (
-                    <Post
-                      {...this.props.posts[key]}
-                      key={index}
-                      index={index + 1}
-                    />
-                  );
+                  const post = this.props.posts[key];
+                  return <Post {...post} key={index} index={index + 1} />;
                 })}
             </div>
           </div>

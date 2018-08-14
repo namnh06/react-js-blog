@@ -3,12 +3,13 @@
 :root {
   --yellow-cz: #fef234;
   --gray-bt: #dee2e6;
-  --height-top: 5vw;
+  --height-top: 4vw;
 }
 
 html,
 body {
   height: 100vh;
+  
 }
 
 html {
@@ -149,6 +150,15 @@ body {
     &__img {
       &--height {
         max-height: calc(var(--height-top) - 1vw);
+      }
+    }
+  }
+  &__Articles {
+    &__Read-More {
+      &--font-size {
+        & a {
+          font-size: 1.3rem;
+        }
       }
     }
   }

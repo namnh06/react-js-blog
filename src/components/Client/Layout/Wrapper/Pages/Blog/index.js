@@ -12,7 +12,7 @@ const index = props => {
             <Main categorySlug={props.categorySlug} />
           </div>
           <div className="col-4">
-            <Side />
+            <Side onButtonSignUpClicked={props.onButtonSignUpClicked} />
           </div>
         </div>
       </div>

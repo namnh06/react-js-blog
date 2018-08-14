@@ -7,8 +7,10 @@ import {
   isValidEmail,
   addInputValidClass,
   isValidName,
-  isValidPassword
+  isValidPassword,
+  textRequireName
 } from '../../../../../helpers';
+import FakeLink from '../../../../Details/FakeLink';
 import { userForm } from '../../../../../helpers/seed-data';
 class index extends Component {
   state = {
@@ -98,16 +100,13 @@ class index extends Component {
     return (
       <form action="" className="Client__Form__Sign-Up__form border bg-light ">
         <div className="border-bottom py-3 px-5 d-flex align-content-center justify-content-center">
-          <h2>Sign Up</h2>
+          <h2 className="text-uppercase">Sign Up</h2>
         </div>
         <div className="form-group d-flex flex-column justify-content-around mx-5 my-0 mt-1">
           <HelpText className="Client__Form__Sign-Up__form__notice m-0">
             {this.state.userForm.isValidName !== null &&
               !this.state.userForm.isValidName &&
-              helpTextRequire(
-                'user name',
-                'alphabet and at least 3 characters'
-              )}
+              textRequireName()}
           </HelpText>
           <Input
             name="name"
@@ -194,12 +193,11 @@ class index extends Component {
         </div>
         <hr />
         <div className="d-flex flex-column align-items-end text-muted mx-5 pb-3">
-          <a href="">
-            <span>Forget Password ?</span>
-          </a>
-          <a href="">
-            <span>Wanna Log In ?</span>
-          </a>
+          <FakeLink>Forget Password ?</FakeLink>
+
+          <FakeLink clicked={this.props.onButtonLogInClicked}>
+            Wanna Log In ?
+          </FakeLink>
         </div>
       </form>
     );

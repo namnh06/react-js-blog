@@ -239,7 +239,7 @@ export const isValidName = name => {
         .trim()
         .split(' ')
         .every(word => validator.isAscii(word)) &&
-        validator.isLength(name, { min: 3 });
+        validator.isLength(name, { min: 2 });
 };
 
 export const isValidEmail = email => {
@@ -247,7 +247,7 @@ export const isValidEmail = email => {
 };
 
 export const isValidPassword = password => {
-  return validator.isLength(password, 5) && validator.isAscii(password);
+  return validator.isLength(password, 3) && validator.isAscii(password);
 };
 
 export const isValidTitle = title => {
@@ -303,11 +303,11 @@ export const textRequireEmail = () => {
 };
 
 export const textRequirePassword = () => {
-  return 'Please input valid password, at least 5 characters, e.g : 12345.';
+  return 'Please input valid password, at least 3 characters, e.g : 123.';
 };
 
 export const textRequireName = () => {
-  return 'Please input the valid name, e.g : nam, at least 3 characters, just alphabet character.';
+  return 'Please input the valid name, just alphabet and at least 2 characters';
 };
 
 export const helpTextRequire = (inputName, required) => {

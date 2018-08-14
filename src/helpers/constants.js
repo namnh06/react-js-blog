@@ -59,6 +59,10 @@ export const POST_CREATED = 'POST_CREATED';
 export const MENUS_FETCH_START = 'MENUS_FETCH_START';
 export const MENUS_FETCHED = 'MENUS_FETCHED';
 
+// TAG
+export const TAGS_FETCH_START = 'TAGS_FETCH_START';
+export const TAGS_FETCHED = 'TAGS_FETCHED';
+
 // AUTH
 export const AUTH_LOG_IN_START = 'AUTH_LOGIN_START';
 export const AUTH_LOG_IN = 'AUTH_LOG_IN';
