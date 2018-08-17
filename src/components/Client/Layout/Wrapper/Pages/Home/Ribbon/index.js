@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import Button from '../../../Details/Button';
+import Button from '../../../../../../Details/Button';
 const index = props => {
   return (
     <div className="container-fluid bg-yellow-cz-custom Ribbon">

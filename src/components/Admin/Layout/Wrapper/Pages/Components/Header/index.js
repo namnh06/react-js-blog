@@ -22,9 +22,11 @@ const Header = props => {
   return (
     <li
       className={[
-        'Admin-' + capitalizeFirstLetter(props.page) + '-Content',
-        'Admin-' + capitalizeFirstLetter(props.page) + '-Content__Header',
-        'Categories-Content Categories-Content__Header d-flex flex-row justify-content-around border bg-light',
+        'Admin__Wrapper__' + capitalizeFirstLetter(props.page) + '__List',
+        'Admin__Wrapper__' +
+          capitalizeFirstLetter(props.page) +
+          '__List__Header',
+        'd-flex flex-row justify-content-around border bg-light',
         props.className
       ].join(' ')}
     >

@@ -11,7 +11,7 @@ import { ADMIN_PAGES_NAME } from '../../../helpers/constants';
 // import './styles.css';
 class index extends Component {
   componentDidMount() {
-    this.props.postsFetchStart();
+    this.props.postsFetchStart(true);
   }
 
   render() {
@@ -24,7 +24,7 @@ class index extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  postsFetchStart: () => dispatch(postsFetchStart())
+  postsFetchStart: auth => dispatch(postsFetchStart(auth))
 });
 
 export default connect(

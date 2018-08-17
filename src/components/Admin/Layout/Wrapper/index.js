@@ -47,7 +47,9 @@ class index extends React.Component {
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
             formEditToggle={this.state.formEditToggle}
-            onFormEditToggleClicked={this.onFormEditToggleClickHandler}
+            onFormEditToggleClicked={set =>
+              this.onFormEditToggleClickHandler(set)
+            }
           />
         );
       case ADMIN_PAGES_NAME.CATEGORIES:
@@ -57,7 +59,9 @@ class index extends React.Component {
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
             formEditToggle={this.state.formEditToggle}
-            onFormEditToggleClicked={this.onFormEditToggleClickHandler}
+            onFormEditToggleClicked={set =>
+              this.onFormEditToggleClickHandler(set)
+            }
           />
         );
       default:
@@ -66,10 +70,12 @@ class index extends React.Component {
   };
   render() {
     return (
-      <ContainerFluid className="px-0 h-100 Admin__Wrapper">
+      <ContainerFluid className="px-0 h-100">
         <Row className="h-100">
           <SideBar />
-          <Fragment>{this.adminPageRender(this.props.page)}</Fragment>
+          <div className="col-10 Admin__Wrapper">
+            {this.adminPageRender(this.props.page)}
+          </div>
         </Row>
       </ContainerFluid>
     );

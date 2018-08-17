@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import App from './hoc/App';
 import registerServiceWorker from './registerServiceWorker';
-
+import { CookiesProvider } from 'react-cookie';
 // import './index.css';
 
 // import 'jquery';
@@ -21,7 +21,9 @@ fontAwesome();
 isExistsToken();
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <CookiesProvider>
+      <App />
+    </CookiesProvider>
   </Provider>,
   document.getElementById('root')
 );

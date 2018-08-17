@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import Category from './Category';
 class index extends Component {
   componentDidMount() {
-    this.props.categoriesFetchStart();
+    if (this.props.categories.length === 0) {
+      this.props.categoriesFetchStart();
+    }
   }
 
   render() {

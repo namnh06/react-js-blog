@@ -14,8 +14,9 @@ const index = props => {
   };
   return (
     <div className="card w-100 mb-2">
-      <div className="card-img-top p-3" style={imageStyle} />
-
+      <LinkToArticle slug={props.slug}>
+        <div className="card-img-top p-3" style={imageStyle} />
+      </LinkToArticle>
       <div className="card-body border-top d-flex flex-column justify-content-between">
         <h2 className="card-title">
           <span data-tip={props.title} data-delay-show={1000}>

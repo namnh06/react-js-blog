@@ -6,6 +6,9 @@ const index = props => {
       <div>#</div>
       <div>Title</div>
       <div>Description</div>
+      <div>Author</div>
+      <div>Status</div>
+      <div>Image</div>
       <div>Action</div>
     </Fragment>
   );

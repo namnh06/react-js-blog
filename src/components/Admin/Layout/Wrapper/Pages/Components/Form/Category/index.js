@@ -27,6 +27,7 @@ class index extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
+    console.log(this.props.categoryFormEdit, nextProps.categoryFormEdit);
     return isCreateType(this.props.type)
       ? null
       : this.checkChangeFormEdit(nextProps);
@@ -45,7 +46,7 @@ class index extends React.Component {
     }
   };
 
-  onInputNamehange = event => {
+  onInputNameChange = event => {
     const name = event.target.value;
 
     if (isCreateType(this.props.type)) {
@@ -145,7 +146,7 @@ class index extends React.Component {
                   ? this.state.categoryForm.name
                   : this.state.categoryFormEdit.name
               }
-              onChange={this.onInputNamehange}
+              onChange={this.onInputNameChange}
               autoFocus
             />
           </div>

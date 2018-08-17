@@ -5,11 +5,26 @@ import Header from './Header';
 import Footer from './Footer';
 import ScrollTop from './ScrollTop';
 import Form from './Form';
+import withErrorHandler from '../../../hoc/withErrorHandler';
+import axios from '../../../helpers/axios.config';
 class index extends React.Component {
   state = {
     signUpForm: false,
     logInForm: false
   };
+  componentDidMount() {
+    if (!!localStorage.getItem('cz.visited')) {
+      const countVisited = parseInt(localStorage.getItem('cz.visited'), 10);
+      if (countVisited < 2) {
+        localStorage.setItem('cz.visited', '' + (countVisited + 1));
+      } else {
+        Math.random() * 10 > 8 && localStorage.setItem('cz.visited', '1');
+      }
+    } else {
+      localStorage.setItem('cz.visited', '1');
+    }
+  }
+
   onButtonScrollTopClickHandler = () => {
     window.scrollTo(0, 0);
   };
@@ -73,4 +88,4 @@ class index extends React.Component {
   }
 }
 
-export default index;
+export default withErrorHandler(index, axios);

@@ -1,9 +1,8 @@
 import { POST_FETCHED } from '../../helpers/constants';
-import { setDataToObject, setDataToArray } from '../../helpers';
+import { setDataToObject } from '../../helpers';
 import { initPost } from '../../helpers/seed-data';
 
 const postFetched = (state, action) => {
-  console.log(action);
   return setDataToObject(action.data);
 };
 

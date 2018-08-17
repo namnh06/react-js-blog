@@ -4,13 +4,14 @@ import {
   POSTS_DELETED_FETCHED,
   POST_DELETED_PERMANENTLY,
   POST_DELETED_RESTORED,
-  POST_CREATED
+  POST_CREATED,
+  POST_UPDATED
 } from '../../helpers/constants';
 import axios from '../../helpers/axios.config';
 
-export const postsFetchStart = () => {
+export const postsFetchStart = (auth = false) => {
   return dispatch => {
-    return axios.get('posts').then(response => {
+    return axios.get(`posts?${auth ? 'auth=' + auth : ''}`).then(response => {
       if (response.data.status === 200) {
         const posts = response.data.data.posts;
         dispatch(postsFetched(posts));
@@ -131,5 +132,23 @@ export const postCreated = post => {
   return {
     type: POST_CREATED,
     post
+  };
+};
+
+export const postUpdateStart = post => {
+  return dispatch => {
+    return axios.put(`posts/${post.id}`, post).then(response => {
+      if (response.data.status === 200) {
+        const post = response.data.data.post;
+        dispatch(postUpdated(post));
+      }
+    });
+  };
+};
+
+export const postUpdated = data => {
+  return {
+    type: POST_UPDATED,
+    data
   };
 };

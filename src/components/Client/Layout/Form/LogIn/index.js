@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
+
 import Button from '../../../../Details/Button';
+import FormGroup from '../Details/FormGroup';
 import HelpText from '../../../../Details/HelpText';
-import Input from '../SignUp/Input';
+import Input from '../Details/Input';
+import { withCookies, Cookies } from 'react-cookie';
 import {
   helpTextRequire,
   addInputValidClass,
-  isValidEmail,
   isValidPassword,
   isValidName
 } from '../../../../../helpers';
 import { userForm } from '../../../../../helpers/seed-data';
 import Axios from 'axios';
+
 import FakeLink from '../../../../Details/FakeLink';
+import moment from 'moment';
 class index extends Component {
   state = {
     userForm: { ...userForm }
@@ -53,31 +57,43 @@ class index extends Component {
 
   onSubmittedHandler = event => {
     event.preventDefault();
-    console.log('waiting for Chi');
-    // const {
-    //   isValidName,
-    //   isValidPassword,
-    //   name,
-    //   password
-    // } = this.state.userForm;
-    // const data = `<clientRequest><action>login</action><clientData><UserName>${name}</UserName><Password>${password}</Password><isRememberMe>0</isRememberMe></clientData></clientRequest>`;
-    // if (isValidName && isValidPassword) {
-    //   const time = new Date().getTime();
-    //   Axios({
-    //     method: 'post',
-    //     url: `https://crashzone.com.au//a/server.aspx?time=${time}`,
-    //     withCredentials: false,
-    //     data,
-    //     headers: {
-    //       'content-type': 'application/xml;charset=UTF-8',
-    //       Cookie:
-    //         'ASP.NET_SessionId=2crcm5fwzzafbgny4hvpdojr; czRememberMe=0; czUserName=; czPassword=; __utma=34326387.474724120.1534216391.1534216391.1534216391.1; __utmb=34326387; __utmc=34326387; __utmz=34326387.1534216391.1.1.utmccn=(direct)|utmcsr=(direct)|utmcmd=(none)',
-    //       withCredentials: 'true'
-    //     }
-    //   }).then(response => {
-    //     console.log(response);
-    //   });
-    // }
+    const cookies = new Cookies();
+
+    const {
+      isValidName,
+      isValidPassword,
+      name,
+      password
+    } = this.state.userForm;
+    const data = `<clientRequest><action>login</action><clientData><UserName>${name}</UserName><Password>${password}</Password><isRememberMe>0</isRememberMe></clientData></clientRequest>`;
+    if (isValidName && isValidPassword) {
+      const time = new Date().getTime();
+      Axios({
+        method: 'post',
+        url: `https://crashzone.com.au//a/server.aspx?time=${time}`,
+        withCredentials: false,
+        data,
+        headers: {
+          'content-type': 'application/xml;charset=UTF-8',
+          withCredentials: 'true'
+        }
+      }).then(response => {
+        const data = response.data;
+        const isSuccess = '<isSuccess>0</isSuccess>';
+        const days = moment()
+          .add(30, 'days')
+          .toDate();
+        if (data.includes(isSuccess)) {
+          cookies.set('czUserName', name, {
+            expires: days
+          });
+          cookies.set('czPassword', password, {
+            expires: days
+          });
+          window.location.replace('https://crashzone.com.au/a/estimate');
+        }
+      });
+    }
   };
 
   render() {
@@ -91,7 +107,7 @@ class index extends Component {
           <h2 className="text-uppercase">log in</h2>
         </div>
 
-        <div className="form-group d-flex flex-column justify-content-around mx-5 my-0 mt-1">
+        <FormGroup>
           <HelpText className="Client__Form__Sign-Up__form__notice m-0">
             {this.state.userForm.isValidName !== null &&
               !this.state.userForm.isValidName &&
@@ -103,12 +119,13 @@ class index extends Component {
           <Input
             name="name"
             type="text"
+            id="LoginDiv_UserName"
             className={addInputValidClass(this.state.userForm.isValidName)}
             value={this.state.userForm.name}
             onInputChange={event => this.onInputNameChanged(event)}
           />
-        </div>
-        <div className="form-group d-flex flex-column justify-content-around mx-5 my-0 mt-1">
+        </FormGroup>
+        <FormGroup>
           <HelpText className="Client__Form__Sign-Up__form__notice m-0">
             {this.state.userForm.isValidPassword !== null &&
               !this.state.userForm.isValidPassword &&
@@ -120,13 +137,20 @@ class index extends Component {
           <Input
             name="password"
             type="password"
+            id="LoginDiv_Password"
             className={addInputValidClass(this.state.userForm.isValidPassword)}
             onInputChange={event => this.onInputPasswordChanged(event)}
             value={this.state.userForm.password}
           />
-        </div>
+        </FormGroup>
 
-        <div className="d-flex justify-content-center py-3">
+        <FormGroup>
+          <label htmlFor="chkRememberMe">
+            <input name="remember" type="checkbox" id="chkRememberMe" />
+            <small>Remember me ?</small>
+          </label>
+        </FormGroup>
+        <div className="d-flex justify-content-center pt-3">
           <Button
             type="submit"
             className={`btn btn-sm btn-success mx-2 ${
@@ -157,4 +181,4 @@ class index extends Component {
   }
 }
 
-export default index;
+export default withCookies(index);

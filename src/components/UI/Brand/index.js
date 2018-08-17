@@ -6,16 +6,15 @@ const index = props => {
   return (
     <Fragment>
       <Link to="/home" className="Client__Brand__anchor w-100">
-        <div className="d-flex">
+        <div className="d-flex justify-content-center py-3">
           <Picture
-            className={[
-              'Client__Brand__img--height p-1',
-              props.isScroll ? 'Scroll--height' : ''
-            ].join(' ')}
+            className={['Client__Brand__img--height align-self-center'].join(
+              ' '
+            )}
             src={logoImage()}
           />
           <div className="d-flex flex-column ml-3 justify-content-center w-100">
-            <h1
+            {/* <h1
               className={[
                 'font-italic font-weight-bold text-uppercase mb-0',
                 props.textColor,
@@ -23,13 +22,9 @@ const index = props => {
               ].join(' ')}
             >
               <span>{props.slogan}</span>
-            </h1>
+            </h1> */}
 
-            <small
-              className={['Default--font-size-2', props.textColor].join(' ')}
-            >
-              {props.link}
-            </small>
+            <h1 className={props.textColor}>{props.link}</h1>
           </div>
         </div>
       </Link>

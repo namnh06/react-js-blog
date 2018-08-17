@@ -13,7 +13,7 @@ class index extends Component {
   }
   render() {
     return (
-      <div className="container mt-5 Home-Articles">
+      <div className="container mt-5 Home-Articles px-0 border-top">
         <div className="d-flex flex-row">
           <div className="col-12">
             <h1 className="Home-Articles__text w-100 text-center mb-4">

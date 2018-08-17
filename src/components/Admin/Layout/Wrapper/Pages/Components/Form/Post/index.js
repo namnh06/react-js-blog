@@ -39,9 +39,25 @@ class index extends Component {
     tempData
   };
 
-  componentDidMount() {
-    this.props.categoriesFetchStart();
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props.postFormEdit, nextProps.postFormEdit);
+    return isCreateType(this.props.type)
+      ? null
+      : this.checkChangeFormEdit(nextProps);
   }
+
+  checkChangeFormEdit = nextProps => {
+    if (this.props.postFormEdit.id !== nextProps.postFormEdit.id) {
+      this.setState(prevState => ({
+        ...prevState,
+        postFormEdit: {
+          ...nextProps.postFormEdit
+        }
+      }));
+    } else {
+      this.props.onFormEditToggleClicked();
+    }
+  };
 
   onInputTitlePostChangeHandler = event => {
     const title = event.target.value;
@@ -63,13 +79,21 @@ class index extends Component {
         };
       });
     } else {
-      this.setState(prevState => ({
-        postFormEdit: {
-          ...prevState.postFormEdit,
-          title,
-          isValidTitle: isValidTitle(title)
-        }
-      }));
+      this.setState(prevState => {
+        const isSaveButtonAllowed =
+          !!isValidTitle(title) &&
+          !!prevState.postFormEdit.isValidDescription &&
+          !!prevState.postFormEdit.isValidContent;
+
+        return {
+          postFormEdit: {
+            ...prevState.postFormEdit,
+            title,
+            isValidTitle: isValidTitle(title)
+          },
+          isSaveButtonAllowed
+        };
+      });
     }
   };
 
@@ -93,13 +117,21 @@ class index extends Component {
         };
       });
     } else {
-      this.setState(prevState => ({
-        postFormEdit: {
-          ...prevState.postFormEdit,
-          description,
-          isValidDescription: isValidDescription(description)
-        }
-      }));
+      this.setState(prevState => {
+        const isSaveButtonAllowed =
+          !!isValidDescription(description) &&
+          !!prevState.postFormEdit.isValidTitle &&
+          !!prevState.postFormEdit.isValidContent;
+
+        return {
+          postFormEdit: {
+            ...prevState.postFormEdit,
+            description,
+            isValidDescription: isValidDescription(description)
+          },
+          isSaveButtonAllowed
+        };
+      });
     }
   };
 
@@ -122,13 +154,21 @@ class index extends Component {
         };
       });
     } else {
-      this.setState(prevState => ({
-        postFormEdit: {
-          ...prevState.postFormEdit,
-          content,
-          isValidContent: !validator.isEmpty(content)
-        }
-      }));
+      this.setState(prevState => {
+        const isSaveButtonAllowed =
+          !validator.isEmpty(content) &&
+          !!prevState.postFormEdit.isValidDescription &&
+          !!prevState.postFormEdit.isValidTitle;
+
+        return {
+          postFormEdit: {
+            ...prevState.postFormEdit,
+            content,
+            isValidContent: !validator.isEmpty(content)
+          },
+          isSaveButtonAllowed
+        };
+      });
     }
   };
 
@@ -201,32 +241,49 @@ class index extends Component {
   };
 
   onCheckBoxCategoryClickHandler = event => {
-    const value = event.target.value;
-    const isChecked = event.target.checked;
+    const options = event.target.selectedOptions;
+    const categories = Object.keys(options).map((key, index) => {
+      return options[key].value;
+    });
+
     if (isCreateType(this.props.type)) {
-      if (isChecked) {
-        this.setState(prevState => {
-          return {
-            postForm: {
-              ...prevState.postForm,
-              categories: pushDataToArray(prevState.postForm.categories, value)
-            }
-          };
-        });
-      } else {
-        this.setState(prevState => {
-          return {
-            postForm: {
-              ...prevState.postForm,
-              categories: removeDataFromArrayByValue(
-                prevState.postForm.categories,
-                value
-              )
-            }
-          };
-        });
-      }
+      this.setState(prevState => {
+        return {
+          postForm: {
+            ...prevState.postForm,
+            categories
+          }
+        };
+      });
     }
+
+    //     // console.log(prevState.postForm.categories, value);
+    //     const categories = [
+    //       ...new Set(pushDataToArray(prevState.postForm.categories, value))
+    //     ];
+    //     // console.log(categories);
+    //     return {
+    //       postForm: {
+    //         ...prevState.postForm,
+    //         categories
+    //       }
+    //     };
+    //   });
+
+    // } else {
+    //   this.setState(prevState => {
+    //     return {
+    //       postForm: {
+    //         ...prevState.postForm,
+    //         categories: removeDataFromArrayByValue(
+    //           prevState.postForm.categories,
+    //           value
+    //         )
+    //       }
+    //     };
+    //   });
+    // }
+    // }
   };
 
   onFormPostSubmitHandler = event => {
@@ -240,13 +297,13 @@ class index extends Component {
         ...this.state.postForm
       };
       formData.append('post', JSON.stringify(post));
-
-      return this.props.createStart(formData);
+      this.props.createStart(formData);
     } else {
       const { name, id } = this.state.postFormEdit;
       this.props.postEditStart(id, { name });
     }
-    this.onResetFormHandler();
+
+    this.props.onFormToggleClicked();
   };
 
   onResetFormHandler = () => {
@@ -419,26 +476,38 @@ class index extends Component {
                 'alphabet and at least 5 characters'
               )} */}
           </HelpText>
-          <div className="input-group">
-            <div className="mr-3">Category : </div>
-            {Object.keys(this.props.categories).map((key, index) => {
-              const category = this.props.categories[key];
-              return (
-                <CheckBox
-                  key={key}
-                  index={index + 1}
-                  checked={this.state.postForm.categories[category.id]}
-                  onCheckBoxClicked={event =>
-                    this.onCheckBoxCategoryClickHandler(event)
-                  }
-                  {...category}
-                >
-                  {category.name}
-                </CheckBox>
-              );
-            })}
-          </div>
+          {/* <div className="input-group"> */}
+          <label className="mr-3">
+            Category :
+            <select
+              className="custom-select"
+              multiple={true}
+              value={this.state.categories}
+              onChange={event => this.onCheckBoxCategoryClickHandler(event)}
+            >
+              {Object.keys(this.props.categories).map((key, index) => {
+                const category = this.props.categories[key];
+                return (
+                  <CheckBox
+                    key={key}
+                    index={index + 1}
+                    checked={this.state.postForm.categories[category.id]}
+                    onCheckBoxClicked={event =>
+                      this.onCheckBoxCategoryClickHandler(event)
+                    }
+                    {...category}
+                  >
+                    {category.name}
+                  </CheckBox>
+                );
+              })}
+            </select>
+          </label>
+          <HelpText>
+            hold Ctrl + Left-Click to choose multiple selection
+          </HelpText>
         </div>
+        {/* </div> */}
 
         <div className="form-group mb-0">
           <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2" />
@@ -459,10 +528,15 @@ class index extends Component {
           >
             {renderTypeString(this.props.type)}
           </Button>
+
           <Button
             type="button"
             className="btn btn-sm btn-danger mx-1"
-            clicked={this.props.onFormToggleClicked}
+            clicked={
+              isCreateType(this.props.type)
+                ? this.props.onFormToggleClicked
+                : this.props.onFormEditToggleClicked
+            }
           >
             cancel
           </Button>

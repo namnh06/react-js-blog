@@ -66,109 +66,107 @@ const index = class extends Component {
 
   render() {
     return (
-      <div className="col-10 ">
-        <div className="mt-5 border border-style-custom ">
-          <div className="d-flex justify-content-between align-items-center border-bottom p-3">
-            <Title className="mb-0">{this.props.page}</Title>
-            <Button
-              className="btn-sm btn-info"
-              clicked={this.props.onFormToggleClicked}
-            >
-              <Icon
-                iconClass={iconClass(this.props.formToggle ? 'minus' : 'plus')}
-                className="text-white"
-              />
-            </Button>
+      <div className="mt-5 border border-style-custom ">
+        <div className="d-flex justify-content-between align-items-center border-bottom p-3">
+          <Title className="mb-0">{this.props.page}</Title>
+          <Button
+            className="btn-sm btn-info"
+            clicked={this.props.onFormToggleClicked}
+          >
+            <Icon
+              iconClass={iconClass(this.props.formToggle ? 'minus' : 'plus')}
+              className="text-white"
+            />
+          </Button>
+        </div>
+
+        {this.props.formToggle && (
+          <div>
+            <FormCategory
+              type={CATEGORY_CREATE_START}
+              page={this.props.page}
+              onFormToggleClicked={this.props.onFormToggleClicked}
+            />
           </div>
+        )}
 
-          {this.props.formToggle && (
-            <div>
-              <FormCategory
-                type={CATEGORY_CREATE_START}
-                page={this.props.page}
-                onFormToggleClicked={this.props.onFormToggleClicked}
-              />
-            </div>
-          )}
-
-          {this.props.formEditToggle && (
-            <div>
-              <FormCategory
-                type={CATEGORY_EDIT_START}
-                page={this.props.page}
-                onFormEditToggleClicked={this.props.onFormEditToggleClicked}
-                categoryFormEdit={this.state.categoryFormEdit}
-              />
-            </div>
-          )}
-
-          <div className="m-3">
-            <ul className="list-unstyled">
-              <Header
-                page={this.props.page}
-                className={
-                  this.props.categories.length === 0 ? '' : 'border-bottom-0'
-                }
-              />
-              {this.props.categories &&
-                Object.keys(this.props.categories).map((key, index) => {
-                  return (
-                    <Fragment key={this.props.categories[key].id}>
-                      <List
-                        page={this.props.page}
-                        index={++index}
-                        last={index === this.props.categories.length}
-                        onButtonDeleteClicked={id =>
-                          this.onButtonDeleteClickHandler(
-                            this.props.categories[key].id
-                          )
-                        }
-                        onButtonEditClicked={_ => {
-                          this.onButtonEditClickHandler(
-                            this.props.categories[key]
-                          );
-                        }}
-                        {...this.props.categories[key]}
-                      />
-                    </Fragment>
-                  );
-                })}
-              <li className="Categories-Content">
-                <Button
-                  className="btn btn-sm btn-secondary rounded-0 my-2 text-uppercase"
-                  clicked={this.onButtonFetchDeletedCategories}
-                >
-                  {this.state.displayOldData
-                    ? hideStringTemporary('category')
-                    : displayStringTemporary('category')}
-                </Button>
-              </li>
-              {this.state.displayOldData &&
-                this.props.categoriesDeleted &&
-                Object.keys(this.props.categoriesDeleted).map((key, index) => {
-                  return (
-                    <Fragment key={this.props.categoriesDeleted[key].id}>
-                      <ListOld
-                        page={this.props.page}
-                        index={++index}
-                        last={index === this.props.categoriesDeleted.length}
-                        onButtonDeletePermanentlyClicked={id =>
-                          this.onButtonDeletePermanentlyClickHandler(
-                            this.props.categoriesDeleted[key].id
-                          )
-                        }
-                        onButtonRestoreClicked={id =>
-                          this.onButtonRestoreClickHandler(
-                            this.props.categoriesDeleted[key].id
-                          )
-                        }
-                        {...this.props.categoriesDeleted[key]}
-                      />
-                    </Fragment>
-                  );
-                })}
-            </ul>
+        {this.props.formEditToggle && (
+          <div>
+            <FormCategory
+              type={CATEGORY_EDIT_START}
+              page={this.props.page}
+              onFormEditToggleClicked={this.props.onFormEditToggleClicked}
+              categoryFormEdit={this.state.categoryFormEdit}
+            />
           </div>
+        )}
+
+        <div className="m-3">
+          <ul className="list-unstyled">
+            <Header
+              page={this.props.page}
+              className={
+                this.props.categories.length === 0 ? '' : 'border-bottom-0'
+              }
+            />
+            {this.props.categories &&
+              Object.keys(this.props.categories).map((key, index) => {
+                return (
+                  <Fragment key={this.props.categories[key].id}>
+                    <List
+                      page={this.props.page}
+                      index={++index}
+                      last={index === this.props.categories.length}
+                      onButtonDeleteClicked={id =>
+                        this.onButtonDeleteClickHandler(
+                          this.props.categories[key].id
+                        )
+                      }
+                      onButtonEditClicked={_ => {
+                        this.onButtonEditClickHandler(
+                          this.props.categories[key]
+                        );
+                      }}
+                      {...this.props.categories[key]}
+                    />
+                  </Fragment>
+                );
+              })}
+            <li className="Categories-Content">
+              <Button
+                className="btn btn-sm btn-secondary rounded-0 my-2 text-uppercase"
+                clicked={this.onButtonFetchDeletedCategories}
+              >
+                {this.state.displayOldData
+                  ? hideStringTemporary('category')
+                  : displayStringTemporary('category')}
+              </Button>
+            </li>
+            {this.state.displayOldData &&
+              this.props.categoriesDeleted &&
+              Object.keys(this.props.categoriesDeleted).map((key, index) => {
+                return (
+                  <Fragment key={this.props.categoriesDeleted[key].id}>
+                    <ListOld
+                      page={this.props.page}
+                      index={++index}
+                      last={index === this.props.categoriesDeleted.length}
+                      onButtonDeletePermanentlyClicked={id =>
+                        this.onButtonDeletePermanentlyClickHandler(
+                          this.props.categoriesDeleted[key].id
+                        )
+                      }
+                      onButtonRestoreClicked={id =>
+                        this.onButtonRestoreClickHandler(
+                          this.props.categoriesDeleted[key].id
+                        )
+                      }
+                      {...this.props.categoriesDeleted[key]}
+                    />
+                  </Fragment>
+                );
+              })}
+          </ul>
         </div>
       </div>
     );

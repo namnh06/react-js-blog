@@ -4,13 +4,13 @@ const index = props => {
   return (
     <div className="input-group">
       <div className="input-group-prepend w-25">
-        <span className="input-group-text w-100 text-uppercase">
+        <span className="input-group-text w-100 text-uppercase rounded-0">
           {props.name}
         </span>
       </div>
       <input
         type={props.type}
-        className={['form-control', props.className].join(' ')}
+        className={['form-control rounded-0', props.className].join(' ')}
         value={props.value}
         id={props.name}
         placeholder={`${props.name} ...`}

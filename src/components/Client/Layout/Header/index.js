@@ -8,7 +8,9 @@ import { menusFetchStart } from '../../../../store/actions/menus.action';
 
 class index extends Component {
   componentDidMount() {
-    this.props.menusFetchStart();
+    if (this.props.menus.length === 0) {
+      this.props.menusFetchStart();
+    }
   }
 
   render() {
@@ -23,7 +25,7 @@ class index extends Component {
           <nav className="navbar navbar-expand-lg navbar-light bg-light py-0 w-100 h-100">
             <div className="navbar-brand d-flex align-items-center h-100">
               <Brand
-                link="www.crashzone.com.au"
+                link="crashzone.com.au"
                 slogan="it's free"
                 textColor="text-dark"
               />

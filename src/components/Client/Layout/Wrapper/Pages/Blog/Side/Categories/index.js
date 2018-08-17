@@ -9,7 +9,9 @@ class index extends Component {
       Object.keys(this.props.postCategories).length > 0
     ) {
     } else {
-      this.props.categoriesFetchStart();
+      if (this.props.categories.length === 0) {
+        this.props.categoriesFetchStart();
+      }
     }
   }
 

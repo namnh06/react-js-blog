@@ -1,4 +1,3 @@
-import {} from '@fortawesome/free-solid-svg-icons';
 import jwtDecode from 'jwt-decode';
 import moment from 'moment';
 import React from 'react';
@@ -13,7 +12,8 @@ import {
   USER_EDIT_START,
   CATEGORY_CREATE_START,
   CATEGORY_EDIT_START,
-  POST_CREATE_START
+  POST_CREATE_START,
+  POST_UPDATE_START
 } from './constants';
 
 import store from '../store';
@@ -27,7 +27,6 @@ import NotFoundPage from '../containers/404';
 import Posts from '../components/Admin/Layout/Wrapper/Pages/Posts';
 import Users from '../components/Admin/Layout/Wrapper/Pages/Users';
 import Categories from '../components/Admin/Layout/Wrapper/Pages/Categories';
-import Button from '../components/Details/Button';
 
 export const logoImage = () => {
   return logo;
@@ -126,9 +125,13 @@ export const childrenOfListHeader = (type, { name, slug, clicked }) => {
         </a>
       );
     case 'anchor':
-      return slug === 'forums' ? (
+      return slug === 'rate-calculator' || slug === 'forum' ? (
         <a
-          href="http://www.crashzone.com.au/forum/viewforum.php?f=2"
+          href={
+            slug === 'rate-calculator'
+              ? 'http://www.crashzone.com.au/sc'
+              : 'http://www.crashzone.com.au/forum/viewforum.php?f=2'
+          }
           rel="noopener noreferrer"
           className="nav-link text-dark py-0"
         >
@@ -139,8 +142,9 @@ export const childrenOfListHeader = (type, { name, slug, clicked }) => {
           {name}
         </Anchor>
       );
+
     default:
-      return null;
+      return;
   }
 };
 
@@ -334,6 +338,8 @@ export const renderTypeString = type => {
     case CATEGORY_EDIT_START:
     case USER_EDIT_START:
       return 'edit';
+    case POST_UPDATE_START:
+      return 'update';
     default:
       return null;
   }

@@ -74,102 +74,98 @@ const index = class extends Component {
 
   render() {
     return (
-      <div className="col-10 ">
-        <div className="mt-5 border border-style-custom ">
-          <div className="d-flex justify-content-between align-items-center border-bottom p-3">
-            <Title className="mb-0">{this.props.page}</Title>
-            <Button
-              className="btn-sm btn-info"
-              clicked={this.props.onFormToggleClicked}
-            >
-              <Icon
-                iconClass={iconClass(this.props.formToggle ? 'minus' : 'plus')}
-                className="text-white"
-              />
-            </Button>
-          </div>
-          <Fragment>
-            {this.props.formToggle && (
-              <Form
-                type={USER_CREATE_START}
-                page={this.props.page}
-                onFormToggleClicked={this.props.onFormToggleClicked}
-              />
-            )}
-          </Fragment>
-          <Fragment>
-            {this.props.formEditToggle && (
-              <Form
-                type={USER_EDIT_START}
-                page={this.props.page}
-                onFormEditToggleClicked={this.props.onFormEditToggleClicked}
-                userFormEdit={this.state.userFormEdit}
-              />
-            )}
-          </Fragment>
+      <div className="mt-5 border border-style-custom ">
+        <div className="d-flex justify-content-between align-items-center border-bottom p-3">
+          <Title className="mb-0">{this.props.page}</Title>
+          <Button
+            className="btn-sm btn-info"
+            clicked={this.props.onFormToggleClicked}
+          >
+            <Icon
+              iconClass={iconClass(this.props.formToggle ? 'minus' : 'plus')}
+              className="text-white"
+            />
+          </Button>
+        </div>
+        <Fragment>
+          {this.props.formToggle && (
+            <Form
+              type={USER_CREATE_START}
+              page={this.props.page}
+              onFormToggleClicked={this.props.onFormToggleClicked}
+            />
+          )}
+        </Fragment>
+        <Fragment>
+          {this.props.formEditToggle && (
+            <Form
+              type={USER_EDIT_START}
+              page={this.props.page}
+              onFormEditToggleClicked={this.props.onFormEditToggleClicked}
+              userFormEdit={this.state.userFormEdit}
+            />
+          )}
+        </Fragment>
 
-          <div className="m-3">
-            <ul className="list-unstyled">
-              <Header
-                page={this.props.page}
-                className={
-                  this.props.items.length === 0 ? '' : 'border-bottom-0'
-                }
-              />
-              {this.props.items &&
-                Object.keys(this.props.items).map((key, index) => {
-                  const item = this.props.items[key];
-                  return (
-                    <Fragment key={item.id}>
-                      <List
-                        page={this.props.page}
-                        index={index + 1}
-                        last={index === this.props.items.length - 1}
-                        onButtonDeleteClicked={_ =>
-                          this.onButtonDeleteClickHandler(item.id)
-                        }
-                        onButtonEditClicked={_ => {
-                          this.onButtonEditClickHandler(item);
-                        }}
-                        {...item}
-                      />
-                    </Fragment>
-                  );
-                })}
-              <li className="Admin-Posts-Content">
-                <Button
-                  className="btn btn-sm btn-secondary rounded-0 my-2 text-uppercase"
-                  clicked={this.onButtonFetchDeletedPosts}
-                >
-                  {this.state.displayOldData
-                    ? hideStringTemporary('posts')
-                    : displayStringTemporary('posts')}
-                </Button>
-              </li>
-              {this.state.displayOldData &&
-                this.props.itemsDeleted &&
-                Object.keys(this.props.itemsDeleted).map((key, index) => {
-                  const item = this.props.itemsDeleted[key];
-                  return (
-                    <Fragment key={item.id}>
-                      <List
-                        type="old"
-                        page={this.props.page}
-                        index={++index}
-                        last={index === this.props.itemsDeleted.length}
-                        onButtonDeletePermanentlyClicked={_ =>
-                          this.onButtonDeletePermanentlyClickHandler(item.id)
-                        }
-                        onButtonRestoreClicked={_ =>
-                          this.onButtonRestoreClickHandler(item.id)
-                        }
-                        {...item}
-                      />
-                    </Fragment>
-                  );
-                })}
-            </ul>
-          </div>
+        <div className="m-3">
+          <ul className="list-unstyled">
+            <Header
+              page={this.props.page}
+              className={this.props.items.length === 0 ? '' : 'border-bottom-0'}
+            />
+            {this.props.items &&
+              Object.keys(this.props.items).map((key, index) => {
+                const item = this.props.items[key];
+                return (
+                  <Fragment key={item.id}>
+                    <List
+                      page={this.props.page}
+                      index={index + 1}
+                      last={index === this.props.items.length - 1}
+                      onButtonDeleteClicked={_ =>
+                        this.onButtonDeleteClickHandler(item.id)
+                      }
+                      onButtonEditClicked={_ => {
+                        this.onButtonEditClickHandler(item);
+                      }}
+                      {...item}
+                    />
+                  </Fragment>
+                );
+              })}
+            <li className="Admin-Posts-Content">
+              <Button
+                className="btn btn-sm btn-secondary rounded-0 my-2 text-uppercase"
+                clicked={this.onButtonFetchDeletedPosts}
+              >
+                {this.state.displayOldData
+                  ? hideStringTemporary('posts')
+                  : displayStringTemporary('posts')}
+              </Button>
+            </li>
+            {this.state.displayOldData &&
+              this.props.itemsDeleted &&
+              Object.keys(this.props.itemsDeleted).map((key, index) => {
+                const item = this.props.itemsDeleted[key];
+                return (
+                  <Fragment key={item.id}>
+                    <List
+                      type="old"
+                      page={this.props.page}
+                      index={++index}
+                      last={index === this.props.itemsDeleted.length}
+                      onButtonDeletePermanentlyClicked={_ =>
+                        this.onButtonDeletePermanentlyClickHandler(item.id)
+                      }
+                      onButtonRestoreClicked={_ =>
+                        this.onButtonRestoreClickHandler(item.id)
+                      }
+                      {...item}
+                    />
+                  </Fragment>
+                );
+              })}
+          </ul>
         </div>
       </div>
 

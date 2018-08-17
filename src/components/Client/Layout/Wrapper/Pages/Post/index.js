@@ -4,7 +4,7 @@ import { postFetchStart } from '../../../../../../store/actions/post.action';
 
 import Article from './Article';
 import Side from './Side';
-import PostsRelated from './PostsRelated';
+
 import Post from '../../../Post';
 class index extends Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class index extends Component {
         {Object.keys(this.props.post).length > 0 && (
           <div className="container my-5">
             <div className="row border-bottom">
-              <div className="col-8">
+              <div className="col-8 d-flex flex-column">
                 <Article {...this.props.post} />
               </div>
               <div className="col-4">
@@ -32,7 +32,6 @@ class index extends Component {
                   }
                 )}
               </div>
-              {/* <PostsRelated posts={this.props.post.related_posts} /> */}
             </div>
           </div>
         )}

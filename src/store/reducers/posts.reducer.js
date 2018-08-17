@@ -4,13 +4,15 @@ import {
   POST_CREATED,
   POSTS_DELETED_FETCHED,
   POST_DELETED_PERMANENTLY,
-  POST_DELETED_RESTORED
+  POST_DELETED_RESTORED,
+  POST_UPDATED
 } from '../../helpers/constants';
 import {
   setDataToArray,
   removeDataFromArrayById,
   pushDataToArray,
-  sortDescendingArrayById
+  sortDescendingArrayById,
+  updateDataToArrayById
 } from '../../helpers';
 import { initPosts } from '../../helpers/seed-data';
 
@@ -64,6 +66,13 @@ const postCreated = (state, action) => {
   };
 };
 
+const postUpdated = (state, action) => {
+  return {
+    ...state,
+    current: updateDataToArrayById(state.current, action.data)
+  };
+};
+
 const reducer = (state = initPosts, action) => {
   switch (action.type) {
     case POSTS_FETCHED:
@@ -78,6 +87,8 @@ const reducer = (state = initPosts, action) => {
       return deletedRestored(state, action);
     case POST_CREATED:
       return postCreated(state, action);
+    case POST_UPDATED:
+      return postUpdated(state, action);
     default:
       return state;
   }

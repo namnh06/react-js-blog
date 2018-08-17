@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import Input from './Input';
+
 import Button from '../../../../Details/Button';
+import FormGroup from '../Details/FormGroup';
 import HelpText from '../../../../Details/HelpText';
+import Input from '../Details/Input';
+import Title from '../Details/Title';
+
 import {
   helpTextRequire,
   isValidEmail,
@@ -99,10 +103,8 @@ class index extends Component {
   render() {
     return (
       <form action="" className="Client__Form__Sign-Up__form border bg-light ">
-        <div className="border-bottom py-3 px-5 d-flex align-content-center justify-content-center">
-          <h2 className="text-uppercase">Sign Up</h2>
-        </div>
-        <div className="form-group d-flex flex-column justify-content-around mx-5 my-0 mt-1">
+        <Title>Sign Up</Title>
+        <FormGroup>
           <HelpText className="Client__Form__Sign-Up__form__notice m-0">
             {this.state.userForm.isValidName !== null &&
               !this.state.userForm.isValidName &&
@@ -115,8 +117,8 @@ class index extends Component {
             value={this.state.userForm.name}
             onInputChange={event => this.onInputNameChanged(event)}
           />
-        </div>
-        <div className="form-group d-flex flex-column justify-content-around mx-5 my-0 mt-1">
+        </FormGroup>
+        <FormGroup>
           <HelpText className="Client__Form__Sign-Up__form__notice m-0">
             {this.state.userForm.isValidEmail !== null &&
               !this.state.userForm.isValidEmail &&
@@ -132,8 +134,8 @@ class index extends Component {
             value={this.state.userForm.email}
             onInputChange={event => this.onInputEmailChanged(event)}
           />
-        </div>
-        <div className="form-group d-flex flex-column justify-content-around mx-5 my-0 mt-1">
+        </FormGroup>
+        <FormGroup>
           <HelpText className="Client__Form__Sign-Up__form__notice m-0">
             {this.state.userForm.isValidPassword !== null &&
               !this.state.userForm.isValidPassword &&
@@ -149,8 +151,8 @@ class index extends Component {
             onInputChange={event => this.onInputPasswordChanged(event)}
             value={this.state.userForm.password}
           />
-        </div>
-        <div className="form-group d-flex flex-column justify-content-around mx-5 my-0 mt-1">
+        </FormGroup>
+        <FormGroup>
           <HelpText className="Client__Form__Sign-Up__form__notice m-0">
             {this.state.userForm.isValidRePassword !== null &&
               (!this.state.userForm.isValidRePassword ||
@@ -171,9 +173,9 @@ class index extends Component {
             onInputChange={event => this.onInputRePasswordChanged(event)}
             value={this.state.userForm.rePassword}
           />
-        </div>
+        </FormGroup>
 
-        <div className="d-flex justify-content-center py-3">
+        <div className="d-flex justify-content-center pt-3 mt-3">
           <Button
             type="submit"
             className={`btn btn-sm btn-success mx-2 ${
@@ -192,9 +194,8 @@ class index extends Component {
           </Button>
         </div>
         <hr />
-        <div className="d-flex flex-column align-items-end text-muted mx-5 pb-3">
+        <div className="d-flex flex-column align-items-end text-muted mx-3 pb-3">
           <FakeLink>Forget Password ?</FakeLink>
-
           <FakeLink clicked={this.props.onButtonLogInClicked}>
             Wanna Log In ?
           </FakeLink>
