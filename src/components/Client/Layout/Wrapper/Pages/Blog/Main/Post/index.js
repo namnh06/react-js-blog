@@ -1,22 +1,23 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import moment from 'moment';
-import { logoImage } from '../../../../../../../../helpers';
+
 import LinkToArticle from '../../../../../../../UI/LinkToArticle';
-import { URL, DOMAIN } from '../../../../../../../../helpers/constants';
+
+import { imageFallBack } from '../../../../../../../../helpers/image';
 
 const index = props => {
-  const urlImage = _ => {
-    return (
-      (props.images[0] && URL + props.images[0].path) || DOMAIN + logoImage()
-    );
-  };
+  // const urlImage = _ => {
+  //   return (
+  //     (props.images[0] && DOMAIN + props.images[0].path) || DOMAIN + logoImage()
+  //   );
+  // };
   return (
     <div className={['card mx-1 my-2', props.className].join(' ')}>
       <div
         className="card-img-top Post__Background-Image"
         style={{
-          backgroundImage: `url(${urlImage()})`,
+          backgroundImage: `url(${imageFallBack(props.images)})`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center center',
           height: '200px'

@@ -15,6 +15,7 @@ import fourteenth from './../assets/images/slides/14-cz-fourteenth.png';
 import fifteenth from './../assets/images/slides/15-cz-fifteenth.png';
 import sixteenth from './../assets/images/slides/16-cz-sixteenth.png';
 import { logoImage } from '.';
+import { DOMAIN } from './constants';
 
 const slides = [
   first,
@@ -47,6 +48,6 @@ export const threePartSlides = () => {
   return arraySlide;
 };
 
-export const imageFallBack = img => {
-  return `${(img && 'http://localhost:6699' + img.path) || logoImage()}`;
+export const imageFallBack = images => {
+  return !!images[0] ? DOMAIN + images[0].path : logoImage();
 };
