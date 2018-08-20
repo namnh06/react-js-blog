@@ -7,6 +7,7 @@ import menus from '../store/reducers/menus.reducer';
 import auth from '../store/reducers/admin/auth.reducer';
 import users from '../store/reducers/admin/users.reducer';
 import tags from '../store/reducers/tags.reducer';
+import information from '../store/reducers/information.reducer';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
@@ -17,7 +18,8 @@ export default () => {
     post,
     auth,
     users,
-    tags
+    tags,
+    information
   });
 
   const rootReducer = (state, action) => {

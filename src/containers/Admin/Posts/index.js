@@ -11,7 +11,9 @@ import { ADMIN_PAGES_NAME } from '../../../helpers/constants';
 // import './styles.css';
 class index extends Component {
   componentDidMount() {
-    this.props.postsFetchStart(true);
+    if (this.props.posts.length === 0) {
+      this.props.postsFetchStart(true);
+    }
   }
 
   render() {
@@ -23,11 +25,17 @@ class index extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    posts: state.posts.current
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   postsFetchStart: auth => dispatch(postsFetchStart(auth))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withErrorHandler(index, axios));

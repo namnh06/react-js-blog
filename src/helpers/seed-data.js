@@ -5,6 +5,7 @@ export const initUsers = { current: [], deleted: [] };
 export const initPost = {};
 export const initMenus = [];
 export const initAuth = {};
+export const initInformation = [];
 export const tempData = { images: [], checkedCategories: [] };
 
 export const categoryForm = {

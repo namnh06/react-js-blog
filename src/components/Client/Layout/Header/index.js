@@ -25,7 +25,7 @@ class index extends Component {
           <nav className="navbar navbar-expand-lg navbar-light bg-light py-0 w-100 h-100">
             <div className="navbar-brand d-flex align-items-center h-100">
               <Brand
-                link="crashzone.com.au"
+                link={this.props.information[1].value}
                 slogan="it's free"
                 textColor="text-dark"
               />

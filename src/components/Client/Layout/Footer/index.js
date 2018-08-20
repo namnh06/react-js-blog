@@ -3,6 +3,7 @@ import footerImage from '../../../../assets/images/footer/footer_slide-1.png';
 import './styles.css';
 import Button from '../../../Details/Button';
 import Brand from '../../../UI/Brand';
+import { connect } from 'react-redux';
 const index = props => {
   return (
     <div className="container-fluid Footer p-0">
@@ -12,10 +13,10 @@ const index = props => {
       >
         <div className="col-6 d-flex flex-column ">
           <h1 className="text-yellow-cz-custom text-uppercase text-right">
-            Crashzone
+            {props.information[0].value}
           </h1>
           <p className="text-white text-uppercase text-right">
-            The first free web based quoting system for smash repairers.
+            {props.information[2].value}
           </p>
         </div>
         <div className="col-6">
@@ -34,42 +35,52 @@ const index = props => {
         <div className="col-5 pl-5 py-3">
           <div className="d-flex mb-3">
             <Brand
-              link="www.crashzone.com.au"
+              link={props.information[1].value}
               slogan="it's free"
               textColor="text-white"
             />
           </div>
-          <p className="text-white">
-            Crashzone the first free web based quoting system for smash
-            repairers.
-          </p>
+          <p className="text-white">{props.information[2].value}</p>
           <Button className="btn btn-lg rounded-0 text-uppercase Footer__middle__button">
             learn more
           </Button>
         </div>
-        <div className="col-5 py-3 Footer__contact">
-          <p>
-            <i className="fas fa-home">&nbsp;&#x02010;&nbsp;</i>
-            <span className="">P.O Box 4 - North Sydney - NSW 2060</span>
-          </p>
-          <p>
-            <i className="fas fa-address-book">&nbsp;&#x02010;&nbsp;</i>
-            <span>ABN: 63125055996</span>
-          </p>
-          <p>
-            <i className="fas fa-phone">&nbsp;&#x02010;&nbsp;</i>
-            <span>02 9011 6647</span>
-          </p>
-          <p>
-            <i className="fas fa-envelope">&nbsp;&#x02010;&nbsp;</i>
-            <a href="" className="text-white">
-              support@crashzone.com.au
-            </a>
-          </p>
-          <p>
-            <i className="fas fa-clock">&nbsp;&#x02010;&nbsp;</i>
-            <span>Monday - Friday: 9:00 AM - 6:00 PM</span>
-          </p>
+        <div className="col-5 py-3 d-flex flex-column justify-content-between Footer__contact">
+          <div className="text-white">
+            <i className="fas fa-home" />
+            <span className="ml-1">
+              &nbsp;&#x02010;&nbsp;
+              {props.information[3].value}
+            </span>
+          </div>
+          <div className="text-white">
+            <i className="fas fa-address-book" />
+            <span className="ml-1">
+              &nbsp;&#x02010;&nbsp;
+              {props.information[4].value}
+            </span>
+          </div>
+          <div className="text-white">
+            <i className="fas fa-phone" />
+            <span className="ml-1">
+              &nbsp;&#x02010;&nbsp;
+              {props.information[5].value}
+            </span>
+          </div>
+          <div className="text-white">
+            <i className="fas fa-envelope" />
+            <span className="ml-1">
+              &nbsp;&#x02010;&nbsp;
+              {props.information[6].value}
+            </span>
+          </div>
+          <div className="text-white">
+            <i className="fas fa-clock" />
+            <span className="ml-1">
+              &nbsp;&#x02010;&nbsp;
+              {props.information[7].value}
+            </span>
+          </div>
         </div>
         <div className="col-2 py-3 text-white Footer__social-network">
           <i className="fab fa-facebook-square fa-3x" />
@@ -91,4 +102,10 @@ const index = props => {
   );
 };
 
-export default index;
+const mapStateToProps = state => {
+  return {
+    information: state.information
+  };
+};
+
+export default connect(mapStateToProps)(index);

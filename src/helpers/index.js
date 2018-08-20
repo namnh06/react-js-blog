@@ -96,15 +96,40 @@ export const removeDuplicateObjectInArrayByProperty = (array, property) => {
   });
 };
 
+export const replaceDataInArrayById = (array, data) => {
+  return array.map(item => {
+    let temp = item;
+    data.map(newItem => {
+      if (item.id === newItem.id) {
+        temp = newItem;
+      }
+    });
+    return temp;
+  });
+};
+
 export const updateDataToArrayById = (array, data) => {
   return array.map(item => {
     if (item.id !== data.id) {
       return item;
     }
-
+    console.log('whoops');
     return {
       ...item,
       ...data
+    };
+  });
+};
+
+export const updateValueInArrayByName = (array, data) => {
+  return array.map(item => {
+    if (item.name !== data.name) {
+      return item;
+    }
+
+    return {
+      ...item,
+      value: data.value
     };
   });
 };
@@ -196,19 +221,6 @@ export const updateObject = (oldObject, updatedProperties) => {
 
 export const addArray = (oldArray, newData) => {
   return [...oldArray, newData];
-};
-
-export const updateArray = (array, data) => {
-  return array.map(item => {
-    if (item.id !== data.id) {
-      return item;
-    }
-
-    return {
-      ...item,
-      ...data
-    };
-  });
 };
 
 export const isExistsToken = _ => {

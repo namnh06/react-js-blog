@@ -12,7 +12,9 @@ import { usersFetchStart } from '../../../store/actions/admin/users.action';
 import './styles.css';
 class index extends Component {
   componentDidMount() {
-    this.props.usersFetchStart();
+    if (this.props.users.length === 0) {
+      this.props.usersFetchStart();
+    }
   }
 
   render() {
@@ -24,11 +26,17 @@ class index extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    users: state.users.current
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   usersFetchStart: () => dispatch(usersFetchStart())
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withErrorHandler(index, axios));

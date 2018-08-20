@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-
+import { connect } from 'react-redux';
 import Wrapper from './Wrapper';
 import Header from './Header';
 import Footer from './Footer';
@@ -7,6 +7,7 @@ import ScrollTop from './ScrollTop';
 import Form from './Form';
 import withErrorHandler from '../../../hoc/withErrorHandler';
 import axios from '../../../helpers/axios.config';
+import { informationFetchStart } from '../../../store/actions/information.action';
 class index extends React.Component {
   state = {
     signUpForm: false,
@@ -69,23 +70,43 @@ class index extends React.Component {
             onEscapeButtonPressed={_ => this.onEscapeButtonPressHandler()}
           />
         )}
-        <Header
-          onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
-          onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
-        />
+        {this.props.information.length > 0 && (
+          <Header
+            onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
+            onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
+            information={this.props.information}
+          />
+        )}
         <Wrapper
           {...this.props}
           onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
           onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
         />
-        <Footer
-          onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
-          onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
-        />
+        {this.props.information.length > 0 && (
+          <Footer
+            onButtonSignUpClicked={_ => this.onButtonSignUpClickHandler()}
+            onButtonLogInClicked={_ => this.onButtonLogInClickHandler()}
+            information={this.props.information}
+          />
+        )}
         <ScrollTop clicked={_ => this.onButtonScrollTopClickHandler()} />
       </Fragment>
     );
   }
 }
 
-export default withErrorHandler(index, axios);
+const mapStateToProps = state => {
+  return {
+    information: state.information
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    informationFetchStart: () => dispatch(informationFetchStart())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(index, axios));

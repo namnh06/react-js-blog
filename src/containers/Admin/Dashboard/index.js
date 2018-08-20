@@ -4,20 +4,21 @@ import axios from '../../../helpers/axios.config';
 
 import withErrorHandler from '../../../hoc/withErrorHandler';
 
-import { categoriesFetchStart } from '../../../store/actions/admin/categories.action';
-import AdminLayout from '../../../components/Admin/Layout';
+import Layout from '../../../components/Admin/Layout';
+import { ADMIN_PAGES_NAME } from '../../../helpers/constants';
+import { informationFetchStart } from '../../../store/actions/information.action';
 
 class index extends Component {
   componentDidMount() {
-    if (this.props.categories.length === 0) {
-      this.props.categoriesFetchStart();
+    if (this.props.information.length === 0) {
+      this.props.fetchedStart();
     }
   }
 
   render() {
     return (
       <Fragment>
-        <AdminLayout page="categories" />
+        <Layout {...this.props} page={ADMIN_PAGES_NAME.DASHBOARD} />
       </Fragment>
     );
   }
@@ -25,12 +26,12 @@ class index extends Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories.current
+    information: state.information
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  categoriesFetchStart: () => dispatch(categoriesFetchStart())
+  fetchedStart: _ => dispatch(informationFetchStart())
 });
 
 export default connect(

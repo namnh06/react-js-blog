@@ -1,8 +1,8 @@
-export const PRODUCT_API_DOMAIN = 'http://49.156.51.71:81';
+export const PRODUCT_API_DOMAIN = 'http://49.156.52.71:6699';
 export const PRODUCT_API = '/api/v1';
 export const PRODUCT_API_URL = PRODUCT_API_DOMAIN + PRODUCT_API;
 
-export const PRODUCT_DOMAIN = 'http://49.156.51.71:82';
+export const PRODUCT_DOMAIN = 'http://49.156.52.71:6699';
 
 export const DEVELOPMENT_API_DOMAIN = 'http://localhost:6699';
 export const DEVELOPMENT_API = '/api/v1';
@@ -58,6 +58,12 @@ export const POST_CREATED = 'POST_CREATED';
 export const POST_UPDATE_START = 'POST_UPDATE_START';
 export const POST_UPDATED = 'POST_UPDATED';
 
+// INFORMATION
+export const INFORMATION_FETCH_START = 'INFORMATION_FETCH_START';
+export const INFORMATION_FETCHED = 'INFORMATION_FETCHED';
+export const INFORMATION_UPDATE_START = 'INFORMATION_UPDATE_START';
+export const INFORMATION_UPDATED = 'INFORMATION_UPDATED';
+
 // MENU
 export const MENUS_FETCH_START = 'MENUS_FETCH_START';
 export const MENUS_FETCHED = 'MENUS_FETCHED';
@@ -102,7 +108,8 @@ export const CLIENT_LOG_OUT = 'CLIENT_LOG_OUT';
 export const ADMIN_PAGES_NAME = {
   USERS: 'users',
   POSTS: 'posts',
-  CATEGORIES: 'categories'
+  CATEGORIES: 'categories',
+  DASHBOARD: 'dashboard'
 };
 export const CLIENT_PAGES_NAME = {
   HOME: 'home',

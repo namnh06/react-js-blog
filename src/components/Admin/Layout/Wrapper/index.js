@@ -10,6 +10,7 @@ import Users from './Pages/Users';
 import Posts from './Pages/Posts';
 import Categories from './Pages/Categories';
 import NotFoundPage from '../../../../containers/404';
+import Dashboard from './Pages/Dashboard';
 class index extends React.Component {
   state = {
     formToggle: false,
@@ -64,6 +65,8 @@ class index extends React.Component {
             }
           />
         );
+      case ADMIN_PAGES_NAME.DASHBOARD:
+        return <Dashboard page={this.props.page} />;
       default:
         return <NotFoundPage />;
     }
