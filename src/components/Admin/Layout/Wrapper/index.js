@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Component } from 'react';
 
 import ContainerFluid from '../../../UI/ContainerFluid';
 
@@ -11,7 +11,7 @@ import Posts from './Pages/Posts';
 import Categories from './Pages/Categories';
 import NotFoundPage from '../../../../containers/404';
 import Dashboard from './Pages/Dashboard';
-class index extends React.Component {
+class index extends Component {
   state = {
     formToggle: false,
     formEditToggle: false

@@ -101,8 +101,9 @@ export const replaceDataInArrayById = (array, data) => {
     let temp = item;
     data.map(newItem => {
       if (item.id === newItem.id) {
-        temp = newItem;
+        return (temp = newItem);
       }
+      return null;
     });
     return temp;
   });

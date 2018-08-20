@@ -1,26 +1,10 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 
-import {
-  postDeleteStart,
-  postsDeletedFetchStart,
-  postDeletePermanentlyStart,
-  postDeletedRestoreStart
-} from '../../../../../../store/actions/posts.action';
-
 import { updateValueInArrayByName } from '../../../../../../helpers';
-import {
-  POST_CREATE_START,
-  POST_UPDATE_START
-} from '../../../../../../helpers/constants';
 
 import Title from '../Components/Title';
 import Button from '../../../../../UI/Button';
-import Icon from '../../../../../UI/Icon';
-import Header from '../Components/Header';
-import ListPosts from '../Components/List';
-import ListOldPosts from '../Components/ListOld/Post';
-import { categoriesFetchStart } from '../../../../../../store/actions/admin/categories.action';
 
 import FormGroup from './FormGroup';
 import { informationUpdateStart } from '../../../../../../store/actions/information.action';

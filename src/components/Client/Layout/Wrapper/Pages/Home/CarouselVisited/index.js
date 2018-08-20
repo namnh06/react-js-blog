@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import SideLogin from '../../Blog/Side/Form/Login';
-import Banner from '../../../../Banner';
-import Picture from '../../../../../../Details/Picture';
+
 import Button from '../../../../../../Details/Button';
-import sixteenth from '../../../../../../../assets/images/slides/16-cz-sixteenth.png';
+
 import { logoImage } from '../../../../../../../helpers';
 import { threePartSlides } from '../../../../../../../helpers/image';
 class index extends Component {

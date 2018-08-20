@@ -3,16 +3,12 @@ import ReactTooltip from 'react-tooltip';
 import moment from 'moment';
 import { logoImage } from '../../../../../../../../helpers';
 import LinkToArticle from '../../../../../../../UI/LinkToArticle';
-import {
-  DEVELOPMENT_API_DOMAIN,
-  DEVELOPMENT_DOMAIN
-} from '../../../../../../../../helpers/constants';
+import { URL, DOMAIN } from '../../../../../../../../helpers/constants';
 
 const index = props => {
   const urlImage = _ => {
     return (
-      (props.images[0] && DEVELOPMENT_API_DOMAIN + props.images[0].path) ||
-      DEVELOPMENT_DOMAIN + logoImage()
+      (props.images[0] && URL + props.images[0].path) || DOMAIN + logoImage()
     );
   };
   return (

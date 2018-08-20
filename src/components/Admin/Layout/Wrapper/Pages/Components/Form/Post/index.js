@@ -17,8 +17,7 @@ import {
   pushDataToArray,
   removeDuplicateObjectInArrayByProperty,
   removeDataFromArrayByProperty,
-  unshiftDataToArray,
-  removeDataFromArrayByValue
+  unshiftDataToArray
 } from '../../../../../../../../helpers';
 import { postForm, tempData } from '../../../../../../../../helpers/seed-data';
 import { postCreateStart } from '../../../../../../../../store/actions/posts.action';

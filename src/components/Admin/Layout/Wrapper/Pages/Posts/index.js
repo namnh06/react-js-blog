@@ -13,8 +13,7 @@ import {
   displayStringTemporary,
   hideStringTemporary,
   isValidTitle,
-  isValidDescription,
-  isCreateType
+  isValidDescription
 } from '../../../../../../helpers';
 import {
   POST_CREATE_START,

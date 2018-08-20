@@ -14,6 +14,9 @@ class index extends React.Component {
     logInForm: false
   };
   componentDidMount() {
+    if (this.props.information.length === 0) {
+      this.props.informationFetchStart();
+    }
     if (!!localStorage.getItem('cz.visited')) {
       const countVisited = parseInt(localStorage.getItem('cz.visited'), 10);
       if (countVisited < 2) {
