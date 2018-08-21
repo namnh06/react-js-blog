@@ -1,12 +1,12 @@
 //PRODUCT
 
-// export const DOMAIN = 'http://49.156.52.71:6699';
-// export const API = '/api/v1';
+export const DOMAIN = 'http://49.156.52.71:6699';
+export const API = '/api/v1';
 
 // DEVELOPMENT
 
-export const DOMAIN = 'http://localhost:6699';
-export const API = '/api/v1';
+// export const DOMAIN = 'http://localhost:6699';
+// export const API = '/api/v1';
 
 export const URL = DOMAIN + API;
 
