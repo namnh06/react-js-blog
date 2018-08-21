@@ -3,12 +3,13 @@ import ReactTooltip from 'react-tooltip';
 import moment from 'moment';
 import { logoImage, hrefArticle } from '../../../../helpers';
 import LinkToArticle from '../../../UI/LinkToArticle';
+import { DOMAIN } from '../../../../helpers/constants';
 const index = props => {
   const imageStyle = {
     width: 'auto',
     height: '200px',
-    backgroundImage: `url(${(props.images[0] &&
-      `http://localhost:6699${props.images[0].path}`) ||
+    backgroundImage: `url(${(!!props.images[0] &&
+      `${DOMAIN + props.images[0].path}`) ||
       logoImage()})`,
     backgroundPosition: 'center'
   };

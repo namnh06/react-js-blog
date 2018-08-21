@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './styles.css';
 import { postsFetchStart } from '../../../../../../../store/actions/posts.action';
-import Post from './Post';
+import Post from '../../../../Post';
 
 import { withRouter } from 'react-router-dom';
 
