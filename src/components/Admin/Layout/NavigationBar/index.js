@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Picture from '../../../../components/UI/Picture';
 
-import crashzoneImageSrc from '../../../../assets/images/crashzone-logo.svg';
-
 import Button from '../../../UI/Button';
 import { authStartLogOut } from '../../../../store/actions/admin/auth.action';
+import { logoImage } from '../../../../helpers';
 
 class NavigationBar extends Component {
   onButtonClickHandler = () => {
@@ -18,7 +17,7 @@ class NavigationBar extends Component {
         <div className="d-flex flex-row ">
           <div className="col-2 d-flex justify-content-start my-2">
             <Picture
-              src={crashzoneImageSrc}
+              src={logoImage()}
               alt="Crashzone"
               className="Admin__Navigation-Bar__img--height"
             />

@@ -37,11 +37,7 @@ class index extends React.Component {
           <label className="tgl-btn" htmlFor={`js-${this.props.id}`} />
         </div>
         <div className="d-flex justify-content-center">
-          <img
-            src={imageFallBack(this.props.images[0])}
-            className="w-75"
-            alt=""
-          />
+          <img src={imageFallBack(this.props.images)} className="w-75" alt="" />
         </div>
         <div className="d-flex justify-content-around">
           <Button

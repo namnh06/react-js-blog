@@ -1,14 +1,14 @@
 //PRODUCT
 
-export const DOMAIN = 'http://49.156.52.71:6699';
-export const API = '/api/v1';
-export const URL = DOMAIN + API;
+// export const DOMAIN = 'http://49.156.52.71:6699';
+// export const API = '/api/v1';
 
 // DEVELOPMENT
 
-// export const DOMAIN = 'http://localhost:6699';
-// export const API = '/api/v1';
-// export const URL = DEVELOPMENT_API_DOMAIN + DEVELOPMENT_API;
+export const DOMAIN = 'http://localhost:6699';
+export const API = '/api/v1';
+
+export const URL = DOMAIN + API;
 
 // CATEGORY
 export const CATEGORIES_FETCH_START = 'CATEGORIES_FETCH_START';
