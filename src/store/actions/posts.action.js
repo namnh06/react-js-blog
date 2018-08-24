@@ -115,12 +115,13 @@ export const postDeletedRestored = post => {
   };
 };
 
-export const postCreateStart = post => {
+export const postCreateStart = data => {
+  console.log(data.get('post'));
   return dispatch => {
-    return axios.post('posts', post).then(response => {
+    return axios.post('posts', data).then(response => {
       if (response.data.status === 200) {
         const post = response.data.data.post;
-        dispatch(postCreated(post));
+        dispatch(created(post));
       } else {
         return null;
       }
@@ -128,25 +129,25 @@ export const postCreateStart = post => {
   };
 };
 
-export const postCreated = post => {
+export const created = post => {
   return {
     type: POST_CREATED,
     post
   };
 };
 
-export const postUpdateStart = post => {
+export const postUpdateStart = (id, data) => {
   return dispatch => {
-    return axios.put(`posts/${post.id}`, post).then(response => {
+    return axios.post(`posts/${id}`, data).then(response => {
       if (response.data.status === 200) {
         const post = response.data.data.post;
-        dispatch(postUpdated(post));
+        dispatch(updated(post));
       }
     });
   };
 };
 
-export const postUpdated = data => {
+export const updated = data => {
   return {
     type: POST_UPDATED,
     data

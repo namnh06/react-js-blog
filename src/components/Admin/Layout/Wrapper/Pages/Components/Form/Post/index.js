@@ -3,10 +3,12 @@ import Input from '../../Form/Details/Input';
 import Button from '../../../../../../../UI/Button';
 import HelpText from '../../Form/Details/HelpText';
 import { connect } from 'react-redux';
-
+import Title from '../../../Components/Form/TitleForm';
 import validator from 'validator';
 import EditorComponent from './ReactDraftWYSIWYG';
 import TextArea from '../../../../../../../UI/TextArea';
+import axios from '../../../../../../../../helpers/axios.config';
+import htmlToDraft from 'html-to-draftjs';
 import {
   renderTypeString,
   isCreateType,
@@ -20,14 +22,19 @@ import {
   unshiftDataToArray
 } from '../../../../../../../../helpers';
 import { postForm, tempData } from '../../../../../../../../helpers/seed-data';
-import { postCreateStart } from '../../../../../../../../store/actions/posts.action';
+import {
+  postCreateStart,
+  postUpdateStart
+} from '../../../../../../../../store/actions/posts.action';
 
 import Figure from './Figure';
 
 import CheckBox from '../../../../../../../UI/CheckBox';
 import { categoriesFetchStart } from '../../../../../../../../store/actions/admin/categories.action';
+import { DOMAIN } from '../../../../../../../../helpers/constants';
 class index extends Component {
   state = {
+    isAddImageToEditor: null,
     postForm: {
       ...postForm
     },
@@ -35,11 +42,40 @@ class index extends Component {
       ...this.props.postFormEdit
     },
     isSaveButtonAllowed: null,
-    tempData
+    tempData,
+    content: null
   };
 
+  componentDidMount() {
+    if (!!this.props.postFormEdit) {
+      const categories = this.props.postFormEdit.categories.map(category => {
+        return category.id;
+      });
+      const nameCategories = this.props.postFormEdit.categories.map(
+        category => {
+          return category.name;
+        }
+      );
+      const images = this.props.postFormEdit.images.map(image => {
+        return {
+          path: DOMAIN + image.path,
+          data: image
+        };
+      });
+
+      this.setState(prevState => ({
+        tempData: {
+          ...prevState.tempData,
+          categories,
+          nameCategories,
+          images
+        }
+      }));
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.postFormEdit, nextProps.postFormEdit);
+    console.log(this.props, nextProps);
     return isCreateType(this.props.type)
       ? null
       : this.checkChangeFormEdit(nextProps);
@@ -53,8 +89,8 @@ class index extends Component {
           ...nextProps.postFormEdit
         }
       }));
-    } else {
-      this.props.onFormEditToggleClicked();
+      // } else {
+      // this.props.onFormEditToggleClicked();
     }
   };
 
@@ -81,8 +117,8 @@ class index extends Component {
       this.setState(prevState => {
         const isSaveButtonAllowed =
           !!isValidTitle(title) &&
-          !!prevState.postFormEdit.isValidDescription &&
-          !!prevState.postFormEdit.isValidContent;
+          !!isValidDescription(prevState.postFormEdit.description) &&
+          !validator.isEmpty(prevState.postFormEdit.content);
 
         return {
           postFormEdit: {
@@ -119,51 +155,14 @@ class index extends Component {
       this.setState(prevState => {
         const isSaveButtonAllowed =
           !!isValidDescription(description) &&
-          !!prevState.postFormEdit.isValidTitle &&
-          !!prevState.postFormEdit.isValidContent;
+          !!isValidTitle(prevState.postFormEdit.title) &&
+          !validator.isEmpty(prevState.postFormEdit.content);
 
         return {
           postFormEdit: {
             ...prevState.postFormEdit,
             description,
             isValidDescription: isValidDescription(description)
-          },
-          isSaveButtonAllowed
-        };
-      });
-    }
-  };
-
-  onInputTextEditorPostChangeHandler = html => {
-    const content = html;
-    if (isCreateType(this.props.type)) {
-      this.setState(prevState => {
-        const isSaveButtonAllowed =
-          !validator.isEmpty(content) &&
-          !!prevState.postForm.isValidDescription &&
-          !!prevState.postForm.isValidTitle;
-
-        return {
-          postForm: {
-            ...prevState.postForm,
-            content,
-            isValidContent: !validator.isEmpty(content)
-          },
-          isSaveButtonAllowed
-        };
-      });
-    } else {
-      this.setState(prevState => {
-        const isSaveButtonAllowed =
-          !validator.isEmpty(content) &&
-          !!prevState.postFormEdit.isValidDescription &&
-          !!prevState.postFormEdit.isValidTitle;
-
-        return {
-          postFormEdit: {
-            ...prevState.postFormEdit,
-            content,
-            isValidContent: !validator.isEmpty(content)
           },
           isSaveButtonAllowed
         };
@@ -239,12 +238,23 @@ class index extends Component {
     }
   };
 
-  onCheckBoxCategoryClickHandler = event => {
+  onCategoryClickHandler = event => {
     const options = event.target.selectedOptions;
     const categories = Object.keys(options).map((key, index) => {
       return options[key].value;
     });
-
+    const nameCategories = Object.keys(options).map((key, index) => {
+      return options[key].label;
+    });
+    this.setState(prevState => {
+      return {
+        tempData: {
+          ...prevState.tempData,
+          categories,
+          nameCategories
+        }
+      };
+    });
     if (isCreateType(this.props.type)) {
       this.setState(prevState => {
         return {
@@ -254,55 +264,172 @@ class index extends Component {
           }
         };
       });
+    } else {
+      this.setState(prevState => {
+        return {
+          postForm: {
+            ...prevState.postFormEdit,
+            categories
+          }
+        };
+      });
     }
+  };
 
-    //     // console.log(prevState.postForm.categories, value);
-    //     const categories = [
-    //       ...new Set(pushDataToArray(prevState.postForm.categories, value))
-    //     ];
-    //     // console.log(categories);
-    //     return {
-    //       postForm: {
-    //         ...prevState.postForm,
-    //         categories
-    //       }
-    //     };
-    //   });
+  onInputTextEditorPostChangeHandler = html => {
+    const content = html;
+    if (isCreateType(this.props.type)) {
+      this.setState(prevState => {
+        const isSaveButtonAllowed =
+          !validator.isEmpty(content) &&
+          !!prevState.postForm.isValidDescription &&
+          !!prevState.postForm.isValidTitle;
 
-    // } else {
-    //   this.setState(prevState => {
-    //     return {
-    //       postForm: {
-    //         ...prevState.postForm,
-    //         categories: removeDataFromArrayByValue(
-    //           prevState.postForm.categories,
-    //           value
-    //         )
-    //       }
-    //     };
-    //   });
-    // }
-    // }
+        return {
+          postForm: {
+            ...prevState.postForm,
+            content,
+            isValidContent: !validator.isEmpty(content)
+          },
+          isSaveButtonAllowed
+        };
+      });
+    } else {
+      this.setState(prevState => {
+        const isSaveButtonAllowed =
+          !validator.isEmpty(content) &&
+          !!isValidDescription(prevState.postFormEdit.description) &&
+          !!isValidTitle(prevState.postFormEdit.title);
+
+        return {
+          postFormEdit: {
+            ...prevState.postFormEdit,
+            content,
+            isValidContent: !validator.isEmpty(content)
+          },
+          isSaveButtonAllowed
+        };
+      });
+    }
+    this.setState({
+      isAddImageToEditor: false
+    });
+  };
+
+  onAddToEditorButtonClickHandler = file => {
+    let formData = new FormData();
+    formData.append('image', file);
+    if (isCreateType(this.props.type)) {
+      console.log('whoops 318 create');
+      return axios
+        .post('/images', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then(response => {
+          const image = response.data.data.image;
+          const imageHTML = `<p><img src="${DOMAIN + image.path}" alt="${
+            image.alt
+          }"></image></p>`;
+          this.setState(prevState => {
+            const content = imageHTML + prevState.postForm.content;
+            const isSaveButtonAllowed =
+              !validator.isEmpty(content) &&
+              !!prevState.postForm.isValidDescription &&
+              !!prevState.postForm.isValidTitle;
+
+            return {
+              isAddImageToEditor: true,
+              postForm: {
+                ...prevState.postForm,
+                content,
+                isValidContent: !validator.isEmpty(content)
+              },
+              isSaveButtonAllowed
+            };
+          });
+        });
+    } else {
+      if (!!file.hasOwnProperty('id')) {
+        const image = file;
+        const imageHTML = `<p><img src="${DOMAIN + file.path}" alt="${
+          image.alt
+        }"></image></p>`;
+        this.setState(prevState => {
+          const content = imageHTML + prevState.postFormEdit.content;
+          const isSaveButtonAllowed =
+            !validator.isEmpty(content) &&
+            !!isValidDescription(prevState.postFormEdit.description) &&
+            !!isValidTitle(prevState.postFormEdit.title);
+
+          return {
+            isAddImageToEditor: true,
+            postFormEdit: {
+              ...prevState.postFormEdit,
+              content,
+              isValidContent: !validator.isEmpty(content)
+            },
+            isSaveButtonAllowed
+          };
+        });
+      } else {
+        return axios
+          .post('/images', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+          .then(response => {
+            const image = response.data.data.image;
+            const imageHTML = `<p><img src="${DOMAIN + image.path}" alt="${
+              image.alt
+            }"></image></p>`;
+            this.setState(prevState => {
+              const content = imageHTML + prevState.postFormEdit.content;
+              const isSaveButtonAllowed =
+                !validator.isEmpty(content) &&
+                !!isValidDescription(prevState.postFormEdit.description) &&
+                !!isValidTitle(prevState.postFormEdit.title);
+              return {
+                isAddImageToEditor: true,
+                postFormEdit: {
+                  ...prevState.postFormEdit,
+                  content,
+                  isValidContent: !validator.isEmpty(content)
+                },
+                isSaveButtonAllowed
+              };
+            });
+          });
+      }
+    }
   };
 
   onFormPostSubmitHandler = event => {
     event.preventDefault();
     let formData = new FormData();
     this.state.tempData.images.map(image => {
-      return formData.append('images[]', image.data);
+      return !image.id && formData.append('images[]', image.data);
     });
     if (isCreateType(this.props.type)) {
       const post = {
         ...this.state.postForm
       };
       formData.append('post', JSON.stringify(post));
+      console.log(formData);
       this.props.createStart(formData);
+      this.props.onFormToggleClicked();
     } else {
-      const { name, id } = this.state.postFormEdit;
-      this.props.postEditStart(id, { name });
+      const post = {
+        ...this.state.postFormEdit
+      };
+      let formData = new FormData();
+      formData.append('post', JSON.stringify(post));
+      formData.append('_method', 'PUT');
+      this.props.updateStart(post.id, formData);
+      this.props.onFormEditToggleClicked();
     }
-
-    this.props.onFormToggleClicked();
   };
 
   onResetFormHandler = () => {
@@ -328,19 +455,11 @@ class index extends Component {
         onSubmit={this.onFormPostSubmitHandler}
         className="Admin__Wrapper__Post__Form border rounded-0 p-3 pb-0 m-3"
       >
-        <div className="form-group d-flex justify-content-between border-bottom p-2 m-0">
-          <h5 className="text-uppercase">
-            {renderTypeString(this.props.type)} post form
-          </h5>
-
-          <Button
-            type="reset"
-            className="btn btn-sm btn-warning mx-1"
-            clicked={this.onResetButtonClicked}
-          >
-            reset
-          </Button>
-        </div>
+        <Title
+          type={this.props.type}
+          page={this.props.page}
+          onResetButtonClick={this.onResetButtonClicked}
+        />
 
         <div className="form-group mb-0">
           <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2">
@@ -410,108 +529,98 @@ class index extends Component {
           </div>
         </div>
 
-        <div className="form-group mb-0">
-          <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2">
-            {/* {(isCreateType(this.props.type)
-              ? this.state.postForm.isValidDescription !== null &&
-                !this.state.postForm.isValidDescription
-              : this.state.postFormEdit.isValidDescription !== null &&
-                !this.state.postFormEdit.isValidDescription) &&
-              helpTextRequire(
-                'post description',
-                'alphabet and at least 5 characters'
-              )} */}
-          </HelpText>
-          <div className="input-group">
-            <div className="custom-file Admin__Wrapper__Post__Form__Image-Upload--height">
-              <Input
-                type="file"
-                style={{ zIndex: '99' }}
-                className="custom-file-input form-control rounded-0 h-100"
-                onChange={this.onInputImageUploadPostChangeHandler}
-                id="post-image"
-                ariaDescribedby="post-image"
-              />
-              <label className="custom-file-label h-100" htmlFor="post-image">
-                Image
-              </label>
+        <div className="form-group d-flex mb-0">
+          <div className="input-group d-flex flex-column justify-content-between w-25 mr-3">
+            <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2" />
+            <div className="mr-3 w-100 ">
+              <span className="font-weight-bold">Category</span> : &nbsp;
+              {!!this.state.tempData.nameCategories &&
+                this.state.tempData.nameCategories.join(', ')}
+              <select
+                className="custom-select"
+                multiple={true}
+                value={this.state.tempData.categories}
+                onChange={event => this.onCategoryClickHandler(event)}
+              >
+                {Object.keys(this.props.categories).map((key, index) => {
+                  const category = this.props.categories[key];
+                  return (
+                    <CheckBox key={key} index={index + 1} id={category.id}>
+                      {category.name}
+                    </CheckBox>
+                  );
+                })}
+              </select>
             </div>
+            <HelpText>
+              hold Ctrl + Left-Click to choose multiple selection
+            </HelpText>
           </div>
-        </div>
 
-        {this.state.tempData.images && (
-          <div className="d-flex flex-row my-2 Admin__Wrapper__Post__Form__image">
-            {Object.keys(this.state.tempData.images).map((key, index) => {
-              const image = this.state.tempData.images[key];
+          <div className="input-group d-flex flex-column justify-content-between w-25 mx-3">
+            <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2" />
+            <div className="mr-3 w-100 text-center">
+              {!!this.state.tempData.images &&
+              !!this.state.tempData.images.length ? (
+                <div className="d-flex flex-row my-2 Admin__Wrapper__Post__Form__image">
+                  {Object.keys(this.state.tempData.images).map((key, index) => {
+                    const image = this.state.tempData.images[key];
 
-              return (
-                <Figure
-                  alt=""
-                  src={image.path}
-                  key={index + 1}
-                  caption={image.data.name}
-                  main={index === 0}
-                  onClickedRemoveImage={_ =>
-                    this.onButtonRemoveImageClickHandler(image.path)
-                  }
-                  onClickedMakeMainImage={_ =>
-                    this.onButtonMakeMainImageClickHandler(image, index)
-                  }
+                    return (
+                      <Figure
+                        alt=""
+                        src={image.path}
+                        key={index + 1}
+                        caption={image.data.name}
+                        main={index === 0}
+                        onClickedRemoveImage={_ =>
+                          this.onButtonRemoveImageClickHandler(image.path)
+                        }
+                        onClickedMakeMainImage={_ =>
+                          this.onButtonMakeMainImageClickHandler(image, index)
+                        }
+                        onAddToEditorButtonClicked={_ => {
+                          this.onAddToEditorButtonClickHandler(image.data);
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              ) : (
+                'No Image Preview'
+              )}
+            </div>
+            <HelpText>
+              <div className="custom-file h-100">
+                <Input
+                  type="file"
+                  style={{ zIndex: '99' }}
+                  className="custom-file-input form-control rounded-0 h-100"
+                  onChange={this.onInputImageUploadPostChangeHandler}
+                  id="post-image"
+                  ariaDescribedby="post-image"
                 />
-              );
-            })}
+                <label
+                  className="custom-file-label Admin__Image__Preview__File__Label h-100 d-flex align-items-center"
+                  htmlFor="post-image"
+                >
+                  Choose Image Preview
+                </label>
+              </div>
+            </HelpText>
           </div>
-        )}
-
-        <div className="form-group mb-0">
-          <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2">
-            {/* {(isCreateType(this.props.type)
-              ? this.state.postForm.isValidDescription !== null &&
-                !this.state.postForm.isValidDescription
-              : this.state.postFormEdit.isValidDescription !== null &&
-                !this.state.postFormEdit.isValidDescription) &&
-              helpTextRequire(
-                'post description',
-                'alphabet and at least 5 characters'
-              )} */}
-          </HelpText>
-          {/* <div className="input-group"> */}
-          <label className="mr-3">
-            Category :
-            <select
-              className="custom-select"
-              multiple={true}
-              value={this.state.categories}
-              onChange={event => this.onCheckBoxCategoryClickHandler(event)}
-            >
-              {Object.keys(this.props.categories).map((key, index) => {
-                const category = this.props.categories[key];
-                return (
-                  <CheckBox
-                    key={key}
-                    index={index + 1}
-                    checked={this.state.postForm.categories[category.id]}
-                    onCheckBoxClicked={event =>
-                      this.onCheckBoxCategoryClickHandler(event)
-                    }
-                    {...category}
-                  >
-                    {category.name}
-                  </CheckBox>
-                );
-              })}
-            </select>
-          </label>
-          <HelpText>
-            hold Ctrl + Left-Click to choose multiple selection
-          </HelpText>
         </div>
-        {/* </div> */}
 
         <div className="form-group mb-0">
           <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2" />
           <div className="input-group">
             <EditorComponent
+              content={
+                isCreateType(this.props.type)
+                  ? this.state.postForm.content
+                  : this.state.postFormEdit.content
+              }
+              update={this.state.isAddImageToEditor}
               onUpdateTextEditor={this.onInputTextEditorPostChangeHandler}
             />
           </div>
@@ -553,8 +662,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createStart: post => dispatch(postCreateStart(post)),
-    categoriesFetchStart: _ => dispatch(categoriesFetchStart())
+    createStart: data => dispatch(postCreateStart(data)),
+    categoriesFetchStart: _ => dispatch(categoriesFetchStart()),
+    updateStart: (id, data) => dispatch(postUpdateStart(id, data))
   };
 };
 

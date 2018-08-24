@@ -39,7 +39,7 @@ class index extends Component {
                 className="btn btn-outline-dark bg-yellow-cz-custom rounded-0 text-dark text-uppercase mt-3 font-weight-bold"
                 clicked={this.props.onButtonSignUpClicked}
               >
-                login now
+                sign in now
               </Button>
             </div>
           </div>

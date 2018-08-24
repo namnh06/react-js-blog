@@ -9594,6 +9594,7 @@ a.text-dark:hover, a.text-dark:focus {
       -ms-grid-row-align: center;
       align-self: center;
   margin: 5px auto;
+  width: 100%;
 }
 
 .Carousel__Visited--slogan {
@@ -9669,15 +9670,24 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.Admin__Image__Preview__File__Label::after {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .Admin__Wrapper {
   font-size: 1.3rem !important;
 }
 
-.Admin__Wrapper__Categories__List:hover {
+.Admin__Wrapper__List:hover {
   background-color: var(--light);
 }
 
-.Admin__Wrapper__Categories__List div {
+.Admin__Wrapper__List div {
   width: 100%;
   border-right: 1px solid #dee2e6;
   display: -webkit-box;
@@ -9693,82 +9703,16 @@ a.text-dark:hover, a.text-dark:focus {
   overflow: hidden;
 }
 
-.Admin__Wrapper__Categories__List div:first-child {
+.Admin__Wrapper__List div:first-child {
   width: 20%;
 }
 
-.Admin__Wrapper__Categories__List div:last-child {
+.Admin__Wrapper__List div:last-child {
   width: 75%;
   border-right: none;
 }
 
-.Admin__Wrapper__Categories__List__Header {
-  font-weight: bold;
-}
-
-.Admin__Wrapper__Users__List:hover {
-  background-color: var(--light);
-}
-
-.Admin__Wrapper__Users__List div {
-  width: 100%;
-  border-right: 1px solid #dee2e6;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 5px 0;
-  overflow: hidden;
-}
-
-.Admin__Wrapper__Users__List div:first-child {
-  width: 20%;
-}
-
-.Admin__Wrapper__Users__List div:last-child {
-  width: 75%;
-  border-right: none;
-}
-
-.Admin__Wrapper__Users__List__Header {
-  font-weight: bold;
-}
-
-.Admin__Wrapper__Posts__List:hover {
-  background-color: var(--light);
-}
-
-.Admin__Wrapper__Posts__List div {
-  width: 100%;
-  border-right: 1px solid #dee2e6;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 5px 0;
-  overflow: hidden;
-}
-
-.Admin__Wrapper__Posts__List div:first-child {
-  width: 20%;
-}
-
-.Admin__Wrapper__Posts__List div:last-child {
-  width: 75%;
-  border-right: none;
-}
-
-.Admin__Wrapper__Posts__List__Header {
+.Admin__Wrapper__List__Header {
   font-weight: bold;
 }
 
@@ -9798,24 +9742,24 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .Admin__Wrapper__Post__Form__Image-Upload--height {
-  height: 40px;
+  height: 3rem;
 }
 
-.Admin__Wrapper__User__Form__create--in {
+.Admin__User__Form__create--in {
   -webkit-animation: fadeIn 1s;
           animation: fadeIn 1s;
 }
 
-.Admin__Wrapper__User__Form__notice--height {
+.Admin__User__Form__notice--height {
   height: 1rem;
 }
 
-.Admin__Wrapper__Category__Form__create--in {
+.Admin__Category__Form__create--in {
   -webkit-animation: fadeIn 1s;
           animation: fadeIn 1s;
 }
 
-.Admin__Wrapper__Category__Form__notice--height {
+.Admin__Category__Form__notice--height {
   height: 1rem;
 }
 
@@ -9945,10 +9889,25 @@ a.text-dark:hover, a.text-dark:focus {
 html,
 body {
   height: 100vh;
+  font-size: 62.5%;
 }
 
-html {
-  font-size: 62.5%;
+@media (min-width: 576px) {
+  html html {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  html html {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 992px) {
+  html html {
+    font-size: 1.6rem;
+  }
 }
 
 body {

@@ -114,7 +114,7 @@ export const updateDataToArrayById = (array, data) => {
     if (item.id !== data.id) {
       return item;
     }
-    console.log('whoops');
+
     return {
       ...item,
       ...data

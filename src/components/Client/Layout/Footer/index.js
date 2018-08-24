@@ -56,8 +56,7 @@ const index = props => {
           <div className="text-white">
             <i className="fas fa-address-book" />
             <span className="ml-1">
-              &nbsp;&#x02010;&nbsp;
-              {props.information[4].value}
+              &nbsp;&#x02010;&nbsp; ABN : {props.information[4].value}
             </span>
           </div>
           <div className="text-white">
@@ -88,14 +87,14 @@ const index = props => {
         </div>
       </div>
       <div className="d-flex flex-row bg-secondary">
-        <div className="col-12">
-          <p className="text-center text-uppercase pt-2 text-white">
+        <div className="col-12 d-flex justify-content-center">
+          <small className="text-uppercase pt-2 text-white Default--font-size-1-3 mb-2">
             COPYRIGHT 2018 CRASHZONE IT'S FREE | ALL RIGHTS RESERVED | POWERED
             BY&nbsp;
             <a href="pageworth.com" className="text-warning">
               PAGEWORTH
             </a>
-          </p>
+          </small>
         </div>
       </div>
     </div>

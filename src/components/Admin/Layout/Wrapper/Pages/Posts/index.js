@@ -57,24 +57,9 @@ const index = class extends Component {
     this.props.deletedRestoreStart(id);
   };
 
-  // export const postForm = {
-  //   title: '',
-  //   isValidTitle: null,
-  //   description: '',
-  //   isValidDescription: null,
-  //   content: '',
-  //   isValidContent: null,
-  //   categories: []
-  // };
 
   onButtonEditClickHandler = post => {
-    // if (
-    //   this.state.postFormEdit === null ||
-    //   (this.state.postFormEdit !== null &&
-    //     post.id !== this.state.postFormEdit.id)
-    // ) {
-    //   console.log(post);
-    const { id, title, description, content, categories } = post;
+    const { id, title, description, content, categories, images } = post;
     this.setState(prevState => {
       return {
         ...prevState,
@@ -85,14 +70,12 @@ const index = class extends Component {
           description,
           isValidDescription: isValidDescription(description),
           content,
-          categories
+          categories,
+          images
         }
       };
     });
     this.props.onFormEditToggleClicked(true);
-    // } else {
-    //   this.props.onFormEditToggleClicked();
-    // }
   };
 
   render() {

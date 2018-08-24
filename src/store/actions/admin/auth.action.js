@@ -50,12 +50,12 @@ export const authRefreshToken = token => {
 export const authStartLogOut = () => {
   return dispatch => {
     axios.post('/logout').then(response => {
-      if (response.data.status === 200) {
-        axios.defaults.headers.Authorization = null;
-        localStorage.removeItem('cz.token');
-        dispatch(authLogOut());
-        dispatch(clientLogOut());
-      }
+      // if (response.data.status === 200) {
+      axios.defaults.headers.Authorization = null;
+      localStorage.removeItem('cz.token');
+      dispatch(authLogOut());
+      dispatch(clientLogOut());
+      // }
     });
   };
 };

@@ -6,12 +6,14 @@ import { postUpdateStart } from '../../../../../../../../store/actions/posts.act
 class index extends React.Component {
   statusUpdate = event => {
     const status = event.target.checked ? 'publish' : 'draft';
+    let formData = new FormData();
     const post = {
       id: this.props.id,
       status
     };
-
-    this.props.postUpdateStart(post);
+    formData.append('post', JSON.stringify(post));
+    formData.append('_method', 'PUT');
+    this.props.postUpdateStart(post.id, formData);
   };
   render() {
     return (
@@ -59,7 +61,7 @@ class index extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  postUpdateStart: post => dispatch(postUpdateStart(post))
+  postUpdateStart: (id, post) => dispatch(postUpdateStart(id, post))
 });
 
 export default connect(

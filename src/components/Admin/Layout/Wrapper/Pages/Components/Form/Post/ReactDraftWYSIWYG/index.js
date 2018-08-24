@@ -1,21 +1,55 @@
 import React, { Component } from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
+import {
+  EditorState,
+  convertToRaw,
+  convertFromRaw,
+  ContentState,
+  SelectionState,
+  Modifier
+} from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 import '../../../../../../../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './styles.css';
 import { connect } from 'react-redux';
 import axios from '../../../../../../../../../helpers/axios.config';
 
-import { URL } from '../../../../../../../../../helpers/constants';
+import { DOMAIN } from '../../../../../../../../../helpers/constants';
 class EditorComponent extends Component {
-  state = {
-    editorState: EditorState.createEmpty()
-  };
+  constructor(props) {
+    super(props);
+    if (!!props.content) {
+      const contentBlock = htmlToDraft(props.content);
+      const contentState = ContentState.createFromBlockArray(
+        contentBlock.contentBlocks
+      );
+      const editorState = EditorState.createWithContent(contentState);
+      this.state = {
+        editorState
+      };
+    } else {
+      const editorState = EditorState.createEmpty();
+      this.state = {
+        editorState
+      };
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!!nextProps.update) {
+      const contentBlock = htmlToDraft(nextProps.content);
+      const contentState = ContentState.createFromBlockArray(
+        contentBlock.contentBlocks
+      );
+      const editorState = EditorState.createWithContent(contentState);
+      this.setState({ editorState });
+    }
+  }
 
   onEditorStateChange = editorState => {
-    this.setState({ editorState });
     const html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    this.setState({ editorState });
     this.props.onUpdateTextEditor(html);
   };
 
@@ -32,7 +66,7 @@ class EditorComponent extends Component {
       .then(response => {
         return {
           data: {
-            link: URL + response.data.data.image.path
+            link: DOMAIN + response.data.data.image.path
           }
         };
       });
