@@ -116,7 +116,6 @@ export const postDeletedRestored = post => {
 };
 
 export const postCreateStart = data => {
-  console.log(data.get('post'));
   return dispatch => {
     return axios.post('posts', data).then(response => {
       if (response.data.status === 200) {

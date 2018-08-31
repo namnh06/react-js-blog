@@ -141,7 +141,7 @@ export const childrenOfListHeader = (type, { name, slug, clicked }) => {
       return (
         <a
           href="/#"
-          className="nav-link text-dark py-0 border border-dark bg-yellow-cz-custom px-5 text-capitalize"
+          className="nav-link text-dark py-0 pl-2 border border-dark bg-yellow-cz-custom text-capitalize"
           onClick={event => {
             event.preventDefault();
             clicked();
@@ -159,12 +159,12 @@ export const childrenOfListHeader = (type, { name, slug, clicked }) => {
               : 'http://www.crashzone.com.au/forum/viewforum.php?f=2'
           }
           rel="noopener noreferrer"
-          className="nav-link text-dark py-0"
+          className="nav-link text-dark py-0 pl-2 "
         >
           {name}
         </a>
       ) : (
-        <Anchor href={slug} className="nav-link text-dark py-0">
+        <Anchor href={slug} className="nav-link text-dark py-0 pl-2 ">
           {name}
         </Anchor>
       );
@@ -372,4 +372,12 @@ export const isCreateType = type => {
 
 export const isEditType = type => {
   return type.toUpperCase().includes('EDIT');
+};
+
+export const isPostValid = ({ content, description, title }) => {
+  return (
+    !validator.isEmpty(content) &&
+    !!isValidDescription(description) &&
+    !!isValidTitle(title)
+  );
 };

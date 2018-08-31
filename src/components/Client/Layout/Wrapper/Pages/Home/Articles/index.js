@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './styles.css';
+// import './styles.css';
 import { postsFetchStart } from '../../../../../../../store/actions/posts.action';
 import Post from '../../../../Post';
 
@@ -13,37 +13,62 @@ class index extends Component {
   }
   render() {
     return (
-      <div className="container mt-5 Home-Articles px-0 border-top">
-        <div className="d-flex flex-row">
+      <div className="container-fluid bg-light Client__Articles py-5 ">
+        <div className="row">
           <div className="col-12">
-            <h1 className="Home-Articles__text w-100 text-center mb-4">
-              Latest News
-            </h1>
-            <div className="card-deck ">
-              {this.props.posts &&
-                Object.keys(this.props.posts.slice(0, 3)).map((key, index) => {
-                  const post = this.props.posts[key];
-                  return <Post {...post} key={index} index={index + 1} />;
-                })}
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <div className="Client__Articles__Text w-100 text-center font-weight-bold mx-3 h1 text-uppercase">
+                    Latest News
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12">
+                  <div className="card-deck my-5 d-none d-lg-flex">
+                    {this.props.posts &&
+                      Object.keys(this.props.posts.slice(0, 3)).map(
+                        (key, index) => {
+                          const post = this.props.posts[key];
+                          return (
+                            <Post {...post} key={index} index={index + 1} />
+                          );
+                        }
+                      )}
+                  </div>
+                  <div className="card-deck my-5 d-block d-md-flex d-lg-none">
+                    {this.props.posts &&
+                      Object.keys(this.props.posts.slice(0, 2)).map(
+                        (key, index) => {
+                          const post = this.props.posts[key];
+                          return (
+                            <Post {...post} key={index} index={index + 1} />
+                          );
+                        }
+                      )}
+                  </div>
+                </div>
+              </div>
+              <div className="row mt-3">
+                <div className="col-3 col-md-4 d-flex align-items-center ">
+                  <div className="Client__Articles__Dash bg-dark w-100" />
+                </div>
+                <div className="col-6 col-md-4  d-flex justify-content-center">
+                  <button
+                    onClick={_ => {
+                      return this.props.history.push('/blog');
+                    }}
+                    className="btn btn-lg btn-block btn-outline-dark rounded-0 bg-yellow-cz-custom text-uppercase Client__Articles__button"
+                  >
+                    view all articles
+                  </button>
+                </div>
+                <div className="col-3 col-md-4 d-flex align-items-center ">
+                  <div className="Client__Articles__Dash bg-dark w-100" />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="d-flex flex-row mt-3">
-          <div className="col-4 d-flex align-items-center">
-            <div className="Home-Articles__dash bg-dark w-100" />
-          </div>
-          <div className="col-4 d-flex justify-content-center">
-            <button
-              onClick={_ => {
-                return this.props.history.push('/blog');
-              }}
-              className="btn btn-lg btn-block btn-outline-dark rounded-0 bg-yellow-cz-custom text-uppercase Home-Articles__button"
-            >
-              view all articles
-            </button>
-          </div>
-          <div className="col-4 d-flex align-items-center">
-            <div className="Home-Articles__dash bg-dark w-100" />
           </div>
         </div>
       </div>

@@ -5,7 +5,9 @@ import FormGroup from '../Details/FormGroup';
 import HelpText from '../../../../Details/HelpText';
 import Input from '../Details/Input';
 import Title from '../Details/Title';
-
+import BottomSection from '../Details/BottomSection';
+import ButtonSection from '../Details/ButtonSection';
+import ContentSection from '../Details/ContentSection';
 import {
   helpTextRequire,
   isValidEmail,
@@ -14,7 +16,7 @@ import {
   isValidPassword,
   textRequireName
 } from '../../../../../helpers';
-import FakeLink from '../../../../Details/FakeLink';
+
 import { userForm } from '../../../../../helpers/seed-data';
 class index extends Component {
   state = {
@@ -102,80 +104,84 @@ class index extends Component {
 
   render() {
     return (
-      <form action="" className="Client__Form__Sign-Up__form border bg-light ">
+      <form action="" className="Client__Form__form--width border bg-light ">
         <Title>Sign Up</Title>
-        <FormGroup>
-          <HelpText className="Client__Form__Sign-Up__form__notice m-0">
-            {this.state.userForm.isValidName !== null &&
-              !this.state.userForm.isValidName &&
-              textRequireName()}
-          </HelpText>
-          <Input
-            name="name"
-            type="text"
-            className={addInputValidClass(this.state.userForm.isValidName)}
-            value={this.state.userForm.name}
-            onInputChange={event => this.onInputNameChanged(event)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <HelpText className="Client__Form__Sign-Up__form__notice m-0">
-            {this.state.userForm.isValidEmail !== null &&
-              !this.state.userForm.isValidEmail &&
-              helpTextRequire(
-                'user email',
-                'email format. E.g : nam@autointegrity.com.au'
+        <ContentSection>
+          <FormGroup>
+            <HelpText className="Client__Form__Sign-Up__form__notice m-0">
+              {this.state.userForm.isValidName !== null &&
+                !this.state.userForm.isValidName &&
+                textRequireName()}
+            </HelpText>
+            <Input
+              name="name"
+              type="text"
+              className={addInputValidClass(this.state.userForm.isValidName)}
+              value={this.state.userForm.name}
+              onInputChange={event => this.onInputNameChanged(event)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <HelpText className="Client__Form__Sign-Up__form__notice m-0">
+              {this.state.userForm.isValidEmail !== null &&
+                !this.state.userForm.isValidEmail &&
+                helpTextRequire(
+                  'user email',
+                  'email format. E.g : nam@autointegrity.com.au'
+                )}
+            </HelpText>
+            <Input
+              name="email"
+              type="email"
+              className={addInputValidClass(this.state.userForm.isValidEmail)}
+              value={this.state.userForm.email}
+              onInputChange={event => this.onInputEmailChanged(event)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <HelpText className="Client__Form__Sign-Up__form__notice m-0">
+              {this.state.userForm.isValidPassword !== null &&
+                !this.state.userForm.isValidPassword &&
+                helpTextRequire(
+                  'user email',
+                  'at least 5 ASCII characters. E.g : hello@123 '
+                )}
+            </HelpText>
+            <Input
+              name="password"
+              type="password"
+              className={addInputValidClass(
+                this.state.userForm.isValidPassword
               )}
-          </HelpText>
-          <Input
-            name="email"
-            type="email"
-            className={addInputValidClass(this.state.userForm.isValidEmail)}
-            value={this.state.userForm.email}
-            onInputChange={event => this.onInputEmailChanged(event)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <HelpText className="Client__Form__Sign-Up__form__notice m-0">
-            {this.state.userForm.isValidPassword !== null &&
-              !this.state.userForm.isValidPassword &&
-              helpTextRequire(
-                'user email',
-                'at least 5 ASCII characters. E.g : hello@123 '
+              onInputChange={event => this.onInputPasswordChanged(event)}
+              value={this.state.userForm.password}
+            />
+          </FormGroup>
+          <FormGroup>
+            <HelpText className="Client__Form__Sign-Up__form__notice m-0">
+              {this.state.userForm.isValidRePassword !== null &&
+                (!this.state.userForm.isValidRePassword ||
+                  this.state.userForm.password !==
+                    this.state.userForm.rePassword) &&
+                helpTextRequire(
+                  'user email',
+                  'at least 5 ASCII characters & same to password. E.g : hello@123 '
+                )}
+            </HelpText>
+            <Input
+              name="re-password"
+              type="password"
+              className={addInputValidClass(
+                this.state.userForm.isValidRePassword &&
+                  this.state.userForm.password ===
+                    this.state.userForm.rePassword
               )}
-          </HelpText>
-          <Input
-            name="password"
-            type="password"
-            className={addInputValidClass(this.state.userForm.isValidPassword)}
-            onInputChange={event => this.onInputPasswordChanged(event)}
-            value={this.state.userForm.password}
-          />
-        </FormGroup>
-        <FormGroup>
-          <HelpText className="Client__Form__Sign-Up__form__notice m-0">
-            {this.state.userForm.isValidRePassword !== null &&
-              (!this.state.userForm.isValidRePassword ||
-                this.state.userForm.password !==
-                  this.state.userForm.rePassword) &&
-              helpTextRequire(
-                'user email',
-                'at least 5 ASCII characters & same to password. E.g : hello@123 '
-              )}
-          </HelpText>
-          <Input
-            name="re-password"
-            type="password"
-            className={addInputValidClass(
-              this.state.userForm.isValidRePassword &&
-                this.state.userForm.password === this.state.userForm.rePassword
-            )}
-            onInputChange={event => this.onInputRePasswordChanged(event)}
-            value={this.state.userForm.rePassword}
-          />
-        </FormGroup>
-
-        <div className="d-flex justify-content-center pt-3 mt-3">
+              onInputChange={event => this.onInputRePasswordChanged(event)}
+              value={this.state.userForm.rePassword}
+            />
+          </FormGroup>
+        </ContentSection>
+        {/* <div className="d-flex justify-content-center pt-3 mt-3">
           <Button
             type="submit"
             className={`btn btn-sm btn-success mx-2 ${
@@ -192,14 +198,23 @@ class index extends Component {
           >
             cancel
           </Button>
-        </div>
-        <hr />
-        <div className="d-flex flex-column align-items-end text-muted mx-3 pb-3">
+        </div> */}
+        <ButtonSection
+          isSaveButtonAllowed={this.state.isSaveButtonAllowed}
+          onClicked={this.props.onButtonSignUpClicked}
+        >
+          sign up
+        </ButtonSection>
+        {/* <hr /> */}
+        <BottomSection onClicked={this.props.onButtonLogInClicked}>
+          Wanna Sign In ?
+        </BottomSection>
+        {/* <div className="d-flex flex-column align-items-end text-muted mx-3 pb-3">
           <FakeLink>Forget Password ?</FakeLink>
           <FakeLink clicked={this.props.onButtonLogInClicked}>
             Wanna Log In ?
           </FakeLink>
-        </div>
+        </div> */}
       </form>
     );
   }

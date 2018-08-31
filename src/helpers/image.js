@@ -37,14 +37,21 @@ const slides = [
 ];
 
 export const threePartSlides = () => {
-  const arraySlide = [];
-  for (let i = 0; i < slides.length / 3; i++) {
-    const randNumber = Math.floor(Math.random() * slides.length);
-
-    const slide = slides.splice(randNumber, 1);
-
-    arraySlide.push(slide);
+  const tempSlides = [...slides];
+  const arraySlides = [];
+  for (let i = 0; i < tempSlides.length / (tempSlides.length / 3); i++) {
+    const randNumber = Math.floor(Math.random() * tempSlides.length);
+    const slide = tempSlides.splice(randNumber, 1);
+    arraySlides.push(slide);
   }
+  return arraySlides;
+};
+
+export const onePartSlides = () => {
+  const arraySlide = [];
+  const randNumber = Math.floor(Math.random() * slides.length);
+  const slide = slides[randNumber];
+  arraySlide.push(slide);
   return arraySlide;
 };
 

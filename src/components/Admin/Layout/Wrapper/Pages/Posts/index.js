@@ -57,7 +57,6 @@ const index = class extends Component {
     this.props.deletedRestoreStart(id);
   };
 
-
   onButtonEditClickHandler = post => {
     const { id, title, description, content, categories, images } = post;
     this.setState(prevState => {
@@ -94,6 +93,7 @@ const index = class extends Component {
           </Button>
         </div>
 
+        {/* form create */}
         {this.props.formToggle && (
           <div>
             <FormPost
@@ -105,6 +105,7 @@ const index = class extends Component {
           </div>
         )}
 
+        {/* form edit */}
         {this.props.formEditToggle && (
           <div>
             <FormPost

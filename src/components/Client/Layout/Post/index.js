@@ -6,17 +6,17 @@ import LinkToArticle from '../../../UI/LinkToArticle';
 import { DOMAIN } from '../../../../helpers/constants';
 const index = props => {
   const imageStyle = {
-    width: 'auto',
-    height: '200px',
     backgroundImage: `url(${(!!props.images[0] &&
       `${DOMAIN + props.images[0].path}`) ||
-      logoImage()})`,
-    backgroundPosition: 'center'
+      logoImage()})`
   };
   return (
-    <div className="card w-100 mb-2">
+    <div className="card mb-3 mb-md-0">
       <LinkToArticle slug={props.slug}>
-        <div className="card-img-top p-3" style={imageStyle} />
+        <div
+          className="Client__Article__Preview-Image card-img-top p-3"
+          style={imageStyle}
+        />
       </LinkToArticle>
       <div className="card-body border-top d-flex flex-column justify-content-between">
         <h2 className="card-title">

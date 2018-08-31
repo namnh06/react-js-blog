@@ -13,6 +13,7 @@ class index extends React.Component {
       case CLIENT_PAGES_NAME.HOME:
         return (
           <Home
+            onButtonLogInClicked={props.onButtonLogInClicked}
             onButtonSignUpClicked={props.onButtonSignUpClicked}
             isScroll={props.isScroll}
           />

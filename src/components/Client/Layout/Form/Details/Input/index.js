@@ -4,7 +4,7 @@ const index = props => {
   return (
     <div className="input-group">
       <div className="input-group-prepend w-25">
-        <span className="input-group-text w-100 text-uppercase rounded-0">
+        <span className="Client__Form__form--font-size input-group-text w-100 text-uppercase rounded-0">
           {props.name}
         </span>
       </div>

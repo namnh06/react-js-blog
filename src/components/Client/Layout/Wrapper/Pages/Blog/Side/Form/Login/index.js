@@ -10,18 +10,17 @@ class index extends React.Component {
       <form
         action=""
         onSubmit={this.onFormSubmitHandler}
-        className="rounded-0 border mb-3"
+        className="Client__Carousel__Visited__Login-Form d-flex flex-column justify-content-between rounded-0 border w-100 mb-lg-2"
       >
         <div className="form-group m-0 d-flex justify-content-center align-items-center border-bottom bg-yellow-cz-custom">
           <h3 className="text-center my-3 text-uppercase">Sign In</h3>
         </div>
 
-        <div className="form-group row m-3">
+        <div className="form-group row m-3 mt-4 mt-lg-5">
           <div className="input-group">
             <input
               type="email"
               className="form-control rounded-0"
-              id="email"
               placeholder="Email ..."
             />
           </div>
@@ -31,25 +30,19 @@ class index extends React.Component {
             <input
               type="password"
               className="form-control rounded-0"
-              id="password"
               placeholder="Password ..."
             />
           </div>
         </div>
 
-        <div className="form-group d-flex justify-content-between m-3 pb-3 border-bottom">
+        <div className="form-group d-flex justify-content-between m-3 pb-3 ">
           <div className="form-check d-flex align-items-center">
-            <input
-              className="form-check-input position-relative"
-              type="checkbox"
-              name=""
-              id="js-remember-me"
-            />
             <label
               className="mb-0 Default--font-size-1-3"
               htmlFor="js-remember-me"
             >
-              Remember Me
+              <input className="form-check-input" type="checkbox" name="" />
+              <span className="pl-2">Remember Me</span>
             </label>
           </div>
           <button className="btn btn-sm bg-yellow-cz-custom border rounded-0">
@@ -57,11 +50,13 @@ class index extends React.Component {
           </button>
         </div>
 
-        <div className="form-group row m-3 d-flex justify-content-between">
-          <FakeLink className="text-muted">Forget password ?</FakeLink>
+        <div className="form-group row m-2 pt-2 d-flex justify-content-between border-top">
+          <FakeLink className="text-muted text-capitalize">
+            Forget password ?
+          </FakeLink>
           <FakeLink
-            className="text-muted"
-            clicked={this.props.onButtonSignUpClicked}
+            className="text-muted text-capitalize"
+            clicked={this.props.onButtonLogInClicked}
           >
             Wanna Sign Up ?
           </FakeLink>

@@ -19,7 +19,8 @@ import {
   pushDataToArray,
   removeDuplicateObjectInArrayByProperty,
   removeDataFromArrayByProperty,
-  unshiftDataToArray
+  unshiftDataToArray,
+  isPostValid
 } from '../../../../../../../../helpers';
 import { postForm, tempData } from '../../../../../../../../helpers/seed-data';
 import {
@@ -186,12 +187,18 @@ class index extends Component {
             imagesArray,
             'path'
           );
+          const isSaveButtonAllowed = isPostValid(
+            isCreateType(this.props.type)
+              ? prevState.postForm
+              : prevState.postFormEdit
+          );
 
           return {
             ...prevState.tempData,
             tempData: {
               images
-            }
+            },
+            isSaveButtonAllowed
           };
         });
       };
@@ -228,11 +235,17 @@ class index extends Component {
           imagesArray,
           'path'
         );
+        const isSaveButtonAllowed = isPostValid(
+          isCreateType(this.props.type)
+            ? prevState.postForm
+            : prevState.postFormEdit
+        );
         return {
           ...prevState.tempData,
           tempData: {
             images
-          }
+          },
+          isSaveButtonAllowed
         };
       });
     }
@@ -266,11 +279,16 @@ class index extends Component {
       });
     } else {
       this.setState(prevState => {
+        const isSaveButtonAllowed =
+          !validator.isEmpty(prevState.postFormEdit.content) &&
+          !!isValidDescription(prevState.postFormEdit.description) &&
+          !!isValidTitle(prevState.postFormEdit.title);
         return {
-          postForm: {
+          postFormEdit: {
             ...prevState.postFormEdit,
             categories
-          }
+          },
+          isSaveButtonAllowed
         };
       });
     }
@@ -409,22 +427,26 @@ class index extends Component {
   onFormPostSubmitHandler = event => {
     event.preventDefault();
     let formData = new FormData();
-    this.state.tempData.images.map(image => {
-      return !image.id && formData.append('images[]', image.data);
+
+    this.state.tempData.images.map((image, index) => {
+      return formData.append(
+        'images[' + index + ']',
+        !!image.data.id ? JSON.stringify(image.data) : image.data
+      );
     });
     if (isCreateType(this.props.type)) {
       const post = {
         ...this.state.postForm
       };
       formData.append('post', JSON.stringify(post));
-      console.log(formData);
+
       this.props.createStart(formData);
       this.props.onFormToggleClicked();
     } else {
       const post = {
         ...this.state.postFormEdit
       };
-      let formData = new FormData();
+
       formData.append('post', JSON.stringify(post));
       formData.append('_method', 'PUT');
       this.props.updateStart(post.id, formData);

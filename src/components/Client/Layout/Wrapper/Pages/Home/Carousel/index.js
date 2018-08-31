@@ -4,17 +4,23 @@ import { threePartSlides } from '../../../../../../../helpers/image';
 import Button from '../../../../../../Details/Button';
 import Slide from './Slide';
 class index extends Component {
-  state = {};
+  state = {
+    slides: []
+  };
   componentDidMount() {
-  
+    const slides = [...threePartSlides()];
     this.setState({
-      slides: [...threePartSlides()]
+      slides
     });
   }
 
   render() {
     return (
-      <div className={['container-fluid p-0 Carousel'].join(' ')}>
+      <div
+        className={['d-none d-md-block container-fluid p-0 Carousel '].join(
+          ' '
+        )}
+      >
         <div className="d-flex flex-row h-100">
           <div className="col-12 p-0">
             <div
@@ -23,7 +29,7 @@ class index extends Component {
               data-ride="carousel"
             >
               <ol className="carousel-indicators Carousel-incaditors">
-                {this.state.slides &&
+                {!!this.state.slides &&
                   this.state.slides.map((key, index) => {
                     return (
                       <li

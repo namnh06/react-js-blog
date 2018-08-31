@@ -1,14 +1,14 @@
 import React from 'react';
 import footerImage from '../../../../assets/images/footer/footer_slide-1.png';
-import './styles.css';
+
 import Button from '../../../Details/Button';
 import Brand from '../../../UI/Brand';
 import { connect } from 'react-redux';
 const index = props => {
   return (
-    <div className="container-fluid Footer p-0">
+    <div className="container-fluid Client__Footer p-0">
       <div
-        className="d-flex flex-row Footer__top--background-image align-items-center"
+        className="d-flex flex-row Client__Footer__top--background-image align-items-center"
         style={{ backgroundImage: `url(${footerImage})` }}
       >
         <div className="col-6 d-flex flex-column ">
@@ -21,7 +21,7 @@ const index = props => {
         </div>
         <div className="col-6">
           <Button
-            className="btn btn-lg rounded-0 text-uppercase Footer__top__button"
+            className="btn btn-lg rounded-0 text-uppercase Client__Footer__top__button"
             clicked={props.onButtonSignUpClicked}
           >
             sign up now
@@ -31,8 +31,8 @@ const index = props => {
           </p>
         </div>
       </div>
-      <div className="d-flex flex-row bg-dark Footer__middle">
-        <div className="col-5 pl-5 py-3">
+      <div className="d-flex flex-row bg-dark Client__Footer__middle">
+        <div className="d-none d-md-block col-md-5 pl-5 py-3">
           <div className="d-flex mb-3">
             <Brand
               link={props.information[1].value}
@@ -40,12 +40,14 @@ const index = props => {
               textColor="text-white"
             />
           </div>
-          <p className="text-white">{props.information[2].value}</p>
-          <Button className="btn btn-lg rounded-0 text-uppercase Footer__middle__button">
+          <p className="text-white text-capitalize">
+            {props.information[2].value}
+          </p>
+          <Button className="btn btn-lg rounded-0 text-uppercase Client__Footer__middle__button">
             learn more
           </Button>
         </div>
-        <div className="col-5 py-3 d-flex flex-column justify-content-between Footer__contact">
+        <div className="col-8 col-md-5 py-3 d-flex flex-column justify-content-between Client__Footer__contact">
           <div className="text-white">
             <i className="fas fa-home" />
             <span className="ml-1">
@@ -81,14 +83,14 @@ const index = props => {
             </span>
           </div>
         </div>
-        <div className="col-2 py-3 text-white Footer__social-network">
+        <div className="col-4 col-md-2 py-3 text-white Client__Footer__social-network">
           <i className="fab fa-facebook-square fa-3x" />
           <i className="fab fa-twitter-square fa-3x" />
         </div>
       </div>
       <div className="d-flex flex-row bg-secondary">
         <div className="col-12 d-flex justify-content-center">
-          <small className="text-uppercase pt-2 text-white Default--font-size-1-3 mb-2">
+          <small className="text-uppercase pt-2 text-white mb-2 Client__Footer__Text-Bottom">
             COPYRIGHT 2018 CRASHZONE IT'S FREE | ALL RIGHTS RESERVED | POWERED
             BY&nbsp;
             <a href="pageworth.com" className="text-warning">
