@@ -19,19 +19,27 @@ class index extends React.Component {
   render() {
     return (
       <Fragment>
-        {!!this.state.visited && parseInt(this.state.visited, 10) < 2 ? (
-          <Fragment>
-            <Carousel
-              onButtonSignUpClicked={this.props.onButtonSignUpClicked}
+        <div className="d-none d-lg-block">
+          {!!this.state.visited && parseInt(this.state.visited, 10) < 2 ? (
+            <Fragment>
+              <Carousel
+                onButtonSignUpClicked={this.props.onButtonSignUpClicked}
+              />
+              <Ribbon
+                onButtonSignUpClicked={this.props.onButtonSignUpClicked}
+              />
+            </Fragment>
+          ) : (
+            <CarouselVisited
+              onButtonLogInClicked={this.props.onButtonLogInClicked}
             />
-            <Ribbon onButtonSignUpClicked={this.props.onButtonSignUpClicked} />
-          </Fragment>
-        ) : (
+          )}
+        </div>
+        <div className="d-block d-lg-none">
           <CarouselVisited
-            onButtonSignUpClicked={this.props.onButtonSignUpClicked}
+            onButtonLogInClicked={this.props.onButtonLogInClicked}
           />
-        )}
-
+        </div>
         <Articles />
         <Feature />
       </Fragment>

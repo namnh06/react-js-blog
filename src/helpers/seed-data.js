@@ -6,7 +6,7 @@ export const initPost = {};
 export const initMenus = [];
 export const initAuth = {};
 export const initInformation = [];
-export const tempData = { images: [], checkedCategories: [] };
+export const tempData = { images: [], nameCategories: [], categories: [] };
 
 export const categoryForm = {
   name: '',

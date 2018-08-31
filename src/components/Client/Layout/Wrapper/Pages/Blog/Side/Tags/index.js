@@ -3,21 +3,23 @@ import { connect } from 'react-redux';
 import { tagsFetchStart } from '../../../../../../../../store/actions/tags.action';
 class index extends React.Component {
   componentDidMount() {
-    this.props.fetchStart();
+    if (this.props.tags.length === 0) {
+      this.props.fetchStart();
+    }
   }
   render() {
     return (
       <div className="my-3 border-bottom">
         <h3>Tags</h3>
         <div className="">
-          {this.props.items &&
-            Object.keys(this.props.items)
+          {this.props.tags &&
+            Object.keys(this.props.tags)
               .slice(0, 30)
               .map((key, index) => {
-                const item = this.props.items[key];
+                const tag = this.props.tags[key];
                 return (
                   <a className="mx-1 badge badge-primary text-light" key={key}>
-                    {item.name}
+                    {tag.name}
                   </a>
                 );
               })}
@@ -29,7 +31,7 @@ class index extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    items: state.tags.current
+    tags: state.tags.current
   };
 };
 const mapDispatchToProps = dispatch => ({

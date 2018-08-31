@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const index = props => {
   return (
     <Fragment>
-      <Link to="/home" className="Client__Brand__anchor w-100">
-        <div className="d-flex justify-content-center py-3">
+      <Link to="/home" className="Client__Brand__anchor">
+        <div className="d-flex justify-content-center">
           <Picture
             className={['Client__Brand__img--height align-self-center'].join(
               ' '
@@ -14,17 +14,14 @@ const index = props => {
             src={logoImage()}
           />
           <div className="d-flex flex-column ml-3 justify-content-center w-100">
-            {/* <h1
+            <span
               className={[
-                'font-italic font-weight-bold text-uppercase mb-0',
-                props.textColor,
-                props.isScroll && 'd-none'
+                'Client__Brand__Name text-uppercase',
+                props.textColor
               ].join(' ')}
             >
-              <span>{props.slogan}</span>
-            </h1> */}
-
-            <h1 className={props.textColor}>{props.link}</h1>
+              {props.link}
+            </span>
           </div>
         </div>
       </Link>

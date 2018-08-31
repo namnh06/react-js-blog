@@ -17,35 +17,36 @@ class index extends Component {
     return (
       <div
         id="js-nav-bar"
-        className={[
-          'container-fluid bg-light Client__Navigation-Bar fixed-top'
-        ].join(' ')}
+        className={'container-fluid Client__Navigation-Bar fixed-top'}
       >
         <div className="row h-100">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light py-0 w-100 h-100">
-            <div className="navbar-brand d-flex align-items-center h-100">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light w-100 h-100 p-0 px-lg-3">
+            <div className="col-10 col-lg-3 navbar-brand d-flex align-items-center h-100 mx-0">
               <Brand
                 link={this.props.information[1].value}
                 slogan="it's free"
                 textColor="text-dark"
               />
             </div>
-            <button
-              className="navbar-toggler collapsed bg-secondary border border-yellow-cz-custom"
-              type="button"
-              data-toggle="collapse"
-              data-target="#js-navbar-collapse"
-              aria-controls="js-navbar-collapse"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <i className="fa fa-bars button--bars-black" />
-            </button>
+            <div className="d-flex d-lg-none col-2 justify-content-end">
+              <button
+                className="navbar-toggler collapsed Client__Navigation-Bar__Button border border-dark rounded-0"
+                type="button"
+                data-toggle="collapse"
+                data-target="#js-navbar-collapse"
+                aria-controls="js-navbar-collapse"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i className="fa fa-bars fa-2x text-dark" />
+              </button>
+            </div>
+
             <div
-              className="navbar-collapse collapse justify-content-end h-100"
+              className="collapse navbar-collapse col-lg-9"
               id="js-navbar-collapse"
             >
-              <ul className="navbar-nav Client__Navigation-Bar__list h-100 d-flex align-items-lg-center ml-auto py-md-3 align-items-md-start border-md-top border-lg-top-0">
+              <ul className="navbar-nav Client__Navigation-Bar__list ml-auto py-3">
                 {!!this.props.menus.length && (
                   <Fragment>
                     {Object.keys(this.props.menus).map((pos, index) => {

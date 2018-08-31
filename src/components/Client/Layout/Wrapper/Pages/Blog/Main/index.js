@@ -20,7 +20,9 @@ class index extends Component {
     if (this.props.categorySlug) {
       this.props.postsCategoryFetchStart(this.props.categorySlug);
     } else {
-      this.props.postsFetchStart();
+      if (this.props.posts.length === 0) {
+        this.props.postsFetchStart();
+      }
     }
   }
   render() {

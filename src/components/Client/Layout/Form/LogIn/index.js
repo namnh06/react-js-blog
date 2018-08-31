@@ -16,6 +16,10 @@ import Axios from 'axios';
 
 import FakeLink from '../../../../Details/FakeLink';
 import moment from 'moment';
+import Title from '../Details/Title';
+import BottomSection from '../Details/BottomSection';
+import ButtonSection from '../Details/ButtonSection';
+import ContentSection from '../Details/ContentSection';
 class index extends Component {
   state = {
     userForm: { ...userForm }
@@ -100,57 +104,75 @@ class index extends Component {
     return (
       <form
         action=""
-        className="Client__Form__Sign-Up__form border bg-light"
+        className="Client__Form__form--width d-flex flex-column border bg-light"
         onSubmit={event => this.onSubmittedHandler(event)}
       >
-        <div className="border-bottom py-3 px-5 d-flex align-content-center justify-content-center ">
-          <h2 className="text-uppercase">log in</h2>
-        </div>
-
-        <FormGroup>
-          <HelpText className="Client__Form__Sign-Up__form__notice m-0">
-            {this.state.userForm.isValidName !== null &&
-              !this.state.userForm.isValidName &&
-              helpTextRequire(
-                'user name',
-                'alphabet and at least 2 characters'
+        <Title>sign in</Title>
+        <ContentSection>
+          <FormGroup>
+            <HelpText className="Client__Form__Sign-Up__form__notice m-0">
+              {this.state.userForm.isValidName !== null &&
+                !this.state.userForm.isValidName &&
+                helpTextRequire(
+                  'user name',
+                  'alphabet and at least 2 characters'
+                )}
+            </HelpText>
+            <Input
+              name="name"
+              type="text"
+              id="LoginDiv_UserName"
+              className={addInputValidClass(this.state.userForm.isValidName)}
+              value={this.state.userForm.name}
+              onInputChange={event => this.onInputNameChanged(event)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <HelpText className="Client__Form__Sign-Up__form__notice m-0">
+              {this.state.userForm.isValidPassword !== null &&
+                !this.state.userForm.isValidPassword &&
+                helpTextRequire(
+                  'user email',
+                  'at least 3 ASCII characters. E.g : hello@123 '
+                )}
+            </HelpText>
+            <Input
+              name="password"
+              type="password"
+              id="LoginDiv_Password"
+              className={addInputValidClass(
+                this.state.userForm.isValidPassword
               )}
-          </HelpText>
-          <Input
-            name="name"
-            type="text"
-            id="LoginDiv_UserName"
-            className={addInputValidClass(this.state.userForm.isValidName)}
-            value={this.state.userForm.name}
-            onInputChange={event => this.onInputNameChanged(event)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <HelpText className="Client__Form__Sign-Up__form__notice m-0">
-            {this.state.userForm.isValidPassword !== null &&
-              !this.state.userForm.isValidPassword &&
-              helpTextRequire(
-                'user email',
-                'at least 3 ASCII characters. E.g : hello@123 '
-              )}
-          </HelpText>
-          <Input
-            name="password"
-            type="password"
-            id="LoginDiv_Password"
-            className={addInputValidClass(this.state.userForm.isValidPassword)}
-            onInputChange={event => this.onInputPasswordChanged(event)}
-            value={this.state.userForm.password}
-          />
-        </FormGroup>
+              onInputChange={event => this.onInputPasswordChanged(event)}
+              value={this.state.userForm.password}
+            />
+          </FormGroup>
 
-        <FormGroup>
-          <label htmlFor="chkRememberMe">
-            <input name="remember" type="checkbox" id="chkRememberMe" />
-            <small>Remember me ?</small>
-          </label>
-        </FormGroup>
-        <div className="d-flex justify-content-center pt-3">
+          <FormGroup className="mt-4">
+            <div className="form-check px-0">
+              <label
+                className="d-flex align-items-center"
+                htmlFor="chkRememberMe"
+              >
+                <input
+                  className=""
+                  name="remember"
+                  type="checkbox"
+                  id="chkRememberMe"
+                />
+                <small className="pl-2">Remember me ?</small>
+              </label>
+            </div>
+          </FormGroup>
+        </ContentSection>
+
+        <ButtonSection
+          isSaveButtonAllowed={this.state.isSaveButtonAllowed}
+          onClicked={this.props.onButtonLogInClicked}
+        >
+          log in
+        </ButtonSection>
+        {/* <div className="d-flex justify-content-center py-3">
           <Button
             type="submit"
             className={`btn btn-sm btn-success mx-2 ${
@@ -167,15 +189,18 @@ class index extends Component {
           >
             cancel
           </Button>
-        </div>
-        <hr />
-        <div className="d-flex flex-column align-items-end text-muted mx-5 pb-3">
+        </div> */}
+
+        {/* <div className="d-flex flex-column align-items-end text-muted mx-5">
           <FakeLink>Forget Password ?</FakeLink>
 
           <FakeLink clicked={this.props.onButtonSignUpClicked}>
             Wanna Sign Up ?
           </FakeLink>
-        </div>
+        </div> */}
+        <BottomSection onClicked={this.props.onButtonSignUpClicked}>
+          Wanna Sign Up ?
+        </BottomSection>
       </form>
     );
   }

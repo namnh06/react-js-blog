@@ -10,22 +10,26 @@ import czIPhoneImage from '../../../../assets/images/feature/getting-started/iPh
 import czUsingIpadImage from '../../../../assets/images/feature/getting-started/cz-using-ipad.jpg';
 import czUsingIpadMiniImage from '../../../../assets/images/feature/getting-started/iPad-mini.jpg';
 import cmccDocument from '../../../../assets/documents/Crashzone-Membership-Code-of-Conduct-20141.pdf';
-import './styles.css';
+// import './styles.css';
 const index = () => {
   return (
-    <div className="container mt-5 border-top Feature">
-      <div className="d-flex flex-row justify-content-center m-3 mb-5 ">
-        <h2 className="text-center text-uppercase">what is crashzone ?</h2>
+    <div className="container py-5 Client__Feature">
+      <div className="row">
+        <div className="col-12 mb-5">
+          <div className="text-center text-uppercase h1 font-weight-bold Client__Feature__Text">
+            what is crashzone ?
+          </div>
+        </div>
       </div>
-      <div className="d-flex flex-row">
+      <div className="row">
         <ul
-          className="nav nav-tabs flex-column col-lg-4 col-md-4 col-sm-4"
+          className="nav nav-tabs border-0 flex-column col-lg-4 col-md-4 col-sm-4"
           id="featureTab"
           role="tablist"
         >
           <li className="nav-item mb-3 text-left">
             <a
-              className="nav-link text-uppercase Feature__list__anchor active"
+              className="nav-link text-uppercase Client__Feature__list__anchor active"
               id="crashzone-system-tab"
               data-toggle="tab"
               href="#crashzone-system"
@@ -38,7 +42,7 @@ const index = () => {
           </li>
           <li className="nav-item mb-3 text-left">
             <a
-              className="nav-link text-uppercase Feature__list__anchor"
+              className="nav-link text-uppercase Client__Feature__list__anchor"
               id="insurance-tab"
               data-toggle="tab"
               href="#insurance"
@@ -51,7 +55,7 @@ const index = () => {
           </li>
           <li className="nav-item mb-3 text-left">
             <a
-              className="nav-link text-uppercase Feature__list__anchor"
+              className="nav-link text-uppercase Client__Feature__list__anchor"
               id="feature-tab"
               data-toggle="tab"
               href="#getting-started"
@@ -64,7 +68,7 @@ const index = () => {
           </li>
           <li className="nav-item mb-3 text-left">
             <a
-              className="nav-link text-uppercase Feature__list__anchor"
+              className="nav-link text-uppercase Client__Feature__list__anchor"
               id="ccrn-tab"
               data-toggle="tab"
               href="#ccrn"
@@ -134,7 +138,7 @@ const index = () => {
               &#x02010; Create your own no obligation Crashzone system by
               following step :
             </p>
-            <ol className="Feature__getting-started__list">
+            <ol className="Client__Feature__getting-started__list">
               <li>
                 On the top right of the page click the SIGN UP button, a sign up
                 form will be appear:
@@ -203,7 +207,7 @@ const index = () => {
             <hr />
 
             <h3>Frequently asked questions</h3>
-            <ol className="Feature__getting-started__list">
+            <ol className="Client__Feature__getting-started__list">
               <li>
                 <strong>Q</strong>. Is Crashzone owned by an insurance company?
                 <br />
@@ -222,9 +226,9 @@ const index = () => {
                 <strong>Q</strong>. Can I download Crashzone on to my computer?
                 <br />
                 <strong>A</strong>. Crashzone is web based; you don’t need to
-                download any software. To use Crashzone go to&nbsp;<a href="http://www.crashzone.com.au/">
-                  www.crashzone.com.au
-                </a>&nbsp;and login using your email address and password.
+                download any software. To use Crashzone go to&nbsp;
+                <a href="http://www.crashzone.com.au/">www.crashzone.com.au</a>
+                &nbsp;and login using your email address and password.
               </li>
               <li>
                 <strong>Q</strong>. Can I backup my quotes with Crashzone?
@@ -236,7 +240,7 @@ const index = () => {
               </li>
             </ol>
             <hr />
-            <ul className="Feature__getting-started__list list-unstyled">
+            <ul className="Client__Feature__getting-started__list list-unstyled">
               <li>
                 <strong>&#x02010; Crashzone main page</strong>
                 <a href={czMainPageImage} target="_blank">
@@ -335,13 +339,16 @@ const index = () => {
               As the smash repair industry rocks with the waves of change
               created from the PSR networks and establishment of larges MSO’s,
               &nbsp;one new network has arisen that puts the local community at
-              the top of its work providers. Crashzones&nbsp;<strong>
+              the top of its work providers. Crashzones&nbsp;
+              <strong>
                 <em>“Community Repairer Network”</em>
-              </strong>&nbsp;(<strong>C&nbsp; CRN</strong>) will provide via its
-              200 strong members just what it’s name suggests, an
-              &nbsp;Australia wide community of repairers with a common goal of
-              repairing damaged vehicles to standards that are allied with the
-              community’s expectations.
+              </strong>
+              &nbsp;(
+              <strong>C&nbsp; CRN</strong>) will provide via its 200 strong
+              members just what it’s name suggests, an &nbsp;Australia wide
+              community of repairers with a common goal of repairing damaged
+              vehicles to standards that are allied with the community’s
+              expectations.
             </p>
             <p>
               Through alliances will provide technical data suppliers and

@@ -44,9 +44,7 @@ const index = props => {
   return (
     <li
       className={[
-        'Admin__Wrapper__' +
-          capitalizeFirstLetter(props.page) +
-          '__List d-flex flex-row justify-content-around border ',
+        'Admin__Wrapper__List d-flex flex-row justify-content-around border ',
         props.last ? 'border-bottom' : 'border-bottom-0'
       ].join(' ')}
     >
