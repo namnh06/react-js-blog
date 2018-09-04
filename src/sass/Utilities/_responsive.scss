@@ -40,6 +40,9 @@
       }
     }
   }
+  .Contact-Content {
+    height: 400px;
+  }
 }
 
 @include media-breakpoint-up(md) {
@@ -68,7 +71,7 @@
         left: 10%;
       }
       &__Login-Form {
-        height: 100%;
+        // height: 100%;
       }
       &__Ads {
         & img {
@@ -86,6 +89,9 @@
         }
       }
     }
+  }
+  .Contact-Content {
+    height: 400px;
   }
 }
 @include media-breakpoint-up(lg) {
@@ -114,7 +120,7 @@
         left: 10%;
       }
       &__Login-Form {
-        height: 100%;
+        // height: 100%;
       }
       &__Ads {
         & img {
@@ -132,6 +138,9 @@
         }
       }
     }
+  }
+  .Contact-Content {
+    height: 400px;
   }
 }
 @include media-breakpoint-up(xl) {
@@ -160,7 +169,7 @@
         left: 10%;
       }
       &__Login-Form {
-        height: auto;
+        // height: auto;
       }
       &__Ads {
         & img {
@@ -179,13 +188,16 @@
       }
     }
   }
-  @include media-breakpoint-up(xxl) {
-    .Client {
-      &__Form {
-        &__form {
-          &--width {
-            width: 30%;
-          }
+  .Contact-Content {
+    height: 500px;
+  }
+}
+@include media-breakpoint-up(xxl) {
+  .Client {
+    &__Form {
+      &__form {
+        &--width {
+          width: 30%;
         }
       }
     }

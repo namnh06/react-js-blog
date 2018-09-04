@@ -32,7 +32,7 @@ const index = props => {
         </div>
       </div>
       <div className="d-flex flex-row bg-dark Client__Footer__middle">
-        <div className="d-none d-md-block col-md-5 pl-5 py-3">
+        <div className="d-none d-lg-block col-lg-5 pl-5 py-3">
           <div className="d-flex mb-3">
             <Brand
               link={props.information[1].value}
@@ -47,7 +47,7 @@ const index = props => {
             learn more
           </Button>
         </div>
-        <div className="col-8 col-md-5 py-3 d-flex flex-column justify-content-between Client__Footer__contact">
+        <div className="col-8 col-lg-5 py-3 d-flex flex-column justify-content-between Client__Footer__contact">
           <div className="text-white">
             <i className="fas fa-home" />
             <span className="ml-1">
@@ -83,7 +83,7 @@ const index = props => {
             </span>
           </div>
         </div>
-        <div className="col-4 col-md-2 py-3 text-white Client__Footer__social-network">
+        <div className="col-4 col-lg-2 py-3 text-white Client__Footer__social-network">
           <i className="fab fa-facebook-square fa-3x" />
           <i className="fab fa-twitter-square fa-3x" />
         </div>

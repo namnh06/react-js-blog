@@ -7,7 +7,7 @@ const index = () => {
   return (
     <Fragment>
       <Banner bannerImage={helpImage} title="help" />
-      <Video />
+      {/* <Video /> */}
       <HelpContent />
     </Fragment>
   );

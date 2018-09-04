@@ -10501,6 +10501,19 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.Banner__image {
+  max-height: 800px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.Banner__text {
+  position: absolute !important;
+  z-index: 999;
+  top: 20%;
+  left: 50%;
+}
+
 .Admin__Image__Preview__File__Label::after {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10739,6 +10752,9 @@ a.text-dark:hover, a.text-dark:focus {
   .Client__Footer__top--background-image {
     min-height: 200px;
   }
+  .Contact-Content {
+    height: 400px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -10760,9 +10776,6 @@ a.text-dark:hover, a.text-dark:focus {
     top: 60%;
     left: 10%;
   }
-  .Client__Carousel__Visited__Login-Form {
-    height: 100%;
-  }
   .Client__Carousel__Visited__Ads img {
     width: 75% !important;
   }
@@ -10771,6 +10784,9 @@ a.text-dark:hover, a.text-dark:focus {
   }
   .Client__Footer__top--background-image {
     min-height: 300px;
+  }
+  .Contact-Content {
+    height: 400px;
   }
 }
 
@@ -10793,9 +10809,6 @@ a.text-dark:hover, a.text-dark:focus {
     top: 70%;
     left: 10%;
   }
-  .Client__Carousel__Visited__Login-Form {
-    height: 100%;
-  }
   .Client__Carousel__Visited__Ads img {
     width: 75% !important;
   }
@@ -10804,6 +10817,9 @@ a.text-dark:hover, a.text-dark:focus {
   }
   .Client__Footer__top--background-image {
     min-height: 400px;
+  }
+  .Contact-Content {
+    height: 400px;
   }
 }
 
@@ -10826,9 +10842,6 @@ a.text-dark:hover, a.text-dark:focus {
     top: 70%;
     left: 10%;
   }
-  .Client__Carousel__Visited__Login-Form {
-    height: auto;
-  }
   .Client__Carousel__Visited__Ads img {
     width: 100% !important;
   }
@@ -10838,9 +10851,12 @@ a.text-dark:hover, a.text-dark:focus {
   .Client__Footer__top--background-image {
     min-height: 500px;
   }
+  .Contact-Content {
+    height: 500px;
+  }
 }
 
-@media (min-width: 1200px) and (min-width: 1600px) {
+@media (min-width: 1600px) {
   .Client__Form__form--width {
     width: 30%;
   }

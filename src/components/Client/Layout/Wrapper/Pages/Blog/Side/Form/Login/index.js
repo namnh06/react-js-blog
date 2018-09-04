@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FakeLink from '../../../../../../../../Details/FakeLink';
-class index extends React.Component {
+class index extends Component {
   onFormSubmitHandler = event => {
     event.preventDefault();
   };
@@ -56,7 +56,7 @@ class index extends React.Component {
           </FakeLink>
           <FakeLink
             className="text-muted text-capitalize"
-            clicked={this.props.onButtonLogInClicked}
+            clicked={this.props.onButtonSignUpClicked}
           >
             Wanna Sign Up ?
           </FakeLink>

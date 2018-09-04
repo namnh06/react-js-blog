@@ -13,7 +13,7 @@ const index = props => {
   //   );
   // };
   return (
-    <div className={['card mx-1 my-2', props.className].join(' ')}>
+    <div className={['card my-2 my-md-3', props.className].join(' ')}>
       <div
         className="card-img-top Post__Background-Image"
         style={{

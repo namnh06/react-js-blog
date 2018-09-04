@@ -7,14 +7,14 @@ import Adv from './Adv';
 const index = props => {
   return (
     <Fragment>
-      <Adv />
+      {/* <Adv /> */}
       <FormLogin onButtonSignUpClicked={props.onButtonSignUpClicked} />
       <Search />
-      <Categories />
+      {/* <Categories /> */}
       <Tags />
+      {/* <Adv />
       <Adv />
-      <Adv />
-      <Adv />
+      <Adv /> */}
     </Fragment>
   );
 };

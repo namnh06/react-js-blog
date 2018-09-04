@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import './styles.css';
+
 import contactImage from '../../../../../../assets/images/contact/MenuBanners_Contact-1920x580.jpg';
 import Banner from '../../../Banner';
 const index = () => {
@@ -7,20 +7,22 @@ const index = () => {
     <Fragment>
       <Banner bannerImage={contactImage} title="Contact" />
       <div className="container-fluid Contact-Content px-0">
-        <div className="d-flex flex-row h-100">
-          <div className="col-4 d-flex  align-items-center h-100 bg-secondary px-0">
+        <div className="d-flex flex-column flex-md-row h-100">
+          <div className="d-none d-md-flex col-md-4 align-items-center h-100 bg-secondary px-0">
             <div className="d-flex flex-column text-white pl-5">
               <h1>Crashzone It’s Free Pty.Ltd</h1>
               <span>
-                <i className="fas fa-phone" />&nbsp;&#x02010;&nbsp;02 9011 6647
+                <i className="fas fa-phone" />
+                &nbsp;&#x02010;&nbsp;02 9011 6647
               </span>
               <span>
-                <i className="fas fa-envelope" />&nbsp;&#x02010;&nbsp;support@crashzone.com.au
+                <i className="fas fa-envelope" />
+                &nbsp;&#x02010;&nbsp;support@crashzone.com.au
               </span>
             </div>
           </div>
-          <div className="col-8 py-5">
-            <form className="mx-5 w-50">
+          <div className="col-12 col-md-8 py-5">
+            <form className="mx-5">
               <h4>Get in touch with us</h4>
               <div className="">
                 <p>

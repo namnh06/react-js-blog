@@ -43,10 +43,10 @@ class index extends Component {
             </div>
 
             <div
-              className="collapse navbar-collapse col-lg-9"
+              className="collapse navbar-collapse col-lg-9 px-0"
               id="js-navbar-collapse"
             >
-              <ul className="navbar-nav Client__Navigation-Bar__list ml-auto py-3">
+              <ul className="navbar-nav Client__Navigation-Bar__list ml-auto p-3 bg-light">
                 {!!this.props.menus.length && (
                   <Fragment>
                     {Object.keys(this.props.menus).map((pos, index) => {

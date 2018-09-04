@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import Post from './Post';
+// import Post from './Post';
+import Post from '../../../../Post';
 
 import { connect } from 'react-redux';
 
@@ -29,25 +30,19 @@ class index extends Component {
     return (
       <Fragment>
         <Categories />
-        <span className="badge badge-primary">Primary</span>
-
-        <div className="card-deck mx-0">
-          {this.props.posts &&
-            Object.keys(this.props.posts)
-              .slice(0, 2)
-              .map((key, index) => {
-                const post = this.props.posts[key];
-                return (
-                  <Post
-                    {...post}
-                    key={post.id}
-                    className={index === 0 ? 'ml-0' : 'mr-0'}
-                    index={index + 1}
-                  />
-                );
-              })}
+        <div className="my-2">
+          <span className="badge badge-primary text-uppercase">
+            {!!this.props.categorySlug ? this.props.categorySlug : 'news'}
+          </span>
         </div>
-        <div className="card-groups border-bottom mb-2">
+        <div className="card-groups mx-0">
+          {this.props.posts &&
+            Object.keys(this.props.posts.slice(0, 5)).map((key, index) => {
+              const post = this.props.posts[key];
+              return <Post {...post} key={post.id} index={index + 1} />;
+            })}
+        </div>
+        {/* <div className="card-groups border-bottom mb-2">
           {this.props.posts &&
             Object.keys(this.props.posts)
               .slice(2, Object.keys(this.props.posts).length / 2)
@@ -55,7 +50,7 @@ class index extends Component {
                 const post = this.props.posts[key];
                 return <Post {...post} key={post.id} index={index + 1} />;
               })}
-        </div>
+        </div> */}
       </Fragment>
     );
   }

@@ -6,12 +6,12 @@ import Side from './Side';
 const index = props => {
   return (
     <Fragment>
-      <div className="container my-5">
+      <div className="container my-lg-5">
         <div className="row">
-          <div className="col-8">
+          <div className="col-12 col-lg-8">
             <Main categorySlug={props.categorySlug} />
           </div>
-          <div className="col-4">
+          <div className="d-none d-lg-block col-lg-4">
             <Side onButtonSignUpClicked={props.onButtonSignUpClicked} />
           </div>
         </div>

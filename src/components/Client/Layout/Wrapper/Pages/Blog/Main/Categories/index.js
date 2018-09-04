@@ -11,7 +11,7 @@ class index extends Component {
 
   render() {
     return (
-      <ul className="nav d-flex my-2 list-unstyled justify-content-center border-bottom">
+      <ul className="nav d-flex py-3 list-unstyled justify-content-center border-bottom">
         {Object.keys(this.props.categories).map((key, index) => {
           const category = this.props.categories[key];
           return (

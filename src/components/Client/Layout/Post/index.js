@@ -11,7 +11,7 @@ const index = props => {
       logoImage()})`
   };
   return (
-    <div className="card mb-3 mb-md-0">
+    <div className="card my-3">
       <LinkToArticle slug={props.slug}>
         <div
           className="Client__Article__Preview-Image card-img-top p-3"

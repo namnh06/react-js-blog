@@ -1,7 +1,6 @@
 import React from 'react';
 import Picture from '../../../Details/Picture';
 
-import './styles.css';
 import Button from '../../../Details/Button';
 const index = props => {
   return (

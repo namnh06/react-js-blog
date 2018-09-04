@@ -20,8 +20,8 @@ import chtupFile from '../../../../../../../assets/documents/CRASHZONE-HOW-TO-UP
 const index = () => {
   return (
     <div className="container my-5">
-      <div className="d-flex flex-row">
-        <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <div className="d-flex flex-column flex-lg-row">
+        <div className="col-12 col-lg-7 ">
           <div className="bg-light px-3">
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
@@ -69,7 +69,7 @@ const index = () => {
             </ul>
           </div>
         </div>
-        <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div className="col-12 col-lg-5 ">
           <div className="bg-light px-3">
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
