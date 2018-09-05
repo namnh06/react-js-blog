@@ -139,8 +139,8 @@ const index = class extends Component {
                 clicked={this.onButtonFetchDeletedPosts}
               >
                 {this.state.displayOldData
-                  ? hideStringTemporary('posts')
-                  : displayStringTemporary('posts')}
+                  ? hideStringTemporary('users')
+                  : displayStringTemporary('users')}
               </Button>
             </li>
             {this.state.displayOldData &&

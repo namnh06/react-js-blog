@@ -7,8 +7,8 @@ import { ADMIN_URL_PAGES } from '../../../../../helpers/constants';
 import { fontAwesomeType } from '../../../../../helpers';
 const index = props => {
   return (
-    <div className="col-2 Side-Bar px-0">
-      <ul className="list-unstyled my-0 h-100 bg-secondary position-fixed col-2">
+    <div className="col-lg-2 Side-Bar px-0">
+      <ul className="list-unstyled my-0 h-100 bg-secondary position-fixed col-lg-2">
         <TreeView
           iconType={fontAwesomeType.TACHOMETERALT}
           text="Dash Board"

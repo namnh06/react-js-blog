@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Button from '../../../../Details/Button';
 import FormGroup from '../Details/FormGroup';
 import HelpText from '../../../../Details/HelpText';
 import Input from '../Details/Input';
@@ -14,7 +13,6 @@ import {
 import { userForm } from '../../../../../helpers/seed-data';
 import Axios from 'axios';
 
-import FakeLink from '../../../../Details/FakeLink';
 import moment from 'moment';
 import Title from '../Details/Title';
 import BottomSection from '../Details/BottomSection';

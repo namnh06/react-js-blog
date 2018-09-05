@@ -76,7 +76,7 @@ class index extends Component {
       <ContainerFluid className="px-0 h-100">
         <Row className="h-100">
           <SideBar />
-          <div className="col-10 Admin__Wrapper">
+          <div className="col-lg-10 Admin__Wrapper">
             {this.adminPageRender(this.props.page)}
           </div>
         </Row>

@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { URL } from './constants';
+import { API } from './constants';
 
 const instance = axios.create({
-  baseURL: URL
+  baseURL: API
 });
 
 export default instance;

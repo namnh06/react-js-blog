@@ -8,7 +8,7 @@ import validator from 'validator';
 import EditorComponent from './ReactDraftWYSIWYG';
 import TextArea from '../../../../../../../UI/TextArea';
 import axios from '../../../../../../../../helpers/axios.config';
-import htmlToDraft from 'html-to-draftjs';
+
 import {
   renderTypeString,
   isCreateType,

@@ -77,7 +77,7 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts.current
+  posts: state.posts.current.data
 });
 
 const mapDispatchToProps = dispatch => {

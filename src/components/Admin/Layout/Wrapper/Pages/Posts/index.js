@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-
+import Pagination from '../../../../../UI/Pagination';
 import {
   postDeleteStart,
   postsDeletedFetchStart,
   postDeletePermanentlyStart,
-  postDeletedRestoreStart
+  postDeletedRestoreStart,
+  postsLinkFetchStart
 } from '../../../../../../store/actions/posts.action';
 import FormPost from '../Components/Form/Post';
 import {
@@ -39,6 +40,7 @@ const index = class extends Component {
       this.props.categoriesFetchStart();
     }
   }
+
   onButtonDeleteClickHandler = id => {
     this.props.postDeleteStart(id);
   };
@@ -75,6 +77,10 @@ const index = class extends Component {
       };
     });
     this.props.onFormEditToggleClicked(true);
+  };
+
+  onPagniateClickHandler = link => {
+    return this.props.postsLinkFetchStart(link);
   };
 
   render() {
@@ -122,8 +128,9 @@ const index = class extends Component {
           <ul className="list-unstyled">
             <Header
               page={this.props.page}
-              className={this.props.posts.length === 0 ? '' : 'border-bottom-0'}
+              className={!!this.props.posts ? '' : 'border-bottom-0'}
             />
+
             {this.props.posts &&
               Object.keys(this.props.posts).map((key, index) => {
                 const post = this.props.posts[key];
@@ -144,6 +151,17 @@ const index = class extends Component {
                   </Fragment>
                 );
               })}
+            <li className="Admin__Wrapper__Posts__List py-2">
+              <Pagination
+                onPaginateClicked={link => this.onPagniateClickHandler(link)}
+                prev={this.props.prev}
+                next={this.props.next}
+                currentPage={this.props.currentPage}
+                lastPage={this.props.lastPage}
+                lastPageUrl={this.props.lastPageUrl}
+                firstPageUrl={this.props.firstPageUrl}
+              />
+            </li>
             <li className="Admin__Wrapper__Posts__List">
               <Button
                 className="btn btn-sm btn-secondary rounded-0 my-2 text-uppercase"
@@ -185,8 +203,14 @@ const index = class extends Component {
 const mapStateToProps = state => {
   return {
     categories: state.categories.current,
-    posts: state.posts.current,
-    postsDeleted: state.posts.deleted
+    postsDeleted: state.posts.deleted,
+    posts: state.posts.current.data,
+    next: state.posts.current.next_page_url,
+    prev: state.posts.current.prev_page_url,
+    currentPage: state.posts.current.current_page,
+    lastPage: state.posts.current.last_page,
+    lastPageUrl: state.posts.current.last_page_url,
+    firstPageUrl: state.posts.current.first_page_url
   };
 };
 
@@ -196,7 +220,8 @@ const mapDispatchToProps = dispatch => {
     postsDeletedFetchStart: _ => dispatch(postsDeletedFetchStart()),
     postDeletePermanentlyStart: id => dispatch(postDeletePermanentlyStart(id)),
     deletedRestoreStart: id => dispatch(postDeletedRestoreStart(id)),
-    categoriesFetchStart: _ => dispatch(categoriesFetchStart())
+    categoriesFetchStart: _ => dispatch(categoriesFetchStart()),
+    postsLinkFetchStart: link => dispatch(postsLinkFetchStart(link))
   };
 };
 

@@ -1,8 +1,8 @@
 //PRODUCT
 
 export const DOMAIN = 'http://101.0.86.110:6699';
-export const API = '/api/v1';
-
+export const API = 'http://192.168.1.70:6699/api/v1';
+// export const API = 'http://101.0.86.110:6699/api/v1';
 // DEVELOPMENT
 
 // export const DOMAIN = 'http://192.168.1.70:6699';

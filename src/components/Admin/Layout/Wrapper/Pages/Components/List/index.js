@@ -4,7 +4,6 @@ import { ADMIN_PAGES_NAME } from '../../../../../../../helpers/constants';
 import CategoryList from './Category';
 import PostList from './Post';
 import UserList from './User';
-import { capitalizeFirstLetter } from '../../../../../../../helpers';
 
 const index = props => {
   const renderList = page => {

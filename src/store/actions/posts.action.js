@@ -14,16 +14,26 @@ export const postsFetchStart = (auth = false) => {
     return axios.get(`posts?${auth ? 'auth=' + auth : ''}`).then(response => {
       if (response.data.status === 200) {
         const posts = response.data.data.posts;
+
         dispatch(postsFetched(posts));
       }
     });
   };
 };
 
-export const postsFetched = data => {
+export const postsLinkFetchStart = link => {
+  return dispatch => {
+    return axios.get(link).then(response => {
+      const posts = response.data.data.posts;
+      dispatch(postsFetched(posts));
+    });
+  };
+};
+
+export const postsFetched = posts => {
   return {
     type: POSTS_FETCHED,
-    data
+    posts
   };
 };
 
@@ -32,16 +42,17 @@ export const postsCategoryFetchStart = slug => {
     return axios.get(`posts?category=${slug}`).then(response => {
       if (response.data.status === 200) {
         const posts = response.data.data.posts;
+
         dispatch(postsCategoryFetched(posts));
       }
     });
   };
 };
 
-export const postsCategoryFetched = data => {
+export const postsCategoryFetched = posts => {
   return {
     type: POSTS_FETCHED,
-    data
+    posts
   };
 };
 

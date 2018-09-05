@@ -19,7 +19,7 @@ import { initPosts } from '../../helpers/seed-data';
 const fetched = (state, action) => {
   return {
     ...state,
-    current: sortDescendingArrayById(setDataToArray(action.data))
+    current: action.posts
   };
 };
 

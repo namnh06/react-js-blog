@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
 // import Post from './Post';
 import Post from '../../../../Post';
+import Pagination from '../../../../../../UI/Pagination';
 
 import { connect } from 'react-redux';
 
 import {
   postsFetchStart,
-  postsCategoryFetchStart
+  postsCategoryFetchStart,
+  postsLinkFetchStart
 } from '../../../../../../../store/actions/posts.action';
 import Categories from './Categories';
 class index extends Component {
@@ -21,11 +23,15 @@ class index extends Component {
     if (this.props.categorySlug) {
       this.props.postsCategoryFetchStart(this.props.categorySlug);
     } else {
-      if (this.props.posts.length === 0) {
-        this.props.postsFetchStart();
-      }
+      // if (this.props.posts.length === 0) {
+      this.props.postsFetchStart();
+      // }
     }
   }
+
+  onPagniateClickHandler = link => {
+    return this.props.postsLinkFetchStart(link);
+  };
   render() {
     return (
       <Fragment>
@@ -37,33 +43,40 @@ class index extends Component {
         </div>
         <div className="card-groups mx-0">
           {this.props.posts &&
-            Object.keys(this.props.posts.slice(0, 5)).map((key, index) => {
+            Object.keys(this.props.posts).map((key, index) => {
               const post = this.props.posts[key];
               return <Post {...post} key={post.id} index={index + 1} />;
             })}
         </div>
-        {/* <div className="card-groups border-bottom mb-2">
-          {this.props.posts &&
-            Object.keys(this.props.posts)
-              .slice(2, Object.keys(this.props.posts).length / 2)
-              .map((key, index) => {
-                const post = this.props.posts[key];
-                return <Post {...post} key={post.id} index={index + 1} />;
-              })}
-        </div> */}
+        <Pagination
+          onPaginateClicked={link => this.onPagniateClickHandler(link)}
+          prev={this.props.prev}
+          next={this.props.next}
+          currentPage={this.props.currentPage}
+          lastPage={this.props.lastPage}
+          lastPageUrl={this.props.lastPageUrl}
+          firstPageUrl={this.props.firstPageUrl}
+        />
       </Fragment>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts.current
+  posts: state.posts.current.data,
+  next: state.posts.current.next_page_url,
+  prev: state.posts.current.prev_page_url,
+  currentPage: state.posts.current.current_page,
+  lastPage: state.posts.current.last_page,
+  lastPageUrl: state.posts.current.last_page_url,
+  firstPageUrl: state.posts.current.first_page_url
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     postsFetchStart: () => dispatch(postsFetchStart()),
-    postsCategoryFetchStart: slug => dispatch(postsCategoryFetchStart(slug))
+    postsCategoryFetchStart: slug => dispatch(postsCategoryFetchStart(slug)),
+    postsLinkFetchStart: link => dispatch(postsLinkFetchStart(link))
   };
 };
 

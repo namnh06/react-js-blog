@@ -11,9 +11,7 @@ import { ADMIN_PAGES_NAME } from '../../../helpers/constants';
 // import './styles.css';
 class index extends Component {
   componentDidMount() {
-    if (this.props.posts.length === 0) {
-      this.props.postsFetchStart(true);
-    }
+    this.props.postsFetchStart(true);
   }
 
   render() {
@@ -27,7 +25,7 @@ class index extends Component {
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts.current
+    posts: state.posts.current.data
   };
 };
 

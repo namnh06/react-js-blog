@@ -3,7 +3,6 @@ import { ADMIN_PAGES_NAME } from '../../../../../../../helpers/constants';
 import CategoryHeader from './Category';
 import PostHeader from './Post';
 import UserHeader from './User';
-import { capitalizeFirstLetter } from '../../../../../../../helpers';
 
 const Header = props => {
   const renderHeaderList = page => {

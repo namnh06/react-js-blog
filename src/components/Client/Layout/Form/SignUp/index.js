@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Button from '../../../../Details/Button';
 import FormGroup from '../Details/FormGroup';
 import HelpText from '../../../../Details/HelpText';
 import Input from '../Details/Input';
