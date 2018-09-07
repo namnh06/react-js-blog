@@ -8,10 +8,6 @@ const index = props => {
       <Button className="btn btn-sm btn-primary roundex-0">{`${props.name} (${
         props.posts_count
       })`}</Button>
-      {/* {props.name}
-      <span className="badge badge-primary badge-pill">
-        {props.posts_count}
-      </span> */}
     </NavLink>
   );
 };

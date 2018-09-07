@@ -3,11 +3,11 @@ import ReactTooltip from 'react-tooltip';
 import moment from 'moment';
 import { logoImage, hrefArticle } from '../../../../helpers';
 import LinkToArticle from '../../../UI/LinkToArticle';
-import { DOMAIN } from '../../../../helpers/constants';
+import { HOST } from '../../../../helpers/constants';
 const index = props => {
   const imageStyle = {
     backgroundImage: `url(${(!!props.images[0] &&
-      `${DOMAIN + props.images[0].path}`) ||
+      `${HOST + props.images[0].path}`) ||
       logoImage()})`
   };
   return (
@@ -38,7 +38,7 @@ const index = props => {
       </div>
       <div className="card-footer d-flex justify-content-between align-items-center">
         <small className="text-muted d-flex flex-column">
-          <b>{props.author.name}</b>
+          <b>{props.author.email}</b>
           <span>{moment(props.created_at).format('ll')}</span>
         </small>
         <small className="align-self-end Client__Articles__Read-More--font-size">

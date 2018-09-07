@@ -3,18 +3,13 @@ import { connect } from 'react-redux';
 import axios from '../../../helpers/axios.config';
 
 import withErrorHandler from '../../../hoc/withErrorHandler';
-// import NavigationBar from '../../../components/NavigationBar';
 
-// import Users from '../../../components/Admin/Pages/Users/';
 import Layout from '../../../components/Admin/Layout';
 import { usersFetchStart } from '../../../store/actions/admin/users.action';
 
-import './styles.css';
 class index extends Component {
   componentDidMount() {
-    if (this.props.users.length === 0) {
-      this.props.usersFetchStart();
-    }
+    this.props.usersFetchStart();
   }
 
   render() {
@@ -28,7 +23,7 @@ class index extends Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users.current
+    users: state.users.current.data
   };
 };
 

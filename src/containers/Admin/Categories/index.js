@@ -9,9 +9,7 @@ import AdminLayout from '../../../components/Admin/Layout';
 
 class index extends Component {
   componentDidMount() {
-    if (this.props.categories.length === 0) {
-      this.props.categoriesFetchStart();
-    }
+    this.props.categoriesFetchStart();
   }
 
   render() {

@@ -20,6 +20,15 @@ export const usersFetchStart = () => {
   };
 };
 
+export const usersLinkFetchStart = link => {
+  return dispatch => {
+    return axios.get(link).then(response => {
+      const users = response.data.data.users;
+      dispatch(usersFetched(users));
+    });
+  };
+};
+
 export const usersFetched = users => {
   return {
     type: USERS_FETCHED,
@@ -31,17 +40,17 @@ export const usersDeletedFetchStart = () => {
   return dispatch => {
     return axios.get('users-deleted').then(response => {
       if (response.data.status === 200) {
-        const data = response.data.data.users;
-        dispatch(usersDeletedFetched(data));
+        const users = response.data.data.users;
+        dispatch(usersDeletedFetched(users));
       }
     });
   };
 };
 
-export const usersDeletedFetched = data => {
+export const usersDeletedFetched = users => {
   return {
     type: USERS_DELETED_FETCHED,
-    data
+    users
   };
 };
 

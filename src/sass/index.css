@@ -10525,6 +10525,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .Admin__Wrapper {
   font-size: 1.3rem !important;
+  width: auto;
 }
 
 .Admin__Wrapper__List:hover {
@@ -10548,12 +10549,21 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .Admin__Wrapper__List div:first-child {
-  width: 20%;
+  width: 10%;
 }
 
 .Admin__Wrapper__List div:last-child {
-  width: 75%;
+  width: 150%;
   border-right: none;
+}
+
+.Admin__Wrapper__List__Users div:last-child {
+  width: 40%;
+  border-right: none;
+}
+
+.Admin__Wrapper__List__Post--status {
+  width: 50% !important;
 }
 
 .Admin__Wrapper__List__Header {

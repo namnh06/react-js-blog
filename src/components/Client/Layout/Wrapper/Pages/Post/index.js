@@ -25,12 +25,12 @@ class index extends Component {
             </div>
             <div className="mt-5">
               <div className="card-deck">
-                {Object.keys(this.props.post.related_posts).map(
+                {/* {Object.keys(this.props.post.related_posts).map(
                   (key, index) => {
                     const post = this.props.post.related_posts[key];
                     return <Post {...post} key={key} />;
                   }
-                )}
+                )} */}
               </div>
             </div>
           </div>

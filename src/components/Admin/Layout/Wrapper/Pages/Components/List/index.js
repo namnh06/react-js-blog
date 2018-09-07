@@ -44,7 +44,8 @@ const index = props => {
     <li
       className={[
         'Admin__Wrapper__List d-flex flex-row justify-content-around border ',
-        props.last ? 'border-bottom' : 'border-bottom-0'
+        props.last ? 'border-bottom' : 'border-bottom-0',
+        props.className
       ].join(' ')}
     >
       {renderList(props.page)}

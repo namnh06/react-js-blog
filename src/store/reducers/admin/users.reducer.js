@@ -16,10 +16,10 @@ import {
 } from '../../../helpers';
 import { initUsers } from '../../../helpers/seed-data';
 
-const usersFetched = (state, action) => {
+const fetched = (state, action) => {
   return {
     ...state,
-    current: sortDescendingArrayById(setDataToArray(action.users))
+    current: action.users
   };
 };
 
@@ -36,7 +36,7 @@ const userDeleted = (state, action) => {
 const usersDeletedFetched = (state, action) => {
   return {
     ...state,
-    deleted: sortDescendingArrayById(setDataToArray(action.data))
+    deleted: action.users
   };
 };
 
@@ -76,7 +76,7 @@ const userEdited = (state, action) => {
 const reducer = (state = initUsers, action) => {
   switch (action.type) {
     case USERS_FETCHED:
-      return usersFetched(state, action);
+      return fetched(state, action);
     case USER_DELETED:
       return userDeleted(state, action);
     case USERS_DELETED_FETCHED:

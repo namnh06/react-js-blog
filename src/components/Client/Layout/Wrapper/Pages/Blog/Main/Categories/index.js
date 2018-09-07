@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Category from './Category';
 class index extends Component {
   componentDidMount() {
-    if (this.props.categories.length === 0) {
+    if (!this.props.categories) {
       this.props.categoriesFetchStart();
     }
   }
@@ -12,14 +12,15 @@ class index extends Component {
   render() {
     return (
       <ul className="nav d-flex py-3 list-unstyled justify-content-center border-bottom">
-        {Object.keys(this.props.categories).map((key, index) => {
-          const category = this.props.categories[key];
-          return (
-            <li className="nav-item" key={category.id}>
-              <Category index={index + 1} {...category} />
-            </li>
-          );
-        })}
+        {!!this.props.categories &&
+          Object.keys(this.props.categories).map((key, index) => {
+            const category = this.props.categories[key];
+            return (
+              <li className="nav-item" key={category.id}>
+                <Category index={index + 1} {...category} />
+              </li>
+            );
+          })}
       </ul>
     );
   }
@@ -27,7 +28,7 @@ class index extends Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories.current
+    categories: state.categories.current.data
   };
 };
 

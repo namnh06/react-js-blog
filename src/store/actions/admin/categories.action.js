@@ -14,6 +14,7 @@ export const categoriesFetchStart = () => {
     return axios.get('categories').then(response => {
       if (response.data.status === 200) {
         const categories = response.data.data.categories;
+
         dispatch(categoriesFetched(categories));
       }
     });

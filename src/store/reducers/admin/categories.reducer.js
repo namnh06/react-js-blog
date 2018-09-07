@@ -16,7 +16,7 @@ import {
 import { initCategories } from '../../../helpers/seed-data';
 
 const categoriesFetched = (state, action) => {
-  return { ...state, current: setDataToArray(action.categories) };
+  return { ...state, current: action.categories };
 };
 
 const categoriesDeletedFetched = (state, action) => {

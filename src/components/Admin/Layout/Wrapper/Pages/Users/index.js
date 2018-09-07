@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 
-import './styles.css';
 import {
   userCreateStart,
   userEditStart,
   userDeleteStart,
   usersDeletedFetchStart,
   userDeletePermanentlyStart,
-  userDeletedRestoreStart
+  userDeletedRestoreStart,
+  usersLinkFetchStart
 } from '../../../../../../store/actions/admin/users.action';
 
 import Title from '../Components/Title';
@@ -16,7 +16,7 @@ import Button from '../../../../../UI/Button';
 import Icon from '../../../../../UI/Icon';
 import Header from '../Components/Header';
 import List from '../Components/List';
-
+import Pagination from '../../../../../UI/Pagination';
 import Form from '../Components/Form/User';
 
 import {
@@ -25,7 +25,6 @@ import {
   hideStringTemporary
 } from '../../../../../../helpers';
 
-import './styles.css';
 import {
   USER_CREATE_START,
   USER_EDIT_START
@@ -72,10 +71,14 @@ const index = class extends Component {
     this.props.onFormEditToggleClicked(true);
   };
 
+  onPagniateClickHandler = link => {
+    return this.props.usersLinkFetchStart(link);
+  };
+
   render() {
     return (
       <div className="mt-5 border border-style-custom ">
-        <div className="d-flex justify-content-between align-items-center border-bottom p-3">
+        <div className="d-flex justify-content-between align-users-center border-bottom p-3">
           <Title className="mb-0">{this.props.page}</Title>
           <Button
             className="btn-sm btn-info"
@@ -110,29 +113,37 @@ const index = class extends Component {
         <div className="m-3">
           <ul className="list-unstyled">
             <Header
+              className="Admin__Wrapper__List__Users"
               page={this.props.page}
-              className={this.props.items.length === 0 ? '' : 'border-bottom-0'}
+              // className={this.props.users.length === 0 ? '' : 'border-bottom-0'}
             />
-            {this.props.items &&
-              Object.keys(this.props.items).map((key, index) => {
-                const item = this.props.items[key];
+            {this.props.users.data &&
+              Object.keys(this.props.users.data).map((key, index) => {
+                const user = this.props.users.data[key];
                 return (
-                  <Fragment key={item.id}>
+                  <Fragment key={user.id}>
                     <List
+                      className="Admin__Wrapper__List__Users"
                       page={this.props.page}
                       index={index + 1}
-                      last={index === this.props.items.length - 1}
+                      last={index === this.props.users.data.length - 1}
                       onButtonDeleteClicked={_ =>
-                        this.onButtonDeleteClickHandler(item.id)
+                        this.onButtonDeleteClickHandler(user.id)
                       }
                       onButtonEditClicked={_ => {
-                        this.onButtonEditClickHandler(item);
+                        this.onButtonEditClickHandler(user);
                       }}
-                      {...item}
+                      {...user}
                     />
                   </Fragment>
                 );
               })}
+            <li className="Admin__Wrapper__Posts__List py-2">
+              <Pagination
+                onPaginateClicked={link => this.onPagniateClickHandler(link)}
+                {...this.props.users}
+              />
+            </li>
             <li className="Admin-Posts-Content">
               <Button
                 className="btn btn-sm btn-secondary rounded-0 my-2 text-uppercase"
@@ -144,24 +155,33 @@ const index = class extends Component {
               </Button>
             </li>
             {this.state.displayOldData &&
-              this.props.itemsDeleted &&
-              Object.keys(this.props.itemsDeleted).map((key, index) => {
-                const item = this.props.itemsDeleted[key];
+              this.props.usersDeleted.data &&
+              Object.keys(this.props.usersDeleted.data).map((key, index) => {
+                const user = this.props.usersDeleted.data[key];
                 return (
-                  <Fragment key={item.id}>
+                  <Fragment key={user.id}>
                     <List
+                      className="Admin__Wrapper__List__Users"
                       type="old"
                       page={this.props.page}
-                      index={++index}
-                      last={index === this.props.itemsDeleted.length}
+                      index={index + 1}
+                      last={index === this.props.usersDeleted.data.length - 1}
                       onButtonDeletePermanentlyClicked={_ =>
-                        this.onButtonDeletePermanentlyClickHandler(item.id)
+                        this.onButtonDeletePermanentlyClickHandler(user.id)
                       }
                       onButtonRestoreClicked={_ =>
-                        this.onButtonRestoreClickHandler(item.id)
+                        this.onButtonRestoreClickHandler(user.id)
                       }
-                      {...item}
+                      {...user}
                     />
+                    <li className="Admin__Wrapper__Posts__List py-2">
+                      <Pagination
+                        onPaginateClicked={link =>
+                          this.onPagniateClickHandler(link)
+                        }
+                        {...this.props.usersDeleted}
+                      />
+                    </li>
                   </Fragment>
                 );
               })}
@@ -174,8 +194,14 @@ const index = class extends Component {
 
 const mapStateToProps = state => {
   return {
-    items: state.users.current,
-    itemsDeleted: state.users.deleted
+    users: state.users.current,
+    usersDeleted: state.users.deleted
+    // next: state.users.current.next_page_url,
+    // prev: state.users.current.prev_page_url,
+    // currentPage: state.users.current.current_page,
+    // lastPage: state.users.current.last_page,
+    // lastPageUrl: state.users.current.last_page_url,
+    // firstPageUrl: state.users.current.first_page_url
   };
 };
 
@@ -186,7 +212,8 @@ const mapDispatchToProps = dispatch => ({
   deletedRestoreStart: id => dispatch(userDeletedRestoreStart(id)),
   userEditStart: (id, user) => dispatch(userEditStart(id, user)),
   createStart: user => dispatch(userCreateStart(user)),
-  userDeleteStart: id => dispatch(userDeleteStart(id))
+  userDeleteStart: id => dispatch(userDeleteStart(id)),
+  usersLinkFetchStart: link => dispatch(usersLinkFetchStart(link))
 });
 
 export default connect(

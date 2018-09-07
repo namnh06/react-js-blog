@@ -17,7 +17,6 @@ const index = props => {
             props.type === 'old' ? 'btn-success' : 'btn-warning'
           ].join(' ')}
           clicked={
-            //TODO here
             props.type === 'old'
               ? props.onButtonRestoreClickHandler
               : props.onButtonEditClicked
@@ -33,7 +32,7 @@ const index = props => {
               : props.onButtonDeleteClicked
           }
         >
-          {props.type === 'old' ? 'deleted permanently' : 'delete'}
+          {props.type === 'old' ? 'destroy' : 'delete'}
         </Button>
       </div>
     </Fragment>

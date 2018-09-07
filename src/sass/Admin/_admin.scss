@@ -13,6 +13,7 @@
   }
   &__Wrapper {
     font-size: 1.3rem !important;
+    width: auto;
     &__List {
       &:hover {
         background-color: var(--light);
@@ -27,12 +28,23 @@
         overflow: hidden;
       }
       & div:first-child {
-        width: 20%;
+        width: 10%;
       }
 
       & div:last-child {
-        width: 75%;
+        width: 150%;
         border-right: none;
+      }
+      &__Users {
+        & div:last-child {
+          width: 40%;
+          border-right: none;
+        }
+      }
+      &__Post {
+        &--status {
+          width: 50% !important;
+        }
       }
       &__Header {
         font-weight: bold;

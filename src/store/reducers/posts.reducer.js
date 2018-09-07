@@ -69,7 +69,9 @@ const postCreated = (state, action) => {
 const postUpdated = (state, action) => {
   return {
     ...state,
-    current: updateDataToArrayById(state.current, action.data)
+    current: {
+      data: updateDataToArrayById(state.current.data, action.post)
+    }
   };
 };
 

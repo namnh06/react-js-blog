@@ -29,9 +29,9 @@ class index extends React.Component {
     };
     return (
       <div
+        tabIndex="0"
         className="Client__Form position-fixed d-flex justify-content-center align-items-center "
         onKeyDown={event => this.onEscapeButton(event)}
-        tabIndex="0"
       >
         {form(this.props)}
       </div>

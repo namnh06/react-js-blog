@@ -105,9 +105,9 @@ const index = class extends Component {
           <ul className="list-unstyled">
             <Header
               page={this.props.page}
-              className={
-                this.props.categories.length === 0 ? '' : 'border-bottom-0'
-              }
+              // className={
+              //   this.props.categories.length === 0 ? '' : 'border-bottom-0'
+              // }
             />
             {this.props.categories &&
               Object.keys(this.props.categories).map((key, index) => {
@@ -175,7 +175,7 @@ const index = class extends Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories.current,
+    categories: state.categories.current.data,
     categoriesDeleted: state.categories.deleted
   };
 };

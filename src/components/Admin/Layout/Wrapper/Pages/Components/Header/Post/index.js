@@ -7,8 +7,9 @@ const index = props => {
       <div>Title</div>
       <div>Description</div>
       <div>Author</div>
-      <div>Status</div>
+      <div className="Admin__Wrapper__List__Post--status">Status</div>
       <div>Image</div>
+      <div>Categories</div>
       <div>Action</div>
     </Fragment>
   );

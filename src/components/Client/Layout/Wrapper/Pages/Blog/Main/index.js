@@ -42,20 +42,15 @@ class index extends Component {
           </span>
         </div>
         <div className="card-groups mx-0">
-          {this.props.posts &&
-            Object.keys(this.props.posts).map((key, index) => {
-              const post = this.props.posts[key];
+          {this.props.posts.data &&
+            Object.keys(this.props.posts.data).map((key, index) => {
+              const post = this.props.posts.data[key];
               return <Post {...post} key={post.id} index={index + 1} />;
             })}
         </div>
         <Pagination
           onPaginateClicked={link => this.onPagniateClickHandler(link)}
-          prev={this.props.prev}
-          next={this.props.next}
-          currentPage={this.props.currentPage}
-          lastPage={this.props.lastPage}
-          lastPageUrl={this.props.lastPageUrl}
-          firstPageUrl={this.props.firstPageUrl}
+          {...this.props.posts}
         />
       </Fragment>
     );
@@ -63,13 +58,7 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts.current.data,
-  next: state.posts.current.next_page_url,
-  prev: state.posts.current.prev_page_url,
-  currentPage: state.posts.current.current_page,
-  lastPage: state.posts.current.last_page,
-  lastPageUrl: state.posts.current.last_page_url,
-  firstPageUrl: state.posts.current.first_page_url
+  posts: state.posts.current
 });
 
 const mapDispatchToProps = dispatch => {

@@ -5,6 +5,7 @@ const index = props => {
     <Fragment>
       <div>#</div>
       <div>Name</div>
+      <div>Posts</div>
       <div>Action</div>
     </Fragment>
   );

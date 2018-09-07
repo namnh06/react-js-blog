@@ -157,9 +157,9 @@ export const postUpdateStart = (id, data) => {
   };
 };
 
-export const updated = data => {
+export const updated = post => {
   return {
     type: POST_UPDATED,
-    data
+    post
   };
 };

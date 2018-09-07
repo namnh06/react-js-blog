@@ -131,15 +131,15 @@ const index = class extends Component {
               className={!!this.props.posts ? '' : 'border-bottom-0'}
             />
 
-            {this.props.posts &&
-              Object.keys(this.props.posts).map((key, index) => {
-                const post = this.props.posts[key];
+            {this.props.posts.data &&
+              Object.keys(this.props.posts.data).map((key, index) => {
+                const post = this.props.posts.data[key];
                 return (
                   <Fragment key={post.id}>
                     <ListPosts
                       page={this.props.page}
-                      index={++index}
-                      last={index === this.props.posts.length}
+                      index={index + 1}
+                      last={index === this.props.posts.data.length - 1}
                       onButtonDeleteClicked={_ =>
                         this.onButtonDeleteClickHandler(post.id)
                       }
@@ -154,12 +154,7 @@ const index = class extends Component {
             <li className="Admin__Wrapper__Posts__List py-2">
               <Pagination
                 onPaginateClicked={link => this.onPagniateClickHandler(link)}
-                prev={this.props.prev}
-                next={this.props.next}
-                currentPage={this.props.currentPage}
-                lastPage={this.props.lastPage}
-                lastPageUrl={this.props.lastPageUrl}
-                firstPageUrl={this.props.firstPageUrl}
+                {...this.props.posts}
               />
             </li>
             <li className="Admin__Wrapper__Posts__List">
@@ -204,13 +199,13 @@ const mapStateToProps = state => {
   return {
     categories: state.categories.current,
     postsDeleted: state.posts.deleted,
-    posts: state.posts.current.data,
-    next: state.posts.current.next_page_url,
-    prev: state.posts.current.prev_page_url,
-    currentPage: state.posts.current.current_page,
-    lastPage: state.posts.current.last_page,
-    lastPageUrl: state.posts.current.last_page_url,
-    firstPageUrl: state.posts.current.first_page_url
+    posts: state.posts.current
+    // next: state.posts.current.next_page_url,
+    // prev: state.posts.current.prev_page_url,
+    // currentPage: state.posts.current.current_page,
+    // lastPage: state.posts.current.last_page,
+    // lastPageUrl: state.posts.current.last_page_url,
+    // firstPageUrl: state.posts.current.first_page_url
   };
 };
 
