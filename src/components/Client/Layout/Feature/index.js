@@ -10,7 +10,7 @@ import czIPhoneImage from '../../../../assets/images/feature/getting-started/iPh
 import czUsingIpadImage from '../../../../assets/images/feature/getting-started/cz-using-ipad.jpg';
 import czUsingIpadMiniImage from '../../../../assets/images/feature/getting-started/iPad-mini.jpg';
 import cmccDocument from '../../../../assets/documents/Crashzone-Membership-Code-of-Conduct-20141.pdf';
-// import './styles.css';
+
 const index = () => {
   return (
     <div className="container py-5 Client__Feature">

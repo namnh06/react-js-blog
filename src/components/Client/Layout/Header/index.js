@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 
 import Brand from '../../../UI/Brand';
-import NavigationBar from './NavigationBar';
+import Navigator from './Navigator';
 
 import { menusFetchStart } from '../../../../store/actions/menus.action';
 
@@ -17,15 +17,17 @@ class index extends Component {
     return (
       <div
         id="js-nav-bar"
-        className={'container-fluid Client__Navigation-Bar fixed-top'}
+        className={
+          'container-fluid Client__Navigation-Bar fixed-top border-bottom'
+        }
       >
         <div className="row h-100">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light w-100 h-100 p-0 px-lg-3">
+          <nav className="navbar navbar-expand-lg navbar-light w-100 h-100 p-0 px-lg-3">
             <div className="col-10 col-lg-3 navbar-brand d-flex align-items-center h-100 mx-0">
               <Brand
                 link={this.props.information[1].value}
                 slogan="it's free"
-                textColor="text-dark"
+                textColor="text-white"
               />
             </div>
             <div className="d-flex d-lg-none col-2 justify-content-end">
@@ -46,12 +48,12 @@ class index extends Component {
               className="collapse navbar-collapse col-lg-9 px-0"
               id="js-navbar-collapse"
             >
-              <ul className="navbar-nav Client__Navigation-Bar__list ml-auto p-3 bg-light">
+              <ul className="navbar-nav Client__Navigation-Bar__list ml-auto p-3 ">
                 {!!this.props.menus.length && (
                   <Fragment>
                     {Object.keys(this.props.menus).map((pos, index) => {
                       return (
-                        <NavigationBar
+                        <Navigator
                           type="anchor"
                           key={++index}
                           {...this.props.menus[pos]}
@@ -59,17 +61,17 @@ class index extends Component {
                           isScroll={this.props.isScroll}
                         >
                           {this.props.menus[pos].name}
-                        </NavigationBar>
+                        </Navigator>
                       );
                     })}
-                    <NavigationBar
+                    <Navigator
                       isScroll={this.props.isScroll}
                       type="button"
                       name="sign up"
                       className="Client__Navigation-Bar__list__button"
                       clicked={this.props.onButtonSignUpClicked}
                     />
-                    <NavigationBar
+                    <Navigator
                       isScroll={this.props.isScroll}
                       type="button"
                       name="log in"

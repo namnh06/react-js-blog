@@ -13,10 +13,11 @@
     }
   }
   &__Navigation-Bar {
+    background-color: var(--dark-cz, dark);
     &__Button {
       &:hover {
         background-color: var(--yellow-cz, yellow) !important;
-        border-color: var(--dark) !important;
+
         & i {
           color: var(--dark) !important;
         }
@@ -25,20 +26,16 @@
     &__list {
       & button {
         color: var(--dark) !important;
-
         &:hover {
           color: var(--white) !important;
-          border-color: var(--white) !important;
         }
       }
       & li {
         padding-right: 1rem;
         padding-left: 1rem;
         & a {
-          border: 1px solid transparent;
           &:hover {
-            background-color: var(--yellow-cz) !important;
-            border: 1px solid var(--dark) !important;
+            background-color: white !important;
             color: var(--dark) !important;
           }
         }
@@ -111,6 +108,7 @@
       height: 200px;
       background-position: center;
       background-size: cover;
+      filter: brightness(90%);
     }
   }
   &__Post {
@@ -126,6 +124,41 @@
         width: 100%;
       }
     }
+  }
+  &__Information {
+    &__Text {
+      &::before {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 10%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 100%;
+        border-bottom: 3px solid var(--dark);
+      }
+    }
+    &__TCS {
+      // background-image: url('./../assets/images/slides/1-cz-first.jpg');
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+        url('./../assets/images/slides/1-cz-first.jpg');
+      background-position: 30% 20%;
+      background-size: cover;
+    }
+    &__II {
+      // background-image: url('./../assets/images/slides/1-cz-first.jpg');
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+        url('./../assets/images/slides/4-cz-fourth.png');
+      background-position: 0 60%;
+      background-size: cover;
+    }
+  }
+  &__Register {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+      url('./../assets/images/information/cz-using-ipad.jpg');
+    background-position: center;
+    background-size: cover;
   }
   &__Feature {
     &__Text {
@@ -160,6 +193,21 @@
         &.active {
           background-color: var(--dark) !important;
           color: var(--white) !important;
+        }
+      }
+    }
+  }
+  &__Frequent-Ask {
+    &__Text {
+      &--underline {
+        &::before {
+          content: '';
+          position: absolute;
+          height: 1px;
+          width: 30%;
+          top: 2.5rem;
+          left: 2.5rem;
+          border-bottom: 2px solid #000;
         }
       }
     }

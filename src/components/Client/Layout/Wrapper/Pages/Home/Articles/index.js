@@ -18,8 +18,8 @@ class index extends Component {
             <div className="container">
               <div className="row">
                 <div className="col-12">
-                  <div className="Client__Articles__Text w-100 text-center font-weight-bold mx-3 h1 text-uppercase">
-                    Latest News
+                  <div className="Client__Articles__Text w-100 text-center font-weight-bold h1 text-uppercase">
+                    Our Blog
                   </div>
                 </div>
               </div>

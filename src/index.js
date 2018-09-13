@@ -5,10 +5,7 @@ import ReactDOM from 'react-dom';
 import App from './hoc/App';
 import registerServiceWorker from './registerServiceWorker';
 import { CookiesProvider } from 'react-cookie';
-// import './index.css';
 
-// import 'jquery';
-// import 'popper.js';
 import 'bootstrap';
 import store from './store';
 import 'bootstrap/scss/bootstrap.scss';

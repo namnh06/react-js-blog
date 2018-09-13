@@ -135,13 +135,19 @@ export const updateValueInArrayByName = (array, data) => {
   });
 };
 
-export const childrenOfListHeader = (type, { name, slug, clicked }) => {
+export const childrenOfListHeader = (
+  type,
+  { name, slug, clicked },
+  className
+) => {
   switch (type) {
     case 'button':
       return (
         <a
           href="/#"
-          className="nav-link text-dark py-0 pl-2 border border-dark bg-yellow-cz-custom text-capitalize"
+          className={
+            'nav-link py-0 pl-2 text-dark bg-yellow-cz-custom text-capitalize'
+          }
           onClick={event => {
             event.preventDefault();
             clicked();
@@ -159,12 +165,12 @@ export const childrenOfListHeader = (type, { name, slug, clicked }) => {
               : 'http://www.crashzone.com.au/forum/viewforum.php?f=2'
           }
           rel="noopener noreferrer"
-          className="nav-link text-dark py-0 pl-2 "
+          className={className}
         >
           {name}
         </a>
       ) : (
-        <Anchor href={slug} className="nav-link text-dark py-0 pl-2 ">
+        <Anchor href={slug} className={className}>
           {name}
         </Anchor>
       );

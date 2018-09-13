@@ -10,8 +10,6 @@ import withErrorHandler from '../../../hoc/withErrorHandler';
 import { isValidEmail, isValidPassword } from '../../../helpers';
 import LoginForm from '../../../components/Admin/Layout/Wrapper/Pages/Components/Form/Login';
 
-import './styles.css';
-
 class index extends Component {
   state = {
     email: '',

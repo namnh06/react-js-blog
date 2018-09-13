@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
-import moment from 'moment';
+import Moment from 'react-moment';
+
 import { logoImage, hrefArticle } from '../../../../helpers';
 import LinkToArticle from '../../../UI/LinkToArticle';
 import { HOST } from '../../../../helpers/constants';
@@ -38,8 +39,9 @@ const index = props => {
       </div>
       <div className="card-footer d-flex justify-content-between align-items-center">
         <small className="text-muted d-flex flex-column">
-          <b>{props.author.email}</b>
-          <span>{moment(props.created_at).format('ll')}</span>
+          <b>{props.author.name}</b>
+
+          <Moment format="DD/MM/YYYY" date={props.created_at} />
         </small>
         <small className="align-self-end Client__Articles__Read-More--font-size">
           <LinkToArticle slug={props.slug} className="">

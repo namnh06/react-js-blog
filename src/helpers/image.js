@@ -10,10 +10,7 @@ import ninth from './../assets/images/slides/9-cz-ninth.png';
 import tenth from './../assets/images/slides/10-cz-tenth.png';
 import eleventh from './../assets/images/slides/11-cz-eleventh.png';
 import twelfth from './../assets/images/slides/12-cz-twelfth.png';
-import thirteenth from './../assets/images/slides/13-cz-thirteenth.png';
-import fourteenth from './../assets/images/slides/14-cz-fourteenth.png';
-import fifteenth from './../assets/images/slides/15-cz-fifteenth.png';
-import sixteenth from './../assets/images/slides/16-cz-sixteenth.png';
+
 import { logoImage } from '.';
 import { HOST } from './constants';
 
@@ -29,11 +26,7 @@ const slides = [
   ninth,
   tenth,
   eleventh,
-  twelfth,
-  thirteenth,
-  fourteenth,
-  fifteenth,
-  sixteenth
+  twelfth
 ];
 
 export const threePartSlides = () => {
