@@ -300,7 +300,9 @@ export const isNull = item => item === null;
 export const isTrue = item => item === true;
 export const isFalse = item => item === false;
 export const isLengthZero = length => length === 0;
-
+export const isObjectNotEmpty = object => {
+  return !!Object.keys(object).length;
+};
 export const showHelpTextLoginForm = (
   length,
   item,
@@ -349,19 +351,28 @@ export const passwordPlaceholderByType = type => {
 };
 
 export const renderTypeString = type => {
-  switch (type) {
-    case CATEGORY_CREATE_START:
-    case POST_CREATE_START:
-    case USER_CREATE_START:
-      return 'create';
-    case CATEGORY_EDIT_START:
-    case USER_EDIT_START:
-      return 'edit';
-    case POST_UPDATE_START:
-      return 'update';
-    default:
-      return null;
+  if (type.toLowerCase().includes('create')) {
+    return 'create';
   }
+
+  if (type.toLowerCase().includes('edit')) {
+    return 'edit';
+  }
+
+  return null;
+  // switch (type.toLowerCase()) {
+  //   case CATEGORY_CREATE_START:
+  //   case POST_CREATE_START:
+  //   case USER_CREATE_START:
+  //     return 'create';
+  //   case CATEGORY_EDIT_START:
+  //   case USER_EDIT_START:
+  //     return 'edit';
+  //   case POST_UPDATE_START:
+  //     return 'update';
+  //   default:
+  //     return null;
+  // }
 };
 
 export const displayStringTemporary = page => {

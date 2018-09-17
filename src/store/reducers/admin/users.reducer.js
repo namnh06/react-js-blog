@@ -8,7 +8,6 @@ import {
   USER_DELETED_RESTORED
 } from '../../../helpers/constants';
 import {
-  setDataToArray,
   removeDataFromArrayById,
   sortDescendingArrayById,
   pushDataToArray,

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Carousel from './Carousel';
 import Ribbon from './Ribbon';
-import Feature from '../../../Feature';
+
 import Articles from './Articles';
 import Information from './Information';
 import Register from './Register';
@@ -44,9 +44,6 @@ class index extends React.Component {
         <Information />
         <Register />
         <FrequentAsk />
-
-        {/* <Feature /> */}
-
         <Articles />
       </Fragment>
     );

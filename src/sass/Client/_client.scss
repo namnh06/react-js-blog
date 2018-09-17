@@ -110,6 +110,13 @@
       background-size: cover;
       filter: brightness(90%);
     }
+    &__HTML {
+      & img {
+        display: flex;
+        margin: 0 auto;
+        margin-bottom: 20px;
+      }
+    }
   }
   &__Post {
     &__Article {

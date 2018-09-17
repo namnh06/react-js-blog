@@ -16,7 +16,8 @@ export const authStartLogIn = (loginData = {}, setting = {}) => {
         localStorage.setItem('cz.token', token);
         dispatch(authLogIn(parseToken(token)));
       } else if (response.data.status === 401) {
-        dispatch(authError(response.data.message));
+        const error = response.data.message;
+        dispatch(authError(error));
       }
     });
   };

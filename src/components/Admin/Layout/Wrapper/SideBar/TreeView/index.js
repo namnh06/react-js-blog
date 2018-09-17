@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import './styles.css';
 const index = props => {
   return (
-    <li className="Tree-View border-bottom p-3">
+    <li className="Tree-View border-bottom py-3">
       <NavLink
         to={props.to}
         className="d-flex align-items-center text-white"

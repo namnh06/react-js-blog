@@ -8,11 +8,13 @@ const index = props => {
       <ol className="breadcrumb rounded-0">
         {props.data.map((key, index) => {
           return (
-            <List
-              key={index}
-              name={key}
-              last={index === props.data.length - 1}
-            />
+            !!key && (
+              <List
+                key={index}
+                name={key}
+                last={index === props.data.length - 1}
+              />
+            )
           );
         })}
         {props.sort && (

@@ -4,15 +4,7 @@ import React, { Component, Fragment } from 'react';
 import Brand from '../../../UI/Brand';
 import Navigator from './Navigator';
 
-import { menusFetchStart } from '../../../../store/actions/menus.action';
-
 class index extends Component {
-  componentDidMount() {
-    if (this.props.menus.length === 0) {
-      this.props.menusFetchStart();
-    }
-  }
-
   render() {
     return (
       <div
@@ -95,11 +87,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  menusFetchStart: () => dispatch(menusFetchStart())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(index);
+export default connect(mapStateToProps)(index);

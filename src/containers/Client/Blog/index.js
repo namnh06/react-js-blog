@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import ClientLayout from '../../../components/Client/Layout';
 
@@ -8,9 +8,10 @@ class index extends Component {
   }
   render() {
     return (
-      <Fragment>
-        <ClientLayout page="blog" />
-      </Fragment>
+      <ClientLayout
+        page="blog"
+        pageNumber={this.props.match.params.page || 1}
+      />
     );
   }
 }

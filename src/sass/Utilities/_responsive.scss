@@ -11,7 +11,8 @@
         }
       }
     }
-    &__Navigation-Bar {
+    &__Navigation-Bar,
+    .Admin__Navigation-Bar {
       height: var(--height-top-sm) !important;
     }
     &__Brand__Name {
@@ -58,7 +59,8 @@
         }
       }
     }
-    &__Navigation-Bar {
+    &__Navigation-Bar,
+    .Admin__Navigation-Bar {
       height: var(--height-top-md) !important;
     }
     &__Brand__Name {
@@ -107,7 +109,8 @@
         }
       }
     }
-    &__Navigation-Bar {
+    &__Navigation-Bar,
+    .Admin__Navigation-Bar {
       height: var(--height-top-lg) !important;
     }
     &__Brand__Name {
@@ -156,7 +159,8 @@
         }
       }
     }
-    &__Navigation-Bar {
+    &__Navigation-Bar,
+    .Admin__Navigation-Bar {
       height: var(--height-top-xl) !important;
     }
     &__Brand__Name {
@@ -205,7 +209,8 @@
         }
       }
     }
-    &__Navigation-Bar {
+    &__Navigation-Bar,
+    .Admin__Navigation-Bar {
       height: var(--height-top-xxl) !important;
     }
     &__Brand__Name {

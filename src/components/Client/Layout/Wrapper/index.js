@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { CLIENT_PAGES_NAME } from '../../../../helpers/constants';
 import Home from './Pages/Home';
 import Blog from './Pages/Blog';
@@ -7,7 +7,7 @@ import Contact from './Pages/Contact';
 import Help from './Pages/Help';
 import Post from './Pages/Post';
 
-class index extends React.Component {
+class index extends Component {
   clientPageRender = props => {
     switch (props.page.toLowerCase()) {
       case CLIENT_PAGES_NAME.HOME:
@@ -19,7 +19,12 @@ class index extends React.Component {
           />
         );
       case CLIENT_PAGES_NAME.BLOG:
-        return <Blog onButtonSignUpClicked={props.onButtonSignUpClicked} />;
+        return (
+          <Blog
+            pageNumber={props.pageNumber}
+            onButtonSignUpClicked={props.onButtonSignUpClicked}
+          />
+        );
       case CLIENT_PAGES_NAME.CONTACT:
         return <Contact />;
       case CLIENT_PAGES_NAME.HELP:

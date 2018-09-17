@@ -1,8 +1,8 @@
 //PRODUCT
 export const DOMAIN = window.location.origin;
 export const HOST = 'http://101.0.86.110:6699';
-// export const API = 'http://192.168.1.70:6699/api/v1';
-export const API = 'http://101.0.86.110:6699/api/v1';
+export const API = 'http://localhost:6699/api/v1';
+// export const API = 'http://101.0.86.110:6699/api/v1';
 // DEVELOPMENT
 
 // export const HOST = 'http://192.168.1.70:6699';
@@ -78,6 +78,18 @@ export const AUTH_LOG_IN = 'AUTH_LOG_IN';
 
 export const AUTH_LOG_OUT_START = 'AUTH_LOG_OUT_START';
 export const AUTH_LOG_OUT = 'AUTH_LOG_OUT';
+// END AUTH
+
+// SLIDE
+export const SLIDES_FETCH_START = 'SLIDES_FETCH_START';
+export const SLIDES_FETCHED = 'SLIDES_FETCHED';
+
+export const SLIDE_CREATE_START = 'SLIDE_CREATE_START';
+export const SLIDE_CREATED = 'SLIDE_CREATED';
+
+export const SLIDE_UPDATE_START = 'SLIDE_UPDATE_START';
+export const SLIDE_UPDATED = 'SLIDE_UPDATED';
+// END SLIDE
 
 // USER
 export const USERS_FETCH_START = 'USERS_FETCH_START';
@@ -100,6 +112,7 @@ export const USER_CREATED = 'USER_CREATED';
 
 export const USER_EDIT_START = 'USER_EDIT_START';
 export const USER_EDITED = 'USER_EDITED';
+// END USER
 
 export const CLIENT_LOG_OUT = 'CLIENT_LOG_OUT';
 

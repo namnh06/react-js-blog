@@ -105,13 +105,13 @@
     }
   }
   &__Navigation-Bar {
-    height: var(--height-top-xl);
-    position: fixed;
-    top: 0;
-    z-index: 101;
+    // height: var(--height-top-xxl);
+    // position: fixed;
+    // top: 0;
+    // z-index: 101;
     &__img {
       &--height {
-        max-height: calc(var(--height-top-xl) - 2vh);
+        max-height: calc(var(--height-top-xxl) - 2vh);
       }
     }
   }

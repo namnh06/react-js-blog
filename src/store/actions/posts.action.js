@@ -9,15 +9,17 @@ import {
 } from '../../helpers/constants';
 import axios from '../../helpers/axios.config';
 
-export const postsFetchStart = (auth = false) => {
+export const postsFetchStart = ({ auth = false, pageNumber = 1 } = {}) => {
   return dispatch => {
-    return axios.get(`posts?${auth ? 'auth=' + auth : ''}`).then(response => {
-      if (response.data.status === 200) {
-        const posts = response.data.data.posts;
+    return axios
+      .get(`posts?page=${pageNumber}${auth ? '&auth=' + auth : ''}`)
+      .then(response => {
+        if (response.data.status === 200) {
+          const posts = response.data.data.posts;
 
-        dispatch(postsFetched(posts));
-      }
-    });
+          dispatch(postsFetched(posts));
+        }
+      });
   };
 };
 

@@ -31,7 +31,8 @@ class App extends Component {
           <Route path="/" exact render={() => <Redirect to="/home" />} />
           <Route path="/home" component={Home} />
           <Route path="/404" component={NotFoundPage} />
-          <Route path="/blog" exact component={Blog} />
+          <Route path="/blog/:page?" exact component={Blog} />
+          <Route path="/blog/page/:page?" exact component={Blog} />
           <Route
             path="/blog/categories/:categorySlug"
             exact

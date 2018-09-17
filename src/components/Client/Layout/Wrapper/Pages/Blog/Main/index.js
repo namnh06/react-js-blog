@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-// import Post from './Post';
-import Post from '../../../../Post';
+import { withRouter } from 'react-router-dom';
+import Article from './Article';
 import Pagination from '../../../../../../UI/Pagination';
 
 import { connect } from 'react-redux';
@@ -10,7 +10,8 @@ import {
   postsCategoryFetchStart,
   postsLinkFetchStart
 } from '../../../../../../../store/actions/posts.action';
-import Categories from './Categories';
+import { isObjectNotEmpty } from '../../../../../../../helpers';
+import Breadcrumb from './../../../../../../UI/Breadcrumb';
 class index extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.categorySlug !== prevProps.categorySlug) {
@@ -21,37 +22,46 @@ class index extends Component {
   }
   componentDidMount() {
     if (this.props.categorySlug) {
-      this.props.postsCategoryFetchStart(this.props.categorySlug);
-    } else {
-      // if (this.props.posts.length === 0) {
-      this.props.postsFetchStart();
-      // }
+      return this.props.postsCategoryFetchStart(this.props.categorySlug);
     }
+    return this.props.postsFetchStart({
+      auth: false,
+      pageNumber: parseInt(this.props.pageNumber, 10)
+    });
   }
 
-  onPagniateClickHandler = link => {
-    return this.props.postsLinkFetchStart(link);
+  onPaginateClickHandler = number => {
+    this.props.history.push('/blog/' + number);
+    window.scroll(0, 0);
+    return this.props.postsFetchStart({
+      auth: false,
+      pageNumber: parseInt(number, 10)
+    });
   };
+
+  // onCategoryClickHandler = category => {
+
+  // }
   render() {
     return (
       <Fragment>
-        <Categories />
-        <div className="my-2">
-          <span className="badge badge-primary text-uppercase">
-            {!!this.props.categorySlug ? this.props.categorySlug : 'news'}
-          </span>
-        </div>
-        <div className="card-groups mx-0">
+        <Breadcrumb
+          data={['blog', this.props.categorySlug && this.props.categorySlug]}
+        />
+        <div className="card-decks mx-0">
           {this.props.posts.data &&
             Object.keys(this.props.posts.data).map((key, index) => {
               const post = this.props.posts.data[key];
-              return <Post {...post} key={post.id} index={index + 1} />;
+
+              return <Article {...post} key={index} />;
             })}
         </div>
-        <Pagination
-          onPaginateClicked={link => this.onPagniateClickHandler(link)}
-          {...this.props.posts}
-        />
+        {isObjectNotEmpty(this.props.posts) && (
+          <Pagination
+            onPaginateClicked={number => this.onPaginateClickHandler(number)}
+            {...this.props.posts}
+          />
+        )}
       </Fragment>
     );
   }
@@ -63,7 +73,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    postsFetchStart: () => dispatch(postsFetchStart()),
+    postsFetchStart: ({ auth, pageNumber }) =>
+      dispatch(postsFetchStart({ auth, pageNumber })),
     postsCategoryFetchStart: slug => dispatch(postsCategoryFetchStart(slug)),
     postsLinkFetchStart: link => dispatch(postsLinkFetchStart(link))
   };
@@ -72,4 +83,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(index);
+)(withRouter(index));
