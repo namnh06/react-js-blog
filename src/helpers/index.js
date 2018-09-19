@@ -7,14 +7,7 @@ import Anchor from '../components/Details/Anchor';
 
 import logo from '../assets/images/crashzone-logo.svg';
 
-import {
-  USER_CREATE_START,
-  USER_EDIT_START,
-  CATEGORY_CREATE_START,
-  CATEGORY_EDIT_START,
-  POST_CREATE_START,
-  POST_UPDATE_START
-} from './constants';
+import { USER_CREATE_START, USER_EDIT_START } from './constants';
 
 import store from '../store';
 import {
@@ -192,7 +185,8 @@ export const fontAwesomeType = {
   PLUS: 'plus',
   MINUS: 'minus',
   TIMES: 'times',
-  EYE: 'eye'
+  EYE: 'eye',
+  IMAGES: 'images'
 };
 
 export const iconClass = type => {
@@ -213,7 +207,8 @@ export const iconClass = type => {
       return fontAwesomeType.TIMES;
     case fontAwesomeType.EYE.toUpperCase():
       return fontAwesomeType.EYE;
-
+    case fontAwesomeType.IMAGES.toUpperCase():
+      return fontAwesomeType.IMAGES;
     default:
       return null;
   }
@@ -359,6 +354,10 @@ export const renderTypeString = type => {
     return 'edit';
   }
 
+  if (type.toLowerCase().includes('update')) {
+    return 'update';
+  }
+
   return null;
   // switch (type.toLowerCase()) {
   //   case CATEGORY_CREATE_START:
@@ -384,11 +383,11 @@ export const hideStringTemporary = page => {
 };
 
 export const isCreateType = type => {
-  return type.toUpperCase().includes('CREATE');
+  return type.toLowerCase().includes('create');
 };
 
 export const isEditType = type => {
-  return type.toUpperCase().includes('EDIT');
+  return type.toLowerCase().includes('edit');
 };
 
 export const isPostValid = ({ content, description, title }) => {

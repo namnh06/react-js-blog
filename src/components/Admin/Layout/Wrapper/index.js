@@ -11,6 +11,8 @@ import Posts from './Pages/Posts';
 import Categories from './Pages/Categories';
 import NotFoundPage from '../../../../containers/404';
 import Dashboard from './Pages/Dashboard';
+import Carousel from './Pages/Carousel';
+
 class index extends Component {
   state = {
     formToggle: false,
@@ -68,6 +70,18 @@ class index extends Component {
       case ADMIN_PAGES_NAME.DASHBOARD:
         return (
           <Dashboard
+            page={this.props.page}
+            formToggle={this.state.formToggle}
+            onFormToggleClicked={this.onFormToggleClickHandler}
+            formEditToggle={this.state.formEditToggle}
+            onFormEditToggleClicked={set =>
+              this.onFormEditToggleClickHandler(set)
+            }
+          />
+        );
+      case ADMIN_PAGES_NAME.CAROUSEL:
+        return (
+          <Carousel
             page={this.props.page}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}

@@ -3,6 +3,12 @@ export const initPosts = {
   current: {},
   deleted: {}
 };
+
+export const initSlides = {
+  current: {},
+  deleted: {},
+  show: {}
+};
 export const initTags = { current: {}, deleted: {} };
 export const initUsers = { current: [], deleted: [] };
 export const initPost = {};

@@ -76,7 +76,6 @@ class index extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
     return isCreateType(this.props.type)
       ? null
       : this.checkChangeFormEdit(nextProps);
@@ -90,8 +89,6 @@ class index extends Component {
           ...nextProps.postFormEdit
         }
       }));
-      // } else {
-      // this.props.onFormEditToggleClicked();
     }
   };
 

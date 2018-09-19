@@ -19,6 +19,7 @@ import Login from '../../containers/Admin/Login';
 import Users from '../../containers/Admin/Users';
 import Categories from '../../containers/Admin/Categories';
 import Posts from '../../containers/Admin/Posts';
+import Carousel from '../../containers/Admin/Carousel';
 import Dashboard from '../../containers/Admin/Dashboard';
 
 export const history = createHistory();
@@ -46,6 +47,7 @@ class App extends Component {
           <PrivateRoute path="/admin/users" component={Users} />
           <PrivateRoute path="/admin/categories" component={Categories} />
           <PrivateRoute path="/admin/posts" component={Posts} />
+          <PrivateRoute path="/admin/carousel" component={Carousel} />
           <Route component={NotFoundPage} />
         </Switch>
       </Router>

@@ -17,8 +17,8 @@ const index = props => {
       }}
     >
       <div className="carousel-caption d-none d-md-block">
-        <h5>First Slide</h5>
-        <p>Something make sense</p>
+        <div className="h1">{props.name}</div>
+        <p>{props.caption}</p>
       </div>
     </div>
   );

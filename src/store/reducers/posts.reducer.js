@@ -61,7 +61,7 @@ const postCreated = (state, action) => {
   return {
     ...state,
     current: sortDescendingArrayById(
-      pushDataToArray(state.current, action.post)
+      pushDataToArray(state.current.data, action.post)
     )
   };
 };

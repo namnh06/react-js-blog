@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 
-import { updateValueInArrayByName, iconClass } from '../../../../../../helpers';
+import { updateValueInArrayByName } from '../../../../../../helpers';
 
 import Title from '../Components/Title';
 import Button from '../../../../../UI/Button';
@@ -9,9 +9,7 @@ import Button from '../../../../../UI/Button';
 import FormGroup from './FormGroup';
 import { informationUpdateStart } from '../../../../../../store/actions/information.action';
 import { slidesFetchStart } from '../../../../../../store/actions/slides.action';
-import Icon from '../../../../../UI/Icon';
-import SlideForm from './SlideForm';
-import { SLIDE_CREATE_START } from '../../../../../../helpers/constants';
+
 const index = class extends Component {
   state = {
     information: [...this.props.information]
@@ -83,54 +81,17 @@ const index = class extends Component {
           </div>
         )}
 
-        {/* CAROUSEL SECTION */}
-        <div className="mt-5 border border-style-custom ">
-          <div className="d-flex justify-content-between align-items-center border-bottom p-3">
-            <Title className="mb-0 font-weight-bold">Carousel </Title>
-            <Button
-              className="btn-sm btn-info"
-              clicked={this.props.onFormToggleClicked}
-            >
-              <Icon
-                iconClass={iconClass(this.props.formToggle ? 'minus' : 'plus')}
-                className="text-white"
-              />
-            </Button>
-          </div>
+        {/* CAROUSEL SECTION
 
-          {/* form create */}
-          {/* {this.props.formToggle && ( */}
-          <div>
-            <SlideForm
-              type={SLIDE_CREATE_START}
-              page="Slide"
-              onFormToggleClicked={this.props.onFormToggleClicked}
-              categories={this.props.categories}
-            />
-          </div>
-          {/* )} */}
-
-          <form className="m-3">
-            <span className="small">will be random 3 of them on home page</span>
-            {/* onSubmit={event => this.onSubmitHandler(event)} */}
-            {/* {Object.keys(this.state.information).map((key, index) => {
-              const information = this.state.information[key];
-              return (
-                <FormGroup
-                  key={index}
-                  name={information.name}
-                  value={information.value}
-                  changed={event => this.onInputChange(event)}
-                />
-              );
-            })} */}
-            <div className="form-group">
-              <Button className="btn btn-primary rounded-0" type="submit">
-                Save
-              </Button>
-            </div>
-          </form>
-        </div>
+        <Carousel
+          page={this.props.page}
+          formToggle={this.props.formToggle}
+          onFormToggleClicked={this.props.onFormToggleClicked}
+          formEditToggle={this.props.formEditToggle}
+          // onFormEditToggleClicked={set =>
+          //   this.onFormEditToggleClickHandler(set)
+          // }
+        /> */}
       </Fragment>
     );
   }

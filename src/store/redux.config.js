@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import categories from '../store/reducers/admin/categories.reducer';
 import posts from '../store/reducers/posts.reducer';
 import post from '../store/reducers/post.reducer';
+import slides from '../store/reducers/slides.reducer';
 import menus from '../store/reducers/menus.reducer';
 import auth from '../store/reducers/admin/auth.reducer';
 import users from '../store/reducers/admin/users.reducer';
@@ -19,7 +20,8 @@ export default () => {
     auth,
     users,
     tags,
-    information
+    information,
+    slides
   });
 
   const rootReducer = (state, action) => {

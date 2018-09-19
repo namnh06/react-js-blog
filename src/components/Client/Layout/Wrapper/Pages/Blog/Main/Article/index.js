@@ -3,7 +3,6 @@ import Moment from 'react-moment';
 import LinkToArticle from '../../../../../../../UI/LinkToArticle';
 import Category from './Category';
 const index = props => {
-  console.log(props.categories);
   return (
     <div className="card mb-3 border-top-0 border-bottom border-right-0 border-left-0">
       <div className="card-body">

@@ -3,6 +3,7 @@ import { ADMIN_PAGES_NAME } from '../../../../../../../helpers/constants';
 import CategoryHeader from './Category';
 import PostHeader from './Post';
 import UserHeader from './User';
+import CarouselHeader from './Carousel';
 
 const Header = props => {
   const renderHeaderList = page => {
@@ -13,6 +14,8 @@ const Header = props => {
         return <PostHeader className={props.className} />;
       case ADMIN_PAGES_NAME.USERS:
         return <UserHeader className={props.className} />;
+      case ADMIN_PAGES_NAME.CAROUSEL:
+        return <CarouselHeader className={props.className} />;
       default:
         return null;
     }

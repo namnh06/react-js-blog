@@ -25,6 +25,12 @@ const index = props => {
           text="Posts"
           to={ADMIN_URL_PAGES.POSTS}
         />
+
+        <TreeView
+          iconType={fontAwesomeType.IMAGES}
+          text="Carousel"
+          to={ADMIN_URL_PAGES.CAROUSEL}
+        />
       </ul>
     </div>
   );

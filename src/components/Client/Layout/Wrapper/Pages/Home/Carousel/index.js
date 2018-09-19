@@ -1,17 +1,17 @@
 import React, { Component, Fragment } from 'react';
 
-import { threePartSlides } from '../../../../../../../helpers/image';
 import Button from '../../../../../../Details/Button';
 import Slide from './Slide';
+import { connect } from 'react-redux';
+import { slidesRandFetchStart } from '../../../../../../../store/actions/slides.action';
+
+import { HOST } from '../../../../../../../helpers/constants';
 class index extends Component {
   state = {
     slides: []
   };
   componentDidMount() {
-    const slides = [...threePartSlides()];
-    this.setState({
-      slides
-    });
+    this.props.slidesRandFetchStart();
   }
 
   render() {
@@ -29,14 +29,15 @@ class index extends Component {
               data-ride="carousel"
             >
               <ol className="carousel-indicators Carousel-incaditors">
-                {!!this.state.slides &&
-                  this.state.slides.map((key, index) => {
+                {!!this.props.slides.length &&
+                  this.props.slides.map((slide, index) => {
                     return (
                       <li
-                        key={key}
+                        key={index}
                         data-target="#bs4-slide-carousel"
                         data-slide-to={index}
                         className={index === 0 ? 'active' : ''}
+                        {...slide}
                       />
                     );
                   })}
@@ -64,14 +65,15 @@ class index extends Component {
                     </div>
                   </div>
                 </div>
-                {this.state.slides && (
+                {!!this.props.slides.length && (
                   <Fragment>
-                    {this.state.slides.map((key, index) => {
+                    {this.props.slides.map((slide, index) => {
                       return (
                         <Slide
                           active={index === 0}
-                          key={key}
-                          url={`url(${this.state.slides[index]})`}
+                          key={index}
+                          url={`url(${HOST + slide.images[0].path})`}
+                          {...slide}
                         />
                       );
                     })}
@@ -86,4 +88,19 @@ class index extends Component {
   }
 }
 
-export default index;
+const mapStateToProps = state => {
+  return {
+    slides: state.slides.show
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    slidesRandFetchStart: _ => dispatch(slidesRandFetchStart())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(index);

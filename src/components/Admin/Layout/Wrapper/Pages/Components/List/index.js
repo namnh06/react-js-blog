@@ -4,6 +4,7 @@ import { ADMIN_PAGES_NAME } from '../../../../../../../helpers/constants';
 import CategoryList from './Category';
 import PostList from './Post';
 import UserList from './User';
+import CarouselList from './Carousel';
 
 const index = props => {
   const renderList = page => {
@@ -27,6 +28,17 @@ const index = props => {
       case ADMIN_PAGES_NAME.USERS:
         return (
           <UserList
+            {...props}
+            onButtonDeleteClicked={props.onButtonDeleteClicked}
+            onButtonEditClicked={props.onButtonEditClicked}
+            onButtonDeletePermanentlyClicked={
+              props.onButtonDeletePermanentlyClicked
+            }
+          />
+        );
+      case ADMIN_PAGES_NAME.CAROUSEL:
+        return (
+          <CarouselList
             {...props}
             onButtonDeleteClicked={props.onButtonDeleteClicked}
             onButtonEditClicked={props.onButtonEditClicked}

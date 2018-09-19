@@ -1,12 +1,12 @@
 //PRODUCT
 export const DOMAIN = window.location.origin;
 export const HOST = 'http://101.0.86.110:6699';
-export const API = 'http://localhost:6699/api/v1';
-// export const API = 'http://101.0.86.110:6699/api/v1';
+export const API = 'http://101.0.86.110:6699/api/v1';
+
 // DEVELOPMENT
 
-// export const HOST = 'http://192.168.1.70:6699';
-// export const API = '/api/v1';
+// export const HOST = 'http://localhost:6699';
+// export const API = 'http://localhost:6699/api/v1';
 
 // export const URL = HOST + API;
 
@@ -84,11 +84,21 @@ export const AUTH_LOG_OUT = 'AUTH_LOG_OUT';
 export const SLIDES_FETCH_START = 'SLIDES_FETCH_START';
 export const SLIDES_FETCHED = 'SLIDES_FETCHED';
 
+export const SLIDES_RAND_FETCH_START = 'SLIDES_RAND_FETCH_START';
+export const SLIDES_RAND_FETCHED = 'SLIDES_RAND_FETCHED';
+
 export const SLIDE_CREATE_START = 'SLIDE_CREATE_START';
 export const SLIDE_CREATED = 'SLIDE_CREATED';
 
+export const SLIDE_EDIT_START = 'SLIDE_EDIT_START';
+export const SLIDE_EDITED = 'SLIDE_EDITED';
+
 export const SLIDE_UPDATE_START = 'SLIDE_UPDATE_START';
 export const SLIDE_UPDATED = 'SLIDE_UPDATED';
+
+export const SLIDE_DELETE_START = 'SLIDE_DELETE_START';
+export const SLIDE_DELETED = 'SLIDE_DELETED';
+
 // END SLIDE
 
 // USER
@@ -122,7 +132,8 @@ export const ADMIN_PAGES_NAME = {
   USERS: 'users',
   POSTS: 'posts',
   CATEGORIES: 'categories',
-  DASHBOARD: 'dashboard'
+  DASHBOARD: 'dashboard',
+  CAROUSEL: 'carousel'
 };
 export const CLIENT_PAGES_NAME = {
   HOME: 'home',
@@ -139,5 +150,6 @@ export const ADMIN_URL_PAGES = {
   DASHBOARD: ADMIN_PAGES_URL_PREFIX + '/dashboard',
   USERS: ADMIN_PAGES_URL_PREFIX + '/users',
   CATEGORIES: ADMIN_PAGES_URL_PREFIX + '/categories',
-  POSTS: ADMIN_PAGES_URL_PREFIX + '/posts'
+  POSTS: ADMIN_PAGES_URL_PREFIX + '/posts',
+  CAROUSEL: ADMIN_PAGES_URL_PREFIX + '/carousel'
 };

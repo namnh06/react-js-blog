@@ -200,12 +200,6 @@ const mapStateToProps = state => {
     categories: state.categories.current,
     postsDeleted: state.posts.deleted,
     posts: state.posts.current
-    // next: state.posts.current.next_page_url,
-    // prev: state.posts.current.prev_page_url,
-    // currentPage: state.posts.current.current_page,
-    // lastPage: state.posts.current.last_page,
-    // lastPageUrl: state.posts.current.last_page_url,
-    // firstPageUrl: state.posts.current.first_page_url
   };
 };
 
