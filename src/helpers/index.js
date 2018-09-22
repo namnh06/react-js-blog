@@ -265,7 +265,7 @@ export const isValidEmail = email => {
 };
 
 export const isValidPassword = password => {
-  return validator.isLength(password, 3) && validator.isAscii(password);
+  return validator.isLength(password, 5) && validator.isAscii(password);
 };
 
 export const isValidTitle = title => {

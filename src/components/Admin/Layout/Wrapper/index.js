@@ -36,7 +36,7 @@ class index extends Component {
       case ADMIN_PAGES_NAME.USERS:
         return (
           <Users
-            page={this.props.page}
+            {...this.props}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
             formEditToggle={this.state.formEditToggle}
@@ -46,7 +46,7 @@ class index extends Component {
       case ADMIN_PAGES_NAME.POSTS:
         return (
           <Posts
-            page={this.props.page}
+            {...this.props}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
             formEditToggle={this.state.formEditToggle}
@@ -58,7 +58,7 @@ class index extends Component {
       case ADMIN_PAGES_NAME.CATEGORIES:
         return (
           <Categories
-            page={this.props.page}
+            {...this.props}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
             formEditToggle={this.state.formEditToggle}
@@ -70,7 +70,7 @@ class index extends Component {
       case ADMIN_PAGES_NAME.DASHBOARD:
         return (
           <Dashboard
-            page={this.props.page}
+            {...this.props}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
             formEditToggle={this.state.formEditToggle}
@@ -82,7 +82,7 @@ class index extends Component {
       case ADMIN_PAGES_NAME.CAROUSEL:
         return (
           <Carousel
-            page={this.props.page}
+            {...this.props}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}
             formEditToggle={this.state.formEditToggle}

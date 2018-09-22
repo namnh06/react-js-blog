@@ -12,14 +12,14 @@ const index = props => {
       ].join(' ')}
     >
       <div className="h-100 d-flex flex-column justify-content-between">
-        {!props.main && (
+        {/* {!props.main && (
           <Button
             clicked={props.onClickedMakeMainImage}
             className="btn btn-sm btn-secondary rounded-0 mb-2"
           >
             Main Preview
           </Button>
-        )}
+        )} */}
         <img
           src={props.src}
           className="figure-img rounded-0 my-auto w-100"
@@ -35,12 +35,12 @@ const index = props => {
           </span>
           {props.caption}
         </figcaption>
-        <Button
+        {/* <Button
           clicked={_ => props.onAddToEditorButtonClicked()}
           className="btn btn-sm btn-secondary rounded-0"
         >
           Add To Editor
-        </Button>
+        </Button> */}
       </div>
     </figure>
   );

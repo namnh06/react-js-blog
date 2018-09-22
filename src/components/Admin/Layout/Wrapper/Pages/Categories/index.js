@@ -3,7 +3,6 @@ import React, { Component, Fragment } from 'react';
 
 import Header from '../Components/Header';
 import List from '../Components/List';
-import ListOld from '../Components/ListOld';
 
 import './styles.css';
 
@@ -17,11 +16,7 @@ import {
 import Title from '../Components/Title';
 import Button from '../../../../../UI/Button';
 import Icon from '../../../../../UI/Icon';
-import {
-  iconClass,
-  displayStringTemporary,
-  hideStringTemporary
-} from '../../../../../../helpers';
+import { iconClass } from '../../../../../../helpers';
 import FormCategory from '../Components/Form/Category';
 import {
   CATEGORY_CREATE_START,
@@ -132,7 +127,7 @@ const index = class extends Component {
                   </Fragment>
                 );
               })}
-            <li className="Categories-Content">
+            {/* <li className="Categories-Content">
               <Button
                 className="btn btn-sm btn-secondary rounded-0 my-2 text-uppercase"
                 clicked={this.onButtonFetchDeletedCategories}
@@ -141,13 +136,14 @@ const index = class extends Component {
                   ? hideStringTemporary('category')
                   : displayStringTemporary('category')}
               </Button>
-            </li>
-            {this.state.displayOldData &&
+            </li> */}
+            {/* {this.state.displayOldData &&
               this.props.categoriesDeleted &&
               Object.keys(this.props.categoriesDeleted).map((key, index) => {
                 return (
                   <Fragment key={this.props.categoriesDeleted[key].id}>
                     <ListOld
+                      key={index}
                       page={this.props.page}
                       index={++index}
                       last={index === this.props.categoriesDeleted.length}
@@ -165,7 +161,7 @@ const index = class extends Component {
                     />
                   </Fragment>
                 );
-              })}
+              })} */}
           </ul>
         </div>
       </div>

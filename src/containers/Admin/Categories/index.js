@@ -15,7 +15,10 @@ class index extends Component {
   render() {
     return (
       <Fragment>
-        <AdminLayout page="categories" />
+        <AdminLayout
+          page="categories"
+          pageNumber={this.props.match.params.page || 1}
+        />
       </Fragment>
     );
   }

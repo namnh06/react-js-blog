@@ -128,7 +128,7 @@
       & img {
         align-self: center;
         margin: 5px auto;
-        width: 100%;
+        // width: 100%;
       }
     }
   }
@@ -330,7 +330,7 @@
 
 .Banner {
   &__image {
-    max-height: 800px;
+    max-height: 500px;
     object-fit: cover;
   }
   &__text {

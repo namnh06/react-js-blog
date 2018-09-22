@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { postFetchStart } from '../../../../../../store/actions/post.action';
 
 import Article from './Article';
-import Side from './Side';
 
 class index extends Component {
   componentDidMount() {
@@ -15,11 +14,8 @@ class index extends Component {
         {Object.keys(this.props.post).length > 0 && (
           <div className="container my-5">
             <div className="row border-bottom">
-              <div className="col-8 d-flex flex-column">
+              <div className="col-12 d-flex flex-column">
                 <Article {...this.props.post} />
-              </div>
-              <div className="col-4">
-                <Side categories={this.props.post.categories} />
               </div>
             </div>
             <div className="mt-5">

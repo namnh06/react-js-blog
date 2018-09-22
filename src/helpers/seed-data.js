@@ -1,16 +1,21 @@
-export const initCategories = { current: {}, deleted: {} };
+export const initCategories = { current: { data: [] }, deleted: { data: [] } };
 export const initPosts = {
-  current: {},
-  deleted: {}
+  current: { data: [] },
+  deleted: { data: [] }
 };
 
 export const initSlides = {
-  current: {},
-  deleted: {},
+  current: { data: [] },
+  deleted: { data: [] },
   show: {}
 };
 export const initTags = { current: {}, deleted: {} };
-export const initUsers = { current: [], deleted: [] };
+export const initUsers = {
+  current: {
+    data: []
+  },
+  deleted: { data: [] }
+};
 export const initPost = {};
 export const initMenus = [];
 export const initAuth = {};

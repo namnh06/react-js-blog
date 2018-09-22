@@ -11,11 +11,12 @@ import {
   setDataToArray,
   pushDataToArray,
   removeDataFromArrayById,
-  updateDataToArrayById
+  updateDataToArrayById,
+  sortDescendingArrayById
 } from '../../../helpers';
 import { initCategories } from '../../../helpers/seed-data';
 
-const categoriesFetched = (state, action) => {
+const fetched = (state, action) => {
   return { ...state, current: action.categories };
 };
 
@@ -23,11 +24,19 @@ const categoriesDeletedFetched = (state, action) => {
   return { ...state, deleted: setDataToArray(action.categories) };
 };
 
-const categoryDeleted = (state, action) => {
+const deleted = (state, action) => {
   return {
     ...state,
-    current: removeDataFromArrayById(state.current, action.category.id),
-    deleted: pushDataToArray(state.deleted, action.category)
+    current: {
+      ...state.current,
+      data: removeDataFromArrayById(state.current.data, action.category.id)
+    },
+    deleted: {
+      ...state.deleted,
+      data: sortDescendingArrayById(
+        pushDataToArray(state.deleted.data, action.category)
+      )
+    }
   };
 };
 
@@ -46,33 +55,44 @@ const categoryDeletedRestored = (state, action) => {
   };
 };
 
-const categoryCreated = (state, action) => {
-  return { ...state, current: pushDataToArray(state.current, action.category) };
-};
-
-const categoryEdited = (state, action) => {
+const created = (state, action) => {
   return {
     ...state,
-    current: updateDataToArrayById(state.current, action.category)
+    current: {
+      ...state.current,
+      data: sortDescendingArrayById(
+        pushDataToArray(state.current.data, action.category)
+      )
+    }
+  };
+};
+
+const updated = (state, action) => {
+  return {
+    ...state,
+    current: {
+      ...state.current,
+      data: updateDataToArrayById(state.current.data, action.category)
+    }
   };
 };
 
 const reducer = (state = initCategories, action) => {
   switch (action.type) {
     case CATEGORIES_FETCHED:
-      return categoriesFetched(state, action);
+      return fetched(state, action);
     case CATEGORIES_DELETED_FETCHED:
       return categoriesDeletedFetched(state, action);
     case CATEGORY_DELETED:
-      return categoryDeleted(state, action);
+      return deleted(state, action);
     case CATEGORY_DELETED_PERMANENTLY:
       return categoryDeletedPermanently(state, action);
     case CATEGORY_DELETED_RESTORED:
       return categoryDeletedRestored(state, action);
     case CATEGORY_CREATED:
-      return categoryCreated(state, action);
+      return created(state, action);
     case CATEGORY_EDITED:
-      return categoryEdited(state, action);
+      return updated(state, action);
 
     default:
       return state;

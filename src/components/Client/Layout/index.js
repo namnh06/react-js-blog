@@ -16,23 +16,8 @@ class index extends React.Component {
   };
 
   componentDidMount() {
-    // if (this.props.information.length === 0) {
     this.props.informationFetchStart();
     this.props.menusFetchStart();
-    // }
-    // if (this.props.menus.length === 0) {
-
-    // }
-    // if (!!localStorage.getItem('cz.visited')) {
-    // const countVisited = parseInt(localStorage.getItem('cz.visited'), 10);
-    // if (countVisited < 2) {
-    // localStorage.setItem('cz.visited', '' + (countVisited + 1));
-    // } else {
-    // Math.random() * 10 > 8 && localStorage.setItem('cz.visited', '1');
-    // }
-    // } else {
-    // localStorage.setItem('cz.visited', '1');
-    // }
   }
 
   onButtonScrollTopClickHandler = () => {

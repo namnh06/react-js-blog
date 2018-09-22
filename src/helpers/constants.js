@@ -1,12 +1,12 @@
 //PRODUCT
 export const DOMAIN = window.location.origin;
-export const HOST = 'http://101.0.86.110:6699';
-export const API = 'http://101.0.86.110:6699/api/v1';
+// export const HOST = 'http://101.0.86.110:6699';
+// export const API = 'http://101.0.86.110:6699/api/v1';
 
 // DEVELOPMENT
 
-// export const HOST = 'http://localhost:6699';
-// export const API = 'http://localhost:6699/api/v1';
+export const HOST = 'http://192.168.1.70:6699';
+export const API = 'http://192.168.1.70:6699/api/v1';
 
 // export const URL = HOST + API;
 

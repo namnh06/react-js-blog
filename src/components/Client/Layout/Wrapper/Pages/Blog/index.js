@@ -3,7 +3,6 @@ import React, { Fragment } from 'react';
 import Main from './Main';
 
 const index = props => {
-  window.scroll(0, 0);
   return (
     <Fragment>
       <div className="container my-lg-5">

@@ -9,11 +9,12 @@ import {
 } from '../../../helpers/constants';
 import axios from '../../../helpers/axios.config';
 
-export const usersFetchStart = () => {
+export const usersFetchStart = ({ pageNumber = 1 }) => {
   return dispatch => {
-    return axios.get('users').then(response => {
+    return axios.get(`users?page=${pageNumber}`).then(response => {
       if (response.data.status === 200) {
         const users = response.data.data.users;
+
         dispatch(usersFetched(users));
       }
     });
@@ -58,17 +59,17 @@ export const userDeleteStart = id => {
   return dispatch => {
     return axios.delete(`/users/${id}`).then(response => {
       if (response.data.status === 200) {
-        const data = response.data.data.user;
-        dispatch(userDeleted(data));
+        const user = response.data.data.user;
+        dispatch(userDeleted(user));
       }
     });
   };
 };
 
-export const userDeleted = data => {
+export const userDeleted = user => {
   return {
     type: USER_DELETED,
-    data
+    user
   };
 };
 
@@ -76,16 +77,17 @@ export const userDeletePermanentlyStart = id => {
   return dispatch => {
     return axios.delete(`users-deleted/${id}`).then(response => {
       if (response.data.status === 200) {
-        dispatch(userDeletedPermanently(id));
+        const user = response.data.data.user;
+        dispatch(userDeletedPermanently(user));
       }
     });
   };
 };
 
-export const userDeletedPermanently = id => {
+export const userDeletedPermanently = user => {
   return {
     type: USER_DELETED_PERMANENTLY,
-    id
+    user
   };
 };
 
@@ -112,18 +114,18 @@ export const userCreateStart = user => {
     return axios.post('/users', user).then(response => {
       if (response.data.status === 200) {
         const user = response.data.data.user;
+
         dispatch(userCreated(user));
-      } else {
-        return null;
       }
+      return null;
     });
   };
 };
 
-export const userCreated = data => {
+export const userCreated = user => {
   return {
     type: USER_CREATED,
-    data
+    user
   };
 };
 
@@ -133,16 +135,15 @@ export const userEditStart = (id, user) => {
       if (response.data.status === 200) {
         const user = response.data.data.user;
         dispatch(userEdited(user));
-      } else {
-        return null;
       }
+      return null;
     });
   };
 };
 
-export const userEdited = data => {
+export const userEdited = user => {
   return {
     type: USER_EDITED,
-    data
+    user
   };
 };

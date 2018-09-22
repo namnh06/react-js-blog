@@ -44,9 +44,12 @@ class App extends Component {
           <Route path="/help" component={Help} />
           <PublicRoute path="/admin/login" component={Login} />
           <PrivateRoute path="/admin/dashboard" component={Dashboard} />
-          <PrivateRoute path="/admin/users" component={Users} />
-          <PrivateRoute path="/admin/categories" component={Categories} />
-          <PrivateRoute path="/admin/posts" component={Posts} />
+          <PrivateRoute path="/admin/users/:page?" exact component={Users} />
+          <PrivateRoute
+            path="/admin/categories/:page?"
+            component={Categories}
+          />
+          <PrivateRoute path="/admin/posts/:page?" component={Posts} />
           <PrivateRoute path="/admin/carousel" component={Carousel} />
           <Route component={NotFoundPage} />
         </Switch>

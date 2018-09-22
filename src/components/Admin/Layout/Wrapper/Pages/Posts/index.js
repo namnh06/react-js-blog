@@ -6,15 +6,15 @@ import {
   postsDeletedFetchStart,
   postDeletePermanentlyStart,
   postDeletedRestoreStart,
-  postsLinkFetchStart
+  postsLinkFetchStart,
+  postsFetchStart
 } from '../../../../../../store/actions/posts.action';
 import FormPost from '../Components/Form/Post';
 import {
   iconClass,
-  displayStringTemporary,
-  hideStringTemporary,
   isValidTitle,
-  isValidDescription
+  isValidDescription,
+  isCreateType
 } from '../../../../../../helpers';
 import {
   POST_CREATE_START,
@@ -26,7 +26,7 @@ import Button from '../../../../../UI/Button';
 import Icon from '../../../../../UI/Icon';
 import Header from '../Components/Header';
 import ListPosts from '../Components/List';
-import ListOldPosts from '../Components/ListOld/Post';
+
 import { categoriesFetchStart } from '../../../../../../store/actions/admin/categories.action';
 
 const index = class extends Component {
@@ -36,8 +36,9 @@ const index = class extends Component {
   };
 
   componentDidMount() {
-    if (this.props.categories.length === 0) {
-      this.props.categoriesFetchStart();
+    this.props.postsFetchStart({ auth: true });
+    if (!this.props.categories.length) {
+      return this.props.categoriesFetchStart();
     }
   }
 
@@ -90,10 +91,19 @@ const index = class extends Component {
           <Title className="mb-0 font-weight-bold">{this.props.page}</Title>
           <Button
             className="btn-sm btn-info"
-            clicked={this.props.onFormToggleClicked}
+            clicked={
+              (!this.props.formToggle && !this.props.formEditToggle) ||
+              !!this.props.formToggle
+                ? this.props.onFormToggleClicked
+                : this.props.onFormEditToggleClicked
+            }
           >
             <Icon
-              iconClass={iconClass(this.props.formToggle ? 'minus' : 'plus')}
+              iconClass={iconClass(
+                this.props.formToggle || this.props.formEditToggle
+                  ? 'minus'
+                  : 'plus'
+              )}
               className="text-white"
             />
           </Button>
@@ -157,7 +167,7 @@ const index = class extends Component {
                 {...this.props.posts}
               />
             </li>
-            <li className="Admin__Wrapper__Posts__List">
+            {/* <li className="Admin__Wrapper__Posts__List">
               <Button
                 className="btn btn-sm btn-secondary rounded-0 my-2 text-uppercase"
                 clicked={this.onButtonFetchDeletedPosts}
@@ -166,8 +176,8 @@ const index = class extends Component {
                   ? hideStringTemporary('posts')
                   : displayStringTemporary('posts')}
               </Button>
-            </li>
-            {this.state.displayOldData &&
+            </li> */}
+            {/* {this.state.displayOldData &&
               this.props.postsDeleted &&
               Object.keys(this.props.postsDeleted).map((key, index) => {
                 const post = this.props.postsDeleted[key];
@@ -187,7 +197,7 @@ const index = class extends Component {
                     />
                   </Fragment>
                 );
-              })}
+              })} */}
           </ul>
         </div>
       </div>
@@ -210,7 +220,8 @@ const mapDispatchToProps = dispatch => {
     postDeletePermanentlyStart: id => dispatch(postDeletePermanentlyStart(id)),
     deletedRestoreStart: id => dispatch(postDeletedRestoreStart(id)),
     categoriesFetchStart: _ => dispatch(categoriesFetchStart()),
-    postsLinkFetchStart: link => dispatch(postsLinkFetchStart(link))
+    postsLinkFetchStart: link => dispatch(postsLinkFetchStart(link)),
+    postsFetchStart: ({ auth }) => dispatch(postsFetchStart({ auth }))
   };
 };
 

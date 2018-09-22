@@ -93,7 +93,7 @@ class index extends Component {
     const password = event.target.value;
 
     if (isCreateType(this.props.type)) {
-      this.setState(prevState => {
+      return this.setState(prevState => {
         const isSaveButtonAllowed =
           !!isValidPassword(password) &&
           !!prevState.userForm.isValidName &&
@@ -109,6 +109,19 @@ class index extends Component {
         };
       });
     }
+    return this.setState(prevState => {
+      const isSaveButtonAllowed =
+        !!isValidPassword(password) && !!prevState.userFormEdit.isValidName;
+
+      return {
+        userFormEdit: {
+          ...prevState.userFormEdit,
+          password,
+          isValidPassword: isValidPassword(password)
+        },
+        isSaveButtonAllowed
+      };
+    });
   };
 
   onPasswordSecureClickHandler = () => {
@@ -121,16 +134,16 @@ class index extends Component {
 
   onFormSubmitHandler = event => {
     event.preventDefault();
-    if (this.state.isSaveButtonAllowed) {
+    if (!!this.state.isSaveButtonAllowed) {
       if (isCreateType(this.props.type)) {
         const { name, email, password } = this.state.userForm;
         this.props.createStart({ name, email, password });
-        this.onResetFormHandler();
-      } else {
-        const { name, id } = this.state.userFormEdit;
-        this.props.editStart(id, { name });
-        this.props.onFormEditToggleClicked();
+        return this.props.onFormToggleClicked();
       }
+      const { name, id, password } = this.state.userFormEdit;
+
+      this.props.editStart(id, { name, password });
+      return this.props.onFormEditToggleClicked();
     }
   };
 
@@ -236,52 +249,52 @@ class index extends Component {
             />
           </div>
         </div>
-        {isCreateType(this.props.type) && (
-          <Fragment>
-            <div className="form-group mb-0 ">
-              <HelpText className="Admin__Wrapper__User__Form__notice--height m-0 mb-2">
-                {(isCreateType(this.props.type)
-                  ? this.state.userForm.isValidPassword !== null &&
-                    !this.state.userForm.isValidPassword
-                  : this.state.userFormEdit.isValidPassword !== null &&
-                    !this.state.userFormEdit.isValidPassword) &&
-                  helpTextRequire(
-                    'user email',
-                    'at least 5 ASCII characters. E.g : hello@123 '
-                  )}
-              </HelpText>
-              <div className="input-group">
-                <Input
-                  type={this.state.passwordSecured ? 'password' : 'text'}
-                  className={[
-                    'form-control',
-                    addInputValidClass(
-                      isCreateType(this.props.type)
-                        ? this.state.userForm.isValidPassword
-                        : this.state.userFormEdit.isValidPassword
-                    )
-                  ].join(' ')}
-                  placeholder={passwordPlaceholderByType(this.props.type)}
-                  onChange={this.onInputPasswordChanged}
-                  value={
+
+        <Fragment>
+          <div className="form-group mb-0 ">
+            <HelpText className="Admin__Wrapper__User__Form__notice--height m-0 mb-2">
+              {(isCreateType(this.props.type)
+                ? this.state.userForm.isValidPassword !== null &&
+                  !this.state.userForm.isValidPassword
+                : this.state.userFormEdit.isValidPassword !== null &&
+                  !this.state.userFormEdit.isValidPassword) &&
+                helpTextRequire(
+                  'user email',
+                  'at least 5 ASCII characters. E.g : hello@123 '
+                )}
+            </HelpText>
+            <div className="input-group">
+              <Input
+                type={this.state.passwordSecured ? 'password' : 'text'}
+                className={[
+                  'form-control',
+                  addInputValidClass(
                     isCreateType(this.props.type)
-                      ? this.state.userForm.password
-                      : this.state.userFormEdit.password
-                  }
-                />
-                <div className="input-group-append ">
-                  <Button
-                    type="button"
-                    className="input-group-text text-muted cursor-pointer rounded-0"
-                    clicked={this.onPasswordSecureClickHandler}
-                  >
-                    {this.state.passwordSecured ? 'show' : 'hide'}
-                  </Button>
-                </div>
+                      ? this.state.userForm.isValidPassword
+                      : this.state.userFormEdit.isValidPassword
+                  )
+                ].join(' ')}
+                placeholder={passwordPlaceholderByType(this.props.type)}
+                onChange={this.onInputPasswordChanged}
+                value={
+                  isCreateType(this.props.type)
+                    ? this.state.userForm.password
+                    : this.state.userFormEdit.password
+                }
+              />
+              <div className="input-group-append ">
+                <Button
+                  type="button"
+                  className="input-group-text text-muted cursor-pointer rounded-0"
+                  clicked={this.onPasswordSecureClickHandler}
+                >
+                  {this.state.passwordSecured ? 'show' : 'hide'}
+                </Button>
               </div>
             </div>
-          </Fragment>
-        )}
+          </div>
+        </Fragment>
+
         <div className="form-group d-flex justify-content-end mt-3">
           <Button
             type="submit"

@@ -15,6 +15,7 @@ import {
   updateDataToArrayById
 } from '../../helpers';
 import { initPosts } from '../../helpers/seed-data';
+import { dataDeleted, dataCreated } from '../../helpers/reducers.helper';
 
 const fetched = (state, action) => {
   return {
@@ -23,15 +24,15 @@ const fetched = (state, action) => {
   };
 };
 
-const deleted = (state, action) => {
-  return {
-    ...state,
-    current: removeDataFromArrayById(state.current, action.post.id),
-    deleted: sortDescendingArrayById(
-      pushDataToArray(state.deleted, action.post)
-    )
-  };
-};
+// const deleted = (state, action) => {
+//   return {
+//     ...state,
+//     current: removeDataFromArrayById(state.current, action.post.id),
+//     deleted: sortDescendingArrayById(
+//       pushDataToArray(state.deleted, action.post)
+//     )
+//   };
+// };
 
 const postsDeletedFetched = (state, action) => {
   return {
@@ -57,14 +58,14 @@ const deletedRestored = (state, action) => {
   };
 };
 
-const postCreated = (state, action) => {
-  return {
-    ...state,
-    current: sortDescendingArrayById(
-      pushDataToArray(state.current.data, action.post)
-    )
-  };
-};
+// const created = (state, action) => {
+//   return {
+//     ...state,
+//     current: sortDescendingArrayById(
+//       pushDataToArray(state.current.data, action.post)
+//     )
+//   };
+// };
 
 const postUpdated = (state, action) => {
   return {
@@ -80,7 +81,7 @@ const reducer = (state = initPosts, action) => {
     case POSTS_FETCHED:
       return fetched(state, action);
     case POST_DELETED:
-      return deleted(state, action);
+      return dataDeleted(state, action);
     case POSTS_DELETED_FETCHED:
       return postsDeletedFetched(state, action);
     case POST_DELETED_PERMANENTLY:
@@ -88,7 +89,7 @@ const reducer = (state = initPosts, action) => {
     case POST_DELETED_RESTORED:
       return deletedRestored(state, action);
     case POST_CREATED:
-      return postCreated(state, action);
+      return dataCreated(state, action);
     case POST_UPDATED:
       return postUpdated(state, action);
     default:

@@ -32,7 +32,7 @@ import Figure from './Figure';
 
 import CheckBox from '../../../../../../../UI/CheckBox';
 import { categoriesFetchStart } from '../../../../../../../../store/actions/admin/categories.action';
-import { DOMAIN } from '../../../../../../../../helpers/constants';
+import { DOMAIN, HOST } from '../../../../../../../../helpers/constants';
 class index extends Component {
   state = {
     isAddImageToEditor: null,
@@ -59,7 +59,7 @@ class index extends Component {
       );
       const images = this.props.postFormEdit.images.map(image => {
         return {
-          path: DOMAIN + image.path,
+          path: HOST + image.path,
           data: image
         };
       });
@@ -170,83 +170,109 @@ class index extends Component {
 
   onInputImageUploadPostChangeHandler = event => {
     const image = event.target.files[0];
-
-    if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-      reader.onload = e => {
-        this.setState(prevState => {
-          const imagesArray = pushDataToArray(prevState.tempData.images, {
-            path: e.target.result,
-            data: image
-          });
-
-          const images = removeDuplicateObjectInArrayByProperty(
-            imagesArray,
-            'path'
-          );
-          const isSaveButtonAllowed = isPostValid(
-            isCreateType(this.props.type)
-              ? prevState.postForm
-              : prevState.postFormEdit
-          );
-
-          return {
-            ...prevState.tempData,
-            tempData: {
-              images
-            },
-            isSaveButtonAllowed
-          };
-        });
-      };
-
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  };
-
-  onButtonRemoveImageClickHandler = path => {
-    const data = path;
-    this.setState(prevState => {
-      const images = removeDataFromArrayByProperty(
-        prevState.tempData.images,
-        'path',
-        data
-      );
-      return {
-        ...prevState.tempData,
-        tempData: {
-          images
-        }
-      };
-    });
-  };
-
-  onButtonMakeMainImageClickHandler = (image, index) => {
-    if (index !== 0) {
+    let reader = new FileReader();
+    reader.onload = e => {
+      const path = e.target.result;
       this.setState(prevState => {
-        const imagesArray = unshiftDataToArray(
-          image,
-          prevState.tempData.images
-        );
-        const images = removeDuplicateObjectInArrayByProperty(
-          imagesArray,
-          'path'
-        );
         const isSaveButtonAllowed = isPostValid(
           isCreateType(this.props.type)
             ? prevState.postForm
             : prevState.postFormEdit
         );
         return {
-          ...prevState.tempData,
-          tempData: {
-            images
-          },
+          ...prevState,
+          image,
+          path,
           isSaveButtonAllowed
         };
       });
-    }
+    };
+    reader.readAsDataURL(image);
+    // if (event.target.files && event.target.files[0]) {
+    //   let reader = new FileReader();
+    //   reader.onload = e => {
+    //     const path = e.target.result;
+    //     this.setState(prevState => {
+    //       const imagesArray = pushDataToArray(prevState.tempData.images, {
+    //         path,
+    //         data: image
+    //       });
+
+    //       const images = removeDuplicateObjectInArrayByProperty(
+    //         imagesArray,
+    //         'path'
+    //       );
+    //       const isSaveButtonAllowed = isPostValid(
+    //         isCreateType(this.props.type)
+    //           ? prevState.postForm
+    //           : prevState.postFormEdit
+    //       );
+
+    //       return {
+    //         ...prevState.tempData,
+    //         tempData: {
+    //           images
+    //         },
+    //         isSaveButtonAllowed
+    //       };
+    //     });
+    //   };
+
+    //   reader.readAsDataURL(image);
+    // }
   };
+
+  onButtonRemoveImageClickHandler = _ => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        image: null,
+        path: null
+      };
+    });
+    // console.log(path);
+    // const data = path;
+    // this.setState(prevState => {
+    //   const images = removeDataFromArrayByProperty(
+    //     prevState.tempData.images,
+    //     'path',
+    //     data
+    //   );
+    //   return {
+    //     ...prevState.tempData,
+    //     tempData: {
+    //       images
+    //     }
+    //   };
+    // });
+  };
+
+  // onButtonMakeMainImageClickHandler = (image, index) => {
+  //   if (index !== 0) {
+  //     this.setState(prevState => {
+  //       const imagesArray = unshiftDataToArray(
+  //         image,
+  //         prevState.tempData.images
+  //       );
+  //       const images = removeDuplicateObjectInArrayByProperty(
+  //         imagesArray,
+  //         'path'
+  //       );
+  //       const isSaveButtonAllowed = isPostValid(
+  //         isCreateType(this.props.type)
+  //           ? prevState.postForm
+  //           : prevState.postFormEdit
+  //       );
+  //       return {
+  //         ...prevState.tempData,
+  //         tempData: {
+  //           images
+  //         },
+  //         isSaveButtonAllowed
+  //       };
+  //     });
+  //   }
+  // };
 
   onCategoryClickHandler = event => {
     const options = event.target.selectedOptions;
@@ -331,95 +357,95 @@ class index extends Component {
     });
   };
 
-  onAddToEditorButtonClickHandler = file => {
-    let formData = new FormData();
-    formData.append('image', file);
-    if (isCreateType(this.props.type)) {
-      console.log('whoops 318 create');
-      return axios
-        .post('/images', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-        .then(response => {
-          const image = response.data.data.image;
-          const imageHTML = `<p><img src="${DOMAIN + image.path}" alt="${
-            image.alt
-          }"></image></p>`;
-          this.setState(prevState => {
-            const content = imageHTML + prevState.postForm.content;
-            const isSaveButtonAllowed =
-              !validator.isEmpty(content) &&
-              !!prevState.postForm.isValidDescription &&
-              !!prevState.postForm.isValidTitle;
+  // onAddToEditorButtonClickHandler = file => {
+  //   let formData = new FormData();
+  //   formData.append('image', file);
+  //   if (isCreateType(this.props.type)) {
+  //     console.log('whoops 318 create');
+  //     return axios
+  //       .post('/images', formData, {
+  //         headers: {
+  //           'Content-Type': 'multipart/form-data'
+  //         }
+  //       })
+  //       .then(response => {
+  //         const image = response.data.data.image;
+  //         const imageHTML = `<p><img src="${HOST + image.path}" alt="${
+  //           image.alt
+  //         }"></image></p>`;
+  //         this.setState(prevState => {
+  //           const content = imageHTML + prevState.postForm.content;
+  //           const isSaveButtonAllowed =
+  //             !validator.isEmpty(content) &&
+  //             !!prevState.postForm.isValidDescription &&
+  //             !!prevState.postForm.isValidTitle;
 
-            return {
-              isAddImageToEditor: true,
-              postForm: {
-                ...prevState.postForm,
-                content,
-                isValidContent: !validator.isEmpty(content)
-              },
-              isSaveButtonAllowed
-            };
-          });
-        });
-    } else {
-      if (!!file.hasOwnProperty('id')) {
-        const image = file;
-        const imageHTML = `<p><img src="${DOMAIN + file.path}" alt="${
-          image.alt
-        }"></image></p>`;
-        this.setState(prevState => {
-          const content = imageHTML + prevState.postFormEdit.content;
-          const isSaveButtonAllowed =
-            !validator.isEmpty(content) &&
-            !!isValidDescription(prevState.postFormEdit.description) &&
-            !!isValidTitle(prevState.postFormEdit.title);
+  //           return {
+  //             isAddImageToEditor: true,
+  //             postForm: {
+  //               ...prevState.postForm,
+  //               content,
+  //               isValidContent: !validator.isEmpty(content)
+  //             },
+  //             isSaveButtonAllowed
+  //           };
+  //         });
+  //       });
+  //   } else {
+  //     if (!!file.hasOwnProperty('id')) {
+  //       const image = file;
+  //       const imageHTML = `<p><img src="${HOST + file.path}" alt="${
+  //         image.alt
+  //       }"></image></p>`;
+  //       this.setState(prevState => {
+  //         const content = imageHTML + prevState.postFormEdit.content;
+  //         const isSaveButtonAllowed =
+  //           !validator.isEmpty(content) &&
+  //           !!isValidDescription(prevState.postFormEdit.description) &&
+  //           !!isValidTitle(prevState.postFormEdit.title);
 
-          return {
-            isAddImageToEditor: true,
-            postFormEdit: {
-              ...prevState.postFormEdit,
-              content,
-              isValidContent: !validator.isEmpty(content)
-            },
-            isSaveButtonAllowed
-          };
-        });
-      } else {
-        return axios
-          .post('/images', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          })
-          .then(response => {
-            const image = response.data.data.image;
-            const imageHTML = `<p><img src="${DOMAIN + image.path}" alt="${
-              image.alt
-            }"></image></p>`;
-            this.setState(prevState => {
-              const content = imageHTML + prevState.postFormEdit.content;
-              const isSaveButtonAllowed =
-                !validator.isEmpty(content) &&
-                !!isValidDescription(prevState.postFormEdit.description) &&
-                !!isValidTitle(prevState.postFormEdit.title);
-              return {
-                isAddImageToEditor: true,
-                postFormEdit: {
-                  ...prevState.postFormEdit,
-                  content,
-                  isValidContent: !validator.isEmpty(content)
-                },
-                isSaveButtonAllowed
-              };
-            });
-          });
-      }
-    }
-  };
+  //         return {
+  //           isAddImageToEditor: true,
+  //           postFormEdit: {
+  //             ...prevState.postFormEdit,
+  //             content,
+  //             isValidContent: !validator.isEmpty(content)
+  //           },
+  //           isSaveButtonAllowed
+  //         };
+  //       });
+  //     } else {
+  //       return axios
+  //         .post('/images', formData, {
+  //           headers: {
+  //             'Content-Type': 'multipart/form-data'
+  //           }
+  //         })
+  //         .then(response => {
+  //           const image = response.data.data.image;
+  //           const imageHTML = `<p><img src="${HOST + image.path}" alt="${
+  //             image.alt
+  //           }"></image></p>`;
+  //           this.setState(prevState => {
+  //             const content = imageHTML + prevState.postFormEdit.content;
+  //             const isSaveButtonAllowed =
+  //               !validator.isEmpty(content) &&
+  //               !!isValidDescription(prevState.postFormEdit.description) &&
+  //               !!isValidTitle(prevState.postFormEdit.title);
+  //             return {
+  //               isAddImageToEditor: true,
+  //               postFormEdit: {
+  //                 ...prevState.postFormEdit,
+  //                 content,
+  //                 isValidContent: !validator.isEmpty(content)
+  //               },
+  //               isSaveButtonAllowed
+  //             };
+  //           });
+  //         });
+  //     }
+  //   }
+  // };
 
   onFormPostSubmitHandler = event => {
     event.preventDefault();
@@ -561,8 +587,8 @@ class index extends Component {
                 value={this.state.tempData.categories}
                 onChange={event => this.onCategoryClickHandler(event)}
               >
-                {Object.keys(this.props.categories).map((key, index) => {
-                  const category = this.props.categories[key];
+                {Object.keys(this.props.categories.data).map((key, index) => {
+                  const category = this.props.categories.data[key];
                   return (
                     <CheckBox key={key} index={index + 1} id={category.id}>
                       {category.name}
@@ -577,38 +603,21 @@ class index extends Component {
           </div>
 
           <div className="input-group d-flex flex-column justify-content-between w-25 mx-3">
-            <HelpText className="Admin__Wrapper__Post__Form__notice--height m-0 mb-2" />
-            <div className="mr-3 w-100 text-center">
-              {!!this.state.tempData.images &&
-              !!this.state.tempData.images.length ? (
-                <div className="d-flex flex-row my-2 Admin__Wrapper__Post__Form__image">
-                  {Object.keys(this.state.tempData.images).map((key, index) => {
-                    const image = this.state.tempData.images[key];
-
-                    return (
-                      <Figure
-                        alt=""
-                        src={image.path}
-                        key={index + 1}
-                        caption={image.data.name}
-                        main={index === 0}
-                        onClickedRemoveImage={_ =>
-                          this.onButtonRemoveImageClickHandler(image.path)
-                        }
-                        onClickedMakeMainImage={_ =>
-                          this.onButtonMakeMainImageClickHandler(image, index)
-                        }
-                        onAddToEditorButtonClicked={_ => {
-                          this.onAddToEditorButtonClickHandler(image.data);
-                        }}
-                      />
-                    );
-                  })}
-                </div>
+            <div className="d-flex flex-row justify-content-center my-2 Admin__Wrapper__Post__Form__image">
+              {!!this.state.image ? (
+                <Figure
+                  alt=""
+                  src={this.state.path}
+                  caption={this.state.image.name}
+                  onClickedRemoveImage={_ =>
+                    this.onButtonRemoveImageClickHandler()
+                  }
+                />
               ) : (
                 'No Image Preview'
               )}
             </div>
+
             <HelpText>
               <div className="custom-file h-100">
                 <Input

@@ -53,6 +53,7 @@
     "react-dom": "^16.4.1",
     "react-draft-wysiwyg": "^1.12.13",
     "react-image-lazy-load-component": "^0.2.0",
+    "react-lazyload": "^2.3.0",
     "react-moment": "^0.7.9",
     "react-paginate": "^5.2.3",
     "react-redux": "^5.0.7",
@@ -118,6 +119,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "bundle-loader": "^0.5.6",
     "css-loader": "^0.28.7",
     "exports-loader": "^0.7.0",
     "mini-css-extract-plugin": "^0.4.1",

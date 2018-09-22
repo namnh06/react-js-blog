@@ -55,7 +55,7 @@ class index extends React.Component {
       }));
     }
   };
-  onInputImageUploadPostChangeHandler = event => {
+  onInputImageUploadChangeHandler = event => {
     const image = event.target.files[0];
     let reader = new FileReader();
     reader.onload = e => {
@@ -75,7 +75,7 @@ class index extends React.Component {
         };
       });
     };
-    reader.readAsDataURL(event.target.files[0]);
+    reader.readAsDataURL(image);
   };
 
   onInputNameChanged = event => {
@@ -144,25 +144,6 @@ class index extends React.Component {
       };
     });
   };
-
-  // onUploadImageClickHandler = _ => {
-  //   let formData = new FormData();
-  //   formData.append('image', this.state.image);
-
-  //   return axios
-  //     .post('/images', formData, {
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data'
-  //       }
-  //     })
-  //     .then(response => {
-  //       return {
-  //         data: {
-  //           link: DOMAIN + response.data.data.image.path
-  //         }
-  //       };
-  //     });
-  // };
 
   onFormSubmitHandler = event => {
     event.preventDefault();
@@ -274,7 +255,7 @@ class index extends React.Component {
                 type="file"
                 style={{ zIndex: '99' }}
                 className="custom-file-input form-control rounded-0 h-100"
-                onChange={this.onInputImageUploadPostChangeHandler}
+                onChange={this.onInputImageUploadChangeHandler}
                 id="post-image"
                 ariaDescribedby="post-image"
               />

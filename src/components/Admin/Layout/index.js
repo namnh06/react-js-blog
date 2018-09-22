@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import NavigatorBar from './NavigationBar';
-
+import withErrorHandler from '../../../hoc/withErrorHandler';
+import axios from '../../../helpers/axios.config';
 import Wrapper from './Wrapper';
 
 class index extends React.Component {
@@ -8,10 +9,10 @@ class index extends React.Component {
     return (
       <Fragment>
         <NavigatorBar />
-        <Wrapper {...this.props} page={this.props.page} />
+        <Wrapper {...this.props} />
       </Fragment>
     );
   }
 }
 
-export default index;
+export default withErrorHandler(index, axios);

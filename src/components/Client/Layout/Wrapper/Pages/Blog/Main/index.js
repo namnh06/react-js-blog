@@ -24,6 +24,7 @@ class index extends Component {
     if (this.props.categorySlug) {
       return this.props.postsCategoryFetchStart(this.props.categorySlug);
     }
+
     return this.props.postsFetchStart({
       auth: false,
       pageNumber: parseInt(this.props.pageNumber, 10)
@@ -32,16 +33,13 @@ class index extends Component {
 
   onPaginateClickHandler = number => {
     this.props.history.push('/blog/' + number);
-    window.scroll(0, 0);
+
     return this.props.postsFetchStart({
       auth: false,
       pageNumber: parseInt(number, 10)
     });
   };
 
-  // onCategoryClickHandler = category => {
-
-  // }
   render() {
     return (
       <Fragment>

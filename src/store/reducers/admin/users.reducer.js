@@ -22,13 +22,19 @@ const fetched = (state, action) => {
   };
 };
 
-const userDeleted = (state, action) => {
+const deleted = (state, action) => {
   return {
     ...state,
-    current: removeDataFromArrayById(state.current, action.data.id),
-    deleted: sortDescendingArrayById(
-      pushDataToArray(state.deleted, action.data)
-    )
+    current: {
+      ...state.current,
+      data: removeDataFromArrayById(state.current.data, action.user.id)
+    },
+    deleted: {
+      ...state.deleted,
+      data: sortDescendingArrayById(
+        pushDataToArray(state.deleted.data, action.user)
+      )
+    }
   };
 };
 
@@ -42,33 +48,46 @@ const usersDeletedFetched = (state, action) => {
 const deletedPermanently = (state, action) => {
   return {
     ...state,
-    deleted: removeDataFromArrayById(state.deleted, action.id)
+    deleted: {
+      ...state.deleted,
+      data: removeDataFromArrayById(state.deleted.data, action.user.id)
+    }
   };
 };
 
 const deletedRestored = (state, action) => {
   return {
     ...state,
-    current: sortDescendingArrayById(
-      pushDataToArray(state.current, action.data)
-    ),
-    deleted: removeDataFromArrayById(state.deleted, action.data.id)
+    current: {
+      ...state.current,
+      data: sortDescendingArrayById(pushDataToArray(state.current, action.data))
+    },
+    deleted: {
+      ...state.deleted,
+      data: removeDataFromArrayById(state.deleted, action.data.id)
+    }
   };
 };
 
-const userCreated = (state, action) => {
+const created = (state, action) => {
   return {
     ...state,
-    current: sortDescendingArrayById(
-      pushDataToArray(state.current, action.data)
-    )
+    current: {
+      ...state.current,
+      data: sortDescendingArrayById(
+        pushDataToArray(state.current.data, action.user)
+      )
+    }
   };
 };
 
-const userEdited = (state, action) => {
+const updated = (state, action) => {
   return {
     ...state,
-    current: updateDataToArrayById(state.current, action.data)
+    current: {
+      ...state.current,
+      data: updateDataToArrayById(state.current.data, action.user)
+    }
   };
 };
 
@@ -77,7 +96,7 @@ const reducer = (state = initUsers, action) => {
     case USERS_FETCHED:
       return fetched(state, action);
     case USER_DELETED:
-      return userDeleted(state, action);
+      return deleted(state, action);
     case USERS_DELETED_FETCHED:
       return usersDeletedFetched(state, action);
     case USER_DELETED_PERMANENTLY:
@@ -85,9 +104,9 @@ const reducer = (state = initUsers, action) => {
     case USER_DELETED_RESTORED:
       return deletedRestored(state, action);
     case USER_CREATED:
-      return userCreated(state, action);
+      return created(state, action);
     case USER_EDITED:
-      return userEdited(state, action);
+      return updated(state, action);
     default:
       return state;
   }

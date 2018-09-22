@@ -83,7 +83,6 @@ export const slideDeleted = slide => {
 };
 
 export const slideUpdateStart = (id, data) => {
-  console.log(data);
   return dispatch => {
     return axios.post(`slides/${id}`, data).then(response => {
       if (response.data.status === 200) {

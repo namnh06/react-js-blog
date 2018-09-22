@@ -16,7 +16,6 @@ export const postsFetchStart = ({ auth = false, pageNumber = 1 } = {}) => {
       .then(response => {
         if (response.data.status === 200) {
           const posts = response.data.data.posts;
-
           dispatch(postsFetched(posts));
         }
       });
@@ -80,17 +79,17 @@ export const postDeleteStart = id => {
   return dispatch => {
     return axios.delete(`posts/${id}`).then(response => {
       if (response.data.status === 200) {
-        const post = response.data.data.post;
-        dispatch(postDeleted(post));
+        const data = response.data.data.post;
+        dispatch(postDeleted(data));
       }
     });
   };
 };
 
-export const postDeleted = post => {
+export const postDeleted = data => {
   return {
     type: POST_DELETED,
-    post
+    data
   };
 };
 export const postDeletePermanentlyStart = id => {
@@ -132,19 +131,18 @@ export const postCreateStart = data => {
   return dispatch => {
     return axios.post('posts', data).then(response => {
       if (response.data.status === 200) {
-        const post = response.data.data.post;
-        dispatch(created(post));
-      } else {
-        return null;
+        const data = response.data.data.post;
+        dispatch(created(data));
       }
+      return null;
     });
   };
 };
 
-export const created = post => {
+export const created = data => {
   return {
     type: POST_CREATED,
-    post
+    data
   };
 };
 

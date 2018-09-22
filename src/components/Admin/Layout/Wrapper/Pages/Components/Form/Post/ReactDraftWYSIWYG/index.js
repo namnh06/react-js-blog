@@ -8,7 +8,7 @@ import './styles.css';
 import { connect } from 'react-redux';
 import axios from '../../../../../../../../../helpers/axios.config';
 
-import { DOMAIN } from '../../../../../../../../../helpers/constants';
+import { HOST } from '../../../../../../../../../helpers/constants';
 class EditorComponent extends Component {
   constructor(props) {
     super(props);
@@ -59,7 +59,7 @@ class EditorComponent extends Component {
       .then(response => {
         return {
           data: {
-            link: DOMAIN + response.data.data.image.path
+            link: HOST + response.data.data.image.path
           }
         };
       });
