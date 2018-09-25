@@ -13,7 +13,8 @@ const index = props => {
         props.active ? 'active' : ''
       ].join(' ')}
       style={{
-        backgroundImage: backgroundImage
+        backgroundImage: backgroundImage,
+        backgroundPosition: 'center'
       }}
     >
       <div className="carousel-caption d-none d-md-block">
