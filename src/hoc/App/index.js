@@ -42,7 +42,13 @@ class App extends Component {
           <Route path="/blog/posts/:slug" component={Post} />
           <Route path="/contact" component={Contact} />
           <Route path="/help" component={Help} />
+          <PublicRoute
+            path="/admin"
+            exact
+            render={() => <Redirect to="/admin/login" />}
+          />
           <PublicRoute path="/admin/login" component={Login} />
+
           <PrivateRoute path="/admin/dashboard" component={Dashboard} />
           <PrivateRoute path="/admin/users/:page?" exact component={Users} />
           <PrivateRoute
