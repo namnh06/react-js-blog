@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import ClientLayout from '../../../components/Client/Layout';
 
 class index extends Component {
+  componentDidMount() {
+    window.scroll(0, 0);
+  }
   render() {
     return (
       <ClientLayout

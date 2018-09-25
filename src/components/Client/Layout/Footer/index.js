@@ -1,5 +1,6 @@
 import React from 'react';
-import footerImage from '../../../../assets/images/footer/footer_slide-1.png';
+// import footerImage from '../../../../assets/images/footer/footer_slide-1.png';
+import footerImage from '../../../../assets/images/footer/3-cz-third.png';
 import LazyLoad from 'react-lazyload';
 import Button from '../../../Details/Button';
 import Brand from '../../../UI/Brand';
@@ -10,7 +11,9 @@ const index = props => {
       <LazyLoad height={200} offset={100}>
         <div
           className="d-flex flex-row Client__Footer__top--background-image align-items-center"
-          style={{ backgroundImage: `url(${footerImage})` }}
+          style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),url(${footerImage})`
+          }}
         >
           <div className="col-6 d-flex flex-column ">
             <h1 className="text-yellow-cz-custom text-uppercase text-right">
@@ -25,10 +28,10 @@ const index = props => {
               className="btn btn-lg rounded-0 text-uppercase Client__Footer__top__button"
               clicked={props.onButtonSignUpClicked}
             >
-              sign up now
+              sign up
             </Button>
             <p className="text-white text-uppercase mt-2">
-              Only take a few seconds !
+              Only take a few seconds
             </p>
           </div>
         </div>

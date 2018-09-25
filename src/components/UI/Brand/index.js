@@ -16,7 +16,7 @@ const index = props => {
           <div className="d-flex flex-column ml-3 justify-content-center w-100">
             <span
               className={[
-                'Client__Brand__Name text-uppercase',
+                'Client__Brand__Name text-lowercase',
                 props.textColor
               ].join(' ')}
             >

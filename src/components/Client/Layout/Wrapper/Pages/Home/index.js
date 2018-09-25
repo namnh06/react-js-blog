@@ -6,6 +6,7 @@ import Articles from './Articles';
 import Information from './Information';
 import Register from './Register';
 import FrequentAsk from './FrequentAsk';
+import Network from './Network';
 import CarouselVisited from './CarouselVisited';
 class index extends React.Component {
   state = {
@@ -41,9 +42,13 @@ class index extends React.Component {
             onButtonLogInClicked={this.props.onButtonLogInClicked}
           />
         </div>
+
         <Information />
-        <Register />
         <FrequentAsk />
+        <Register />
+
+        <Network />
+
         <Articles />
       </Fragment>
     );

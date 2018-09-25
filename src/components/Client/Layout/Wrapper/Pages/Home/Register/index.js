@@ -7,7 +7,8 @@ const index = () => {
         <div className="container">
           <div className="row">
             <div className="col-6 text-white text-uppercase d-flex flex-column justify-content-center my-5">
-              <div className="h1 Text--xl">get the free quote now !</div>
+              <div className="display-3 lead">easy to sign up</div>
+              <div>only take a few seconds</div>
             </div>
             <div className="col-6 my-5 d-flex align-items-center justify-content-end">
               <form>

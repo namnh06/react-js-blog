@@ -3,23 +3,29 @@ import React from 'react';
 const index = () => {
   return (
     //  the crashzone system
-    <div className="container mt-5">
-      <div className="row my-5">
-        <div className="col-12 ">
-          <div className="text-center text-uppercase font-weight-bold Client__Information__Text Text--xxl">
+    <div className="container-fluid Client__Home__Information--background-image my-5">
+      {/* Client__Information__TCS */}
+      {/* <div className="row"> */}
+      {/* <div className="col-12 "> */}
+      {/* <div className="text-center text-uppercase font-weight-bold display-4 Client__Information__Text">
             what is crashzone ?
-          </div>
-        </div>
-      </div>
-      <div className="row my-5">
-        <div className="col-6 pr-3 ">
-          <div className="d-flex align-items-center justify-content-center Client__Information__TCS h-100">
-            <div className="h1 text-white text-uppercase Text--xl">
+          </div> */}
+      {/* </div> */}
+      {/* </div> */}
+      <div className="row py-5">
+        {/* <div className="col-6 pr-3 ">
+          <div className="d-flex align-items-center justify-content-center h-100">
+            <div className="h1 text-white text-uppercase display-3">
               The Crashzone System
             </div>
           </div>
-        </div>
-        <div className="col-6 text-justify Text--sm">
+        </div> */}
+        <div className="col-4 offset-2 text-white">
+          {/* <div className="d-flex align-items-center justify-content-center h-100"> */}
+          <div className="h1 text-uppercase display-3">
+            The Crashzone System
+          </div>
+          {/* </div> */}
           <p>
             <b>Crashzone</b> is a web based quoting system for Smash Repairers
             accessed by secure login using a user name and password (the same as
@@ -39,9 +45,24 @@ const index = () => {
             combined our users are generating 250,000 + quotes with a value in
             excess of $500,000,000 (half a billion dollars) annually.
           </p>
+          <div className="h1 text-uppercase display-3">
+            INSURANCE INTEGRATION
+          </div>
+          <p>
+            <b>Crashzone</b> is compaitable with all insurance companies and has
+            integration with Audatex, PNET, ORM, NTAR, LTAR, AutoIntegrity,
+            Estimage & ARNIE.
+          </p>
+          <p>
+            There are no support fees or extra modules to buy, everything is
+            included such as integration with Audatex, ORM, PNET, AutoIntegrity,
+            ARNIE & Estimage.
+          </p>
         </div>
+        {/* <div className="col-4 Client__Home__Information--background-image" /> */}
       </div>
-      <div className="row my-5 px-2">
+
+      {/* <div className="row my-5 px-2">
         <div className="col-6 text-justify Text--sm">
           <p>
             <b>Crashzone</b> is compaitable with all insurance companies and has
@@ -61,7 +82,7 @@ const index = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -10352,7 +10352,6 @@ a.text-dark:hover, a.text-dark:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 auto;
   margin-bottom: 20px;
 }
 
@@ -10396,7 +10395,7 @@ a.text-dark:hover, a.text-dark:focus {
 .Client__Register {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.8))), url("./../assets/images/information/cz-using-ipad.jpg");
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("./../assets/images/information/cz-using-ipad.jpg");
-  background-position: center;
+  background-position: 0 80%;
   background-size: cover;
 }
 
@@ -10481,6 +10480,25 @@ a.text-dark:hover, a.text-dark:focus {
 
 .Client__Footer__social-network i {
   margin: 0 0.5rem;
+}
+
+.Client__Home__Network--background-color {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.Client__Home__Network--background-image {
+  background-image: url("./../assets/images/network/au.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+}
+
+.Client__Home__Information--background-image {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.7))), url("./../assets/images/slides/1-cz-first.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url("./../assets/images/slides/1-cz-first.jpg");
+  background-position: 0 10%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .Carousel__Visited--slogan {
