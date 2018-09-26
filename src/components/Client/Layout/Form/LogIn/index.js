@@ -8,6 +8,7 @@ import {
   helpTextRequire,
   addInputValidClass,
   isValidPassword,
+  isValidEmail,
   isValidName
 } from '../../../../../helpers';
 import { userForm } from '../../../../../helpers/seed-data';
@@ -23,6 +24,22 @@ class index extends Component {
     userForm: { ...userForm }
   };
 
+  onInputEmailChanged = event => {
+    const email = event.target.value;
+    this.setState(prevState => {
+      const isSaveButtonAllowed =
+        !!isValidEmail(email) && !!prevState.userForm.isValidPassword;
+
+      return {
+        userForm: {
+          ...prevState.userForm,
+          email,
+          isValidEmail: isValidEmail(email)
+        },
+        isSaveButtonAllowed
+      };
+    });
+  };
   onInputNameChanged = event => {
     const name = event.target.value;
     this.setState(prevState => {
@@ -44,7 +61,7 @@ class index extends Component {
     const password = event.target.value;
     this.setState(prevState => {
       const isSaveButtonAllowed =
-        !!isValidPassword(password) && !!prevState.userForm.isValidName;
+        !!isValidPassword(password) && !!prevState.userForm.isValidEmail;
 
       return {
         userForm: {
@@ -62,13 +79,13 @@ class index extends Component {
     const cookies = new Cookies();
 
     const {
-      isValidName,
+      isValidEmail,
       isValidPassword,
       name,
       password
     } = this.state.userForm;
     const data = `<clientRequest><action>login</action><clientData><UserName>${name}</UserName><Password>${password}</Password><isRememberMe>0</isRememberMe></clientData></clientRequest>`;
-    if (isValidName && isValidPassword) {
+    if (isValidEmail && isValidPassword) {
       const time = new Date().getTime();
       Axios({
         method: 'post',
@@ -109,20 +126,17 @@ class index extends Component {
         <ContentSection>
           <FormGroup>
             <HelpText className="Client__Form__Sign-Up__form__notice m-0">
-              {this.state.userForm.isValidName !== null &&
-                !this.state.userForm.isValidName &&
-                helpTextRequire(
-                  'user name',
-                  'alphabet and at least 2 characters'
-                )}
+              {this.state.userForm.isValidEmail !== null &&
+                !this.state.userForm.isValidEmail &&
+                helpTextRequire('email', 'alphabet and at least 2 characters')}
             </HelpText>
             <Input
-              name="name"
+              name="email"
               type="text"
               id="LoginDiv_UserName"
-              className={addInputValidClass(this.state.userForm.isValidName)}
-              value={this.state.userForm.name}
-              onInputChange={event => this.onInputNameChanged(event)}
+              className={addInputValidClass(this.state.userForm.isValidEmail)}
+              value={this.state.userForm.email}
+              onInputChange={event => this.onInputEmailChanged(event)}
             />
           </FormGroup>
           <FormGroup>
@@ -146,7 +160,7 @@ class index extends Component {
             />
           </FormGroup>
 
-          <FormGroup className="mt-4">
+          <FormGroup className="mt-5">
             <div className="form-check px-0">
               <label
                 className="d-flex align-items-center"

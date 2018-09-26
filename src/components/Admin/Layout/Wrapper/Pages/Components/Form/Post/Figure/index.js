@@ -1,7 +1,6 @@
 import React from 'react';
 import Icon from '../../../../../../../../UI/Icon';
 import { iconClass, fontAwesomeType } from '../../../../../../../../../helpers';
-import Button from '../../../../../../../../UI/Button';
 
 const index = props => {
   return (

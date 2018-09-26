@@ -18,6 +18,8 @@ class index extends React.Component {
   componentDidMount() {
     this.props.informationFetchStart();
     this.props.menusFetchStart();
+
+    console.log('object');
   }
 
   onButtonScrollTopClickHandler = () => {

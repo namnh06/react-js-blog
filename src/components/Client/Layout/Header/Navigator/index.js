@@ -3,7 +3,12 @@ import { childrenOfListHeader } from '../../../../../helpers';
 
 const index = props => {
   return (
-    <li className={['nav-item my-2 my-lg-0', props.className].join(' ')}>
+    <li
+      className={[
+        'nav-item my-2 my-lg-0 text-uppercase h3',
+        props.className
+      ].join(' ')}
+    >
       {childrenOfListHeader(
         props.type,
         props,

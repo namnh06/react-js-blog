@@ -7,7 +7,6 @@ import Title from '../../../Components/Form/TitleForm';
 import validator from 'validator';
 import EditorComponent from './ReactDraftWYSIWYG';
 import TextArea from '../../../../../../../UI/TextArea';
-import axios from '../../../../../../../../helpers/axios.config';
 
 import {
   renderTypeString,
@@ -16,10 +15,6 @@ import {
   addInputValidClass,
   isValidTitle,
   isValidDescription,
-  pushDataToArray,
-  removeDuplicateObjectInArrayByProperty,
-  removeDataFromArrayByProperty,
-  unshiftDataToArray,
   isPostValid
 } from '../../../../../../../../helpers';
 import { postForm, tempData } from '../../../../../../../../helpers/seed-data';
@@ -32,7 +27,7 @@ import Figure from './Figure';
 
 import CheckBox from '../../../../../../../UI/CheckBox';
 import { categoriesFetchStart } from '../../../../../../../../store/actions/admin/categories.action';
-import { DOMAIN, HOST } from '../../../../../../../../helpers/constants';
+import { HOST } from '../../../../../../../../helpers/constants';
 class index extends Component {
   state = {
     isAddImageToEditor: null,
@@ -188,38 +183,6 @@ class index extends Component {
       });
     };
     reader.readAsDataURL(image);
-    // if (event.target.files && event.target.files[0]) {
-    //   let reader = new FileReader();
-    //   reader.onload = e => {
-    //     const path = e.target.result;
-    //     this.setState(prevState => {
-    //       const imagesArray = pushDataToArray(prevState.tempData.images, {
-    //         path,
-    //         data: image
-    //       });
-
-    //       const images = removeDuplicateObjectInArrayByProperty(
-    //         imagesArray,
-    //         'path'
-    //       );
-    //       const isSaveButtonAllowed = isPostValid(
-    //         isCreateType(this.props.type)
-    //           ? prevState.postForm
-    //           : prevState.postFormEdit
-    //       );
-
-    //       return {
-    //         ...prevState.tempData,
-    //         tempData: {
-    //           images
-    //         },
-    //         isSaveButtonAllowed
-    //       };
-    //     });
-    //   };
-
-    //   reader.readAsDataURL(image);
-    // }
   };
 
   onButtonRemoveImageClickHandler = _ => {
@@ -230,49 +193,7 @@ class index extends Component {
         path: null
       };
     });
-    // console.log(path);
-    // const data = path;
-    // this.setState(prevState => {
-    //   const images = removeDataFromArrayByProperty(
-    //     prevState.tempData.images,
-    //     'path',
-    //     data
-    //   );
-    //   return {
-    //     ...prevState.tempData,
-    //     tempData: {
-    //       images
-    //     }
-    //   };
-    // });
   };
-
-  // onButtonMakeMainImageClickHandler = (image, index) => {
-  //   if (index !== 0) {
-  //     this.setState(prevState => {
-  //       const imagesArray = unshiftDataToArray(
-  //         image,
-  //         prevState.tempData.images
-  //       );
-  //       const images = removeDuplicateObjectInArrayByProperty(
-  //         imagesArray,
-  //         'path'
-  //       );
-  //       const isSaveButtonAllowed = isPostValid(
-  //         isCreateType(this.props.type)
-  //           ? prevState.postForm
-  //           : prevState.postFormEdit
-  //       );
-  //       return {
-  //         ...prevState.tempData,
-  //         tempData: {
-  //           images
-  //         },
-  //         isSaveButtonAllowed
-  //       };
-  //     });
-  //   }
-  // };
 
   onCategoryClickHandler = event => {
     const options = event.target.selectedOptions;
@@ -292,7 +213,7 @@ class index extends Component {
       };
     });
     if (isCreateType(this.props.type)) {
-      this.setState(prevState => {
+      return this.setState(prevState => {
         return {
           postForm: {
             ...prevState.postForm,
@@ -300,27 +221,26 @@ class index extends Component {
           }
         };
       });
-    } else {
-      this.setState(prevState => {
-        const isSaveButtonAllowed =
-          !validator.isEmpty(prevState.postFormEdit.content) &&
-          !!isValidDescription(prevState.postFormEdit.description) &&
-          !!isValidTitle(prevState.postFormEdit.title);
-        return {
-          postFormEdit: {
-            ...prevState.postFormEdit,
-            categories
-          },
-          isSaveButtonAllowed
-        };
-      });
     }
+    return this.setState(prevState => {
+      const isSaveButtonAllowed =
+        !validator.isEmpty(prevState.postFormEdit.content) &&
+        !!isValidDescription(prevState.postFormEdit.description) &&
+        !!isValidTitle(prevState.postFormEdit.title);
+      return {
+        postFormEdit: {
+          ...prevState.postFormEdit,
+          categories
+        },
+        isSaveButtonAllowed
+      };
+    });
   };
 
   onInputTextEditorPostChangeHandler = html => {
     const content = html;
     if (isCreateType(this.props.type)) {
-      this.setState(prevState => {
+      return this.setState(prevState => {
         const isSaveButtonAllowed =
           !validator.isEmpty(content) &&
           !!prevState.postForm.isValidDescription &&
@@ -335,146 +255,55 @@ class index extends Component {
           isSaveButtonAllowed
         };
       });
-    } else {
-      this.setState(prevState => {
-        const isSaveButtonAllowed =
-          !validator.isEmpty(content) &&
-          !!isValidDescription(prevState.postFormEdit.description) &&
-          !!isValidTitle(prevState.postFormEdit.title);
-
-        return {
-          postFormEdit: {
-            ...prevState.postFormEdit,
-            content,
-            isValidContent: !validator.isEmpty(content)
-          },
-          isSaveButtonAllowed
-        };
-      });
     }
-    this.setState({
+
+    this.setState(prevState => {
+      const isSaveButtonAllowed =
+        !validator.isEmpty(content) &&
+        !!isValidDescription(prevState.postFormEdit.description) &&
+        !!isValidTitle(prevState.postFormEdit.title);
+
+      return {
+        postFormEdit: {
+          ...prevState.postFormEdit,
+          content,
+          isValidContent: !validator.isEmpty(content)
+        },
+        isSaveButtonAllowed
+      };
+    });
+
+    return this.setState({
       isAddImageToEditor: false
     });
   };
-
-  // onAddToEditorButtonClickHandler = file => {
-  //   let formData = new FormData();
-  //   formData.append('image', file);
-  //   if (isCreateType(this.props.type)) {
-  //     console.log('whoops 318 create');
-  //     return axios
-  //       .post('/images', formData, {
-  //         headers: {
-  //           'Content-Type': 'multipart/form-data'
-  //         }
-  //       })
-  //       .then(response => {
-  //         const image = response.data.data.image;
-  //         const imageHTML = `<p><img src="${HOST + image.path}" alt="${
-  //           image.alt
-  //         }"></image></p>`;
-  //         this.setState(prevState => {
-  //           const content = imageHTML + prevState.postForm.content;
-  //           const isSaveButtonAllowed =
-  //             !validator.isEmpty(content) &&
-  //             !!prevState.postForm.isValidDescription &&
-  //             !!prevState.postForm.isValidTitle;
-
-  //           return {
-  //             isAddImageToEditor: true,
-  //             postForm: {
-  //               ...prevState.postForm,
-  //               content,
-  //               isValidContent: !validator.isEmpty(content)
-  //             },
-  //             isSaveButtonAllowed
-  //           };
-  //         });
-  //       });
-  //   } else {
-  //     if (!!file.hasOwnProperty('id')) {
-  //       const image = file;
-  //       const imageHTML = `<p><img src="${HOST + file.path}" alt="${
-  //         image.alt
-  //       }"></image></p>`;
-  //       this.setState(prevState => {
-  //         const content = imageHTML + prevState.postFormEdit.content;
-  //         const isSaveButtonAllowed =
-  //           !validator.isEmpty(content) &&
-  //           !!isValidDescription(prevState.postFormEdit.description) &&
-  //           !!isValidTitle(prevState.postFormEdit.title);
-
-  //         return {
-  //           isAddImageToEditor: true,
-  //           postFormEdit: {
-  //             ...prevState.postFormEdit,
-  //             content,
-  //             isValidContent: !validator.isEmpty(content)
-  //           },
-  //           isSaveButtonAllowed
-  //         };
-  //       });
-  //     } else {
-  //       return axios
-  //         .post('/images', formData, {
-  //           headers: {
-  //             'Content-Type': 'multipart/form-data'
-  //           }
-  //         })
-  //         .then(response => {
-  //           const image = response.data.data.image;
-  //           const imageHTML = `<p><img src="${HOST + image.path}" alt="${
-  //             image.alt
-  //           }"></image></p>`;
-  //           this.setState(prevState => {
-  //             const content = imageHTML + prevState.postFormEdit.content;
-  //             const isSaveButtonAllowed =
-  //               !validator.isEmpty(content) &&
-  //               !!isValidDescription(prevState.postFormEdit.description) &&
-  //               !!isValidTitle(prevState.postFormEdit.title);
-  //             return {
-  //               isAddImageToEditor: true,
-  //               postFormEdit: {
-  //                 ...prevState.postFormEdit,
-  //                 content,
-  //                 isValidContent: !validator.isEmpty(content)
-  //               },
-  //               isSaveButtonAllowed
-  //             };
-  //           });
-  //         });
-  //     }
-  //   }
-  // };
 
   onFormPostSubmitHandler = event => {
     event.preventDefault();
     let formData = new FormData();
 
-    this.state.tempData.images.map((image, index) => {
-      return formData.append(
-        'images[' + index + ']',
-        !!image.data.id ? JSON.stringify(image.data) : image.data
-      );
-    });
+    formData.append('image', this.state.image);
+
     if (isCreateType(this.props.type)) {
       const post = {
         ...this.state.postForm
       };
+
       formData.append('post', JSON.stringify(post));
 
       this.props.createStart(formData);
-      this.props.onFormToggleClicked();
-    } else {
-      const post = {
-        ...this.state.postFormEdit
-      };
-
-      formData.append('post', JSON.stringify(post));
-      formData.append('_method', 'PUT');
-      this.props.updateStart(post.id, formData);
-      this.props.onFormEditToggleClicked();
+      return this.props.onFormToggleClicked();
     }
+    const post = {
+      ...this.state.postFormEdit
+    };
+    this.state.postFormEdit.categories === this.props.postFormEdit.categories &&
+      delete post.categories;
+    console.log(post);
+    formData.append('post', JSON.stringify(post));
+    formData.append('_method', 'PUT');
+    this.props.updateStart(post.id, formData);
+    return this.props.onFormEditToggleClicked();
   };
 
   onResetFormHandler = () => {

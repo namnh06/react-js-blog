@@ -10,7 +10,10 @@ const index = props => {
       </div>
       <input
         type={props.type}
-        className={['form-control rounded-0', props.className].join(' ')}
+        className={[
+          'form-control form-control-lg rounded-0',
+          props.className
+        ].join(' ')}
         value={props.value}
         id={props.name}
         placeholder={`${props.name} ...`}

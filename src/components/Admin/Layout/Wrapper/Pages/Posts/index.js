@@ -13,8 +13,7 @@ import FormPost from '../Components/Form/Post';
 import {
   iconClass,
   isValidTitle,
-  isValidDescription,
-  isCreateType
+  isValidDescription
 } from '../../../../../../helpers';
 import {
   POST_CREATE_START,
@@ -80,7 +79,7 @@ const index = class extends Component {
     this.props.onFormEditToggleClicked(true);
   };
 
-  onPagniateClickHandler = link => {
+  onPaginateClickHandler = link => {
     return this.props.postsLinkFetchStart(link);
   };
 
@@ -163,7 +162,7 @@ const index = class extends Component {
               })}
             <li className="Admin__Wrapper__Posts__List py-2">
               <Pagination
-                onPaginateClicked={link => this.onPagniateClickHandler(link)}
+                onPaginateClicked={link => this.onPaginateClickHandler(link)}
                 {...this.props.posts}
               />
             </li>
