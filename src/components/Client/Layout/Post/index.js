@@ -5,7 +5,7 @@ import TextTruncate from 'react-text-truncate';
 
 import { logoImage, hrefArticle } from '../../../../helpers';
 import LinkToArticle from '../../../UI/LinkToArticle';
-import { HOST } from '../../../../helpers/constants';
+import { HOST, DOMAIN } from '../../../../helpers/constants';
 const index = props => {
   const imageStyle = {
     backgroundImage: `url(${(!!props.images[0] &&
@@ -36,7 +36,9 @@ const index = props => {
             text={props.description}
             line={1}
             truncateText="…"
-            textTruncateChild={<a href="">Read more</a>}
+            textTruncateChild={
+              <a href={`${DOMAIN}/blog/posts/${props.slug}`}>Read more</a>
+            }
           />
         </div>
 

@@ -59,7 +59,6 @@ const index = props => {
                 {props.information[3].value}
               </span>
             </div>
-
             <div className="text-white">
               <i className="fas fa-phone" />
               <span className="ml-1">

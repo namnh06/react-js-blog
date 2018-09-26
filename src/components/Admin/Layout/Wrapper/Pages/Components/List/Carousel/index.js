@@ -3,7 +3,7 @@ import Button from '../../../../../../../UI/Button';
 
 import { connect } from 'react-redux';
 
-import { HOST } from '../../../../../../../../helpers/constants';
+import { imageFallBack } from '../../../../../../../../helpers/image';
 class index extends React.Component {
   render() {
     return (
@@ -16,16 +16,11 @@ class index extends React.Component {
           <span className="px-2">{this.props.caption}</span>
         </div>
         <div className="d-flex justify-content-center">
-          <img src={HOST + this.props.images[0].path} className="w-50" alt="" />
+          <img src={imageFallBack(this.props.images)} className="w-50" alt="" />
         </div>
 
         <div className="d-flex justify-content-around">
-          <Button
-            className="btn btn-sm btn-info"
-            // clicked={_ => this.onPreviewClickHandler(this.props.slug)}
-          >
-            preview
-          </Button>
+          <Button className="btn btn-sm btn-info">preview</Button>
           <Button
             className="btn btn-sm btn-warning"
             clicked={this.props.onButtonEditClicked}

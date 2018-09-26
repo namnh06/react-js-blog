@@ -3,9 +3,9 @@ import Moment from 'react-moment';
 import LinkToArticle from '../../../../../../../UI/LinkToArticle';
 import TextTruncate from 'react-text-truncate';
 import Category from './Category';
-import { Link, NavLink } from 'react-router-dom';
+
 import { imageFallBack } from '../../../../../../../../helpers/image';
-import { HOST, DOMAIN } from '../../../../../../../../helpers/constants';
+import { DOMAIN } from '../../../../../../../../helpers/constants';
 const index = props => {
   const converHTMLToText = html => {
     return html.replace(/(<([^>]+)>)/gi, '').replace(/\s{2,}/, '');
