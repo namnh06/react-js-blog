@@ -10,7 +10,7 @@ const index = props => {
       id="learn-more"
     >
       <div className="row py-5">
-        <div className="col-6 offset-1 text-white Text--font-lato py-5">
+        <div className="col-6 offset-3 text-white Text--font-lato py-5">
           <div className="h1 text-capitalize display-3 text-center">
             The Crashzone System
           </div>
