@@ -3,16 +3,15 @@ import React, { Component, Fragment } from 'react';
 import Button from '../../../../../../Details/Button';
 import Slide from './Slide';
 import { connect } from 'react-redux';
-import { slidesRandFetchStart } from '../../../../../../../store/actions/slides.action';
+
+import { HashLink as Link } from 'react-router-hash-link';
 
 import { HOST } from '../../../../../../../helpers/constants';
 class index extends Component {
   state = {
     slides: []
   };
-  componentDidMount() {
-    this.props.slidesRandFetchStart();
-  }
+  componentDidMount() {}
 
   render() {
     return (
@@ -30,7 +29,7 @@ class index extends Component {
             >
               <ol className="carousel-indicators Carousel-incaditors">
                 {!!this.props.slides.length &&
-                  this.props.slides.map((slide, index) => {
+                  this.props.slides.slice(0, 3).map((slide, index) => {
                     return (
                       <li
                         key={index}
@@ -53,9 +52,12 @@ class index extends Component {
                       repairers
                     </h4>
                     <div className="d-flex flex-row justify-content-center">
-                      <Button className="btn btn-lg text-uppercase btn-outline-light text-white mx-2 rounded-0 px-3 Carousel__button--learn-more">
+                      <Link
+                        to="/home#learn-more"
+                        className="btn btn-lg text-uppercase btn-outline-light text-white mx-2 rounded-0 px-3 Carousel__button--learn-more"
+                      >
                         learn more
-                      </Button>
+                      </Link>
                       <Button
                         className="btn btn-lg btn-outline-dark text-uppercase bg-yellow-cz-custom mx-2 rounded-0 px-3 Carousel__button--sign-up"
                         clicked={this.props.onButtonSignUpClicked}
@@ -67,7 +69,7 @@ class index extends Component {
                 </div>
                 {!!this.props.slides.length && (
                   <Fragment>
-                    {this.props.slides.map((slide, index) => {
+                    {this.props.slides.slice(0, 3).map((slide, index) => {
                       return (
                         <Slide
                           active={index === 0}
@@ -94,13 +96,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    slidesRandFetchStart: _ => dispatch(slidesRandFetchStart())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(index);
+export default connect(mapStateToProps)(index);

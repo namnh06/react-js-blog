@@ -1,16 +1,30 @@
 import React, { Fragment } from 'react';
 import Banner from '../../../Banner';
-
+import { connect } from 'react-redux';
 import HelpContent from './Content';
-import helpImage from '../../../../../../assets/images/help/help-1.jpg';
-const index = () => {
+import { HOST } from '../../../../../../helpers/constants';
+
+const index = props => {
   return (
     <Fragment>
-      <Banner bannerImage={helpImage} title="help" />
+      <Banner
+        bannerImage={
+          !!props.slides &&
+          !!props.slides[0] &&
+          HOST + props.slides[0].images[0].path
+        }
+        title="help"
+      />
 
       <HelpContent />
     </Fragment>
   );
 };
 
-export default index;
+const mapStateToProps = state => {
+  return {
+    slides: state.slides.show
+  };
+};
+
+export default connect(mapStateToProps)(index);

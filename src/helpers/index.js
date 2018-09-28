@@ -138,9 +138,7 @@ export const childrenOfListHeader = (
       return (
         <a
           href="/#"
-          className={
-            'nav-link py-0 pl-2 text-dark bg-yellow-cz-custom text-uppercase'
-          }
+          className={'nav-link text-dark bg-yellow-cz-custom text-uppercase'}
           onClick={event => {
             event.preventDefault();
             clicked();

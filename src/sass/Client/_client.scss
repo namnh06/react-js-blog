@@ -1,4 +1,15 @@
 .Client {
+  &__Banner {
+    &__Image {
+      height: 500px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    &__Text {
+    }
+  }
   &__Form {
     z-index: 1200;
     height: 100vh;
@@ -148,22 +159,22 @@
     }
     &__TCS {
       // background-image: url('./../assets/images/slides/1-cz-first.jpg');
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
-        url('./../assets/images/slides/1-cz-first.jpg');
+      // background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+      // url('./../assets/images/slides/1-cz-first.jpg');
       background-position: 30% 20%;
       background-size: cover;
     }
     &__II {
       // background-image: url('./../assets/images/slides/1-cz-first.jpg');
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
-        url('./../assets/images/slides/4-cz-fourth.png');
+      // background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+      //   url('./../assets/images/slides/4-cz-fourth.png');
       background-position: 0 60%;
       background-size: cover;
     }
   }
   &__Register {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
-      url('./../assets/images/information/cz-using-ipad.jpg');
+    // background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+    //   url('./../assets/images/information/cz-using-ipad.jpg');
     background-position: 0 80%;
     background-size: cover;
   }
@@ -275,11 +286,11 @@
     }
     &__Information {
       &--background-image {
-        background-image: linear-gradient(
-            rgba(0, 0, 0, 0.6),
-            rgba(0, 0, 0, 0.7)
-          ),
-          url('./../assets/images/slides/1-cz-first.jpg');
+        // background-image: linear-gradient(
+        //     rgba(0, 0, 0, 0.6),
+        //     rgba(0, 0, 0, 0.7)
+        //   ),
+        //   url('./../assets/images/slides/1-cz-first.jpg');
         background-position: 0 10%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -289,6 +300,7 @@
 }
 
 .Carousel {
+  height: 800px;
   &__Visited {
     &--slogan {
       position: absolute;
@@ -338,30 +350,17 @@
   &__image {
     &--height {
       background-repeat: no-repeat;
-      // background-attachment: fixed;
+      background-attachment: fixed;
       background-position: center;
-      background-size: 100%;
+      background-size: cover;
       height: 800px;
 
-      @include media-breakpoint-up(md) {
-        height: 400px;
-      }
-      @include media-breakpoint-up(lg) {
-        height: 600px;
-      }
+      // @include media-breakpoint-up(md) {
+      //   height: 400px;
+      // }
+      // @include media-breakpoint-up(lg) {
+      //   height: 600px;
+      // }
     }
-  }
-}
-
-.Banner {
-  &__image {
-    max-height: 500px;
-    object-fit: cover;
-  }
-  &__text {
-    position: absolute !important;
-    z-index: 999;
-    top: 20%;
-    left: 50%;
   }
 }

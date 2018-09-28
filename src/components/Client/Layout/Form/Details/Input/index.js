@@ -3,11 +3,12 @@ import React from 'react';
 const index = props => {
   return (
     <div className="input-group">
-      <div className="input-group-prepend w-25">
+      {/* <div className="input-group-prepend w-25">
         <span className="Client__Form__form--font-size input-group-text w-100 text-uppercase rounded-0">
           {props.name}
         </span>
-      </div>
+      </div> */}
+
       <input
         type={props.type}
         className={[

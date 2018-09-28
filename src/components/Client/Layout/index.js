@@ -9,6 +9,7 @@ import withErrorHandler from '../../../hoc/withErrorHandler';
 import axios from '../../../helpers/axios.config';
 import { informationFetchStart } from '../../../store/actions/information.action';
 import { menusFetchStart } from '../../../store/actions/menus.action';
+import { slidesRandFetchStart } from '../../../store/actions/slides.action';
 class index extends React.Component {
   state = {
     signUpForm: false,
@@ -18,8 +19,7 @@ class index extends React.Component {
   componentDidMount() {
     this.props.informationFetchStart();
     this.props.menusFetchStart();
-
-    console.log('object');
+    this.props.slidesRandFetchStart();
   }
 
   onButtonScrollTopClickHandler = () => {
@@ -94,13 +94,15 @@ class index extends React.Component {
 const mapStateToProps = state => {
   return {
     information: state.information,
-    menus: state.menus
+    menus: state.menus,
+    slide: state.slides.show
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     informationFetchStart: () => dispatch(informationFetchStart()),
-    menusFetchStart: () => dispatch(menusFetchStart())
+    menusFetchStart: () => dispatch(menusFetchStart()),
+    slidesRandFetchStart: _ => dispatch(slidesRandFetchStart())
   };
 };
 

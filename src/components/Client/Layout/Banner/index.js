@@ -1,25 +1,33 @@
 import React from 'react';
-import Picture from '../../../Details/Picture';
 
 import Button from '../../../Details/Button';
+
 const index = props => {
   return (
-    <div className="container-fluid px-0 Banner">
-      <div className="d-flex flex-row">
-        <div className="col-12 px-0">
-          <Picture
-            src={props.bannerImage}
-            className="w-100 img-fluid Banner__image"
-          />
-          <div className="Banner__text">
-            <h1 className="text-uppercase text-white">{props.title}</h1>
-            <small className="text-uppercase text-white">
-              THE FIRST FREE WEB BASED QUOTING SYSTEM FOR SMASH REPAIRERS
-            </small>
-            <br />
-            <Button className="btn btn-outline-dark bg-yellow-cz-custom rounded-0 text-dark text-uppercase mt-3 font-weight-bold">
-              sign up now
-            </Button>
+    <div
+      className="container-fluid px-0 Client__Banner Client__Banner__Image"
+      style={{
+        backgroundImage:
+          'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(' +
+          props.bannerImage +
+          ')'
+      }}
+    >
+      <div className="row h-100">
+        <div className="col-12 h-100">
+          <div className="Client__Banner__Text h-100 d-flex flex-column align-items-center justify-content-center">
+            <div>
+              <h1 className="text-uppercase text-white font-weight-bold display-4">
+                {props.title}
+              </h1>
+              <small className="text-uppercase text-white">
+                THE FIRST FREE WEB BASED QUOTING SYSTEM FOR SMASH REPAIRERS
+              </small>
+              <br />
+              <Button className="btn btn-outline-dark bg-yellow-cz-custom rounded-0 text-dark text-uppercase mt-3 font-weight-bold">
+                sign up now
+              </Button>
+            </div>
           </div>
         </div>
       </div>

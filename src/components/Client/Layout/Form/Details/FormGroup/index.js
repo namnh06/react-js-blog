@@ -4,7 +4,7 @@ const index = props => {
   return (
     <div
       className={[
-        'form-group d-flex flex-column justify-content-around',
+        'form-group d-flex flex-column justify-content-around mb-0',
         props.className
       ].join(' ')}
     >

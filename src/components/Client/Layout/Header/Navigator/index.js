@@ -12,7 +12,7 @@ const index = props => {
       {childrenOfListHeader(
         props.type,
         props,
-        'nav-link py-0 pl-2 text-white text-uppercase'
+        'nav-link p-2 text-white text-uppercase'
       )}
     </li>
   );

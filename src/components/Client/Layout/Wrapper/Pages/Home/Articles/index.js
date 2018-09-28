@@ -25,25 +25,18 @@ class index extends Component {
           <div className="col-12">
             <div className="card-deck my-5 d-none d-lg-flex">
               {this.props.posts &&
-                Object.keys(this.props.posts.slice(0, 3)).map((key, index) => {
+                Object.keys(this.props.posts.slice(0, 6)).map((key, index) => {
                   const post = this.props.posts[key];
                   return <Post {...post} key={index} index={index + 1} />;
                 })}
             </div>
-            {/* <div className="card-deck my-5 d-block d-md-flex d-lg-none">
-              {this.props.posts &&
-                Object.keys(this.props.posts.slice(0, 2)).map((key, index) => {
-                  const post = this.props.posts[key];
-                  return <Post {...post} key={index} index={index + 1} />;
-                })}
-            </div> */}
           </div>
         </div>
         <div className="row mt-3">
-          <div className="col-3 col-md-4 d-flex align-items-center ">
+          <div className="col-1 offset-4 d-flex align-items-center ">
             <div className="Client__Articles__Dash bg-dark w-100" />
           </div>
-          <div className="col-6 col-md-4  d-flex justify-content-center">
+          <div className="col-2  d-flex justify-content-center">
             <button
               onClick={_ => {
                 return this.props.history.push('/blog');
@@ -53,7 +46,7 @@ class index extends Component {
               view all articles
             </button>
           </div>
-          <div className="col-3 col-md-4 d-flex align-items-center ">
+          <div className="col-1 d-flex align-items-center ">
             <div className="Client__Articles__Dash bg-dark w-100" />
           </div>
         </div>

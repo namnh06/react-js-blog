@@ -11,7 +11,7 @@ import Posts from './Pages/Posts';
 import Categories from './Pages/Categories';
 import NotFoundPage from '../../../../containers/404';
 import Dashboard from './Pages/Dashboard';
-import Carousel from './Pages/Carousel';
+import Images from './Pages/Images';
 
 class index extends Component {
   state = {
@@ -79,9 +79,9 @@ class index extends Component {
             }
           />
         );
-      case ADMIN_PAGES_NAME.CAROUSEL:
+      case ADMIN_PAGES_NAME.IMAGES:
         return (
-          <Carousel
+          <Images
             {...this.props}
             formToggle={this.state.formToggle}
             onFormToggleClicked={this.onFormToggleClickHandler}

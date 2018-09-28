@@ -113,7 +113,7 @@ class index extends Component {
                 textRequireName()}
             </HelpText>
             <Input
-              name="name"
+              name="Name"
               type="text"
               className={addInputValidClass(this.state.userForm.isValidName)}
               value={this.state.userForm.name}
@@ -130,7 +130,7 @@ class index extends Component {
                 )}
             </HelpText>
             <Input
-              name="email"
+              name="Email"
               type="email"
               className={addInputValidClass(this.state.userForm.isValidEmail)}
               value={this.state.userForm.email}
@@ -147,7 +147,7 @@ class index extends Component {
                 )}
             </HelpText>
             <Input
-              name="password"
+              name="Password"
               type="password"
               className={addInputValidClass(
                 this.state.userForm.isValidPassword
@@ -168,7 +168,7 @@ class index extends Component {
                 )}
             </HelpText>
             <Input
-              name="re-password"
+              name="Re-password"
               type="password"
               className={addInputValidClass(
                 this.state.userForm.isValidRePassword &&
@@ -180,24 +180,7 @@ class index extends Component {
             />
           </FormGroup>
         </ContentSection>
-        {/* <div className="d-flex justify-content-center pt-3 mt-3">
-          <Button
-            type="submit"
-            className={`btn btn-sm btn-success mx-2 ${
-              !!!this.state.isSaveButtonAllowed ? 'cursor-not-allowed' : ''
-            }`}
-            disabled={!!!this.state.isSaveButtonAllowed}
-          >
-            Sign Up
-          </Button>
-          <Button
-            type="button"
-            clicked={this.props.onButtonSignUpClicked}
-            className="btn btn-danger mx-2"
-          >
-            cancel
-          </Button>
-        </div> */}
+
         <ButtonSection
           isSaveButtonAllowed={this.state.isSaveButtonAllowed}
           onClicked={this.props.onButtonSignUpClicked}

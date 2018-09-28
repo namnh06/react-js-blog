@@ -1,11 +1,19 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
-import contactImage from '../../../../../../assets/images/contact/MenuBanners_Contact-1920x580.jpg';
 import Banner from '../../../Banner';
-const index = () => {
+import { HOST } from '../../../../../../helpers/constants';
+const index = props => {
   return (
     <Fragment>
-      <Banner bannerImage={contactImage} title="Contact" />
+      <Banner
+        bannerImage={
+          !!props.slides &&
+          !!props.slides[0] &&
+          HOST + props.slides[0].images[0].path
+        }
+        title="Contact"
+      />
       <div className="container-fluid Contact-Content px-0">
         <div className="d-flex flex-column flex-md-row h-100">
           <div className="d-none d-md-flex col-md-4 align-items-center h-100 bg-secondary px-0">
@@ -90,4 +98,10 @@ const index = () => {
   );
 };
 
-export default index;
+const mapStateToProps = state => {
+  return {
+    slides: state.slides.show
+  };
+};
+
+export default connect(mapStateToProps)(index);

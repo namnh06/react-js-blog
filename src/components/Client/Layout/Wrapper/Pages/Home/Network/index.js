@@ -2,13 +2,16 @@ import React from 'react';
 import cmccDocument from './../../../../../../../assets/documents/Crashzone-Membership-Code-of-Conduct-20141.pdf';
 const index = () => {
   return (
-    <div className="container-fluid Client__Home__Network--background-color">
+    <div
+      className="container-fluid Client__Home__Network--background-color"
+      id="network"
+    >
       <div className="row">
         <div className="container Client__Home__Network--background-image my-5">
           <div className="row">
             <div className="col-12">
               <div className="mb-3">
-                <div className="text-uppercase text-center text-white font-weight-bold lead display-4 my-5 ">
+                <div className="text-uppercase text-center text-white font-weight-bold h1 my-5 ">
                   CRASHZONE COMMUNITY REPAIRER NETWORK
                 </div>
               </div>

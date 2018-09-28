@@ -3,7 +3,7 @@ import Carousel from './Carousel';
 import Ribbon from './Ribbon';
 
 import Articles from './Articles';
-import Information from './Information';
+import LearnMore from './LearnMore';
 import Register from './Register';
 import FrequentAsk from './FrequentAsk';
 import Network from './Network';
@@ -32,7 +32,7 @@ class index extends React.Component {
           </Fragment>
         </div>
 
-        <Information />
+        <LearnMore />
         <FrequentAsk />
         <Register />
 

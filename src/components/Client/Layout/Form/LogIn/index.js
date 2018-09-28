@@ -130,8 +130,9 @@ class index extends Component {
                 !this.state.userForm.isValidEmail &&
                 helpTextRequire('email', 'alphabet and at least 2 characters')}
             </HelpText>
+
             <Input
-              name="email"
+              name="Email"
               type="text"
               id="LoginDiv_UserName"
               className={addInputValidClass(this.state.userForm.isValidEmail)}
@@ -148,8 +149,9 @@ class index extends Component {
                   'at least 3 ASCII characters. E.g : hello@123 '
                 )}
             </HelpText>
+
             <Input
-              name="password"
+              name="Password"
               type="password"
               id="LoginDiv_Password"
               className={addInputValidClass(
@@ -184,32 +186,7 @@ class index extends Component {
         >
           log in
         </ButtonSection>
-        {/* <div className="d-flex justify-content-center py-3">
-          <Button
-            type="submit"
-            className={`btn btn-sm btn-success mx-2 ${
-              !!!this.state.isSaveButtonAllowed ? 'cursor-not-allowed' : ''
-            }`}
-            disabled={!!!this.state.isSaveButtonAllowed}
-          >
-            Log In
-          </Button>
-          <Button
-            type="button"
-            clicked={this.props.onButtonLogInClicked}
-            className="btn btn-danger mx-2"
-          >
-            cancel
-          </Button>
-        </div> */}
 
-        {/* <div className="d-flex flex-column align-items-end text-muted mx-5">
-          <FakeLink>Forget Password ?</FakeLink>
-
-          <FakeLink clicked={this.props.onButtonSignUpClicked}>
-            Wanna Sign Up ?
-          </FakeLink>
-        </div> */}
         <BottomSection onClicked={this.props.onButtonSignUpClicked}>
           Wanna Sign Up ?
         </BottomSection>

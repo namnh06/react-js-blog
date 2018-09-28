@@ -7,7 +7,7 @@ export const initPosts = {
 export const initSlides = {
   current: { data: [] },
   deleted: { data: [] },
-  show: {}
+  show: []
 };
 export const initTags = { current: {}, deleted: {} };
 export const initUsers = {

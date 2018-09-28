@@ -1,9 +1,12 @@
 import React from 'react';
-
-const index = () => {
-  return (
-    <div className="container-fluid Client__Register">
-      {/* <LazyLoad height={200} offset={100}> */}
+import { connect } from 'react-redux';
+import { imageBackground } from '../../../../../../../helpers/image';
+const index = props => {
+  return !!props.slides.length ? (
+    <div
+      className="container-fluid Client__Register"
+      style={!!props.slides[4] && imageBackground(props.slides[4].images)}
+    >
       <div className="container">
         <div className="row">
           <div className="col-6 text-white text-uppercase d-flex flex-column justify-content-center my-5">
@@ -55,9 +58,14 @@ const index = () => {
           </div>
         </div>
       </div>
-      {/* </LazyLoad> */}
     </div>
-  );
+  ) : null;
 };
 
-export default index;
+const mapStateToprops = state => {
+  return {
+    slides: state.slides.show
+  };
+};
+
+export default connect(mapStateToprops)(index);

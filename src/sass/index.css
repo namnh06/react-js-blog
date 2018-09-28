@@ -10243,6 +10243,14 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.Client__Banner__Image {
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 .Client__Form {
   z-index: 1200;
   height: 100vh;
@@ -10379,22 +10387,16 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .Client__Information__TCS {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.8))), url("./../assets/images/slides/1-cz-first.jpg");
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("./../assets/images/slides/1-cz-first.jpg");
   background-position: 30% 20%;
   background-size: cover;
 }
 
 .Client__Information__II {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.8))), url("./../assets/images/slides/4-cz-fourth.png");
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("./../assets/images/slides/4-cz-fourth.png");
   background-position: 0 60%;
   background-size: cover;
 }
 
 .Client__Register {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.8))), url("./../assets/images/information/cz-using-ipad.jpg");
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("./../assets/images/information/cz-using-ipad.jpg");
   background-position: 0 80%;
   background-size: cover;
 }
@@ -10494,11 +10496,13 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .Client__Home__Information--background-image {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.7))), url("./../assets/images/slides/1-cz-first.jpg");
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url("./../assets/images/slides/1-cz-first.jpg");
   background-position: 0 10%;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.Carousel {
+  height: 800px;
 }
 
 .Carousel__Visited--slogan {
@@ -10550,34 +10554,10 @@ a.text-dark:hover, a.text-dark:focus {
 
 .Carousel__image--height {
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
   height: 800px;
-}
-
-@media (min-width: 768px) {
-  .Carousel__image--height {
-    height: 400px;
-  }
-}
-
-@media (min-width: 992px) {
-  .Carousel__image--height {
-    height: 600px;
-  }
-}
-
-.Banner__image {
-  max-height: 500px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.Banner__text {
-  position: absolute !important;
-  z-index: 999;
-  top: 20%;
-  left: 50%;
 }
 
 .Admin__Image__Preview__File__Label::after {
@@ -10937,7 +10917,7 @@ a.text-dark:hover, a.text-dark:focus {
   .Client__Form__form--width {
     position: absolute;
     top: 20%;
-    width: 25%;
+    width: 15%;
   }
   .Client__Navigation-Bar,
   .Client .Admin__Navigation-Bar {
