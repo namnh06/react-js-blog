@@ -14,9 +14,9 @@ const index = props => {
         }
         title="Contact"
       />
-      <div className="container-fluid Contact-Content px-0">
+      <div className="container-fluid px-0">
         <div className="d-flex flex-column flex-md-row h-100">
-          <div className="d-none d-md-flex col-md-4 align-items-center h-100 bg-secondary px-0">
+          <div className="d-none d-md-flex col-md-4 align-items-center bg-secondary px-0">
             <div className="d-flex flex-column text-white pl-5">
               <h1>Crashzone It’s Free Pty.Ltd</h1>
               <span>
@@ -29,9 +29,11 @@ const index = props => {
               </span>
             </div>
           </div>
-          <div className="col-12 col-md-8 py-5">
+          <div className="col-4 py-5">
             <form className="mx-5">
-              <h4>Get in touch with us</h4>
+              <div className="display-4 text-capitalize">
+                Get in touch with us
+              </div>
               <div className="">
                 <p>
                   If you have an enquiry, or would like to speak to us about any

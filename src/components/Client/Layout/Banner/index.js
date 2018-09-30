@@ -3,9 +3,10 @@ import React from 'react';
 import Button from '../../../Details/Button';
 
 const index = props => {
+  console.log(props);
   return (
     <div
-      className="container-fluid px-0 Client__Banner Client__Banner__Image"
+      className="container-fluid Client__Banner Client__Banner__Image"
       style={{
         backgroundImage:
           'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(' +
@@ -24,7 +25,10 @@ const index = props => {
                 THE FIRST FREE WEB BASED QUOTING SYSTEM FOR SMASH REPAIRERS
               </small>
               <br />
-              <Button className="btn btn-outline-dark bg-yellow-cz-custom rounded-0 text-dark text-uppercase mt-3 font-weight-bold">
+              <Button
+                clicked={props.onButtonSignUpClicked}
+                className="btn btn-outline-dark bg-yellow-cz-custom rounded-0 text-dark text-uppercase mt-3 font-weight-bold"
+              >
                 sign up now
               </Button>
             </div>

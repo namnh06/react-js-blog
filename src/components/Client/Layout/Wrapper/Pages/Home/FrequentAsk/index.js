@@ -13,7 +13,7 @@ const index = () => {
     <div className="container my-5">
       {/* <LazyLoad height={200} offset={100}> */}
       <div className="row">
-        <div className="col-12" id="accordion">
+        <div className="col-12">
           <div className="mb-5">
             <div className="text-uppercase font-weight-bold h1 text-center">
               Frequently Asked Question
@@ -62,7 +62,7 @@ const index = () => {
             </div>
             <div
               id="collapseTwo"
-              className="collapse"
+              className="collapse show"
               aria-labelledby="headingTwo"
               data-parent="#accordion"
             >
@@ -90,7 +90,7 @@ const index = () => {
             </div>
             <div
               id="collapseThree"
-              className="collapse"
+              className="collapse show"
               aria-labelledby="headingThree"
               data-parent="#accordion"
             >
@@ -117,7 +117,7 @@ const index = () => {
             </div>
             <div
               id="collapseFour"
-              className="collapse"
+              className="collapse show"
               aria-labelledby="headingFour"
               data-parent="#accordion"
             >
